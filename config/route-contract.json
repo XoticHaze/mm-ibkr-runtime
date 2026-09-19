@@ -1,0 +1,27 @@
+{
+  "schema": "mmibkr.public_runtime_route_contract.v1",
+  "runtime_repository": "XoticHaze/mm-ibkr-runtime",
+  "private_authority_repository": "XoticHaze/mm-IBKR",
+  "broker_compute_repository": "XoticHaze/research-compute-public-",
+  "canonical_b1_ref": "ibkr-b1-authority-v1",
+  "fleet_authority_base": "https://fleet-authority.slenderiq.workers.dev",
+  "live_trading_allowed": false,
+  "direct_ibkr_credentials_allowed": false,
+  "private_source_pat_allowed": false,
+  "public_strategy_authority": false,
+  "public_contract_selection_authority": false,
+  "cross_repo_github_token_assumed": false,
+  "canonical_bot_dockerfile": "Dockerfile.bot",
+  "source_exchange": {
+    "transport": "fleet_authority_oidc_x25519",
+    "producer_repository": "XoticHaze/mm-IBKR",
+    "consumer_repository": "XoticHaze/mm-ibkr-runtime",
+    "private_attestation_required": true
+  },
+  "broker_route": {
+    "transport": "fleet_authority_capability_to_canonical_b1",
+    "repository": "XoticHaze/research-compute-public-",
+    "workflow": ".github/workflows/ibkr-cloudflare-readonly-b1-r1.yml",
+    "direct_runtime_repo_dispatch": false
+  }
+}
