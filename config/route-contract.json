@@ -32,7 +32,15 @@
     "host_required": false,
     "connector_reconstruction_required": false,
     "runtime_workflow": ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml",
-    "status": "fleet_bootstrap_to_reusable_vault_implemented_acceptance_pending"
+    "status": "finite_acceptance_proven",
+    "accepted_source_sha": "cb28771e5fd3aa610d8fcf2ef683596a1cfabd51",
+    "accepted_archive_sha256": "39c6590ee44f6524bc7b501ba506b355b46ed0e2266268de9c1fbd927d80246a",
+    "accepted_manifest_sha256": "163fbe61641d0b0bb52b1fc6f5b3507cb476463bf3d71d130d49d89b3f6ed9bf",
+    "acceptance_run_id": "35520592599",
+    "private_contract_suite": "passed",
+    "dockerfile_bot_build": "passed",
+    "broker_action": false,
+    "candidate_fabricated": false
   },
   "source_vault_bootstrap": {
     "transport": "fleet_authority_oidc_private_archive_stream",

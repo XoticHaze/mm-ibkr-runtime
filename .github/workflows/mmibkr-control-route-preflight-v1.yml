@@ -1,0 +1,34 @@
+name: MM-IBKR Control Route Preflight V1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - assistant/control-route-preflight-20260920
+    paths:
+      - .github/workflows/mmibkr-control-route-preflight-v1.yml
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      IBKR_REMOTE_EXCHANGE_TOKEN_PROBE: ${{ secrets.IBKR_REMOTE_EXCHANGE_TOKEN }}
+    steps:
+      - name: Prove control credential presence without exposure
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "${IBKR_REMOTE_EXCHANGE_TOKEN_PROBE:-}" ]; then
+            echo 'IBKR_REMOTE_EXCHANGE_TOKEN_CONFIGURED=1'
+          else
+            echo 'IBKR_REMOTE_EXCHANGE_TOKEN_CONFIGURED=0'
+          fi
+          echo 'IBKR_REMOTE_EXCHANGE_TOKEN_EXPOSED=0'
+          echo 'IBKR_REMOTE_SOURCE_TOKEN_REQUIRED=0'
+          echo 'BROKER_ACTION=0'
+          echo 'LIVE_EXECUTION_ALLOWED=0'

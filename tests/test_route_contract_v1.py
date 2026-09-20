@@ -66,6 +66,24 @@ class RouteContractTests(unittest.TestCase):
         self.assertFalse(ingress["private_actions_required"])
         self.assertFalse(ingress["host_required"])
         self.assertFalse(ingress["connector_reconstruction_required"])
+        self.assertEqual(ingress["status"], "finite_acceptance_proven")
+        self.assertEqual(
+            ingress["accepted_source_sha"],
+            "cb28771e5fd3aa610d8fcf2ef683596a1cfabd51",
+        )
+        self.assertEqual(
+            ingress["accepted_archive_sha256"],
+            "39c6590ee44f6524bc7b501ba506b355b46ed0e2266268de9c1fbd927d80246a",
+        )
+        self.assertEqual(
+            ingress["accepted_manifest_sha256"],
+            "163fbe61641d0b0bb52b1fc6f5b3507cb476463bf3d71d130d49d89b3f6ed9bf",
+        )
+        self.assertEqual(ingress["acceptance_run_id"], "35520592599")
+        self.assertEqual(ingress["private_contract_suite"], "passed")
+        self.assertEqual(ingress["dockerfile_bot_build"], "passed")
+        self.assertFalse(ingress["broker_action"])
+        self.assertFalse(ingress["candidate_fabricated"])
 
     def test_direct_fleet_stream_is_bootstrap_only(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())
