@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class RouteContractTests(unittest.TestCase):
     def test_authority_split_is_fail_closed(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())
-        self.assertEqual(node["schema"], "mmibkr.public_runtime_route_contract.v3")
+        self.assertEqual(node["schema"], "mmibkr.public_runtime_route_contract.v4")
         self.assertEqual(node["runtime_repository"], "XoticHaze/mm-ibkr-runtime")
         self.assertEqual(node["private_authority_repository"], "XoticHaze/mm-IBKR")
         self.assertEqual(
@@ -28,21 +28,31 @@ class RouteContractTests(unittest.TestCase):
         self.assertFalse(node["cross_repo_github_token_assumed"])
         self.assertEqual(node["canonical_bot_dockerfile"], "Dockerfile.bot")
 
-    def test_source_ingress_is_hostless_fleet_stream(self):
+    def test_source_ingress_is_reusable_encrypted_vault(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())
         ingress = node["source_ingress"]
         self.assertEqual(
             ingress["canonical_transport"],
-            "fleet_authority_oidc_private_archive_stream",
+            "fleet_authority_exact_sha_encrypted_snapshot_vault",
         )
         self.assertEqual(ingress["private_source_repository"], "XoticHaze/mm-IBKR")
         self.assertEqual(
             ingress["runtime_consumer_repository"],
             "XoticHaze/mm-ibkr-runtime",
         )
+        self.assertEqual(
+            ingress["public_snapshot_repository"],
+            "XoticHaze/mm-ibkr-runtime",
+        )
+        self.assertEqual(ingress["public_snapshot_branch"], "mmibkr-source-vault")
         self.assertEqual(ingress["source_sha_approval_authority"], "fleet_code_pin")
+        self.assertEqual(
+            ingress["snapshot_manifest_approval_authority"],
+            "fleet_private_source_attestation_first_use_pin",
+        )
         self.assertTrue(ingress["exact_source_sha_required"])
-        self.assertTrue(ingress["stream_digest_attestation_required"])
+        self.assertTrue(ingress["manifest_sha256_required"])
+        self.assertTrue(ingress["archive_digest_attestation_required"])
         self.assertEqual(
             ingress["fleet_secret_name"],
             "MMIBKR_PRIVATE_SOURCE_TOKEN",
@@ -56,28 +66,25 @@ class RouteContractTests(unittest.TestCase):
         self.assertFalse(ingress["private_actions_required"])
         self.assertFalse(ingress["host_required"])
         self.assertFalse(ingress["connector_reconstruction_required"])
-        self.assertEqual(
-            ingress["runtime_workflow"],
-            ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml",
-        )
-        self.assertEqual(
-            ingress["status"],
-            "fleet_stream_implemented_secret_configuration_pending",
-        )
 
-    def test_snapshot_vault_is_optional_cache_not_startup_dependency(self):
+    def test_direct_fleet_stream_is_bootstrap_only(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())
-        cache = node["optional_source_cache"]
+        bootstrap = node["source_vault_bootstrap"]
         self.assertEqual(
-            cache["transport"],
-            "fleet_authority_exact_sha_encrypted_snapshot_vault",
+            bootstrap["transport"],
+            "fleet_authority_oidc_private_archive_stream",
         )
         self.assertEqual(
-            cache["status"],
-            "optional_optimization_not_startup_dependency",
+            bootstrap["purpose"],
+            "create_missing_reusable_encrypted_snapshot_only",
         )
-        self.assertFalse(cache["host_required"])
-        self.assertFalse(cache["private_actions_required"])
+        self.assertTrue(
+            bootstrap["private_source_fetch_skipped_when_snapshot_exists"]
+        )
+        self.assertFalse(bootstrap["runtime_private_repository_token_allowed"])
+        self.assertTrue(bootstrap["runtime_public_repository_write_token_allowed"])
+        self.assertFalse(bootstrap["public_plaintext_allowed"])
+        self.assertFalse(bootstrap["live_execution_allowed"])
 
     def test_x25519_exchange_is_scoped_only_to_hot_b1_relay(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())

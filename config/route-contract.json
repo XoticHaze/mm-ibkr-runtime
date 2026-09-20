@@ -1,5 +1,5 @@
 {
-  "schema": "mmibkr.public_runtime_route_contract.v3",
+  "schema": "mmibkr.public_runtime_route_contract.v4",
   "runtime_repository": "XoticHaze/mm-ibkr-runtime",
   "private_authority_repository": "XoticHaze/mm-IBKR",
   "broker_compute_repository": "XoticHaze/research-compute-public-",
@@ -14,12 +14,16 @@
   "cross_repo_github_token_assumed": false,
   "canonical_bot_dockerfile": "Dockerfile.bot",
   "source_ingress": {
-    "canonical_transport": "fleet_authority_oidc_private_archive_stream",
+    "canonical_transport": "fleet_authority_exact_sha_encrypted_snapshot_vault",
     "private_source_repository": "XoticHaze/mm-IBKR",
     "runtime_consumer_repository": "XoticHaze/mm-ibkr-runtime",
+    "public_snapshot_repository": "XoticHaze/mm-ibkr-runtime",
+    "public_snapshot_branch": "mmibkr-source-vault",
     "source_sha_approval_authority": "fleet_code_pin",
+    "snapshot_manifest_approval_authority": "fleet_private_source_attestation_first_use_pin",
     "exact_source_sha_required": true,
-    "stream_digest_attestation_required": true,
+    "manifest_sha256_required": true,
+    "archive_digest_attestation_required": true,
     "fleet_secret_name": "MMIBKR_PRIVATE_SOURCE_TOKEN",
     "fleet_secret_scope": "XoticHaze/mm-IBKR contents:read",
     "runtime_receives_private_source_credential": false,
@@ -28,13 +32,16 @@
     "host_required": false,
     "connector_reconstruction_required": false,
     "runtime_workflow": ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml",
-    "status": "fleet_stream_implemented_secret_configuration_pending"
+    "status": "fleet_bootstrap_to_reusable_vault_implemented_acceptance_pending"
   },
-  "optional_source_cache": {
-    "transport": "fleet_authority_exact_sha_encrypted_snapshot_vault",
-    "status": "optional_optimization_not_startup_dependency",
-    "host_required": false,
-    "private_actions_required": false
+  "source_vault_bootstrap": {
+    "transport": "fleet_authority_oidc_private_archive_stream",
+    "purpose": "create_missing_reusable_encrypted_snapshot_only",
+    "private_source_fetch_skipped_when_snapshot_exists": true,
+    "runtime_private_repository_token_allowed": false,
+    "runtime_public_repository_write_token_allowed": true,
+    "public_plaintext_allowed": false,
+    "live_execution_allowed": false
   },
   "hot_b1_source_relay": {
     "transport": "fleet_authority_oidc_x25519_source_exchange",
