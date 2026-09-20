@@ -3,6 +3,6 @@
   "source_sha": "06ee6b93f1155a242b846b967fc73df05afcebd9",
   "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
   "live_execution_allowed": false,
-  "attempt": 11,
-  "reason": "direct-entrypoint-import-repair"
+  "attempt": 12,
+  "reason": "retry-after-fleet-source-approval-deploy"
 }
