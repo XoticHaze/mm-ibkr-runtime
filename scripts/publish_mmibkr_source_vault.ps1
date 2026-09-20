@@ -31,7 +31,7 @@ try {
       -v "${OutDir}:/out" `
       -w /tool `
       python:3.11-slim `
-      bash -lc "apt-get update -qq && apt-get install -y -qq --no-install-recommends git >/dev/null && pip install --disable-pip-version-check -q cryptography==46.0.1 && python scripts/mmibkr_source_vault_publish_v1.py --repo-root /private-mm --source-sha $SourceSha --source-ref $SourceSha --receipt /out/$([IO.Path]::GetFileName($receipt))"
+      bash -lc "apt-get update -qq && apt-get install -y -qq --no-install-recommends git >/dev/null && git config --global --add safe.directory /private-mm && pip install --disable-pip-version-check -q cryptography==46.0.1 && python scripts/mmibkr_source_vault_publish_v1.py --repo-root /private-mm --source-sha $SourceSha --source-ref $SourceSha --receipt /out/$([IO.Path]::GetFileName($receipt))"
     if ($LASTEXITCODE -ne 0) { throw 'Encrypted source-vault publication failed' }
 
     $node = Get-Content -Raw -LiteralPath $receipt | ConvertFrom-Json
