@@ -143,13 +143,25 @@ def _safe_extract(archive: bytes, destination: Path) -> Path:
         members = tf.getmembers()
         if not members:
             raise RuntimeError("source_archive_empty")
+
+        top_parts: set[str] = set()
         for member in members:
             path = Path(member.name)
-            if path.is_absolute() or ".." in path.parts or not path.parts or path.parts[0] != "mm-ibkr":
+            if path.is_absolute() or ".." in path.parts or not path.parts:
                 raise RuntimeError("source_archive_path_rejected")
+            top_parts.add(path.parts[0])
             if member.issym() or member.islnk() or member.isdev():
                 raise RuntimeError("source_archive_special_member_rejected")
-            target = (destination / path).resolve()
+        if len(top_parts) != 1:
+            raise RuntimeError("source_archive_single_root_required")
+
+        root.mkdir(parents=True, exist_ok=True)
+        for member in members:
+            path = Path(member.name)
+            if len(path.parts) == 1:
+                continue
+            relative = Path(*path.parts[1:])
+            target = (root / relative).resolve()
             if target != root and root not in target.parents:
                 raise RuntimeError("source_archive_escape_rejected")
             if member.isdir():
