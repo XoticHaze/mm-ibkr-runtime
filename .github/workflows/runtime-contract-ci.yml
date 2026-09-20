@@ -37,6 +37,7 @@ jobs:
             scripts/mmibkr_source_vault_rsa_interop_probe_v1.py \
             tests/test_mmibkr_cloud_source_exchange_consumer_v1.py \
             tests/test_mmibkr_source_vault_v1.py \
+            tests/test_mmibkr_source_vault_fetch_retry_v1.py \
             tests/test_mmibkr_fleet_private_source_consumer_v1.py \
             tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py \
             tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py \
@@ -49,6 +50,7 @@ jobs:
             tests.test_route_contract_v1 \
             tests.test_mmibkr_cloud_source_exchange_consumer_v1 \
             tests.test_mmibkr_source_vault_v1 \
+            tests.test_mmibkr_source_vault_fetch_retry_v1 \
             tests.test_mmibkr_fleet_private_source_consumer_v1 \
             tests.test_mmibkr_fleet_source_vault_bootstrap_v1 \
             tests.test_mmibkr_source_vault_rsa_interop_probe_v1
