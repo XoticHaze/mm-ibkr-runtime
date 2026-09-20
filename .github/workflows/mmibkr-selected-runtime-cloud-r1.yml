@@ -267,3 +267,27 @@ jobs:
           set +e
           docker image rm "mmibkr-vault:$GITHUB_RUN_ID" >/dev/null 2>&1
           rm -rf "$RUNNER_TEMP/mmibkr-source"
+
+  control-route-preflight:
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: finite-source-acceptance
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    env:
+      IBKR_REMOTE_EXCHANGE_TOKEN_PROBE: ${{ secrets.IBKR_REMOTE_EXCHANGE_TOKEN }}
+    steps:
+      - name: Prove cross-repo control credential presence without exposure
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "${IBKR_REMOTE_EXCHANGE_TOKEN_PROBE:-}" ]; then
+            echo 'IBKR_REMOTE_EXCHANGE_TOKEN_CONFIGURED=1'
+          else
+            echo 'IBKR_REMOTE_EXCHANGE_TOKEN_CONFIGURED=0'
+          fi
+          echo 'IBKR_REMOTE_EXCHANGE_TOKEN_EXPOSED=0'
+          echo 'IBKR_REMOTE_SOURCE_TOKEN_REQUIRED=0'
+          echo 'LIVE_EXECUTION_ALLOWED=0'
+
