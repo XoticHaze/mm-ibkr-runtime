@@ -48,8 +48,21 @@ class RouteContractTests(unittest.TestCase):
         self.assertFalse(ingress["private_actions_required"])
         self.assertFalse(ingress["private_repository_token_allowed"])
         self.assertEqual(
+            ingress["publisher"],
+            "local_file_capable_ciphertext_only_publisher",
+        )
+        self.assertEqual(
+            ingress["public_snapshot_repository"],
+            "XoticHaze/research-compute-public-",
+        )
+        self.assertEqual(ingress["public_snapshot_branch"], "mmibkr-source-vault")
+        self.assertEqual(
+            ingress["runtime_workflow"],
+            ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml",
+        )
+        self.assertEqual(
             ingress["status"],
-            "file_capable_authorized_producer_binding_pending",
+            "producer_binding_implemented_real_snapshot_pending",
         )
 
     def test_x25519_exchange_is_scoped_only_to_hot_b1_relay(self):
