@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import Mock
@@ -12,6 +14,17 @@ SOURCE = "a" * 40
 
 
 class FleetSourceVaultBootstrapTests(unittest.TestCase):
+    def test_direct_script_execution_imports_repo_package(self):
+        proc = subprocess.run(
+            [sys.executable, "scripts/mmibkr_fleet_source_vault_bootstrap_v1.py", "--help"],
+            cwd=Path(__file__).resolve().parents[1],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("--source-sha", proc.stdout)
+
     def test_existing_snapshot_skips_private_source_fetch(self):
         existing = {
             "manifest": {
