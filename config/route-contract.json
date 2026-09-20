@@ -64,5 +64,17 @@
     "repository": "XoticHaze/research-compute-public-",
     "workflow": ".github/workflows/ibkr-cloudflare-readonly-b1-r1.yml",
     "direct_runtime_repo_dispatch": false
+  },
+  "cloud_owner_control": {
+    "owner_repository": "XoticHaze/research-compute-public-",
+    "owner_workflow": ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml",
+    "broker_dispatch_repository": "XoticHaze/research-compute-public-",
+    "credential_source": "github_actions_ephemeral_same_repo_token",
+    "token_env_alias": "IBKR_REMOTE_EXCHANGE_TOKEN",
+    "manual_pat_required": false,
+    "cloudflare_secret_required": false,
+    "token_persisted": false,
+    "cross_repo_token_required": false,
+    "live_execution_allowed": false
   }
 }

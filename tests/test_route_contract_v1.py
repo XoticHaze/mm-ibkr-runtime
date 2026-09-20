@@ -85,6 +85,28 @@ class RouteContractTests(unittest.TestCase):
         self.assertFalse(ingress["broker_action"])
         self.assertFalse(ingress["candidate_fabricated"])
 
+    def test_cloud_owner_uses_ephemeral_same_repo_control_token(self):
+        node = json.loads((ROOT / "config/route-contract.json").read_text())
+        control = node["cloud_owner_control"]
+        self.assertEqual(
+            control["owner_repository"],
+            "XoticHaze/research-compute-public-",
+        )
+        self.assertEqual(
+            control["broker_dispatch_repository"],
+            "XoticHaze/research-compute-public-",
+        )
+        self.assertEqual(
+            control["credential_source"],
+            "github_actions_ephemeral_same_repo_token",
+        )
+        self.assertEqual(control["token_env_alias"], "IBKR_REMOTE_EXCHANGE_TOKEN")
+        self.assertFalse(control["manual_pat_required"])
+        self.assertFalse(control["cloudflare_secret_required"])
+        self.assertFalse(control["token_persisted"])
+        self.assertFalse(control["cross_repo_token_required"])
+        self.assertFalse(control["live_execution_allowed"])
+
     def test_direct_fleet_stream_is_bootstrap_only(self):
         node = json.loads((ROOT / "config/route-contract.json").read_text())
         bootstrap = node["source_vault_bootstrap"]
