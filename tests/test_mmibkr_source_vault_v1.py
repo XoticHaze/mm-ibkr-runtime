@@ -130,7 +130,10 @@ class SourceVaultTests(unittest.TestCase):
         files, _, _ = pub.snapshot_publication_files(manifest, chunks)
         stored = {path: raw for path, raw in files}
         first = manifest["chunks"][0]["path"]
-        stored[first] = b"A" + stored[first][1:]
+        original = stored[first]
+        replacement = b"A" if original[:1] != b"A" else b"B"
+        stored[first] = replacement + original[1:]
+        self.assertNotEqual(stored[first], original)
 
         def fetch(url):
             return stored[url.split("/mmibkr-source-vault/", 1)[1]]
