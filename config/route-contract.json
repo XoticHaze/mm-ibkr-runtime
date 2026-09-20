@@ -21,7 +21,11 @@
     "public_plaintext_allowed": false,
     "private_actions_required": false,
     "private_repository_token_allowed": false,
-    "status": "file_capable_authorized_producer_binding_pending"
+    "status": "producer_binding_implemented_real_snapshot_pending",
+    "publisher": "local_file_capable_ciphertext_only_publisher",
+    "public_snapshot_repository": "XoticHaze/research-compute-public-",
+    "public_snapshot_branch": "mmibkr-source-vault",
+    "runtime_workflow": ".github/workflows/mmibkr-selected-runtime-cloud-r1.yml"
   },
   "hot_b1_source_relay": {
     "transport": "fleet_authority_oidc_x25519_source_exchange",
