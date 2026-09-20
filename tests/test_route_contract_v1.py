@@ -69,17 +69,17 @@ class RouteContractTests(unittest.TestCase):
         self.assertEqual(ingress["status"], "finite_acceptance_proven")
         self.assertEqual(
             ingress["accepted_source_sha"],
-            "06ee6b93f1155a242b846b967fc73df05afcebd9",
+            "61f0842b2de8709509453cb390310d246ea39ad3",
         )
         self.assertEqual(
             ingress["accepted_archive_sha256"],
-            "1a52372564ebd7e8289593d481d2ed19ee6c960212385bd2ff2af585f6102eb7",
+            "b7346244fc8a8a7701a5c4fdce995d49df42509a5347f1959ce05c67faccb953",
         )
         self.assertEqual(
             ingress["accepted_manifest_sha256"],
-            "acc5975db3ada820ace6e502e40458c712105179f2cf89fc7745ba7824ab1495",
+            "8374203819a8ab71834629bc9a4528d7d98e8064f08c33268d88b03800cab510",
         )
-        self.assertEqual(ingress["acceptance_run_id"], "35525574485")
+        self.assertEqual(ingress["acceptance_run_id"], "35535783978")
         self.assertEqual(ingress["private_contract_suite"], "passed")
         self.assertEqual(ingress["dockerfile_bot_build"], "passed")
         self.assertFalse(ingress["broker_action"])
