@@ -1,5 +1,5 @@
 {
-  "schema": "mmibkr.public_runtime_route_contract.v1",
+  "schema": "mmibkr.public_runtime_route_contract.v2",
   "runtime_repository": "XoticHaze/mm-ibkr-runtime",
   "private_authority_repository": "XoticHaze/mm-IBKR",
   "broker_compute_repository": "XoticHaze/research-compute-public-",
@@ -12,11 +12,24 @@
   "public_contract_selection_authority": false,
   "cross_repo_github_token_assumed": false,
   "canonical_bot_dockerfile": "Dockerfile.bot",
-  "source_exchange": {
-    "transport": "fleet_authority_oidc_x25519",
-    "producer_repository": "XoticHaze/mm-IBKR",
-    "consumer_repository": "XoticHaze/mm-ibkr-runtime",
-    "private_attestation_required": true
+  "source_ingress": {
+    "canonical_transport": "fleet_authority_exact_sha_encrypted_snapshot_vault",
+    "vault_authority_repository": "XoticHaze/research-compute-public-",
+    "runtime_consumer_repository": "XoticHaze/mm-ibkr-runtime",
+    "exact_source_sha_required": true,
+    "manifest_sha256_required": true,
+    "public_plaintext_allowed": false,
+    "private_actions_required": false,
+    "private_repository_token_allowed": false,
+    "status": "file_capable_authorized_producer_binding_pending"
+  },
+  "hot_b1_source_relay": {
+    "transport": "fleet_authority_oidc_x25519_source_exchange",
+    "broker_consumer_repository": "XoticHaze/research-compute-public-",
+    "canonical_b1_ref": "ibkr-b1-authority-v1",
+    "genuine_candidate_required": true,
+    "same_attested_source_required": true,
+    "private_repository_producer_required": false
   },
   "broker_route": {
     "transport": "fleet_authority_capability_to_canonical_b1",

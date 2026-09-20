@@ -10,7 +10,7 @@ Confirm the lane:
 - **Runtime owner/scheduler/checkpoint/watchdog change** → `XoticHaze/mm-ibkr-runtime`
 - **B1/Fleet/broker credential/IBKR session change** → `XoticHaze/research-compute-public-`
 
-If a proposed change crosses these boundaries, stop and state the exact cross-plane contract being changed.
+If a proposed change crosses these boundaries, state the exact cross-plane contract being changed before implementing it.
 
 ## Runtime invariants
 
@@ -19,10 +19,29 @@ If a proposed change crosses these boundaries, stop and state the exact cross-pl
 - private MM owns strategy/contract/quantity/paper authority
 - B1 owns broker access only
 - Fleet authenticates cross-repo capability exchange
-- source must be exact-SHA and private-producer-attested
+- canonical runtime source must be an exact-SHA encrypted snapshot approved by exact manifest SHA-256
+- canonical source ingress must not depend on private-repository Actions admission
 - public persisted state must remain sanitized
 - checkpoint loss must be recoverable by canonical historical self-heal
 - duplicate terminal boundaries must remain idempotent across sessions
+
+## Source transport split
+
+Do not conflate these two routes:
+
+1. **Reusable source snapshot vault**
+   - canonical private-source ingress into `mm-ibkr-runtime`
+   - exact source SHA + manifest SHA-256 pinned
+   - public persistence is ciphertext only
+   - private Actions admission is not required
+
+2. **One-run X25519 source exchange**
+   - hot relay from `mm-ibkr-runtime` to canonical B1
+   - used only after a genuine route-ready paper candidate exists
+   - must relay the same already-attested source
+   - not a private-source ingress replacement
+
+The old runtime-side one-shot private-producer consumer may remain for transitional evidence, but it is not canonical cutover authority.
 
 ## On-demand runtime acceptance
 
@@ -30,8 +49,8 @@ A finite acceptance must always run before enabling or changing perpetual self-h
 
 Acceptance sequence:
 
-1. materialize one exact private MM SHA through Fleet source exchange;
-2. verify source archive SHA-256/private-producer identity;
+1. materialize one exact private MM SHA from the reusable encrypted source snapshot vault;
+2. verify exact source SHA, snapshot/archive SHA-256, manifest SHA-256, and vault approval;
 3. build using `Dockerfile.bot`;
 4. run the private runtime contract suite;
 5. restore sanitized checkpoint if present, otherwise allow canonical cold self-heal;
@@ -40,7 +59,7 @@ Acceptance sequence:
 8. ingest exact returned history/quotes;
 9. run private natural evaluation;
 10. if **no genuine candidate**, close/expire the boundary without broker order action;
-11. if a genuine route-ready paper candidate exists, relay the **same attested source archive** to that hot B1 run and execute only the private canonical paper command;
+11. if a genuine route-ready paper candidate exists, relay the **same attested source** to that hot B1 run over the one-run X25519 source exchange and execute only the private canonical paper command;
 12. save sanitized checkpoint/session receipt;
 13. destroy private source/runtime material.
 
@@ -63,23 +82,31 @@ Do not report "public compute unavailable."
 
 Identify the exact failed binding:
 
-- source producer OIDC
-- Fleet source exchange
-- source attestation
-- runtime consumer/decrypt
+- local/file-ref to authorized snapshot producer
+- snapshot encryption/publication
+- Fleet source-vault approval
+- runtime OIDC unwrap
+- runtime consumer/decrypt/integrity check
 - broker request capability
 - B1 OIDC admission
 - B1 session/auth
 - historical read
-- hot execution relay
+- hot X25519 execution relay
 - encrypted proof return
 - checkpoint handoff
 
 Then repair that binding or switch to another already-hardened public encrypted path.
 
+The current source-ingress dependency name is:
+
+`FILE_CAPABLE_CONTEXT_TO_AUTHORIZED_PRODUCER_EXECUTION_BINDING_MISSING`
+
+Do not broaden it into a generic compute or source-publication blocker.
+
 ## Do not use
 
 - direct private GitHub source PATs in public runtime
+- private-repository Actions admission as the canonical source-ingress dependency
 - direct IBKR credentials in this repo
 - root `Dockerfile` assumption for MM-IBKR; canonical bot image uses `Dockerfile.bot`
 - public contract/month selection
