@@ -51,12 +51,15 @@ jobs:
             scripts/mmibkr_fleet_source_vault_bootstrap_v1.py \
             scripts/mmibkr_source_vault_publish_v1.py \
             scripts/mmibkr_source_vault_consumer_v1.py \
+            scripts/mmibkr_source_vault_rsa_interop_probe_v1.py \
             tests/test_mmibkr_fleet_private_source_consumer_v1.py \
             tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py \
+            tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py \
             tests/test_mmibkr_source_vault_v1.py
           python -m unittest -v \
             tests.test_mmibkr_fleet_private_source_consumer_v1 \
             tests.test_mmibkr_fleet_source_vault_bootstrap_v1 \
+            tests.test_mmibkr_source_vault_rsa_interop_probe_v1 \
             tests.test_mmibkr_source_vault_v1
 
   source-vault-bootstrap:
@@ -167,6 +170,16 @@ jobs:
               fh.write('PRIVATE_HEAD='+source+'\n')
           print('MMIBKR_PRIVATE_HEAD='+source)
           PY
+      - name: Probe runtime-to-Fleet RSA-OAEP boundary
+        run: |
+          set -euo pipefail
+          python scripts/mmibkr_source_vault_rsa_interop_probe_v1.py \
+            --source-sha "$PRIVATE_HEAD" \
+            --run-id "$GITHUB_RUN_ID" \
+            --authority-base "$FLEET_AUTHORITY_BASE" \
+            --public-repo "$SOURCE_VAULT_REPO" \
+            --public-branch "$SOURCE_VAULT_BRANCH"
+
       - name: Materialize approved exact-SHA reusable source snapshot
         run: |
           set -euo pipefail
