@@ -43,12 +43,12 @@ def _vault_key_response():
     }
 
 
-def _archive() -> bytes:
+def _archive(root: str = "mm-ibkr") -> bytes:
     buf = io.BytesIO()
     with tarfile.open(fileobj=buf, mode="w:gz") as tf:
         for name, raw in [
-            ("mm-ibkr/Dockerfile.bot", b"FROM scratch\n"),
-            ("mm-ibkr/main.py", b"print('ok')\n"),
+            (f"{root}/Dockerfile.bot", b"FROM scratch\n"),
+            (f"{root}/main.py", b"print('ok')\n"),
         ]:
             info = tarfile.TarInfo(name)
             info.size = len(raw)
@@ -58,6 +58,14 @@ def _archive() -> bytes:
 
 
 class SourceVaultTests(unittest.TestCase):
+    def test_github_tar_single_root_is_normalized_to_runtime_root(self):
+        archive = _archive("XoticHaze-mm-IBKR-ca1d97e")
+        with tempfile.TemporaryDirectory() as td:
+            root = con._safe_extract(archive, Path(td) / "out")
+            self.assertEqual(root.name, "mm-ibkr")
+            self.assertTrue((root / "Dockerfile.bot").is_file())
+            self.assertTrue((root / "main.py").is_file())
+
     def test_snapshot_roundtrip_binds_source_manifest_and_archive(self):
         private, key = _vault_key_response()
         archive = _archive()
