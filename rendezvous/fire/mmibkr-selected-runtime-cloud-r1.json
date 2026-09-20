@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "ec1831181ae49ef75679e103737ac04a9bc8a445",
+  "source_sha": "cb28771e5fd3aa610d8fcf2ef683596a1cfabd51",
   "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
   "live_execution_allowed": false,
-  "attempt": 9,
-  "reason": "advance-to-repaired-exact-source-with-crypto-dependency-and-dry-plan-fixtures"
+  "attempt": 10,
+  "reason": "retry-after-private-finite-suite-fixture-repair"
 }
