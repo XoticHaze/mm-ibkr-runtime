@@ -28,7 +28,7 @@ DEFAULT_AUTHORITY_BASE = "https://fleet-authority.slenderiq.workers.dev"
 DEFAULT_PUBLIC_REPO = "XoticHaze/research-compute-public-"
 DEFAULT_PUBLIC_BRANCH = "mmibkr-source-vault"
 DEFAULT_ROOT = "source-vault"
-CHUNK_CHARS = 80000
+CHUNK_CHARS = 4 * 1024 * 1024
 MAX_ARCHIVE_BYTES = 150 * 1024 * 1024
 
 
@@ -119,7 +119,7 @@ def encrypt_snapshot(
     source_sha = _valid_sha40(source_sha)
     if not archive or len(archive) > MAX_ARCHIVE_BYTES:
         raise RuntimeError("source_archive_size_rejected")
-    if chunk_chars < 1024 or chunk_chars > 100000:
+    if chunk_chars < 1024 or chunk_chars > 8 * 1024 * 1024:
         raise ValueError("chunk_chars_rejected")
 
     key_id = str(vault_public_key.get("key_id") or "")
