@@ -19,8 +19,10 @@ on:
       - scripts/mmibkr_fleet_source_vault_bootstrap_v1.py
       - scripts/mmibkr_source_vault_publish_v1.py
       - scripts/mmibkr_source_vault_consumer_v1.py
+      - scripts/mmibkr_source_vault_rsa_interop_probe_v1.py
       - tests/test_mmibkr_fleet_private_source_consumer_v1.py
       - tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py
+      - tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py
       - tests/test_mmibkr_source_vault_v1.py
 
 env:
