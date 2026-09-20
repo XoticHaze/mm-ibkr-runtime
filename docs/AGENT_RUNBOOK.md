@@ -2,15 +2,11 @@
 
 Use this runbook for MM-IBKR public runtime work.
 
-## Before changing anything
+## Lane ownership
 
-Confirm the lane:
-
-- **Private MM change** → `XoticHaze/mm-IBKR`
-- **Runtime owner/scheduler/checkpoint/watchdog change** → `XoticHaze/mm-ibkr-runtime`
-- **B1/Fleet/broker credential/IBKR session change** → `XoticHaze/research-compute-public-`
-
-If a proposed change crosses these boundaries, state the exact cross-plane contract being changed before implementing it.
+- Private MM change → `XoticHaze/mm-IBKR`
+- Runtime owner/scheduler/checkpoint/watchdog/source consumer → `XoticHaze/mm-ibkr-runtime`
+- B1/Fleet/broker credential/IBKR session → `XoticHaze/research-compute-public-`
 
 ## Runtime invariants
 
@@ -18,96 +14,79 @@ If a proposed change crosses these boundaries, state the exact cross-plane contr
 - no synthetic/fabricated candidate
 - private MM owns strategy/contract/quantity/paper authority
 - B1 owns broker access only
-- Fleet authenticates cross-repo capability exchange
-- canonical runtime source must be an exact-SHA encrypted snapshot approved by exact manifest SHA-256
-- canonical source ingress must not depend on private-repository Actions admission
-- public persisted state must remain sanitized
-- checkpoint loss must be recoverable by canonical historical self-heal
-- duplicate terminal boundaries must remain idempotent across sessions
+- Fleet authenticates cross-plane capability exchange
+- canonical source ingress is hostless and exact-SHA
+- runtime never receives the private GitHub source credential
+- private-repository Actions admission is not a source-ingress dependency
+- public persisted state remains sanitized
+- checkpoint loss is recoverable by canonical self-heal
+- terminal boundaries remain idempotent across sessions
 
-## Source transport split
+## Source transport
 
-Do not conflate these two routes:
+### Canonical startup ingress
 
-1. **Reusable source snapshot vault**
-   - canonical private-source ingress into `mm-ibkr-runtime`
-   - exact source SHA + manifest SHA-256 pinned
-   - public persistence is ciphertext only
-   - private Actions admission is not required
+`fleet_authority_oidc_private_archive_stream`
 
-2. **One-run X25519 source exchange**
-   - hot relay from `mm-ibkr-runtime` to canonical B1
-   - used only after a genuine route-ready paper candidate exists
-   - must relay the same already-attested source
-   - not a private-source ingress replacement
+1. exact private source SHA is code-approved in Fleet;
+2. canonical runtime authenticates to Fleet with pinned GitHub OIDC;
+3. Fleet uses `MMIBKR_PRIVATE_SOURCE_TOKEN` only inside Cloudflare to read the exact GitHub tarball;
+4. Fleet streams the archive to the admitted runtime and never exposes that credential;
+5. runtime hashes the exact received archive and returns source SHA + stream ID + archive SHA-256 + byte count;
+6. Fleet stores the same-source attestation used by the later B1 relay;
+7. runtime safe-extracts, builds `Dockerfile.bot`, and runs private contracts.
 
-The old runtime-side one-shot private-producer consumer may remain for transitional evidence, but it is not canonical cutover authority.
+The Cloudflare secret must be a narrowly scoped read-only GitHub credential for `XoticHaze/mm-IBKR` Contents.
 
-## On-demand runtime acceptance
+### Optional encrypted snapshot cache
 
-A finite acceptance must always run before enabling or changing perpetual self-handoff.
+The encrypted source snapshot vault may be used later to reduce repeated source fetches. It is an optimization only; do not make host/local-file publication a startup dependency again.
 
-Acceptance sequence:
+### Hot B1 relay
 
-1. materialize one exact private MM SHA from the reusable encrypted source snapshot vault;
-2. verify exact source SHA, snapshot/archive SHA-256, manifest SHA-256, and vault approval;
-3. build using `Dockerfile.bot`;
-4. run the private runtime contract suite;
-5. restore sanitized checkpoint if present, otherwise allow canonical cold self-heal;
-6. run futures roll maintenance;
-7. open canonical B1 boundary through the Fleet broker-capability route;
-8. ingest exact returned history/quotes;
-9. run private natural evaluation;
-10. if **no genuine candidate**, close/expire the boundary without broker order action;
-11. if a genuine route-ready paper candidate exists, relay the **same attested source** to that hot B1 run over the one-run X25519 source exchange and execute only the private canonical paper command;
-12. save sanitized checkpoint/session receipt;
+The one-run X25519 source exchange is only for a genuine route-ready candidate and must relay the same Fleet-attested source.
+
+## Finite acceptance
+
+1. verify Fleet private-source authority is configured;
+2. materialize the code-approved exact private SHA through Fleet;
+3. verify runtime used no private-repo credential and Fleet did not expose its credential;
+4. verify archive SHA-256/bytes and Fleet attestation;
+5. build `Dockerfile.bot`;
+6. run private runtime contracts;
+7. restore/self-heal sanitized state;
+8. run futures roll maintenance;
+9. reach canonical B1 read/evaluation boundary;
+10. no candidate → close cleanly;
+11. genuine candidate → same-source X25519 hot relay and canonical paper command only;
+12. save sanitized continuity state;
 13. destroy private source/runtime material.
 
-Do not force a trade to prove the route.
+Do not force a trade.
 
-## Perpetual owner
+## Failure taxonomy
 
-Only after finite acceptance is green:
+Do not report “public compute unavailable.” Name the exact failed binding:
 
-- enable bounded session self-handoff;
-- enable no-owner watchdog;
-- preserve sanitized checkpoint + terminal-boundary continuity;
-- keep cold-start self-heal as fallback;
-- keep futures roll maintenance at session start;
-- alert/fail closed after repeated transport/invariant failures.
-
-## Source or broker route failure
-
-Do not report "public compute unavailable."
-
-Identify the exact failed binding:
-
-- local/file-ref to authorized snapshot producer
-- snapshot encryption/publication
-- Fleet source-vault approval
-- runtime OIDC unwrap
-- runtime consumer/decrypt/integrity check
-- broker request capability
-- B1 OIDC admission
-- B1 session/auth
+- Fleet private-source secret missing/invalid
+- exact source SHA not code-approved
+- GitHub private tarball fetch
+- runtime OIDC admission
+- streamed archive integrity/size
+- same-run source attestation
+- archive extraction/`Dockerfile.bot`
+- private contract suite
+- broker capability/B1 admission/session
 - historical read
-- hot X25519 execution relay
+- hot X25519 relay
 - encrypted proof return
 - checkpoint handoff
 
-Then repair that binding or switch to another already-hardened public encrypted path.
-
-The current source-ingress dependency name is:
-
-`FILE_CAPABLE_CONTEXT_TO_AUTHORIZED_PRODUCER_EXECUTION_BINDING_MISSING`
-
-Do not broaden it into a generic compute or source-publication blocker.
-
 ## Do not use
 
-- direct private GitHub source PATs in public runtime
-- private-repository Actions admission as the canonical source-ingress dependency
-- direct IBKR credentials in this repo
-- root `Dockerfile` assumption for MM-IBKR; canonical bot image uses `Dockerfile.bot`
+- host/local machine as a required source path
+- direct private GitHub source token in public runtime
+- private Actions as source-ingress authority
+- direct IBKR credentials in runtime repo
 - public contract/month selection
-- compatibility routes after the canonical replacement is proven
+- compatibility routes after canonical replacement is proven
