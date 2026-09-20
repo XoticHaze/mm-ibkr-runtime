@@ -26,7 +26,7 @@ Owns:
 
 - bounded/perpetual cloud owner
 - bar-boundary scheduling
-- encrypted private-source consumer
+- encrypted exact-source snapshot consumer
 - ephemeral private runtime launch
 - sanitized market-data cache/checkpoint lifecycle
 - sanitized terminal-boundary idempotency continuity
@@ -50,6 +50,7 @@ Owns:
 
 - canonical B1 workflow: `.github/workflows/ibkr-cloudflare-readonly-b1-r1.yml`
 - Fleet Authority implementation/deployment
+- reusable exact-SHA encrypted source snapshot vault
 - broker credential sealing/unsealing
 - broker session lifecycle and warm-state handling
 - exact-contract qualification/read transport
@@ -70,26 +71,46 @@ It must authenticate GitHub-hosted workflows with OIDC and pin:
 - run_id
 - event type
 
-It may hold encrypted/ciphertext rendezvous state and broker-sealed authority. It must not become strategy, contract-selection, sizing, or live-execution authority.
+It may hold encrypted/ciphertext rendezvous state, code-pinned source-snapshot approvals, and broker-sealed authority. It must not become strategy, contract-selection, sizing, or live-execution authority.
 
 ## Allowed route graph
 
 ```text
-mm-IBKR (private)
-  ├─ encrypted source producer ──> Fleet source exchange
-  │                                  │
-  │                                  v
-  │                           mm-ibkr-runtime
-  │                                  │
-  ├─ private selected-runtime intent │
-  │                                  ├─ read/qualification request ──> Fleet broker request ──> B1
-  │                                  │
-  │                                  └─ genuine paper command
-  │                                         │
-  │                                         └─ attested source relay ──> Fleet ──> same-hot B1
-  │
-  └─ remains final strategy/execution-policy authority
+mm-IBKR (private authority)
+  |
+  | exact source SHA
+  v
+authorized file-capable encrypted-snapshot producer
+  |
+  | ciphertext + source SHA + manifest SHA-256
+  v
+Fleet source snapshot vault
+  |
+  | runtime OIDC unwrap
+  v
+mm-ibkr-runtime
+  |
+  | private natural evaluation
+  |
+  +-- no genuine candidate --------------------------> close boundary
+  |
+  +-- genuine route-ready paper candidate
+         |
+         | same already-attested source
+         v
+     one-run X25519 Fleet source exchange
+         |
+         v
+research-compute-public- / canonical B1
+         |
+         v
+      IBKR paper
 ```
+
+The source snapshot vault and the one-run X25519 source exchange are deliberately different contracts:
+
+- **Snapshot vault:** canonical reusable private-source ingress into the public runtime. It must not require private-repository Actions admission.
+- **X25519 source exchange:** ephemeral same-source relay from the runtime to hot B1 after a genuine candidate exists. It is not the canonical private-source producer path.
 
 ## Forbidden shortcuts
 
@@ -98,6 +119,7 @@ The following are route violations:
 - `mm-ibkr-runtime` directly authenticating to IBKR.
 - `mm-ibkr-runtime` assuming its repository `GITHUB_TOKEN` can control `research-compute-public-`.
 - placing a private-repository PAT in the public runtime.
+- treating the old private-Actions one-shot source producer as canonical source ingress.
 - publishing private MM source, StrategySpecs, candidate packets, account state, positions, orders, or broker credentials.
 - B1 choosing a futures month, strategy, quantity, DCA intent, or entry/exit action.
 - Fleet Authority manufacturing candidate/order intent.
@@ -113,27 +135,38 @@ Private MM independently owns:
 
 Those authorities may temporarily resolve to different contracts. B1 only broker-qualifies exact private-MM requests.
 
-## Source provenance chain
+## Canonical source provenance chain
 
-The accepted source chain is:
+The accepted reusable source-ingress chain is:
 
-1. private MM workflow authenticates to Fleet Authority with GitHub OIDC;
-2. private workflow archives its authenticated checkout/HEAD;
-3. archive is encrypted to a one-run public-runtime X25519 recipient;
-4. Fleet stores ciphertext and a private-producer attestation for exact source SHA + archive SHA-256 + byte count;
-5. public runtime decrypts only in ephemeral runner storage;
-6. if a genuine paper candidate is produced, the exact already-attested archive is re-encrypted to the hot B1 recipient;
-7. Fleet refuses the B1 relay unless the source tuple matches the private attestation;
-8. B1 decrypts locally, builds the exact private runtime, executes the canonical private submit path, returns an encrypted proof, and destroys private material.
+1. private MM authority identifies the exact source SHA;
+2. a file-capable authorized producer receives the exact materialized source payload without making private Actions admission a dependency;
+3. the producer encrypts the exact snapshot against the Fleet source-vault public key;
+4. only ciphertext plus exact source SHA, snapshot manifest, manifest SHA-256, and sealed key are publicly persisted;
+5. Fleet code-pins the exact source SHA + manifest SHA-256 approval;
+6. `mm-ibkr-runtime` authenticates with its pinned GitHub OIDC identity and requests source-vault unwrap;
+7. plaintext exists only in ephemeral admitted runner storage and is checked against the exact source/archive digests;
+8. the runtime builds `Dockerfile.bot`, runs the private contract suite, restores/self-heals sanitized state, and performs natural evaluation;
+9. if no genuine route-ready paper candidate exists, the boundary closes without broker action;
+10. if a genuine route-ready paper candidate exists, the already-attested source is relayed to the same-hot B1 run over the one-run X25519 source exchange;
+11. B1 builds the exact private runtime, executes only the canonical private submit path, returns encrypted proof, and destroys private material.
 
-No private GitHub bearer token is part of this route.
+No private GitHub bearer token is part of the canonical source-ingress route.
 
 ## Current cutover state
 
-Until finite acceptance proves the full source-attested B1 route:
+The reusable Fleet source snapshot vault is deployed and healthy, but the exact unresolved ingress dependency remains:
+
+`materialized local/file-ref -> authorized producer execution context -> encrypted snapshot publication/vault -> public runtime consumer`
+
+That dependency is tracked as:
+
+`FILE_CAPABLE_CONTEXT_TO_AUTHORIZED_PRODUCER_EXECUTION_BINDING_MISSING`
+
+Until finite acceptance proves the full vault-to-runtime-to-B1 route:
 
 - canonical B1 remains on `research-compute-public-/ibkr-b1-authority-v1`;
-- private cloud changes remain on the MM feature branch;
+- private cloud changes remain private authority;
 - this repo may contain the new runtime control-plane code, but perpetual self-handoff must not be treated as accepted production authority.
 
 Cutover requires an executed green finite acceptance, not only CI/contracts.
