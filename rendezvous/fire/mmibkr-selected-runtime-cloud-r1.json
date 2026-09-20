@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "1ecb1de8dda1c8797b6fa1af6dba6f6e1765438e",
+  "source_sha": "5aeb0370a18c4c941852c7454706ba9ffa28da68",
   "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
   "live_execution_allowed": false,
-  "attempt": 15,
-  "reason": "closed-market-no-new-completed-target-bar-observation-only"
+  "attempt": 16,
+  "reason": "final-private-main-sync-exact-source-acceptance"
 }
