@@ -24,6 +24,7 @@ on:
       - tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py
       - tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py
       - tests/test_mmibkr_source_vault_v1.py
+      - tests/test_mmibkr_source_vault_fetch_retry_v1.py
 
 env:
   FLEET_AUTHORITY_BASE: https://fleet-authority.slenderiq.workers.dev
@@ -57,12 +58,14 @@ jobs:
             tests/test_mmibkr_fleet_private_source_consumer_v1.py \
             tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py \
             tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py \
-            tests/test_mmibkr_source_vault_v1.py
+            tests/test_mmibkr_source_vault_v1.py \
+            tests/test_mmibkr_source_vault_fetch_retry_v1.py
           python -m unittest -v \
             tests.test_mmibkr_fleet_private_source_consumer_v1 \
             tests.test_mmibkr_fleet_source_vault_bootstrap_v1 \
             tests.test_mmibkr_source_vault_rsa_interop_probe_v1 \
-            tests.test_mmibkr_source_vault_v1
+            tests.test_mmibkr_source_vault_v1 \
+            tests.test_mmibkr_source_vault_fetch_retry_v1
 
   source-vault-bootstrap:
     if: ${{ github.event_name != 'pull_request' }}
