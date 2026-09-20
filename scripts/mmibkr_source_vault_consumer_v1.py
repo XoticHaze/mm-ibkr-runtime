@@ -127,7 +127,7 @@ def _validate_manifest(node: Mapping[str, Any], *, source_sha: str) -> dict[str,
             raise RuntimeError("source_vault_chunk_path_rejected")
         if len(digest) != 64 or any(ch not in "0123456789abcdef" for ch in digest):
             raise RuntimeError("source_vault_chunk_digest_rejected")
-        if int(desc.get("chars") or 0) <= 0 or int(desc.get("chars") or 0) > 100000:
+        if int(desc.get("chars") or 0) <= 0 or int(desc.get("chars") or 0) > 8 * 1024 * 1024:
             raise RuntimeError("source_vault_chunk_chars_rejected")
     return dict(node)
 
