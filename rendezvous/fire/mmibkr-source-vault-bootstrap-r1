@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "73e573f622dd992f4b9337c1a0aef61e0f431bd9",
-  "reason": "autotuner_vnext_pr699_exact_private_test_snapshot",
+  "source_sha": "8c1df30cc01dde763c909205c6148741342f7d60",
+  "reason": "current_mm_main_ownership_safe_lifecycle_hardening",
   "runtime_authority_changed": false,
   "live_execution_allowed": false,
-  "request_nonce": "20260923T0920Z-699-73e573f6"
+  "request_nonce": "20260923T0923Z-main-8c1df30c"
 }
