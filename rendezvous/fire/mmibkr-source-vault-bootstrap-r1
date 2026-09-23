@@ -1,7 +1,8 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "35e6b44e5c2618f780a84c1c204fe14c76bdf0e5",
-  "reason": "selected_runtime_ownership_forward_lifecycle_source_retry_after_fleet_deploy",
+  "source_sha": "73e573f622dd992f4b9337c1a0aef61e0f431bd9",
+  "reason": "autotuner_vnext_pr699_exact_private_test_snapshot",
   "runtime_authority_changed": false,
-  "live_execution_allowed": false
+  "live_execution_allowed": false,
+  "request_nonce": "20260923T0920Z-699-73e573f6"
 }
