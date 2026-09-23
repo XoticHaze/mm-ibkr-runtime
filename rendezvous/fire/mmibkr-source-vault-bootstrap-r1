@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "9d77e1e57cbf64687d756e424dbc0f45fb103b23",
-  "reason": "autotuner_vnext_pr699_consumption_gate_exact_private_test_snapshot",
+  "source_sha": "111beb2ddf88145477b6c568c41ff81fad80fa30",
+  "reason": "forward_lifecycle_market_observation_pr707_exact_private_validation",
   "runtime_authority_changed": false,
   "live_execution_allowed": false,
-  "request_nonce": "20260923T1009Z-699-9d77e1e5"
+  "request_nonce": "20260923T1015Z-707-111beb2d"
 }
