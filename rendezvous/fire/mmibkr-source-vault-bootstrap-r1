@@ -1,7 +1,1 @@
-{
-  "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "5e56997fe31987fb1ac471ebecb03795b6614887",
-  "reason": "forward_testing_canonical_accepted_main",
-  "runtime_authority_changed": false,
-  "live_execution_allowed": false
-}
+{"schema":"mmibkr-source-vault-bootstrap-fire-v1","source_sha":"35e6b44e5c2618f780a84c1c204fe14c76bdf0e5","reason":"selected_runtime_ownership_forward_lifecycle_source","runtime_authority_changed":false,"live_execution_allowed":false}
