@@ -3,6 +3,6 @@
   "source_sha": "07824b4ed9354a8519d4ce595735f7c1a610fdc2",
   "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
   "live_execution_allowed": false,
-  "attempt": 17,
-  "reason": "issue-667-canonical-route-authority-promotion"
+  "attempt": 18,
+  "reason": "issue-667-post-bootstrap-finite-acceptance"
 }
