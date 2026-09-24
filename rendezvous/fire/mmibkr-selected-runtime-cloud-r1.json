@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "5aeb0370a18c4c941852c7454706ba9ffa28da68",
+  "source_sha": "07824b4ed9354a8519d4ce595735f7c1a610fdc2",
   "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
   "live_execution_allowed": false,
-  "attempt": 16,
-  "reason": "final-private-main-sync-exact-source-acceptance"
+  "attempt": 17,
+  "reason": "issue-667-canonical-route-authority-promotion"
 }
