@@ -1,7 +1,7 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "7274ef7abfb0c66bd8df59ce5477f82e3cc7591e",
-  "reason": "canonical_market_chart_provenance_ui_pr774_final_20260926_7274ef7a",
+  "source_sha": "ee2f521c0ec144b3e00c03585e08ec9e0076caac",
+  "reason": "corpus_v2_pr773_continuous_sentinel_fix_20260926_ee2f521c",
   "runtime_authority_changed": false,
   "live_execution_allowed": false
 }
