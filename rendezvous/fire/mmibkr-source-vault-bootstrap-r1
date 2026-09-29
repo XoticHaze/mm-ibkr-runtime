@@ -1,7 +1,7 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "426914eaddf1b61e836c1b082d27d3abf90fcdea",
-  "reason": "pr793_pilot_promotion_review_exact_acceptance_20260929",
+  "source_sha": "54851bf48d64c20e29c973ebc40a8282b205367b",
+  "reason": "pr796_pilot_promotion_stage_readback_acceptance_20260929",
   "runtime_authority_changed": false,
   "live_execution_allowed": false
 }
