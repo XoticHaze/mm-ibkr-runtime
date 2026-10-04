@@ -1,7 +1,7 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "0358d469dffa26d5ff9132b54cd11219c18fe5ea",
-  "reason": "auditor_s3_composition_economics_exact_pr818_source_20261003",
+  "source_sha": "ffb688a28a53fe0616e16370dd861b7c94423cfb",
+  "reason": "evolution_auditor_current_main_live_readiness_reproof_20261004",
   "runtime_authority_changed": false,
   "live_execution_allowed": false
 }
