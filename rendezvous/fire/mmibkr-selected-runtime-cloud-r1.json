@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "b7225f4e855df7c7648fc9b5145f09181a92ef79",
-  "purpose": "prove-current-three-StrategySpec-trio-under-explicit-cloud-acceptance-gate",
+  "source_sha": "49216948f307045f2ba97c433a4b9695d43737ec",
+  "purpose": "diagnose-StrategySpec-persistence-first-apply-blocker",
   "live_execution_allowed": false,
-  "attempt": 20,
-  "reason": "post-gate acceptance proving exact MNQ AMAT APH StrategySpec digests and continuity contracts before current-source paper canary"
+  "attempt": 21,
+  "reason": "exact private diagnostic commit changes assertion visibility only; reproduce 14TH31HO apply blocker without changing runtime semantics"
 }
