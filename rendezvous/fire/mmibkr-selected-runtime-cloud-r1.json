@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "07824b4ed9354a8519d4ce595735f7c1a610fdc2",
-  "purpose": "bootstrap-reusable-encrypted-source-vault-and-run-finite-acceptance",
+  "source_sha": "b7225f4e855df7c7648fc9b5145f09181a92ef79",
+  "purpose": "bootstrap-current-three-strategyspec-source-and-run-finite-cloud-acceptance",
   "live_execution_allowed": false,
-  "attempt": 18,
-  "reason": "issue-667-post-bootstrap-finite-acceptance"
+  "attempt": 19,
+  "reason": "promote current MM-IBKR source containing exact MNQ AMAT APH StrategySpec identities into reusable encrypted Source Vault before cloud paper owner repin"
 }
