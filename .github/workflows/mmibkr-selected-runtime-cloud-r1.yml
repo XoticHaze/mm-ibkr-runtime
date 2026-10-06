@@ -25,6 +25,7 @@ on:
       - tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py
       - tests/test_mmibkr_source_vault_v1.py
       - tests/test_mmibkr_source_vault_fetch_retry_v1.py
+      - tests/test_current_strategyspec_cloud_acceptance_gate_v1.py
 
 env:
   FLEET_AUTHORITY_BASE: https://fleet-authority.slenderiq.workers.dev
@@ -59,13 +60,15 @@ jobs:
             tests/test_mmibkr_fleet_source_vault_bootstrap_v1.py \
             tests/test_mmibkr_source_vault_rsa_interop_probe_v1.py \
             tests/test_mmibkr_source_vault_v1.py \
-            tests/test_mmibkr_source_vault_fetch_retry_v1.py
+            tests/test_mmibkr_source_vault_fetch_retry_v1.py \
+            tests/test_current_strategyspec_cloud_acceptance_gate_v1.py
           python -m unittest -v \
             tests.test_mmibkr_fleet_private_source_consumer_v1 \
             tests.test_mmibkr_fleet_source_vault_bootstrap_v1 \
             tests.test_mmibkr_source_vault_rsa_interop_probe_v1 \
             tests.test_mmibkr_source_vault_v1 \
-            tests.test_mmibkr_source_vault_fetch_retry_v1
+            tests.test_mmibkr_source_vault_fetch_retry_v1 \
+            tests.test_current_strategyspec_cloud_acceptance_gate_v1
 
   source-vault-bootstrap:
     if: ${{ github.event_name != 'pull_request' }}
@@ -236,6 +239,10 @@ jobs:
             tests.test_runtime_market_data_cache_checkpoint_v1 \
             tests.test_selected_runtime_cloud_runner_dry_plan_v1 \
             tests.test_selected_runtime_boundary_snapshot_hydrator_v1 \
+            tests.test_selected_runtime_strategy_spec_integrity_v1 \
+            tests.test_selected_runtime_strategy_identity_continuity_14th31ht \
+            tests.test_strategy_identity_guarded_submit_continuity_14th31hv \
+            tests.test_strategy_spec_runtime_persistence_14th31ho \
             tests.test_selected_runtime_cloud_natural_evaluator_v1 \
             tests.test_selected_runtime_cloud_cycle_v1 \
             tests.test_selected_runtime_cloud_daemon_v1 \
@@ -243,6 +250,46 @@ jobs:
             tests.test_ibkr_remote_selected_runtime_paper_execute_slot_v1 \
             tests.test_mmibkr_cloud_source_relay_v1 \
             tests.test_ibkr_remote_warm_read_v1
+      - name: Prove exact selected-runtime StrategySpec identities
+        run: |
+          set -euo pipefail
+          docker run --rm "mmibkr-vault:$GITHUB_RUN_ID" python - <<'PY'
+          import json
+          from pathlib import Path
+
+          expected = {
+              "MNQ": "00658020a4676b67a25f0cbb74e01ea600336d0ca485764e03eaefd34f48254a",
+              "AMAT": "f5063f36984199aa86836852824b91cab3651aab255647f8fac47e4ebc6d885a",
+              "APH": "8b831cce20d82256632269b386251afa0f0723f5fdbfb6e938d6249a1e6d5bfa",
+          }
+          node = json.loads(
+              Path("/app/config/selected_runtime_universe_14tu.json").read_text(
+                  encoding="utf-8"
+              )
+          )
+          active = {
+              str(row.get("symbol") or "").upper(): row
+              for row in node.get("runtime_ids") or []
+              if row.get("status") == "active_selected"
+          }
+          if set(expected) - set(active):
+              raise SystemExit("current selected-runtime StrategySpec coverage incomplete")
+          for symbol, digest in expected.items():
+              row = active[symbol]
+              if row.get("strategy_id") != "crw_score_multi_mode":
+                  raise SystemExit(symbol + " strategy owner mismatch")
+              if not isinstance(row.get("strategy_spec"), dict):
+                  raise SystemExit(symbol + " StrategySpec missing")
+              if str(row.get("strategy_spec_digest") or "").lower() != digest:
+                  raise SystemExit(symbol + " StrategySpec digest mismatch")
+              if (row.get("execution_policy") or {}).get("paper_submit_enabled") is not True:
+                  raise SystemExit(symbol + " paper policy disabled")
+              if (row.get("execution_policy") or {}).get("live_submit_enabled") is not False:
+                  raise SystemExit(symbol + " live policy unexpectedly enabled")
+              print("MMIBKR_STRATEGYSPEC_" + symbol + "=" + digest)
+          print("MMIBKR_CURRENT_STRATEGYSPEC_TRIO_PROVEN=1")
+          PY
+
       - name: Emit finite source acceptance receipt
         run: |
           set -euo pipefail
@@ -257,6 +304,12 @@ jobs:
             'source_transport':'fleet_authority_exact_sha_encrypted_snapshot_vault',
             'dockerfile':'Dockerfile.bot',
             'private_contract_suite':'passed',
+            'selected_runtime_strategy_spec_trio_proven':True,
+            'selected_runtime_strategy_spec_digests':{
+              'MNQ':'00658020a4676b67a25f0cbb74e01ea600336d0ca485764e03eaefd34f48254a',
+              'AMAT':'f5063f36984199aa86836852824b91cab3651aab255647f8fac47e4ebc6d885a',
+              'APH':'8b831cce20d82256632269b386251afa0f0723f5fdbfb6e938d6249a1e6d5bfa',
+            },
             'broker_action':False,
             'candidate_fabricated':False,
             'private_repository_token_used':False,
