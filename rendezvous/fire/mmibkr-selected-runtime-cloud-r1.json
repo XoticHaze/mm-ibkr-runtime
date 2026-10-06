@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
   "source_sha": "b7225f4e855df7c7648fc9b5145f09181a92ef79",
-  "purpose": "bootstrap-current-three-strategyspec-source-and-run-finite-cloud-acceptance",
+  "purpose": "prove-current-three-StrategySpec-trio-under-explicit-cloud-acceptance-gate",
   "live_execution_allowed": false,
-  "attempt": 19,
-  "reason": "promote current MM-IBKR source containing exact MNQ AMAT APH StrategySpec identities into reusable encrypted Source Vault before cloud paper owner repin"
+  "attempt": 20,
+  "reason": "post-gate acceptance proving exact MNQ AMAT APH StrategySpec digests and continuity contracts before current-source paper canary"
 }
