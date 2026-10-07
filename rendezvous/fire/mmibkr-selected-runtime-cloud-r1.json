@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
-  "purpose": "prove-current-reviewed-StrategySpec-trio-via-single-owner-source-vault-route",
+  "source_sha": "a61d493af14bcd1ec78d132dcf52fc73a55b4d37",
+  "purpose": "accept-current-production-live-account-context-source-via-canonical-runtime",
   "live_execution_allowed": false,
-  "attempt": 25,
-  "reason": "consume dedicated-bootstrap approved current MM source; prove exact StrategySpec trio, reviewed persistence, guarded submit continuity, and paper-only policy"
+  "attempt": 26,
+  "reason": "consume dedicated-bootstrap approved a61d493a MM source; prove current StrategySpec trio plus account-context migration with live disabled"
 }
