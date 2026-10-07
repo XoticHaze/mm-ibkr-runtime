@@ -70,6 +70,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check cryptography==46.0.1
 
       - name: Resolve exact source request
+        id: resolve
         shell: bash
         run: |
           set -euo pipefail
@@ -77,12 +78,16 @@ jobs:
           import json, os
           from pathlib import Path
 
+          recipient = ''
+          recipient_key_id = ''
           if os.environ['GITHUB_EVENT_NAME'] == 'push':
               fire = Path('rendezvous/fire/mmibkr-source-vault-bootstrap-r1')
               if not fire.is_file():
                   raise SystemExit('source-vault bootstrap fire request missing')
               node = json.loads(fire.read_text(encoding='utf-8'))
               source_sha = str(node.get('source_sha') or '').strip().lower()
+              recipient = str(node.get('parity_export_recipient_public_b64') or '').strip()
+              recipient_key_id = str(node.get('parity_export_recipient_key_id') or '').strip()
           else:
               event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text(encoding='utf-8'))
               source_sha = str((event.get('inputs') or {}).get('source_sha') or '').strip().lower()
@@ -90,9 +95,24 @@ jobs:
           if len(source_sha) != 40 or any(ch not in '0123456789abcdef' for ch in source_sha):
               raise SystemExit('exact 40-hex source_sha required')
 
+          requested = bool(recipient or recipient_key_id)
+          if requested:
+              import base64, hashlib
+              raw = base64.b64decode(recipient, validate=True)
+              if len(raw) != 32:
+                  raise SystemExit('parity export recipient key rejected')
+              expected_key_id = 'sha256:' + hashlib.sha256(raw).hexdigest()
+              if recipient_key_id != expected_key_id:
+                  raise SystemExit('parity export recipient key id mismatch')
+
           with Path(os.environ['GITHUB_ENV']).open('a', encoding='utf-8') as fh:
               fh.write('REQUEST_SOURCE_SHA=' + source_sha + '\n')
+              fh.write('PARITY_EXPORT_RECIPIENT_PUBLIC_B64=' + recipient + '\n')
+              fh.write('PARITY_EXPORT_RECIPIENT_KEY_ID=' + recipient_key_id + '\n')
+          with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as fh:
+              fh.write('parity_export_requested=' + ('true' if requested else 'false') + '\n')
           print('MMIBKR_SOURCE_VAULT_BOOTSTRAP_REQUEST=' + source_sha)
+          print('MMIBKR_PARITY_EXPORT_REQUESTED=' + ('1' if requested else '0'))
           PY
 
       - name: Bootstrap reusable encrypted source-vault snapshot through Fleet
@@ -134,10 +154,92 @@ jobs:
           print('MMIBKR_SOURCE_VAULT_STATUS=' + node['status'])
           PY
 
+      - name: Encrypt exact private source for parity refresh
+        if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/mmibkr-parity-export"
+          python - <<'PY'
+          import base64, hashlib, json, os
+          from pathlib import Path
+          from cryptography.hazmat.primitives import hashes, serialization
+          from cryptography.hazmat.primitives.asymmetric import x25519
+          from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
+          from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+
+          root = Path(os.environ['RUNNER_TEMP'])
+          source = root / 'mmibkr-source-vault-bootstrap' / 'private-source.tar.gz'
+          if not source.is_file():
+              raise SystemExit('bootstrap private source archive missing before parity export')
+          raw = source.read_bytes()
+          recipient_raw = base64.b64decode(os.environ['PARITY_EXPORT_RECIPIENT_PUBLIC_B64'], validate=True)
+          recipient = x25519.X25519PublicKey.from_public_bytes(recipient_raw)
+          eph = x25519.X25519PrivateKey.generate()
+          eph_pub = eph.public_key().public_bytes(
+              encoding=serialization.Encoding.Raw,
+              format=serialization.PublicFormat.Raw,
+          )
+          salt = os.urandom(32)
+          nonce = os.urandom(12)
+          key = HKDF(
+              algorithm=hashes.SHA256(),
+              length=32,
+              salt=salt,
+              info=b'mmibkr-parity-export-via-bootstrap-r1',
+          ).derive(eph.exchange(recipient))
+          aad = json.dumps({
+              'schema':'mmibkr.parity_bootstrap_export_envelope.v1',
+              'source_sha':os.environ['REQUEST_SOURCE_SHA'],
+              'recipient_key_id':os.environ['PARITY_EXPORT_RECIPIENT_KEY_ID'],
+          }, sort_keys=True, separators=(',',':')).encode()
+          ciphertext = ChaCha20Poly1305(key).encrypt(nonce, raw, aad)
+          out = root / 'mmibkr-parity-export'
+          (out / 'ciphertext.bin').write_bytes(ciphertext)
+          env = {
+              'schema':'mmibkr.parity_bootstrap_export_envelope.v1',
+              'source_sha':os.environ['REQUEST_SOURCE_SHA'],
+              'recipient_key_id':os.environ['PARITY_EXPORT_RECIPIENT_KEY_ID'],
+              'ephemeral_public_b64':base64.b64encode(eph_pub).decode(),
+              'salt_b64':base64.b64encode(salt).decode(),
+              'nonce_b64':base64.b64encode(nonce).decode(),
+              'aad_b64':base64.b64encode(aad).decode(),
+              'ciphertext_sha256':hashlib.sha256(ciphertext).hexdigest(),
+              'ciphertext_bytes':len(ciphertext),
+              'plaintext_sha256':hashlib.sha256(raw).hexdigest(),
+              'plaintext_bytes':len(raw),
+              'private_source_plaintext_published':False,
+          }
+          (out / 'envelope.json').write_text(json.dumps(env, sort_keys=True)+'\n', encoding='utf-8')
+          print('MMIBKR_PARITY_BOOTSTRAP_EXPORT_ENCRYPTED=PASS')
+          print('MMIBKR_PARITY_BOOTSTRAP_EXPORT_CIPHERTEXT_SHA256=' + env['ciphertext_sha256'])
+          PY
+
+      - name: Upload encrypted parity refresh source
+        if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
+        id: parity_artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mmibkr-parity-bootstrap-export-${{ github.run_id }}
+          path: ${{ runner.temp }}/mmibkr-parity-export
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
+      - name: Emit sanitized parity export receipt
+        if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
+        shell: bash
+        run: |
+          echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_STATUS=PASS"
+          echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+          echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_ARTIFACT_ID=${{ steps.parity_artifact.outputs.artifact-id }}"
+          echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_ARTIFACT_DIGEST=${{ steps.parity_artifact.outputs.artifact-digest }}"
+          echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_PRIVATE_PLAINTEXT_PUBLISHED=0"
+
       - name: Destroy one-run private source material
         if: always()
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap"             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap-receipt.json"
+          rm -rf             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap"             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap-receipt.json"             "$RUNNER_TEMP/mmibkr-parity-export"
           echo 'MMIBKR_SOURCE_VAULT_PRIVATE_MATERIAL_DESTROYED=1'
