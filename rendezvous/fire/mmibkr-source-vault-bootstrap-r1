@@ -1,7 +1,7 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
+  "source_sha": "828228ee343be644ec3bec5c1967e299e8e3136d",
   "requested_by": "evolution-auditor-current-strategyspec-proof",
-  "purpose": "bootstrap current MM-IBKR main through the canonical dedicated Source Vault identity before selected-runtime cloud acceptance",
+  "purpose": "bootstrap final current MM main after reviewed StrategySpec persistence fixture correction",
   "live_execution_allowed": false
 }
