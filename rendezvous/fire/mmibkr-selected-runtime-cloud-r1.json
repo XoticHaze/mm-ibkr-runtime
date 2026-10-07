@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "e0bcb22609345c3504ba69957d493d3e11c4b242",
-  "purpose": "diagnose-StrategySpec-persistence-first-apply-blocker-after-current-fleet-authority-redeploy",
+  "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
+  "purpose": "prove-current-reviewed-StrategySpec-trio-and-persistence-on-final-MM-main",
   "live_execution_allowed": false,
-  "attempt": 23,
-  "reason": "rerun approved MM-IBKR main after production Fleet Authority refresh so explicit StrategySpec persistence gate reaches the true 14TH31JV leaf"
+  "attempt": 24,
+  "reason": "post-P12 test-alignment main acceptance; require exact StrategySpec trio, guarded submit continuity, reviewed persistence, and no live authority"
 }
