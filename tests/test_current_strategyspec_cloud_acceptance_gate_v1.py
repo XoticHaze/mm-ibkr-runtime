@@ -33,3 +33,15 @@ def test_finite_cloud_acceptance_pins_current_selected_runtime_digests():
         assert f"MMIBKR_STRATEGYSPEC_" in text
     assert "live_submit_enabled" in text
     assert "live policy unexpectedly enabled" in text
+
+def test_selected_runtime_consumes_vault_without_inline_first_use_bootstrap():
+    selected = WORKFLOW.read_text(encoding="utf-8")
+    dedicated = (
+        ROOT / ".github/workflows/mmibkr-source-vault-bootstrap-r1.yml"
+    ).read_text(encoding="utf-8")
+    assert "source-vault-bootstrap:" not in selected
+    assert "mmibkr_fleet_source_vault_bootstrap_v1.py" not in selected
+    assert "needs: [source-contract]" in selected
+    assert "mmibkr_fleet_source_vault_bootstrap_v1.py" in dedicated
+    assert "Bootstrap reusable encrypted source-vault snapshot through Fleet" in dedicated
+
