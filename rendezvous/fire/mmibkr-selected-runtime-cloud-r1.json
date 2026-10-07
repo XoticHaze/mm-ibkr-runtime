@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
   "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
-  "purpose": "prove-current-reviewed-StrategySpec-trio-and-persistence-on-final-MM-main",
+  "purpose": "prove-current-reviewed-StrategySpec-trio-via-single-owner-source-vault-route",
   "live_execution_allowed": false,
-  "attempt": 24,
-  "reason": "post-P12 test-alignment main acceptance; require exact StrategySpec trio, guarded submit continuity, reviewed persistence, and no live authority"
+  "attempt": 25,
+  "reason": "consume dedicated-bootstrap approved current MM source; prove exact StrategySpec trio, reviewed persistence, guarded submit continuity, and paper-only policy"
 }
