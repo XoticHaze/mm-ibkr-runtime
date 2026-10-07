@@ -1,7 +1,9 @@
 {
   "schema": "mmibkr-source-vault-bootstrap-fire-v1",
-  "source_sha": "b7225f4e855df7c7648fc9b5145f09181a92ef79",
-  "reason": "evolution_auditor_post_merge_s4_layered_mtf_main_snapshot_20261004",
+  "source_sha": "e0bcb22609345c3504ba69957d493d3e11c4b242",
+  "reason": "refresh_current_mm_parity_bundle_and_reusable_source_vault_20261007",
   "runtime_authority_changed": false,
-  "live_execution_allowed": false
+  "live_execution_allowed": false,
+  "parity_export_recipient_public_b64": "6oTp3V+wg0ewqIiaeg+iY3GKeeWLxc9TVLTFyS6yGyI=",
+  "parity_export_recipient_key_id": "sha256:967b85b36e176cce54d48235d8d87b49617d98053ed77adc0501c21e1888678c"
 }
