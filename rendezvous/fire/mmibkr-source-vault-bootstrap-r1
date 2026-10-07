@@ -1,7 +1,7 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "828228ee343be644ec3bec5c1967e299e8e3136d",
-  "requested_by": "evolution-auditor-current-strategyspec-proof",
-  "purpose": "bootstrap final current MM main after reviewed StrategySpec persistence fixture correction",
+  "source_sha": "a61d493af14bcd1ec78d132dcf52fc73a55b4d37",
+  "requested_by": "chatgpt-mm-live-readiness",
+  "purpose": "bootstrap accepted MM production-live account-context seam before cloud owner binding",
   "live_execution_allowed": false
 }
