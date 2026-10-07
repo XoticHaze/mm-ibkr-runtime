@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
   "source_sha": "e0bcb22609345c3504ba69957d493d3e11c4b242",
-  "purpose": "diagnose-StrategySpec-persistence-first-apply-blocker-on-approved-main",
+  "purpose": "diagnose-StrategySpec-persistence-first-apply-blocker-after-current-fleet-authority-redeploy",
   "live_execution_allowed": false,
-  "attempt": 22,
-  "reason": "approved MM-IBKR main differs from prior candidate only by diagnostic assertion visibility plus stale-shadow cleanup; reproduce exact 14TH31HO apply blocker"
+  "attempt": 23,
+  "reason": "rerun approved MM-IBKR main after production Fleet Authority refresh so explicit StrategySpec persistence gate reaches the true 14TH31JV leaf"
 }
