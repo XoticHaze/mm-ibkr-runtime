@@ -171,7 +171,22 @@ jobs:
           root = Path(os.environ['RUNNER_TEMP'])
           source = root / 'mmibkr-source-vault-bootstrap' / 'private-source.tar.gz'
           if not source.is_file():
-              raise SystemExit('bootstrap private source archive missing before parity export')
+              fallback = root / 'mmibkr-parity-private-source'
+              fallback.mkdir(parents=True, exist_ok=True)
+              import subprocess
+              subprocess.run([
+                  'python',
+                  'scripts/mmibkr_fleet_private_source_consumer_v1.py',
+                  '--source-sha', os.environ['REQUEST_SOURCE_SHA'],
+                  '--run-id', os.environ['GITHUB_RUN_ID'],
+                  '--destination', str(fallback / 'extracted'),
+                  '--archive-output', str(fallback / 'private-source.tar.gz'),
+                  '--output', str(fallback / 'receipt.json'),
+                  '--authority-base', os.environ['FLEET_AUTHORITY_BASE'],
+              ], check=True)
+              source = fallback / 'private-source.tar.gz'
+          if not source.is_file():
+              raise SystemExit('parity private source archive unavailable after admitted fallback')
           raw = source.read_bytes()
           recipient_raw = base64.b64decode(os.environ['PARITY_EXPORT_RECIPIENT_PUBLIC_B64'], validate=True)
           recipient = x25519.X25519PublicKey.from_public_bytes(recipient_raw)
@@ -241,5 +256,5 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap"             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap-receipt.json"             "$RUNNER_TEMP/mmibkr-parity-export"
+          rm -rf             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap"             "$RUNNER_TEMP/mmibkr-source-vault-bootstrap-receipt.json"             "$RUNNER_TEMP/mmibkr-parity-export"             "$RUNNER_TEMP/mmibkr-parity-private-source"
           echo 'MMIBKR_SOURCE_VAULT_PRIVATE_MATERIAL_DESTROYED=1'
