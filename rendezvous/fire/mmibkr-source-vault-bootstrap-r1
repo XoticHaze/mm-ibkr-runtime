@@ -1,10 +1,12 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "828228ee343be644ec3bec5c1967e299e8e3136d",
+  "source_sha": "cd431670749a4c48d87c07b164ef1e4219bef7ca",
   "requested_by": "chatgpt-mm-live-readiness",
   "purpose": "bootstrap current MM main with exact-budget first-cycle daemon fix",
   "live_execution_allowed": false,
   "attempt": 3,
-  "reason": "refresh_reusable_source_vault_to_current_mm_main_20261008",
-  "runtime_authority_changed": false
+  "reason": "refresh_current_mm_parity_bundle_exact_20261008",
+  "runtime_authority_changed": false,
+  "parity_export_recipient_public_b64": "J1+3rOH4hEdRDCqJnzEPrzkWeZpx9DKbdtb5hhzdRwM=",
+  "parity_export_recipient_key_id": "sha256:3baba53ba3ee0439a69a98b6eaa63a0dd05d88c1cdaa850a3553ebd7d9fd3748"
 }
