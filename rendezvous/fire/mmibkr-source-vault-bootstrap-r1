@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
+  "source_sha": "a61d493af14bcd1ec78d132dcf52fc73a55b4d37",
   "requested_by": "chatgpt-mm-live-readiness",
-  "purpose": "bootstrap current MM main for reviewed StrategySpec cloud acceptance",
+  "purpose": "bootstrap current MM main with reviewed StrategySpec persistence and explicit paper/live account context",
   "live_execution_allowed": false,
   "parity_export_recipient_public_b64": "",
   "parity_export_recipient_key_id": "",
-  "attempt": 1
+  "attempt": 2
 }
