@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "1d9df80fdaaef14108a8b11925ce2e929993c90d",
-  "purpose": "prove current reviewed StrategySpec trio from reusable encrypted Source Vault",
+  "source_sha": "a61d493af14bcd1ec78d132dcf52fc73a55b4d37",
+  "purpose": "prove current StrategySpec trio, reviewed persistence, and account-context-aware canonical paper path",
   "live_execution_allowed": false,
-  "attempt": 27,
-  "reason": "dedicated Source Vault bootstrap succeeded; consume exact current MM main and require reviewed persistence plus exact MNQ AMAT APH StrategySpec identities"
+  "attempt": 28,
+  "reason": "current MM main encrypted snapshot bootstrap succeeded; require exact MNQ AMAT APH StrategySpec identities, reviewed persistence, paper account-context continuity, and no live authority"
 }
