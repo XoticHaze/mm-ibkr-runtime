@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "a61d493af14bcd1ec78d132dcf52fc73a55b4d37",
-  "purpose": "prove current StrategySpec trio, reviewed persistence, and account-context-aware canonical paper path",
+  "source_sha": "cd431670749a4c48d87c07b164ef1e4219bef7ca",
+  "purpose": "finite acceptance of current MM source after exact-budget first-cycle daemon repair",
   "live_execution_allowed": false,
-  "attempt": 28,
-  "reason": "current MM main encrypted snapshot bootstrap succeeded; require exact MNQ AMAT APH StrategySpec identities, reviewed persistence, paper account-context continuity, and no live authority"
+  "attempt": 29,
+  "reason": "dedicated encrypted bootstrap passed; require StrategySpec trio, reviewed persistence, guarded submit continuity, account-context contracts, and exact-budget daemon regression before paper owner repin"
 }
