@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "c4f15e958bc7edb290152ba4b5ebcd73c2abb4e3",
+  "source_sha": "a3eda5a459226890835edc517ae7e028f91c862d",
   "requested_by": "chatgpt-mm-live-execution-p0",
-  "purpose": "publish exact canonical MM main encrypted source for no-order P0 live canary acceptance",
+  "purpose": "Encrypted isolated source validation for composed PR843 legacy mutation seal on exact base",
   "live_execution_allowed": false,
-  "attempt": 4,
-  "reason": "P0_existing_Fleet_Authority_OIDC_secure_source_bootstrap_20261011",
+  "attempt": 5,
+  "reason": "P0_PR843_nonmutating_composed_release_acceptance_20261011",
   "runtime_authority_changed": false
 }
