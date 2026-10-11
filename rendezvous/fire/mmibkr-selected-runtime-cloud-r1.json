@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "cd431670749a4c48d87c07b164ef1e4219bef7ca",
-  "purpose": "finite acceptance of current MM source after exact-budget first-cycle daemon repair",
+  "source_sha": "273543e9c0a28e33d58412b5067b3527f9c97328",
+  "purpose": "finite nontrading acceptance of composed PR843 exact live-canary-source with unchanged paper cloud boundary",
   "live_execution_allowed": false,
-  "attempt": 29,
-  "reason": "dedicated encrypted bootstrap passed; require StrategySpec trio, reviewed persistence, guarded submit continuity, account-context contracts, and exact-budget daemon regression before paper owner repin"
+  "attempt": 30,
+  "reason": "P0_PR843_composed_release_strategy_spec_trio_and_19_existing_cloud_bot_contracts_20261011"
 }
