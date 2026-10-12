@@ -154,6 +154,47 @@ jobs:
           print('MMIBKR_SOURCE_VAULT_STATUS=' + node['status'])
           PY
 
+      - name: Run existing MM no-broker config, checkpoint and futures regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          # Reuse the already-admitted Fleet private-source materialization
+          # on this Source Vault runner. No account credentials or orders.
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -d "$source_root" ]; then
+            python scripts/mmibkr_fleet_private_source_consumer_v1.py \
+              --source-sha "$REQUEST_SOURCE_SHA" \
+              --run-id "$GITHUB_RUN_ID" \
+              --destination "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted" \
+              --archive-output "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/private-source.tar.gz" \
+              --output "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/regression-source-receipt.json" \
+              --authority-base "$FLEET_AUTHORITY_BASE"
+          fi
+          test -f "$source_root/main.py"
+          test -f "$source_root/scripts/operator/selected_runtime_legacy_compat_config_v1.py"
+          test -f "$source_root/scripts/operator/runtime_market_data_cache_checkpoint_v1.py"
+          test -f "$source_root/scripts/operator/selected_runtime_live_incumbent_preflight_v1.py"
+          python -m pip install --disable-pip-version-check \
+            ib_insync==0.9.86 pandas==2.2.3
+          (
+            cd "$source_root"
+            python -m py_compile \
+              scripts/operator/selected_runtime_legacy_compat_config_v1.py \
+              scripts/operator/runtime_market_data_cache_checkpoint_v1.py \
+              scripts/operator/selected_runtime_live_incumbent_preflight_v1.py
+            # These are existing canonical MM tests, not another route,
+            # order injector, broker probe or synthetic trade.
+            python -m unittest -v \
+              tests.test_selected_runtime_legacy_compat_config_v1 \
+              tests.test_runtime_market_data_cache_checkpoint_v1 \
+              tests.test_selected_runtime_live_incumbent_preflight_v1 \
+              tests.test_selected_runtime_execution_roll_v1 \
+              tests.test_selected_runtime_margin_whatif_hook_14th31lg
+          )
+          echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
+          echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
         shell: bash
