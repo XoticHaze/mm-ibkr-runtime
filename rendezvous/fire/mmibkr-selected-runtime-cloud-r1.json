@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "48dbc66c3f5a3809a232768c6fd03f1d0abf5ed4",
-  "purpose": "Hostless encrypted cloud-only acceptance of repaired PR843: Compose source graph, legacy broker mutation guards, and selected runtime regressions; zero broker",
+  "source_sha": "ac5e7d1833b0cabc1653d8fe197db131a3ac9060",
+  "purpose": "Exact-source encrypted cloud finite acceptance for three-runtime presentation from single due bar; no broker",
   "live_execution_allowed": false,
-  "attempt": 31,
-  "reason": "P0_PR843_current_source_graph_and_legacy_regression_cloud_acceptance_20261011"
+  "attempt": 32,
+  "reason": "P0_PR843_current_source_snapshot_missing_selected_runtime_projection_cloud_verification"
 }
