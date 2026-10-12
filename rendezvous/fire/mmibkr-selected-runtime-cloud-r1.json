@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "ac5e7d1833b0cabc1653d8fe197db131a3ac9060",
-  "purpose": "Exact-source encrypted cloud finite acceptance for three-runtime presentation from single due bar; no broker",
+  "source_sha": "d629eac2093c3725b1344b6ed0cbea4419698e36",
+  "purpose": "Exact-source encrypted cloud acceptance of no-due+partial-due selected runtime projection, 100% fail-closed, zero broker",
   "live_execution_allowed": false,
-  "attempt": 32,
-  "reason": "P0_PR843_current_source_snapshot_missing_selected_runtime_projection_cloud_verification"
+  "attempt": 33,
+  "reason": "P0_PR843_cloud_no_action_operator_snapshot_all_three_regression"
 }
