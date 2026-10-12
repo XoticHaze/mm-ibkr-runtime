@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7e91f4f0951cc7cace61f16e0737ca567c106ccf",
-  "requested_by": "chatgpt-mm-live-activation-p0",
-  "purpose": "Validate 76 existing canonical MM no-broker tests on encrypted Source Vault public compute; no live broker",
+  "source_sha": "843df6ea05ee705c389482dd0bc261c59c932c8e",
+  "requested_by": "chatgpt-continue-release-manual-20261012",
+  "purpose": "No-broker exact PR850 source-only generic selected FUT roll guard acceptance on established encrypted Source Vault compute",
   "live_execution_allowed": false,
-  "attempt": 18,
-  "reason": "run_existing_generic_futures_roll_and_position_safety_tests_with_frozen_fixture_clock",
+  "attempt": 19,
+  "reason": "no_order_selected_futures_roll_guard_draft_candidate_validation",
   "runtime_authority_changed": false
 }
