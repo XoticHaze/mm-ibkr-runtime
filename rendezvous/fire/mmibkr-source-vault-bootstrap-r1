@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9f61cb7ec906485ac06e6287687aed094ce2ff4b",
+  "source_sha": "d46a994e3a10542a8255ad125dc14672d244ab7a",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Run live exact persisted inventory submission unit suite via public encrypted Source Vault; no broker/order and no paper mutations",
+  "purpose": "Execute 76 original regression plus live inventory and MNQ futures roll guards from integrated canonical exact source; encrypted no-broker no-live",
   "live_execution_allowed": false,
-  "attempt": 22,
-  "reason": "PR854_exact_source_retry_with_conditional_PR850_test_lane",
+  "attempt": 23,
+  "reason": "PR855_integrated_generic_roll_after_live_inventory_exact_source",
   "runtime_authority_changed": false
 }
