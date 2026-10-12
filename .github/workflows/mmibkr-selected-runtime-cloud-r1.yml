@@ -202,6 +202,7 @@ jobs:
             tests.test_ibkr_remote_selected_runtime_paper_execute_slot_v1 \
             tests.test_mmibkr_cloud_source_relay_v1 \
             tests.test_ibkr_remote_warm_read_v1 \
+            tests.test_cloud_operator_snapshot_v1 \
             tests.test_legacy_submit_fail_closed_r10 \
             tests.test_legacy_strategy_live_guard_r11 \
             tests.test_live_seal_compose_runner_v1 \
