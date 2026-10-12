@@ -158,6 +158,27 @@ jobs:
         run: |
           set -euo pipefail
           docker build -f "$PRIVATE_SOURCE_ROOT/Dockerfile.bot" --target bot -t "mmibkr-vault:$GITHUB_RUN_ID" "$PRIVATE_SOURCE_ROOT"
+      - name: Validate exact-source Compose graph on encrypted cloud runner (no broker)
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Compose config needs the ignored gateway env filename, but no gateway is
+          # started and no live or paper credentials are provided or copied.
+          test ! -e "$PRIVATE_SOURCE_ROOT/ibkr-gateway/.env.ibkr"
+          mkdir -p "$PRIVATE_SOURCE_ROOT/ibkr-gateway"
+          printf '# source-only Compose graph inspection; NO broker credentials\n' > "$PRIVATE_SOURCE_ROOT/ibkr-gateway/.env.ibkr"
+          chmod 600 "$PRIVATE_SOURCE_ROOT/ibkr-gateway/.env.ibkr"
+          trap 'rm -f "$PRIVATE_SOURCE_ROOT/ibkr-gateway/.env.ibkr"' EXIT
+          docker compose --project-directory "$PRIVATE_SOURCE_ROOT" \
+            -f "$PRIVATE_SOURCE_ROOT/docker-compose.yml" \
+            -f "$PRIVATE_SOURCE_ROOT/docker-compose.bot-source-overlay.14th31c.yml" \
+            -f "$PRIVATE_SOURCE_ROOT/docker-compose.operator-live-ingress.yml" \
+            config --quiet
+          echo 'MMIBKR_EXACT_SOURCE_COMPOSE_GRAPH_PASS=1'
+          echo 'MMIBKR_BROKER_CREDENTIALS_USED=0'
+          echo 'MMIBKR_SERVICES_STARTED=0'
+          echo 'MMIBKR_LIVE_EXECUTION_ALLOWED=0'
+
       - name: Run private hostless/runtime contract suite in exact image
         run: |
           set -euo pipefail
@@ -180,7 +201,11 @@ jobs:
             tests.test_ibkr_remote_selected_runtime_boundary_slot_v1 \
             tests.test_ibkr_remote_selected_runtime_paper_execute_slot_v1 \
             tests.test_mmibkr_cloud_source_relay_v1 \
-            tests.test_ibkr_remote_warm_read_v1
+            tests.test_ibkr_remote_warm_read_v1 \
+            tests.test_legacy_submit_fail_closed_r10 \
+            tests.test_legacy_strategy_live_guard_r11 \
+            tests.test_live_seal_compose_runner_v1 \
+            tests.test_selected_runtime_mutation_boundary_inspect_v1
       - name: Prove exact selected-runtime StrategySpec identities
         run: |
           set -euo pipefail
