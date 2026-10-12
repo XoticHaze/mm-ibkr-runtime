@@ -4,7 +4,7 @@
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
   "purpose": "Run live exact persisted inventory submission unit suite via public encrypted Source Vault; no broker/order and no paper mutations",
   "live_execution_allowed": false,
-  "attempt": 21,
-  "reason": "PR854_untrusted_live_ownership_canonical_no_broker",
+  "attempt": 22,
+  "reason": "PR854_exact_source_retry_with_conditional_PR850_test_lane",
   "runtime_authority_changed": false
 }
