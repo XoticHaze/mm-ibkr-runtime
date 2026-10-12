@@ -206,7 +206,8 @@ jobs:
             tests.test_legacy_submit_fail_closed_r10 \
             tests.test_legacy_strategy_live_guard_r11 \
             tests.test_live_seal_compose_runner_v1 \
-            tests.test_selected_runtime_mutation_boundary_inspect_v1
+            tests.test_selected_runtime_mutation_boundary_inspect_v1 \
+            tests.test_selected_runtime_live_stock_canary_v1
       - name: Prove exact selected-runtime StrategySpec identities
         run: |
           set -euo pipefail
