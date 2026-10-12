@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "273543e9c0a28e33d58412b5067b3527f9c97328",
+  "source_sha": "48dbc66c3f5a3809a232768c6fd03f1d0abf5ed4",
   "requested_by": "chatgpt-mm-live-execution-p0",
-  "purpose": "Encrypted source test of composed PR843 release safety and corrected cloud bar-clock regressions",
+  "purpose": "Cloud-only PR843 source regression repair acceptance on hardened encrypted GitHub runner; no live authorization",
   "live_execution_allowed": false,
-  "attempt": 6,
-  "reason": "P0_PR843_post_readonly_consumer_regression_correction_20261011",
+  "attempt": 7,
+  "reason": "P0_PR843_3_test_repairs_cloud_validation_20261011",
   "runtime_authority_changed": false
 }
