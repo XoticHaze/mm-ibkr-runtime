@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "ac5e7d1833b0cabc1653d8fe197db131a3ac9060",
+  "source_sha": "d629eac2093c3725b1344b6ed0cbea4419698e36",
   "requested_by": "chatgpt-mm-live-execution-p0",
-  "purpose": "Cloud-only private selected-runtime snapshot projection source and legacy mutation acceptance; zero broker",
+  "purpose": "Cloud-only no-due and partial-due selected incumbent snapshot source acceptance",
   "live_execution_allowed": false,
-  "attempt": 8,
-  "reason": "P0_selected_runtimes_unknown_not_due_projection_snapshot_refresh",
+  "attempt": 9,
+  "reason": "P0_cloud_selected_owner_no_action_runtime_projection",
   "runtime_authority_changed": false
 }
