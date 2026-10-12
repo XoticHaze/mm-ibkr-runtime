@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d46a994e3a10542a8255ad125dc14672d244ab7a",
+  "source_sha": "46fcdf26cf84603b305a3ea20bcd3cf28c67bc0b",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Execute 76 original regression plus live inventory and MNQ futures roll guards from integrated canonical exact source; encrypted no-broker no-live",
+  "purpose": "Publish reusable encrypted exact SHA of merged canonical MM main. Source-only, no broker or live order; verify all 101 tests.",
   "live_execution_allowed": false,
-  "attempt": 23,
-  "reason": "PR855_integrated_generic_roll_after_live_inventory_exact_source",
+  "attempt": 24,
+  "reason": "promote_merged_canonical_main_live_inventory_plus_futures_roll_verified_101",
   "runtime_authority_changed": false
 }
