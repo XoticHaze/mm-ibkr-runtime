@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4ecf2fcdeff3387fc75cc5a4263c1a6c6ac33c0e",
-  "requested_by": "chatgpt-mm-live-execution-p0",
-  "purpose": "Publish exact already-merged canonical MM main through existing encrypted source vault for approved AMAT APH MNQ live-owner cutover; zero broker action",
+  "source_sha": "1ad9fbee1b2257c4040d3a82e71177988ca4a22f",
+  "requested_by": "chatgpt-mm-live-activation-p0",
+  "purpose": "Exact canonical MM source with isolated headless live owner gate, reusing proven live credentials and same bot; no proof order",
   "live_execution_allowed": false,
-  "attempt": 12,
-  "reason": "P0_exact_merged_source_owner_admission_not_new_broker_route",
+  "attempt": 13,
+  "reason": "P0_same_canonical_live_owner_owning_selected_existing_trio",
   "runtime_authority_changed": false
 }
