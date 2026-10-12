@@ -180,6 +180,8 @@ jobs:
           (
             cd "$source_root"
             python -m py_compile \
+              main.py \
+              selected_runtime_futures_execution_roll_guard_v1.py \
               scripts/operator/selected_runtime_legacy_compat_config_v1.py \
               scripts/operator/runtime_market_data_cache_checkpoint_v1.py \
               scripts/operator/selected_runtime_live_incumbent_preflight_v1.py
@@ -193,7 +195,8 @@ jobs:
               tests.test_selected_runtime_margin_whatif_hook_14th31lg \
               tests.test_futures_contract_registry \
               tests.test_futures_position_safety \
-              tests.test_selected_runtime_futures_roll_maintenance_v1
+              tests.test_selected_runtime_futures_roll_maintenance_v1 \
+              tests.test_selected_runtime_futures_execution_roll_guard_v1
           )
           # Exercise the real module CLI on an isolated fixture, not only
           # an imported Python function. This is no broker/no secrets/no trade.
