@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4413b33e000c3cfa6937a6eebaf952495898414b",
+  "source_sha": "4ecf2fcdeff3387fc75cc5a4263c1a6c6ac33c0e",
   "requested_by": "chatgpt-mm-live-execution-p0",
-  "purpose": "Cloud validation of guarded selected MNQ natural futures live eligibility source; zero broker",
+  "purpose": "Publish exact already-merged canonical MM main through existing encrypted source vault for approved AMAT APH MNQ live-owner cutover; zero broker action",
   "live_execution_allowed": false,
-  "attempt": 11,
-  "reason": "P0_existing_MNQ_live_route_contract_no_duplicate_operator_switch",
+  "attempt": 12,
+  "reason": "P0_exact_merged_source_owner_admission_not_new_broker_route",
   "runtime_authority_changed": false
 }
