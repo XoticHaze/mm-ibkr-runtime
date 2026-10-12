@@ -190,7 +190,10 @@ jobs:
               tests.test_runtime_market_data_cache_checkpoint_v1 \
               tests.test_selected_runtime_live_incumbent_preflight_v1 \
               tests.test_selected_runtime_execution_roll_v1 \
-              tests.test_selected_runtime_margin_whatif_hook_14th31lg
+              tests.test_selected_runtime_margin_whatif_hook_14th31lg \
+              tests.test_futures_contract_registry \
+              tests.test_futures_position_safety \
+              tests.test_selected_runtime_futures_roll_maintenance_v1
           )
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
