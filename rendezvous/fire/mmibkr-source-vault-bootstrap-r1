@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "29d815f2b02aa47be3a01feb295ffb023aed0de5",
+  "source_sha": "7e91f4f0951cc7cace61f16e0737ca567c106ccf",
   "requested_by": "chatgpt-mm-live-activation-p0",
-  "purpose": "Pin latest merged MM canonical source after PR848 future dated MNQ compatibility, source-only no production broker",
+  "purpose": "Validate 76 existing canonical MM no-broker tests on encrypted Source Vault public compute; no live broker",
   "live_execution_allowed": false,
-  "attempt": 17,
-  "reason": "merged_canonical_mnq_live_dated_roll_config_verified_source",
+  "attempt": 18,
+  "reason": "run_existing_generic_futures_roll_and_position_safety_tests_with_frozen_fixture_clock",
   "runtime_authority_changed": false
 }
