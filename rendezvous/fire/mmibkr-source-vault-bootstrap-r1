@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "04b737c4cc77c22f662857d04402846f5f7c4397",
+  "source_sha": "4413b33e000c3cfa6937a6eebaf952495898414b",
   "requested_by": "chatgpt-mm-live-execution-p0",
   "purpose": "Cloud validation of guarded selected MNQ natural futures live eligibility source; zero broker",
   "live_execution_allowed": false,
-  "attempt": 10,
-  "reason": "P0_selected_MNQ_12m_futures_eligibility_contract",
+  "attempt": 11,
+  "reason": "P0_existing_MNQ_live_route_contract_no_duplicate_operator_switch",
   "runtime_authority_changed": false
 }
