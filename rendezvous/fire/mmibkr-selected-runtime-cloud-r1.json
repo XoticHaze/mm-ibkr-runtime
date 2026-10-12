@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "d629eac2093c3725b1344b6ed0cbea4419698e36",
-  "purpose": "Exact-source encrypted cloud acceptance of no-due+partial-due selected runtime projection, 100% fail-closed, zero broker",
+  "source_sha": "04b737c4cc77c22f662857d04402846f5f7c4397",
+  "purpose": "Isolated Docker tests of selected AMAT APH MNQ live policy; no live credentials or account action",
   "live_execution_allowed": false,
-  "attempt": 33,
-  "reason": "P0_PR843_cloud_no_action_operator_snapshot_all_three_regression"
+  "attempt": 34,
+  "reason": "P0_MNQ_approved_live_futures_natural_policy_source_guard_verification"
 }
