@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fe5666fc9f26ef82201e2186de2d23bf72673bf5",
-  "requested_by": "chatgpt-continue-release-manual-20261012",
-  "purpose": "Run exact PR850 source SHA after test-only fix in existing encrypted Source Vault; no account or orders",
+  "source_sha": "9f61cb7ec906485ac06e6287687aed094ce2ff4b",
+  "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
+  "purpose": "Run live exact persisted inventory submission unit suite via public encrypted Source Vault; no broker/order and no paper mutations",
   "live_execution_allowed": false,
-  "attempt": 20,
-  "reason": "repeat_no_broker_exact_private_PR850_after_static_test_assertion_fix",
+  "attempt": 21,
+  "reason": "PR854_untrusted_live_ownership_canonical_no_broker",
   "runtime_authority_changed": false
 }
