@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1ad9fbee1b2257c4040d3a82e71177988ca4a22f",
+  "source_sha": "b6aae840c7eea0d9285a57ff606e8112f04ce3f6",
   "requested_by": "chatgpt-mm-live-activation-p0",
-  "purpose": "Exact canonical MM source with isolated headless live owner gate, reusing proven live credentials and same bot; no proof order",
+  "purpose": "Exact canonical MM source after merges of reusable market-only checkpoint PR845 and selected live compatible config PR846; no production dispatch",
   "live_execution_allowed": false,
-  "attempt": 13,
-  "reason": "P0_same_canonical_live_owner_owning_selected_existing_trio",
+  "attempt": 14,
+  "reason": "p0_reuse_existing_paper_config_checkpoint_before_live_owner",
   "runtime_authority_changed": false
 }
