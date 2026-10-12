@@ -1,8 +1,8 @@
 {
   "schema": "mmibkr-selected-runtime-cloud-fire-v1",
-  "source_sha": "04b737c4cc77c22f662857d04402846f5f7c4397",
-  "purpose": "Isolated Docker tests of selected AMAT APH MNQ live policy; no live credentials or account action",
+  "source_sha": "4413b33e000c3cfa6937a6eebaf952495898414b",
+  "purpose": "Exact private source admission and isolated tests: no new futures enable switch",
   "live_execution_allowed": false,
-  "attempt": 34,
-  "reason": "P0_MNQ_approved_live_futures_natural_policy_source_guard_verification"
+  "attempt": 35,
+  "reason": "P0_current_canonical_MNQ_existing_live_policy_only"
 }
