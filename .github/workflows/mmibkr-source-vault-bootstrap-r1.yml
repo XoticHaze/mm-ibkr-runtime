@@ -197,6 +197,17 @@ jobs:
               tests.test_futures_position_safety \
               tests.test_selected_runtime_futures_roll_maintenance_v1 \
               tests.test_selected_runtime_futures_execution_roll_guard_v1
+            # If this exact private source carries the proposed canonical
+            # live-inventory guard, exercise it IN THE SAME encrypted run.
+            # Older approved snapshots do not carry that test, so preserve
+            # their established acceptance result.
+            if [ -f tests/test_selected_runtime_live_inventory_authority_v1.py ]; then
+              python -m py_compile selected_runtime_live_inventory_authority_v1.py
+              python -m unittest -v \\
+                tests.test_selected_runtime_live_inventory_authority_v1 \\
+                tests.test_selected_runtime_position_ownership_integration_v1
+              echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
+            fi
           )
           # Exercise the real module CLI on an isolated fixture, not only
           # an imported Python function. This is no broker/no secrets/no trade.
