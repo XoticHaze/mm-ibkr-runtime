@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b6aae840c7eea0d9285a57ff606e8112f04ce3f6",
+  "source_sha": "935c756a63227dafb9fcbba024ef5c7ef865b3d5",
   "requested_by": "chatgpt-mm-live-activation-p0",
-  "purpose": "Exact canonical MM source after merges of reusable market-only checkpoint PR845 and selected live compatible config PR846; no production dispatch",
+  "purpose": "Canonical MM source after read-only live MNQ execution-roll cutoff reuse; no production dispatch",
   "live_execution_allowed": false,
-  "attempt": 14,
-  "reason": "p0_reuse_existing_paper_config_checkpoint_before_live_owner",
+  "attempt": 15,
+  "reason": "p0_live_preflight_canonical_execution_roll_readiness_added",
   "runtime_authority_changed": false
 }
