@@ -195,6 +195,63 @@ jobs:
               tests.test_futures_position_safety \
               tests.test_selected_runtime_futures_roll_maintenance_v1
           )
+          # Exercise the real module CLI on an isolated fixture, not only
+          # an imported Python function. This is no broker/no secrets/no trade.
+          (
+            cd "$source_root"
+            python - <<'PY'
+          import json
+          import stat
+          import subprocess
+          import sys
+          import tempfile
+          from pathlib import Path
+
+          root = Path.cwd()
+          with tempfile.TemporaryDirectory(prefix="mmibkr-live-config-cli-smoke-") as td:
+              work = Path(td)
+              (work / "config").mkdir(parents=True)
+              universe = json.loads((root / "config/selected_runtime_universe_14tu.json").read_text())
+              selected = [r for r in universe["runtime_ids"] if r.get("status") == "active_selected"]
+              assert {r["symbol"] for r in selected} == {"AMAT", "APH", "MNQ"}
+              for row in selected:
+                  row["execution_policy"]["live_submit_enabled"] = True
+              (work / "config/selected_runtime_universe_14tu.json").write_text(
+                  json.dumps(universe), encoding="utf-8"
+              )
+              catalog = "strategy_parameter_presets_14th23c.json"
+              (work / "config" / catalog).write_bytes((root / "config" / catalog).read_bytes())
+              private_config = work / "live_bot_runtime_config.json"
+              sanitized_receipt = work / "live_config_source_receipt.json"
+              subprocess.run(
+                  [
+                      sys.executable, "-m",
+                      "scripts.operator.selected_runtime_legacy_compat_config_v1",
+                      "--repo-root", str(work),
+                      "--approved-live-selected-owner",
+                      "--runtime-config-output", str(private_config),
+                      "--output", str(sanitized_receipt),
+                  ],
+                  cwd=root, check=True, capture_output=True, text=True,
+              )
+              cfg = json.loads(private_config.read_text())
+              receipt = json.loads(sanitized_receipt.read_text())
+              assert receipt["ok"] is True
+              assert receipt["approved_live_selected_owner_profile"] is True
+              assert receipt["selected_symbols"] == ["AMAT", "APH", "MNQ"]
+              assert cfg["ENABLE_LIVE_TRADING"] is True
+              assert cfg["IB_HOST"] == "127.0.0.1" and cfg["IB_PORT"] == 4003
+              assert cfg["CLOSE_ALL_POSITIONS_ON_START"] is False
+              assert cfg["STRATEGY_AUTO_START_LOOPS_ENABLED"] is False
+              assert cfg["FUTURES_ENABLED"] is True
+              assert set(cfg["SELECTED_STRATEGY_SETS"]) >= {"AMAT", "APH", "MNQ"}
+              for symbol in ("AMAT", "APH", "MNQ"):
+                  assert cfg["SELECTED_STRATEGY_SETS"][symbol]["live_submit_enabled"] is True
+              assert stat.S_IMODE(private_config.stat().st_mode) == 0o600
+              assert "config" not in receipt
+          print("MMIBKR_LIVE_EXISTING_CONFIG_MODULE_CLI_SMOKE=PASS")
+          PY
+          )
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
 
