@@ -203,8 +203,8 @@ jobs:
             # their established acceptance result.
             if [ -f tests/test_selected_runtime_live_inventory_authority_v1.py ]; then
               python -m py_compile selected_runtime_live_inventory_authority_v1.py
-              python -m unittest -v \\
-                tests.test_selected_runtime_live_inventory_authority_v1 \\
+              python -m unittest -v \
+                tests.test_selected_runtime_live_inventory_authority_v1 \
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
