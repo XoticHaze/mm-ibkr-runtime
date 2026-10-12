@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5b98490d1ea5cb25bbafb9af8ea7471574f94b47",
+  "source_sha": "29d815f2b02aa47be3a01feb295ffb023aed0de5",
   "requested_by": "chatgpt-mm-live-activation-p0",
-  "purpose": "Run existing no-broker MM source regression tests for PR 848 dated futures contract rollover compatibility; no live Gateway",
+  "purpose": "Pin latest merged MM canonical source after PR848 future dated MNQ compatibility, source-only no production broker",
   "live_execution_allowed": false,
-  "attempt": 16,
-  "reason": "validate_existing_mnq_roll_forward_config_unmerged_source",
+  "attempt": 17,
+  "reason": "merged_canonical_mnq_live_dated_roll_config_verified_source",
   "runtime_authority_changed": false
 }
