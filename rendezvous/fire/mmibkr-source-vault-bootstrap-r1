@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "46fcdf26cf84603b305a3ea20bcd3cf28c67bc0b",
+  "source_sha": "954fbf1b9b859d03b35121d646c487d582d244ed",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Publish reusable encrypted exact SHA of merged canonical MM main. Source-only, no broker or live order; verify all 101 tests.",
+  "purpose": "Verify private-source Cloudflare container durable-singleton no-order tests with existing public encrypted Source Vault; no credentials, trading, IBKR login",
   "live_execution_allowed": false,
-  "attempt": 24,
-  "reason": "promote_merged_canonical_main_live_inventory_plus_futures_roll_verified_101",
+  "attempt": 25,
+  "reason": "exact_private_cloudflare_durable_container_canary_no_broker",
   "runtime_authority_changed": false
 }
