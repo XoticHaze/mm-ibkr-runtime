@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "096d2897430a87a4aa6973bc0cbd752cd1b83ac9",
+  "source_sha": "9a190fe66665c8f673d227a41c4544889a2cf2cb",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Run exact private Cloudflare canary 4.135 source through existing encrypted no-broker Wrangler real compile and 115 policy/regression tests",
+  "purpose": "Attest exact merged canonical no-broker Cloudflare singleton canary source through encrypted Source Vault and real Wrangler dry-run, 115 tests, no credentials/orders",
   "live_execution_allowed": false,
-  "attempt": 28,
-  "reason": "wrangler_4_135_exact_source_config_recovery_after_4_102_reject",
+  "attempt": 29,
+  "reason": "merged_canonical_cloud_canary_wr_snapshot_4_135",
   "runtime_authority_changed": false
 }
