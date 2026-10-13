@@ -218,7 +218,7 @@ jobs:
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
             if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
-              node --test cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs
+              node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs
               echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
               # Validate real Cloudflare Worker bundling and durable
               # Container scheduling configuration without deploy credentials,
