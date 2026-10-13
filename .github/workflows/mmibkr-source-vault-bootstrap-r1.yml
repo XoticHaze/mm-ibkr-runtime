@@ -217,6 +217,10 @@ jobs:
               python -m unittest -v tests.test_persistent_live_owner_prepare_v1
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
+            if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
+              node --test cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs
+              echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
+            fi
           )
           # Exercise the real module CLI on an isolated fixture, not only
           # an imported Python function. This is no broker/no secrets/no trade.
