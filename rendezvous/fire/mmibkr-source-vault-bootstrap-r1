@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "74e762332e471e56d4ffdd47fc5e53c6fa1b3ff3",
+  "source_sha": "bf154926541c2c8dccadfb694f9735c8e34d47b2",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Run no-broker 107-tests plus Wrangler dry-run for Cloudflare managed Container from exact private PR857 source, public encrypted runner",
+  "purpose": "Validate source-bound Cloudflare DO container canary and pinned existing IBG controller no-broker recovery policy on public encrypted compute with credential-free Wrangler dry run; no account, trading or live orders",
   "live_execution_allowed": false,
-  "attempt": 26,
-  "reason": "PR857_cloudflare_durable_container_exact_source_node_and_wrangler_build",
+  "attempt": 27,
+  "reason": "cloud_pr857_pinned_controller_restart_contract_and_real_wrangler_dryrun",
   "runtime_authority_changed": false
 }
