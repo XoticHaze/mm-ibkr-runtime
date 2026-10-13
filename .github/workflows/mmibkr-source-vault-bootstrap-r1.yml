@@ -220,6 +220,18 @@ jobs:
             if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
               node --test cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs
               echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
+              # Validate real Cloudflare Worker bundling and durable
+              # Container scheduling configuration without deploy credentials,
+              # broker network or publishing source. Output remains ephemeral.
+              if ! npx --yes wrangler@4.135.0 deploy \
+                    --dry-run \
+                    --config cloudflare/mmibkr-live-cloud-owner/wrangler.jsonc \
+                    --outdir "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun" \
+                    >"$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log" 2>&1; then
+                tail -n 25 "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log"
+                exit 1
+              fi
+              echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=PASS'
             fi
           )
           # Exercise the real module CLI on an isolated fixture, not only
