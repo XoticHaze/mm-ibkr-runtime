@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "954fbf1b9b859d03b35121d646c487d582d244ed",
+  "source_sha": "74e762332e471e56d4ffdd47fc5e53c6fa1b3ff3",
   "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Verify private-source Cloudflare container durable-singleton no-order tests with existing public encrypted Source Vault; no credentials, trading, IBKR login",
+  "purpose": "Run no-broker 107-tests plus Wrangler dry-run for Cloudflare managed Container from exact private PR857 source, public encrypted runner",
   "live_execution_allowed": false,
-  "attempt": 25,
-  "reason": "exact_private_cloudflare_durable_container_canary_no_broker",
+  "attempt": 26,
+  "reason": "PR857_cloudflare_durable_container_exact_source_node_and_wrangler_build",
   "runtime_authority_changed": false
 }
