@@ -212,6 +212,11 @@ jobs:
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
+            if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
+              python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
+              python -m unittest -v tests.test_persistent_live_owner_prepare_v1
+              echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
+            fi
           )
           # Exercise the real module CLI on an isolated fixture, not only
           # an imported Python function. This is no broker/no secrets/no trade.
