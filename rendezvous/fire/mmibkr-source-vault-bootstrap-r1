@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9a190fe66665c8f673d227a41c4544889a2cf2cb",
-  "requested_by": "chatgpt-mmibkr-live-canonical-20261012",
-  "purpose": "Attest exact merged canonical no-broker Cloudflare singleton canary source through encrypted Source Vault and real Wrangler dry-run, 115 tests, no credentials/orders",
+  "source_sha": "989e648fef393983f1578652cb2278c52e1d0e3a",
+  "requested_by": "continue-release-owner-20261015",
+  "purpose": "Publish exact canonical merged 989e source as authenticated encrypted source-vault ciphertext and run existing no-broker source regression, no credentials/orders",
   "live_execution_allowed": false,
-  "attempt": 29,
-  "reason": "merged_canonical_cloud_canary_wr_snapshot_4_135",
+  "attempt": 30,
+  "reason": "exact_989e_private_source_vault_refresh_no_broker",
   "runtime_authority_changed": false
 }
