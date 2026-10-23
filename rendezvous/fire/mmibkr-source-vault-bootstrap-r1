@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "de26ac3c5de3c9eb4caf2f2d70d91039142e3b58",
-  "requested_by": "continue-release-clocked-20261023",
-  "purpose": "Exact selected UI #888 after Bot Console Node acceptance test marker corrected to stronger non-attributed account-fill label, to rerun existing Vite build. No live/broker/StrategySpec/deploy.",
+  "source_sha": "eb8c6300698e3fbe4ecb9cb40101afda877e85d0",
+  "requested_by": "continue-release-20261023-r19-clock-230927",
+  "purpose": "Publish exact selected #883 latest brokerless read-only successor execution identity hardening; execute existing no-broker regression before attended auth; no order/policy",
   "live_execution_allowed": false,
-  "attempt": 34,
-  "reason": "selected_ui_888_exact_bot_console_acceptance_repair",
+  "attempt": 33,
+  "reason": "selected_p0_duplicate_execid_and_contract_identity_gate",
   "runtime_authority_changed": false
 }
