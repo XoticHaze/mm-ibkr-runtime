@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "ee1ac47aba314a22f5a54fc7d8d3651a3f3d3f8a",
-  "requested_by": "continue-release-r19-clocked-20261023",
-  "purpose": "Publish updated selected PR883 exact-source after strict successor raw-history contract repair and test current integrated owner; no broker",
+  "source_sha": "1fa5fe8e1925530a9cf796f217959d079172fe64",
+  "requested_by": "continue-release-clocked-20261023",
+  "purpose": "Publish selected UI PR888 after Product #925 scoped local-condition restore, to execute existing encrypted private Vite build/allowlisted acceptance. No live, broker, StrategySpec or deployment mutation.",
   "live_execution_allowed": false,
-  "attempt": 32,
-  "reason": "p0_883_successor_strict_raw_inventory_followup",
+  "attempt": 33,
+  "reason": "selected_ui_888_exact_vite_acceptance_source_bootstrap",
   "runtime_authority_changed": false
 }
