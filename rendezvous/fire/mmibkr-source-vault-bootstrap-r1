@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "bb438b5d8640bd45c4811144922efb8385e4dd37",
-  "requested_by": "continue-release-clocked-20261023",
-  "purpose": "Publish selected P0 PR883 source after consuming Product #923 pre-submit guard, exact successor account forwarding regression and #926 test-only controller digest correction; no broker/live mutation.",
+  "source_sha": "ee1ac47aba314a22f5a54fc7d8d3651a3f3d3f8a",
+  "requested_by": "continue-release-r19-clocked-20261023",
+  "purpose": "Publish updated selected PR883 exact-source after strict successor raw-history contract repair and test current integrated owner; no broker",
   "live_execution_allowed": false,
   "attempt": 32,
-  "reason": "p0_pr883_selected_31path_integrated_source_bootstrap",
+  "reason": "p0_883_successor_strict_raw_inventory_followup",
   "runtime_authority_changed": false
 }
