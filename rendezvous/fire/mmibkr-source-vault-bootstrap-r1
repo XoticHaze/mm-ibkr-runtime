@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "989e648fef393983f1578652cb2278c52e1d0e3a",
-  "requested_by": "continue-release-owner-20261015",
-  "purpose": "Publish exact canonical merged 989e source as authenticated encrypted source-vault ciphertext and run existing no-broker source regression, no credentials/orders",
+  "source_sha": "f932a4178cb87fdfca9e93787add008fc8e4fa6b",
+  "requested_by": "continue-release-clocked-20261023",
+  "purpose": "Admit selected private draft PR883 exact SHA into existing encrypted source vault; execute no-broker original regression; preserve no broker live order or successor.",
   "live_execution_allowed": false,
-  "attempt": 30,
-  "reason": "exact_989e_private_source_vault_refresh_no_broker",
+  "attempt": 31,
+  "reason": "p0_pr883_exact_composed_journal_ledger_successor_source_bootstrap",
   "runtime_authority_changed": false
 }
