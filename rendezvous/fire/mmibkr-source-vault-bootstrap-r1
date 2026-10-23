@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "eb8c6300698e3fbe4ecb9cb40101afda877e85d0",
-  "requested_by": "continue-release-20261023-r19-clock-230927",
-  "purpose": "Publish exact selected #883 latest brokerless read-only successor execution identity hardening; execute existing no-broker regression before attended auth; no order/policy",
+  "source_sha": "f87378b1ecc724a4f856b42c698e16d11f103842",
+  "requested_by": "continue-release-20261023-clock-231551",
+  "purpose": "Publish exact selected #888 UI registry provenance and forward PnL identity composite for one integrated private Node/Vite acceptance; no broker, live, deploy, StrategySpec or promotion",
   "live_execution_allowed": false,
-  "attempt": 33,
-  "reason": "selected_p0_duplicate_execid_and_contract_identity_gate",
+  "attempt": 34,
+  "reason": "selected_ui_927_928_926_no_loss_integration",
   "runtime_authority_changed": false
 }
