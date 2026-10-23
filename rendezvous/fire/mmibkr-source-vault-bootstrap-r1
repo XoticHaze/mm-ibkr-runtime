@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f932a4178cb87fdfca9e93787add008fc8e4fa6b",
+  "source_sha": "bb438b5d8640bd45c4811144922efb8385e4dd37",
   "requested_by": "continue-release-clocked-20261023",
-  "purpose": "Admit selected private draft PR883 exact SHA into existing encrypted source vault; execute no-broker original regression; preserve no broker live order or successor.",
+  "purpose": "Publish selected P0 PR883 source after consuming Product #923 pre-submit guard, exact successor account forwarding regression and #926 test-only controller digest correction; no broker/live mutation.",
   "live_execution_allowed": false,
-  "attempt": 31,
-  "reason": "p0_pr883_exact_composed_journal_ledger_successor_source_bootstrap",
+  "attempt": 32,
+  "reason": "p0_pr883_selected_31path_integrated_source_bootstrap",
   "runtime_authority_changed": false
 }
