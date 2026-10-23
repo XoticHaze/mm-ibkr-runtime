@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1fa5fe8e1925530a9cf796f217959d079172fe64",
+  "source_sha": "de26ac3c5de3c9eb4caf2f2d70d91039142e3b58",
   "requested_by": "continue-release-clocked-20261023",
-  "purpose": "Publish selected UI PR888 after Product #925 scoped local-condition restore, to execute existing encrypted private Vite build/allowlisted acceptance. No live, broker, StrategySpec or deployment mutation.",
+  "purpose": "Exact selected UI #888 after Bot Console Node acceptance test marker corrected to stronger non-attributed account-fill label, to rerun existing Vite build. No live/broker/StrategySpec/deploy.",
   "live_execution_allowed": false,
-  "attempt": 33,
-  "reason": "selected_ui_888_exact_vite_acceptance_source_bootstrap",
+  "attempt": 34,
+  "reason": "selected_ui_888_exact_bot_console_acceptance_repair",
   "runtime_authority_changed": false
 }
