@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f87378b1ecc724a4f856b42c698e16d11f103842",
+  "source_sha": "7c7f97512586d070f8e96f1af3be416c609ec9dc",
   "requested_by": "continue-release-20261023-clock-231551",
-  "purpose": "Publish exact selected #888 UI registry provenance and forward PnL identity composite for one integrated private Node/Vite acceptance; no broker, live, deploy, StrategySpec or promotion",
+  "purpose": "Publish exact selected UI #888 corrected five-key BotConsole Node acceptance after actual f873 test-contract failure; source-only, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 34,
-  "reason": "selected_ui_927_928_926_no_loss_integration",
+  "attempt": 35,
+  "reason": "selected_ui_forward_identity_acceptance_contract_fix",
   "runtime_authority_changed": false
 }
