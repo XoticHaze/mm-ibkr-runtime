@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "6f0988579bb9d0de45af97bdd5abb2fc4b14d294",
+  "source_sha": "e34766a9108cf6bf9db4422eb70d4ea279dcb52d",
   "requested_by": "continue-release-20261024-clockin-20261024074217694",
-  "purpose": "Exact selected P0 #883 Product #965 operator contract identity integration; authenticated encrypted source-only regression, no broker/order/live deploy",
+  "purpose": "Selected P0 #883 exact typed account-position identity Product #967; existing encrypted Source Vault and no-broker regression",
   "live_execution_allowed": false,
-  "attempt": 65,
-  "reason": "p0_selected_883_6f098857_exact_changed_source_vault",
+  "attempt": 66,
+  "reason": "p0_selected_883_e34766a9_exact_changed_source_vault",
   "runtime_authority_changed": false
 }
