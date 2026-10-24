@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b9cc9dfeb721bc0ed3aa6d0460b12563c7d52f5f",
+  "source_sha": "638b4048fd717a9d671888b7dca3ac14210aae09",
   "requested_by": "continue-release-20261024-clock-20261024001509878",
-  "purpose": "Publish exact selected P0 #883 source after consuming #932 cross-contract same-account execId fail-close; changed successor module only; no broker/live/deploy",
+  "purpose": "Publish exact selected canonical PnL #911 source after consuming #934 duplicate broker execId guard; one brokerless changed lifecycle module, no live/order",
   "live_execution_allowed": false,
-  "attempt": 37,
-  "reason": "selected_p0_b9cc_changed_successor_execid_acceptance",
+  "attempt": 38,
+  "reason": "selected_pnl_638b_duplicate_execid_changed_module",
   "runtime_authority_changed": false
 }
