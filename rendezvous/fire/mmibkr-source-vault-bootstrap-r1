@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "06ce933c67fe137e0e89e19d2261fbf793c0b3e8",
+  "source_sha": "6df1cd265c601c12372b2516f5f3de7cebf17c1f",
   "requested_by": "continue-release-20261024-clockin-20261024081547037",
-  "purpose": "Selected P0 #883 exact Product #971 fail-closed open-order account scope correction, encrypted Source Vault for existing brokerless changed-module acceptance; no broker/live",
+  "purpose": "Selected PnL #911 exact Product #970 matched-fill count fail-close source, encrypted Source Vault only; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 70,
-  "reason": "p0_selected_883_06ce933c_exact_source_vault",
+  "attempt": 71,
+  "reason": "pnl_selected_911_6df1cd26_exact_source_vault",
   "runtime_authority_changed": false
 }
