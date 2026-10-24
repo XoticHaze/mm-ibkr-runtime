@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1cd6ab74e54ab97afad59d81611cd75027fefe91",
+  "source_sha": "6ee0c2664273d6b843961def31bfcb37c45ca362",
   "requested_by": "continue-release-20261024-clockin-20261024091127185",
-  "purpose": "Selected P0 #883 exact Product #971/#972 authenticated-account-scope safety delta; existing encrypted Source Vault and canonical brokerless regression only, no live or broker",
+  "purpose": "Exact isolated selected P0#883+UI#888 no-loss source composite 6ee0, existing encrypted Source Vault brokerless integrated acceptance only",
   "live_execution_allowed": false,
-  "attempt": 77,
-  "reason": "p0_selected_883_1cd6ab74_account_scope_exact_source_vault",
+  "attempt": 78,
+  "reason": "release_p0_ui_composite_6ee0_exact_source_vault",
   "runtime_authority_changed": false
 }
