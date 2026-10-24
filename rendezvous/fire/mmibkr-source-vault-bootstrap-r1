@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "724a64ba455d71e6e756edfc3576d1f555cfaaf6",
-  "requested_by": "continue-release-20261024-clock-20261024004447542",
-  "purpose": "Publish exact selected UI #888 source after consuming #933 legacy registry provenance and #935 read-only account margin panel; one selected Node/Vite and changed-source acceptance, no broker/live",
+  "source_sha": "13409ea82ce4c848b20359c2560424c63bc36e17",
+  "requested_by": "continue-release-20261024-clock-20261024011301300",
+  "purpose": "Publish exact private P0 Product #936 two-path child of selected #883 for one existing network-isolated live execution ledger regression; source-only, no broker/live",
   "live_execution_allowed": false,
-  "attempt": 39,
-  "reason": "selected_ui_724a_margin_legacy_registry_composition",
+  "attempt": 40,
+  "reason": "p0_child_936_cross_contract_live_fill_writer_execid",
   "runtime_authority_changed": false
 }
