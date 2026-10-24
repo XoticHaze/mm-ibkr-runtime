@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "23b9d9df47585c12bd5ddb8cd449848f98e55a6c",
-  "requested_by": "continue-release-20261024-clockin-20261024114141165",
-  "purpose": "Exact five-path P0 paper receipt/quarantine source addition to previously accepted selected P0/UI composite; existing encrypted Source Vault only, no broker or live",
+  "source_sha": "b16431cf691354f6969c30a9575c329100efff00",
+  "requested_by": "continue-release-20261024-clockin-20261024124839215",
+  "purpose": "Exact selected canonical PnL #911 changed-head encrypted Source Vault for three existing fixed networkless lifecycle regression modules; no broker/live/financial deployment",
   "live_execution_allowed": false,
-  "attempt": 85,
-  "reason": "release_p0_ui_composite_23b9_exact_source_vault",
+  "attempt": 86,
+  "reason": "release_selected_pnl_911_b164_exact_source_vault",
   "runtime_authority_changed": false
 }
