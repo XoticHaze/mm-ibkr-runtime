@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "26a464240a1a6f01bf8dbdd09357f36cd77db169",
-  "requested_by": "continue-release-20261024-clockin-20261024074217694",
-  "purpose": "Selected UI #888 exact Product #966/#962/#964 source, encrypted Source Vault for existing Node/Vite private build; no deployment/broker/live",
+  "source_sha": "e4bf136c567371a1f1a94d62e0930e7aadec325c",
+  "requested_by": "continue-release-20261024-clockin-20261024081547037",
+  "purpose": "Selected P0 #883 exact Product #968 open-order observation completeness source; encrypted Source Vault for existing brokerless exact-private tests only; no broker/live",
   "live_execution_allowed": false,
-  "attempt": 67,
-  "reason": "ui_selected_888_26a46424_exact_source_vault",
+  "attempt": 68,
+  "reason": "p0_selected_883_e4bf136c_exact_source_vault",
   "runtime_authority_changed": false
 }
