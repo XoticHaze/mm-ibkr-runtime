@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "49fff09e7468de00242dd88c9dc6c7edd0db7e71",
-  "requested_by": "continue-release-20261024-clockin-20261024134548337",
-  "purpose": "Exact selected P0/UI #975 Product #999 Promotion Review presentation + #997 Builder guard source for existing encrypted native Node/Vite acceptance; no broker/live/deploy",
+  "source_sha": "28dad7fcacaac6e33095eb81f1e60817e1d01652",
+  "requested_by": "continue-release-20261024-clockin-20261024144349416",
+  "purpose": "Exact selected P0/UI #975 with Product #1001/#1002 and B1 #940 source-only guards for existing encrypted Node/Vite acceptance; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 88,
-  "reason": "release_selected_p0_ui_975_49ff_exact_source_vault",
+  "attempt": 89,
+  "reason": "release_selected_p0_ui_975_28dad_exact_source_vault",
   "runtime_authority_changed": false
 }
