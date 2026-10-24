@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d6948fbd843f2cad0a7cf8539c08106364dfdf31",
+  "source_sha": "2850e07cb99dcb3e4b839955e2742cfe659b5df6",
   "requested_by": "continue-release-clock-in-20261024064552364",
-  "purpose": "Exact selected MM UI #888 after no-loss Product #958 enabled-literal and #959 dry-run-vs-submit authority integration; encrypted Source Vault for existing networkless UI acceptance, no broker or live",
+  "purpose": "Exact selected P0 #883 latest live inventory 8-decimal quantity fail-close after accepted integrated journal/reconciliation; encrypted source-only admission and existing brokerless regression, no live/broker mutation",
   "live_execution_allowed": false,
-  "attempt": 59,
-  "reason": "selected_ui_888_d694_exact_changed_source_encrypted_build",
+  "attempt": 60,
+  "reason": "selected_p0_883_2850_exact_source_vault_changed_module",
   "runtime_authority_changed": false
 }
