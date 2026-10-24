@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "638b4048fd717a9d671888b7dca3ac14210aae09",
-  "requested_by": "continue-release-20261024-clock-20261024001509878",
-  "purpose": "Publish exact selected canonical PnL #911 source after consuming #934 duplicate broker execId guard; one brokerless changed lifecycle module, no live/order",
+  "source_sha": "724a64ba455d71e6e756edfc3576d1f555cfaaf6",
+  "requested_by": "continue-release-20261024-clock-20261024004447542",
+  "purpose": "Publish exact selected UI #888 source after consuming #933 legacy registry provenance and #935 read-only account margin panel; one selected Node/Vite and changed-source acceptance, no broker/live",
   "live_execution_allowed": false,
-  "attempt": 38,
-  "reason": "selected_pnl_638b_duplicate_execid_changed_module",
+  "attempt": 39,
+  "reason": "selected_ui_724a_margin_legacy_registry_composition",
   "runtime_authority_changed": false
 }
