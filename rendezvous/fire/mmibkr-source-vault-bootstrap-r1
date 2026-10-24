@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fdc7917cccfc2de4acecc69a1e8221044c591d02",
+  "source_sha": "232963cf3a115064490b82525517a1de29aaf76c",
   "requested_by": "continue-release-20261024-clockin-20261024174457109",
-  "purpose": "P0 canonical selected #883 exact current SHA encrypted Source Vault admission, no broker/live/deploy",
+  "purpose": "Post-CP24 substantive exact selected PnL #911 232963 source-only encrypted Source Vault admission for changed open-position MTM fail-close; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 94,
-  "reason": "release_p0_883_fdc7917c_exact_source_vault",
+  "attempt": 95,
+  "reason": "release_pnl_911_232963_exact_source_vault_post_cp24",
   "runtime_authority_changed": false
 }
