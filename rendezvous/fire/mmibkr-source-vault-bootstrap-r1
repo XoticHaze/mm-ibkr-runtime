@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "40f7d76266a9bff2a6b7007c66065ed6c7831ddd",
+  "source_sha": "38abf33ba16e8fc94ecedcc8c8b207d964c6808f",
   "requested_by": "continue-release-20261024-clock-20261024044954616",
-  "purpose": "Selected UI #888 consumed Product #947 exact multi-symbol chart attribution; existing encrypted Source Vault for changed-source Node/Vite acceptance; no broker/live/deploy",
+  "purpose": "Selected P0 #883 consumed Product #948 exact broker position residue fail-close; encrypted Source Vault exact-source admission for focused brokerless owner acceptance, no Gateway/order/live",
   "live_execution_allowed": false,
-  "attempt": 48,
-  "reason": "selected_ui_888_40f7d762_product_947_symbol_scoped_chart_source_vault",
+  "attempt": 49,
+  "reason": "selected_p0_883_38abf33b_product_948_source_vault",
   "runtime_authority_changed": false
 }
