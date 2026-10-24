@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "28dad7fcacaac6e33095eb81f1e60817e1d01652",
-  "requested_by": "continue-release-20261024-clockin-20261024144349416",
-  "purpose": "Exact selected P0/UI #975 with Product #1001/#1002 and B1 #940 source-only guards for existing encrypted Node/Vite acceptance; no broker/live/deploy",
+  "source_sha": "39e20084f05ad788bb01c463debd480b1f573536",
+  "requested_by": "continue-release-20261024-clockin-20261024162001495",
+  "purpose": "Selected #975 composite exact Product #1006 two-path broker-fill display fail-close: authenticated encrypted Source Vault for one changed-head Node/Vite acceptance; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 89,
-  "reason": "release_selected_p0_ui_975_28dad_exact_source_vault",
+  "attempt": 90,
+  "reason": "release_selected_p0_ui_975_39e20084_exact_source_vault",
   "runtime_authority_changed": false
 }
