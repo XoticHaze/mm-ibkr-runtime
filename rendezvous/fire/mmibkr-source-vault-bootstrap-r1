@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "464712aea9115309c0e38d4dbbfe8ed01f2b8df1",
+  "source_sha": "d80413fee3284d442946ac7c1bb2a299033c7797",
   "requested_by": "continue-release-20261024-clockin-20261024071306432",
-  "purpose": "Exact P0 #963 four-path canonical 8-decimal live read/writer history guards, raw subunit fail-close, networkless brokerless acceptance",
+  "purpose": "Selected UI #888 exact broker residue presentation child #961, existing encrypted private Source Vault, no deployment/broker/live",
   "live_execution_allowed": false,
-  "attempt": 63,
-  "reason": "p0_child_963_raw_quantity_guard_exact_final_source",
+  "attempt": 64,
+  "reason": "ui_selected_888_consumed_product_961_exact_vite",
   "runtime_authority_changed": false
 }
