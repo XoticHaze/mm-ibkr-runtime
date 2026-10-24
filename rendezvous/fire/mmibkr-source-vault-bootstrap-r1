@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3000a25ad849b74c12044102f293c95070d9e1d6",
+  "source_sha": "bbf24812b363855ae41f9c9680ac15a1381d2ce8",
   "requested_by": "continue-release-clockin-20261024194920096",
-  "purpose": "Exact P0 Product #1016 terminal what-if and selected-account identity fail-close encrypted source admission only",
+  "purpose": "Exact selected financial PnL #911 malformed canonical fill ledger fail-close encrypted source admission; no funded result or broker",
   "live_execution_allowed": false,
-  "attempt": 100,
-  "reason": "release_p0_1016_3000_exact_source_vault_changed_guard",
+  "attempt": 101,
+  "reason": "release_selected_pnl_911_bbf_exact_source_vault",
   "runtime_authority_changed": false
 }
