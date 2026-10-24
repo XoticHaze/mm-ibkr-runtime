@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "ee4f38df459b483148c1f19d5859575975a95bab",
+  "source_sha": "6567b67d6805dcb95a6d49bad74022f94206904f",
   "requested_by": "continue-release-20261024-clock-20261024044954616",
-  "purpose": "Selected P0 #883 exact one-assertion acceptance repair after #948 stricter broker flat-seed blocker; previous Source Vault #40064678343 published 38ab but existing inventory test expected superseded marker; no Gateway/order/live",
+  "purpose": "Exact selected Model Foundry issuer bridge #839 source admission for existing brokerless Promotion Review store test; Product isolated crypto/quarantine probes passed but exact-head owning test not executed; no signing key/promotion/broker/live",
   "live_execution_allowed": false,
-  "attempt": 50,
-  "reason": "selected_p0_883_ee4f38df_exact_inventory_assertion_repair_source_vault",
+  "attempt": 51,
+  "reason": "selected_model_issuer_839_6567b67d_exact_source_vault",
   "runtime_authority_changed": false
 }
