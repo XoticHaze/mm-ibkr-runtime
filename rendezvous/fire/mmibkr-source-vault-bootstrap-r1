@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f842a62080adb34207f4ea9e80863ac3c926be84",
-  "requested_by": "continue-release-20261024-clockin-20261024101509908",
-  "purpose": "Exact six-blob selected #888 Product #977/#979/#980 safety union carried into P0/UI #975 no-loss review composite; brokerless encrypted source and selected artifact build",
+  "source_sha": "5f5c44cd11884eb9bf1b93366083b0616d6013c4",
+  "requested_by": "continue-release-20261024-clockin-20261024104414940",
+  "purpose": "Exact three-path bounded Flex advisory addition to previously accepted P0/UI composite; existing encrypted Source Vault and Node/Vite source admission only",
   "live_execution_allowed": false,
-  "attempt": 83,
-  "reason": "release_p0_ui_composite_f842_exact_source_vault",
+  "attempt": 84,
+  "reason": "release_p0_ui_composite_5f5c_exact_source_vault",
   "runtime_authority_changed": false
 }
