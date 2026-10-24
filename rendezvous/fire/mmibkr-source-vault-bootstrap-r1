@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "38abf33ba16e8fc94ecedcc8c8b207d964c6808f",
+  "source_sha": "ee4f38df459b483148c1f19d5859575975a95bab",
   "requested_by": "continue-release-20261024-clock-20261024044954616",
-  "purpose": "Selected P0 #883 consumed Product #948 exact broker position residue fail-close; encrypted Source Vault exact-source admission for focused brokerless owner acceptance, no Gateway/order/live",
+  "purpose": "Selected P0 #883 exact one-assertion acceptance repair after #948 stricter broker flat-seed blocker; previous Source Vault #40064678343 published 38ab but existing inventory test expected superseded marker; no Gateway/order/live",
   "live_execution_allowed": false,
-  "attempt": 49,
-  "reason": "selected_p0_883_38abf33b_product_948_source_vault",
+  "attempt": 50,
+  "reason": "selected_p0_883_ee4f38df_exact_inventory_assertion_repair_source_vault",
   "runtime_authority_changed": false
 }
