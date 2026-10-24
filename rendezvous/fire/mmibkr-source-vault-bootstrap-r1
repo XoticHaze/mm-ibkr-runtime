@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "232963cf3a115064490b82525517a1de29aaf76c",
-  "requested_by": "continue-release-20261024-clockin-20261024174457109",
-  "purpose": "Post-CP24 substantive exact selected PnL #911 232963 source-only encrypted Source Vault admission for changed open-position MTM fail-close; no broker/live/deploy",
+  "source_sha": "833dfdd02041fba38ddff11a73c5fd3977899266",
+  "requested_by": "continue-release-clockin-20261024184241927",
+  "purpose": "Exact changed-source MNQ paper B1 conId identity regression on existing encrypted Source Vault producer; source-only, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 95,
-  "reason": "release_pnl_911_232963_exact_source_vault_post_cp24",
+  "attempt": 96,
+  "reason": "release_paper_roll_924_833df_exact_changed_source_test",
   "runtime_authority_changed": false
 }
