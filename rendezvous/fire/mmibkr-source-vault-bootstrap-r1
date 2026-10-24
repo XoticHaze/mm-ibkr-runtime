@@ -1,12 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "c0c7dec5524961f6dca1804f8bc3d9ec51885925",
-  "requested_by": "continue-release-20261024-clock-20261024054709335",
-  "purpose": "Exact protected MM main c0c7 private source export to recipient-bound encrypted artifact for local-first parity CURRENT refresh from stale 41e bundle; no public plaintext, Gateway/account/broker/live",
+  "source_sha": "d6948fbd843f2cad0a7cf8539c08106364dfdf31",
+  "requested_by": "continue-release-clock-in-20261024064552364",
+  "purpose": "Exact selected MM UI #888 after no-loss Product #958 enabled-literal and #959 dry-run-vs-submit authority integration; encrypted Source Vault for existing networkless UI acceptance, no broker or live",
   "live_execution_allowed": false,
-  "attempt": 58,
-  "reason": "mm_parity_current_c0c7_exact_head_recipient_encrypted_refresh",
-  "runtime_authority_changed": false,
-  "parity_export_recipient_public_b64": "uvUk+tw0lTzym1WasH59FNzZQ9PWaiqaXGkIGzBGyBo=",
-  "parity_export_recipient_key_id": "sha256:09729150eaee5a7c4ca30a3052a60a620e101c8395790e96cea3e74148e9f83d"
+  "attempt": 59,
+  "reason": "selected_ui_888_d694_exact_changed_source_encrypted_build",
+  "runtime_authority_changed": false
 }
