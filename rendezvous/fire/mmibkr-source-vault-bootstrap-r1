@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "dcb7350cdd714d09c2809ea2439fbd50b7724a1d",
+  "source_sha": "3000a25ad849b74c12044102f293c95070d9e1d6",
   "requested_by": "continue-release-clockin-20261024194920096",
-  "purpose": "Exact selected P0/UI composite encrypted Source Vault for changed Builder/B1/position-truth source acceptance only",
+  "purpose": "Exact P0 Product #1016 terminal what-if and selected-account identity fail-close encrypted source admission only",
   "live_execution_allowed": false,
-  "attempt": 99,
-  "reason": "release_selected_composite_dcb7350_exact_source_vault",
+  "attempt": 100,
+  "reason": "release_p0_1016_3000_exact_source_vault_changed_guard",
   "runtime_authority_changed": false
 }
