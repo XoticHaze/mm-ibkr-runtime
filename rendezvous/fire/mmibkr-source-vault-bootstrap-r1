@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "04848626b1627d9db48d3eb001be2191796c4be9",
-  "requested_by": "continue-release-20261024-clockin-20261024162001495",
-  "purpose": "Exact Product #1007 P0 live PREPARED paper/alias account fail-close source/test, existing networkless private journal module acceptance; no broker/live/deploy",
+  "source_sha": "3e9832cb77a17bbf6524267223696e1321bbe762",
+  "requested_by": "continue-release-20261024-clockin-20261024174457109",
+  "purpose": "Exact selected P0/UI #975 no-loss five-blob composite source-only encrypted Source Vault admission; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 92,
-  "reason": "release_p0_journal_1007_04848626_exact_source_vault",
+  "attempt": 93,
+  "reason": "release_p0_ui_3e9832cb_exact_source_vault",
   "runtime_authority_changed": false
 }
