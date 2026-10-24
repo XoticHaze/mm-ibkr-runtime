@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0e50054c55e302b8a07a6e263ae8a75d58cc6118",
+  "source_sha": "079d00af4bb8efa5409967d7f9f822010f05433c",
   "requested_by": "continue-release-20261024-clock-20261024054709335",
-  "purpose": "Selected UI #888 exact 0e500 after consuming Product #953 account money scope contradiction; existing encrypted Source Vault and changed-head UI acceptance only, no deployment/broker/live",
+  "purpose": "P0 #956 exact 079d selected-child source with new 1e-8 nonzero owned inventory history and broker-flat mismatch tests in existing admitted live inventory module; encrypted source regression only, no Gateway/account/broker/live",
   "live_execution_allowed": false,
-  "attempt": 55,
-  "reason": "selected_ui_888_0e500_exact_changed_head_source_vault",
+  "attempt": 56,
+  "reason": "p0_956_079d_tiny_owned_live_history_exact_source_vault",
   "runtime_authority_changed": false
 }
