@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7a1250e2ccf5014d5674a6740488ba2ada653416",
-  "requested_by": "continue-release-20261024-clockin-20261024084531690",
-  "purpose": "Selected UI #888 exact fixed account/runtime metric comma and canonical Bot Console acceptance regression, encrypted Source Vault, no broker/live/deploy",
+  "source_sha": "1cd6ab74e54ab97afad59d81611cd75027fefe91",
+  "requested_by": "continue-release-20261024-clockin-20261024091127185",
+  "purpose": "Selected P0 #883 exact Product #971/#972 authenticated-account-scope safety delta; existing encrypted Source Vault and canonical brokerless regression only, no live or broker",
   "live_execution_allowed": false,
-  "attempt": 76,
-  "reason": "ui_selected_888_7a1250e2_metric_separator_exact_source_vault",
+  "attempt": 77,
+  "reason": "p0_selected_883_1cd6ab74_account_scope_exact_source_vault",
   "runtime_authority_changed": false
 }
