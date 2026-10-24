@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "dc7a7d5c9a77fd11a0d9a2444a4a95ebc0e18228",
-  "requested_by": "continue-release-clockin-20261024191631262",
-  "purpose": "B1 MNQ paper roll guard exact corrected selected source encrypted Source Vault and existing no-broker Node/Python acceptance",
+  "source_sha": "dcb7350cdd714d09c2809ea2439fbd50b7724a1d",
+  "requested_by": "continue-release-clockin-20261024194920096",
+  "purpose": "Exact selected P0/UI composite encrypted Source Vault for changed Builder/B1/position-truth source acceptance only",
   "live_execution_allowed": false,
-  "attempt": 98,
-  "reason": "release_b1_924_dc7_exact_source_vault_after_inherited_node_pin_correction",
+  "attempt": 99,
+  "reason": "release_selected_composite_dcb7350_exact_source_vault",
   "runtime_authority_changed": false
 }
