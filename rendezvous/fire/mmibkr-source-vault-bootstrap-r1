@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fddeb711c8daf2ac91e0c8690ad5cf3705be763a",
+  "source_sha": "7a1250e2ccf5014d5674a6740488ba2ada653416",
   "requested_by": "continue-release-20261024-clockin-20261024084531690",
-  "purpose": "Selected UI #888 exact P0 backend account-scope no-loss plus Product #974 human-readable UNKNOWN reason, encrypted Source Vault, brokerless Node/Vite; no deploy/live",
+  "purpose": "Selected UI #888 exact fixed account/runtime metric comma and canonical Bot Console acceptance regression, encrypted Source Vault, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 75,
-  "reason": "ui_selected_888_fddeb711_p0_scope_reason_exact_source_vault",
+  "attempt": 76,
+  "reason": "ui_selected_888_7a1250e2_metric_separator_exact_source_vault",
   "runtime_authority_changed": false
 }
