@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2fdccb92ff0f9b261d2ba97f011c0de20e9641de",
+  "source_sha": "2b71d668a3032918561f32222da07351fd3f3d4a",
   "requested_by": "continue-release-20261024-clock-20261024032015570",
-  "purpose": "Exact selected MM-IBKR P0 #883 live journal/ledger/successor source-only encrypted Vault publication for existing brokerless acceptance; no broker or live action",
+  "purpose": "Exact selected UI #888 Product composite #943 consumed, authenticated encrypted source for existing network-isolated Node/Vite build; no broker or live action",
   "live_execution_allowed": false,
-  "attempt": 44,
-  "reason": "selected_p0_883_2fd_exact_private_source_publication",
+  "attempt": 45,
+  "reason": "selected_ui_888_2b71_exact_changed_source_vault",
   "runtime_authority_changed": false
 }
