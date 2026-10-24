@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "06e53438be5cbde75143dab1aeb7fe19c0c6a95e",
-  "requested_by": "continue-release-20261024-clock-20261024025215498",
-  "purpose": "Exact selected UI #888 post-consumption #941 scoped Builder Load plus #937 contradictory account safety; source-only encrypted Vault publication for existing UI probe",
+  "source_sha": "2fdccb92ff0f9b261d2ba97f011c0de20e9641de",
+  "requested_by": "continue-release-20261024-clock-20261024032015570",
+  "purpose": "Exact selected MM-IBKR P0 #883 live journal/ledger/successor source-only encrypted Vault publication for existing brokerless acceptance; no broker or live action",
   "live_execution_allowed": false,
-  "attempt": 43,
-  "reason": "selected_ui_888_children_941_937_no_loss_exact_source",
+  "attempt": 44,
+  "reason": "selected_p0_883_2fd_exact_private_source_publication",
   "runtime_authority_changed": false
 }
