@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3c7702c86d56b4fd7c7445b58f25d702359e82ed",
+  "source_sha": "49fff09e7468de00242dd88c9dc6c7edd0db7e71",
   "requested_by": "continue-release-20261024-clockin-20261024134548337",
-  "purpose": "Exact selected MM issuer #839 signed-boundary-v1 source admission for existing networkless Foundry model full/limited tests; no broker/live/model promotion",
+  "purpose": "Exact selected P0/UI #975 Product #999 Promotion Review presentation + #997 Builder guard source for existing encrypted native Node/Vite acceptance; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 87,
-  "reason": "release_selected_model_issuer_839_3c77_exact_source_vault",
+  "attempt": 88,
+  "reason": "release_selected_p0_ui_975_49ff_exact_source_vault",
   "runtime_authority_changed": false
 }
