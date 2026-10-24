@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "6567b67d6805dcb95a6d49bad74022f94206904f",
+  "source_sha": "28f35a84c64bc2f0deeea58e01c003aa9c99afaa",
   "requested_by": "continue-release-20261024-clock-20261024044954616",
-  "purpose": "Exact selected Model Foundry issuer bridge #839 source admission for existing brokerless Promotion Review store test; Product isolated crypto/quarantine probes passed but exact-head owning test not executed; no signing key/promotion/broker/live",
+  "purpose": "Selected Foundry issuer #839 source-only one-line inherited IBG controller digest test repair; previous Source Vault #40065069993 published 6567 but failed unrelated stale Node assertion; no issuer key/promotion/Gateway/order/live",
   "live_execution_allowed": false,
-  "attempt": 51,
-  "reason": "selected_model_issuer_839_6567b67d_exact_source_vault",
+  "attempt": 52,
+  "reason": "selected_foundry_issuer_839_28f35a84_controller_test_digest_repair_source_vault",
   "runtime_authority_changed": false
 }
