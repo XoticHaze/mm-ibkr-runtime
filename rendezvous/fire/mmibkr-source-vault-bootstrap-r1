@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "75640fd07068753cd5cf196b20dc1d5d4a990bd7",
+  "source_sha": "b6620c63375c8b14f7add1c35eff04e0b5474a47",
   "requested_by": "continue-release-20261024-clockin-20261024094112319",
-  "purpose": "Exact Release #978 four-path UI empty-runtime UNKNOWN guard with existing allowlisted executable BotConsole acceptance; brokerless",
+  "purpose": "Exact no-loss P0#883+UI#888 review composite #975 corrected runtime UNKNOWN four-blob source, brokerless encrypted admission",
   "live_execution_allowed": false,
-  "attempt": 80,
-  "reason": "release_ui_978_exact_acceptance_head",
+  "attempt": 81,
+  "reason": "release_p0_ui_composite_b662_exact_source_vault",
   "runtime_authority_changed": false
 }
