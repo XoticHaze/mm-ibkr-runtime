@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7c7c9772116f0b5dfd1057e4d097698aa9aa193d",
+  "source_sha": "e36d40438e62c44222c9801fea2df23f53962a7b",
   "requested_by": "continue-release-20261024-clock-20261024011301300",
-  "purpose": "Exact P0 Product #936 revised malformed-account cross-contract execId guard, new changed source after old accepted probe; one brokerless module",
+  "purpose": "Exact selected UI child #937 contradictory paper/live account and margin-scope guard, source-only encrypted publication for approved existing UI probe",
   "live_execution_allowed": false,
-  "attempt": 41,
-  "reason": "p0_child_936_7c7_malformed_account_source_delta",
+  "attempt": 42,
+  "reason": "ui_child_937_account_scope_contradiction_exact_source",
   "runtime_authority_changed": false
 }
