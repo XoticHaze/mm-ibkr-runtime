@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b16431cf691354f6969c30a9575c329100efff00",
-  "requested_by": "continue-release-20261024-clockin-20261024124839215",
-  "purpose": "Exact selected canonical PnL #911 changed-head encrypted Source Vault for three existing fixed networkless lifecycle regression modules; no broker/live/financial deployment",
+  "source_sha": "3c7702c86d56b4fd7c7445b58f25d702359e82ed",
+  "requested_by": "continue-release-20261024-clockin-20261024134548337",
+  "purpose": "Exact selected MM issuer #839 signed-boundary-v1 source admission for existing networkless Foundry model full/limited tests; no broker/live/model promotion",
   "live_execution_allowed": false,
-  "attempt": 86,
-  "reason": "release_selected_pnl_911_b164_exact_source_vault",
+  "attempt": 87,
+  "reason": "release_selected_model_issuer_839_3c77_exact_source_vault",
   "runtime_authority_changed": false
 }
