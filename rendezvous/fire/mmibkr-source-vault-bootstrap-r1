@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "07a76356bad914eec426cc8a1ff33009fc443f32",
-  "requested_by": "continue-release-20261024-clock-20261024051734668",
-  "purpose": "Selected operator UI #888 exact 07a after Product #949 broker-cache gross exposure/residue display; publish existing encrypted Source Vault for changed-head Node/Vite acceptance, no deployment/broker/live",
+  "source_sha": "0e50054c55e302b8a07a6e263ae8a75d58cc6118",
+  "requested_by": "continue-release-20261024-clock-20261024054709335",
+  "purpose": "Selected UI #888 exact 0e500 after consuming Product #953 account money scope contradiction; existing encrypted Source Vault and changed-head UI acceptance only, no deployment/broker/live",
   "live_execution_allowed": false,
-  "attempt": 54,
-  "reason": "selected_ui_888_07a_exact_changed_head_source_vault",
+  "attempt": 55,
+  "reason": "selected_ui_888_0e500_exact_changed_head_source_vault",
   "runtime_authority_changed": false
 }
