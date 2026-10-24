@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "570a1e63d2e6ba108b5f0680f9d314657fc0db06",
-  "requested_by": "continue-release-clock-in-20261024064552364",
-  "purpose": "Exact selected P0 #883 after no-loss pure Ed25519 signed candidate verifier #960; existing encrypted Source Vault only, no broker/live; new verifier focused test pending selected public allowlist protected review",
+  "source_sha": "e75f1e70d8e859bceb48dea4dec7f7a90e1372aa",
+  "requested_by": "continue-release-20261024-clockin-20261024071306432",
+  "purpose": "P0 child #963 exact 8-decimal brokerless live history read/writer boundary; selected parent #883, encrypted private source only",
   "live_execution_allowed": false,
-  "attempt": 61,
-  "reason": "selected_p0_883_570a_signed_candidate_source_vault",
+  "attempt": 62,
+  "reason": "p0_child_963_exact_history_units_source_only",
   "runtime_authority_changed": false
 }
