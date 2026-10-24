@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "13409ea82ce4c848b20359c2560424c63bc36e17",
+  "source_sha": "7c7c9772116f0b5dfd1057e4d097698aa9aa193d",
   "requested_by": "continue-release-20261024-clock-20261024011301300",
-  "purpose": "Publish exact private P0 Product #936 two-path child of selected #883 for one existing network-isolated live execution ledger regression; source-only, no broker/live",
+  "purpose": "Exact P0 Product #936 revised malformed-account cross-contract execId guard, new changed source after old accepted probe; one brokerless module",
   "live_execution_allowed": false,
-  "attempt": 40,
-  "reason": "p0_child_936_cross_contract_live_fill_writer_execid",
+  "attempt": 41,
+  "reason": "p0_child_936_7c7_malformed_account_source_delta",
   "runtime_authority_changed": false
 }
