@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "24736d773f53801445ee7d4ef463048fc0eb9021",
-  "requested_by": "continue-release-20261023-clock-20261023234744647",
-  "purpose": "Publish exact selected UI #888 source after no-loss consumption of #930 and #931, for changed-delta Node/Vite acceptance; source-only no broker/live/deploy",
+  "source_sha": "b9cc9dfeb721bc0ed3aa6d0460b12563c7d52f5f",
+  "requested_by": "continue-release-20261024-clock-20261024001509878",
+  "purpose": "Publish exact selected P0 #883 source after consuming #932 cross-contract same-account execId fail-close; changed successor module only; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 36,
-  "reason": "selected_ui_24736d_changed_delta_acceptance",
+  "attempt": 37,
+  "reason": "selected_p0_b9cc_changed_successor_execid_acceptance",
   "runtime_authority_changed": false
 }
