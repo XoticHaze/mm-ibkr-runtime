@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "326115c5344904ca462073a0b3b1448b1413c350",
+  "source_sha": "04848626b1627d9db48d3eb001be2191796c4be9",
   "requested_by": "continue-release-20261024-clockin-20261024162001495",
-  "purpose": "Exact selected #975 P0/UI composite with Product #1008 Arena zero-trade forward evidence two-path source/test guard, encrypted native Node/Vite acceptance, no broker/live/deploy",
+  "purpose": "Exact Product #1007 P0 live PREPARED paper/alias account fail-close source/test, existing networkless private journal module acceptance; no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 91,
-  "reason": "release_selected_p0_ui_975_326115c5_exact_source_vault",
+  "attempt": 92,
+  "reason": "release_p0_journal_1007_04848626_exact_source_vault",
   "runtime_authority_changed": false
 }
