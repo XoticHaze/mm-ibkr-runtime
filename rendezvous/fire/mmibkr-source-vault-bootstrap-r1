@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "6ee0c2664273d6b843961def31bfcb37c45ca362",
-  "requested_by": "continue-release-20261024-clockin-20261024091127185",
-  "purpose": "Exact isolated selected P0#883+UI#888 no-loss source composite 6ee0, existing encrypted Source Vault brokerless integrated acceptance only",
+  "source_sha": "417676542113956611c916ea90b6bfe987291088",
+  "requested_by": "continue-release-20261024-clockin-20261024094112319",
+  "purpose": "Exact Release UI #978 corrected empty-runtime unknown-safe selected-UI delta, existing encrypted Source Vault brokerless acceptance only",
   "live_execution_allowed": false,
-  "attempt": 78,
-  "reason": "release_p0_ui_composite_6ee0_exact_source_vault",
+  "attempt": 79,
+  "reason": "release_ui_978_exact_source_vault",
   "runtime_authority_changed": false
 }
