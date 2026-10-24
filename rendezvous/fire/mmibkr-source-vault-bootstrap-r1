@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0eec088dcb61f35ae45b66d6e2d73f61f2c5d223",
-  "requested_by": "continue-release-clockin-20261024184241927",
-  "purpose": "P0 selected canonical MM journal native BOT/SLD exact-source encrypted Source Vault admission; no broker/live/deploy",
+  "source_sha": "dc7a7d5c9a77fd11a0d9a2444a4a95ebc0e18228",
+  "requested_by": "continue-release-clockin-20261024191631262",
+  "purpose": "B1 MNQ paper roll guard exact corrected selected source encrypted Source Vault and existing no-broker Node/Python acceptance",
   "live_execution_allowed": false,
-  "attempt": 97,
-  "reason": "release_p0_883_0eec_exact_source_vault",
+  "attempt": 98,
+  "reason": "release_b1_924_dc7_exact_source_vault_after_inherited_node_pin_correction",
   "runtime_authority_changed": false
 }
