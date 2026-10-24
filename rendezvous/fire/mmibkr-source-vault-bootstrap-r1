@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2850e07cb99dcb3e4b839955e2742cfe659b5df6",
-  "requested_by": "continue-release-clock-in-20261024064552364",
-  "purpose": "Exact selected P0 #883 latest live inventory 8-decimal quantity fail-close after accepted integrated journal/reconciliation; encrypted source-only admission and existing brokerless regression, no live/broker mutation",
+  "source_sha": "660b3be5e563026f78f90e3f8106c1d7d6e0de4e",
+  "requested_by": "continue-release-own-clock-in-20261024064721851",
+  "purpose": "Exact private P0 child #960 canonical READ-ONLY Ed25519 live owner candidate verifier, networkless encrypted source and exact tests; no broker/auth/live mutation",
   "live_execution_allowed": false,
-  "attempt": 60,
-  "reason": "selected_p0_883_2850_exact_source_vault_changed_module",
+  "attempt": 61,
+  "reason": "p0_child_960_signed_owner_candidate_source_only",
   "runtime_authority_changed": false
 }
