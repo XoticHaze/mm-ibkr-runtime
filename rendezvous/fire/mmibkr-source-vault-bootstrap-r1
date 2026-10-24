@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "39e20084f05ad788bb01c463debd480b1f573536",
+  "source_sha": "326115c5344904ca462073a0b3b1448b1413c350",
   "requested_by": "continue-release-20261024-clockin-20261024162001495",
-  "purpose": "Selected #975 composite exact Product #1006 two-path broker-fill display fail-close: authenticated encrypted Source Vault for one changed-head Node/Vite acceptance; no broker/live/deploy",
+  "purpose": "Exact selected #975 P0/UI composite with Product #1008 Arena zero-trade forward evidence two-path source/test guard, encrypted native Node/Vite acceptance, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 90,
-  "reason": "release_selected_p0_ui_975_39e20084_exact_source_vault",
+  "attempt": 91,
+  "reason": "release_selected_p0_ui_975_326115c5_exact_source_vault",
   "runtime_authority_changed": false
 }
