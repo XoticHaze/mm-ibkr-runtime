@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f29ef1eef79c1aefff3c8f3e78e66852aad91b2c",
+  "source_sha": "07a76356bad914eec426cc8a1ff33009fc443f32",
   "requested_by": "continue-release-20261024-clock-20261024051734668",
-  "purpose": "Selected P0 #883 exact f29 final pre-place raw broker position guard, changed-source encrypted Source Vault publication and existing brokerless integrated checkpoint; no Gateway, account, order or live authority",
+  "purpose": "Selected operator UI #888 exact 07a after Product #949 broker-cache gross exposure/residue display; publish existing encrypted Source Vault for changed-head Node/Vite acceptance, no deployment/broker/live",
   "live_execution_allowed": false,
-  "attempt": 53,
-  "reason": "selected_p0_883_f29_exact_changed_source_vault",
+  "attempt": 54,
+  "reason": "selected_ui_888_07a_exact_changed_head_source_vault",
   "runtime_authority_changed": false
 }
