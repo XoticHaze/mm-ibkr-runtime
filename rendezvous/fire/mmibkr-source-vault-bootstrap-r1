@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3e9832cb77a17bbf6524267223696e1321bbe762",
+  "source_sha": "fdc7917cccfc2de4acecc69a1e8221044c591d02",
   "requested_by": "continue-release-20261024-clockin-20261024174457109",
-  "purpose": "Exact selected P0/UI #975 no-loss five-blob composite source-only encrypted Source Vault admission; no broker/live/deploy",
+  "purpose": "P0 canonical selected #883 exact current SHA encrypted Source Vault admission, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 93,
-  "reason": "release_p0_ui_3e9832cb_exact_source_vault",
+  "attempt": 94,
+  "reason": "release_p0_883_fdc7917c_exact_source_vault",
   "runtime_authority_changed": false
 }
