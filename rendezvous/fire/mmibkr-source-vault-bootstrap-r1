@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "ef8777099f01625e67d9a1d1b150249af22e61e4",
+  "source_sha": "86b29bfa33731e0d55a0aa1a809f99f1de35e052",
   "requested_by": "continue-release-20261024-clock-20261024035019741",
-  "purpose": "Exact selected UI #888 after consumed Product #944 account margin/account-scope safety; encrypted Source Vault for existing network-isolated Node/Vite build, no broker/live/deploy",
+  "purpose": "Selected UI #888 consumed Product #945 exact owning #861 zero-maintenance N/A with separate verified negative-liquidity alert; encrypted Source Vault for changed-source Node/Vite build, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 46,
-  "reason": "selected_ui_888_ef877_product_944_exact_source_vault",
+  "attempt": 47,
+  "reason": "selected_ui_888_86b29b_product_945_policy_contract_source_vault",
   "runtime_authority_changed": false
 }
