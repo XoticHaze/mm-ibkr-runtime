@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "28f35a84c64bc2f0deeea58e01c003aa9c99afaa",
-  "requested_by": "continue-release-20261024-clock-20261024044954616",
-  "purpose": "Selected Foundry issuer #839 source-only one-line inherited IBG controller digest test repair; previous Source Vault #40065069993 published 6567 but failed unrelated stale Node assertion; no issuer key/promotion/Gateway/order/live",
+  "source_sha": "f29ef1eef79c1aefff3c8f3e78e66852aad91b2c",
+  "requested_by": "continue-release-20261024-clock-20261024051734668",
+  "purpose": "Selected P0 #883 exact f29 final pre-place raw broker position guard, changed-source encrypted Source Vault publication and existing brokerless integrated checkpoint; no Gateway, account, order or live authority",
   "live_execution_allowed": false,
-  "attempt": 52,
-  "reason": "selected_foundry_issuer_839_28f35a84_controller_test_digest_repair_source_vault",
+  "attempt": 53,
+  "reason": "selected_p0_883_f29_exact_changed_source_vault",
   "runtime_authority_changed": false
 }
