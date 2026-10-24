@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "417676542113956611c916ea90b6bfe987291088",
+  "source_sha": "75640fd07068753cd5cf196b20dc1d5d4a990bd7",
   "requested_by": "continue-release-20261024-clockin-20261024094112319",
-  "purpose": "Exact Release UI #978 corrected empty-runtime unknown-safe selected-UI delta, existing encrypted Source Vault brokerless acceptance only",
+  "purpose": "Exact Release #978 four-path UI empty-runtime UNKNOWN guard with existing allowlisted executable BotConsole acceptance; brokerless",
   "live_execution_allowed": false,
-  "attempt": 79,
-  "reason": "release_ui_978_exact_source_vault",
+  "attempt": 80,
+  "reason": "release_ui_978_exact_acceptance_head",
   "runtime_authority_changed": false
 }
