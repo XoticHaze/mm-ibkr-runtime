@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b97da2d6be3d20def6a92f6cf13af9460d7dec76",
+  "source_sha": "fddeb711c8daf2ac91e0c8690ad5cf3705be763a",
   "requested_by": "continue-release-20261024-clockin-20261024084531690",
-  "purpose": "Selected UI #888 exact cross-selected P0 broker scope + UI advisory no-loss source composite, encrypted Source Vault for existing brokerless tests and Node/Vite; no broker/live/deploy",
+  "purpose": "Selected UI #888 exact P0 backend account-scope no-loss plus Product #974 human-readable UNKNOWN reason, encrypted Source Vault, brokerless Node/Vite; no deploy/live",
   "live_execution_allowed": false,
-  "attempt": 74,
-  "reason": "ui_selected_888_b97da2d6_cross_selected_scope_source_vault",
+  "attempt": 75,
+  "reason": "ui_selected_888_fddeb711_p0_scope_reason_exact_source_vault",
   "runtime_authority_changed": false
 }
