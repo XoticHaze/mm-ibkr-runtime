@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b6620c63375c8b14f7add1c35eff04e0b5474a47",
+  "source_sha": "6df1cd265c601c12372b2516f5f3de7cebf17c1f",
   "requested_by": "continue-release-20261024-clockin-20261024094112319",
-  "purpose": "Exact no-loss P0#883+UI#888 review composite #975 corrected runtime UNKNOWN four-blob source, brokerless encrypted admission",
+  "purpose": "Exact selected PnL #911 three source-only lifecycle modules for newly admitted networkless private probe; no broker/live",
   "live_execution_allowed": false,
-  "attempt": 81,
-  "reason": "release_p0_ui_composite_b662_exact_source_vault",
+  "attempt": 82,
+  "reason": "release_pnl_911_6df1_exact_source_vault",
   "runtime_authority_changed": false
 }
