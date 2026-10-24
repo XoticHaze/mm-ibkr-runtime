@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1cd6ab74e54ab97afad59d81611cd75027fefe91",
+  "source_sha": "3f2f52bbd1942476453a423e19325aa550eb57ad",
   "requested_by": "continue-release-20261024-clockin-20261024084531690",
-  "purpose": "Selected P0 #883 exact Product #972 fail-closed position account-scope correction; encrypted Source Vault for brokerless changed-module acceptance, no broker/live",
+  "purpose": "Selected UI #888 exact Product #973 account-scope Bot Console fail-close, encrypted Source Vault for existing private Node/Vite acceptance; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 72,
-  "reason": "p0_selected_883_1cd6ab74_exact_source_vault",
+  "attempt": 73,
+  "reason": "ui_selected_888_3f2f52bb_exact_source_vault",
   "runtime_authority_changed": false
 }
