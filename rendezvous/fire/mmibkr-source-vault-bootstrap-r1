@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "315556266ed5a6aecfb31928cdd2510603af681b",
+  "source_sha": "5984523360c37635f809d5440115667481778a94",
   "requested_by": "continue-release-clockin-20261025014902188",
-  "purpose": "Exact selected UI/Builder/Arena #888 with consumed Product #1036 next-open/funded-NAV fix; encrypted source-only admission, no browser deploy or broker/live mutation",
+  "purpose": "Exact selected P0/UI composite #975 with no-loss Product #1036 funded CRW next-open correction; encrypted source-only review admission, no broker or served deployment",
   "live_execution_allowed": false,
-  "attempt": 106,
-  "reason": "release_selected_ui_888_315556_exact_source_vault",
+  "attempt": 107,
+  "reason": "release_selected_p0_ui_975_598452_exact_source_vault",
   "runtime_authority_changed": false
 }
