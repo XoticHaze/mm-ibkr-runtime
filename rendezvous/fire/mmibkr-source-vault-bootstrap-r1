@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8cb145bd8cfdf4a69cf029209f48533da5b83ca9",
+  "source_sha": "315556266ed5a6aecfb31928cdd2510603af681b",
   "requested_by": "continue-release-clockin-20261025014902188",
-  "purpose": "Exact selected P0 #883 8cb source-only encrypted admission for changed brokerless journal, historical execId and owner reconciliation; no live owner dispatch, no account mutation",
+  "purpose": "Exact selected UI/Builder/Arena #888 with consumed Product #1036 next-open/funded-NAV fix; encrypted source-only admission, no browser deploy or broker/live mutation",
   "live_execution_allowed": false,
-  "attempt": 105,
-  "reason": "release_selected_p0_883_8cb_exact_source_vault",
+  "attempt": 106,
+  "reason": "release_selected_ui_888_315556_exact_source_vault",
   "runtime_authority_changed": false
 }
