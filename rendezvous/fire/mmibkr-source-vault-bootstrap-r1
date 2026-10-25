@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "20e8f0a8d0a0109543814eea1a862ccd9d63e79f",
-  "requested_by": "operator-ui-selected-1062-1063-20261025",
-  "purpose": "Selected #888 UI-only child merges #1062 freshness truth + #1063 Cloudflare backend-guarded navigation; source-vault exact encrypted publication for downstream native Vite/Worker acceptance, no broker/live or 975/1991 repin",
+  "source_sha": "2988749b96f66d947d9a7e6586284b80fb3f9afb",
+  "requested_by": "continue-release-p0-selected-1061-20261025",
+  "purpose": "Selected #975 nonforced exact P0 missing-account broker-execution fail-close source/test consumption from Product #1061; encrypted source publication only, no live broker/order, no P0 public pin advance until verified",
   "live_execution_allowed": false,
-  "attempt": 129,
-  "reason": "release_selected_ui_888_20e8f0a8_source_vault",
+  "attempt": 130,
+  "reason": "release_selected_p0_975_2988749b_source_vault",
   "runtime_authority_changed": false
 }
