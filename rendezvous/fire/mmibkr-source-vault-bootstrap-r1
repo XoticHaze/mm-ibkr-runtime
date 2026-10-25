@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "890f3604c546117d668f9b19b6c13f21e22fa59c",
+  "source_sha": "b434df5a17f9264ddbce073cd5226d4ddc5c04e0",
   "requested_by": "continue-release-clockin-20261025231602587",
-  "purpose": "Exact selected MM #975 P0/UI composite encrypted private-source admission through existing Fleet OIDC Source Vault, current P0 #883 source/test postimages already consumed; no broker, order, live flag or protected MM main mutation",
+  "purpose": "Admit exact current narrow MM #883 canonical live successor source for existing public P0 owner review pin; no broker/live/holdout/private plaintext release",
   "live_execution_allowed": false,
-  "attempt": 160,
-  "reason": "release_selected_p0_ui_composite_exact_source_admission",
+  "attempt": 161,
+  "reason": "release_p0_narrow_successor_exact_source_admission",
   "runtime_authority_changed": false
 }
