@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "bf9d4552641bda22ac29068f1fcbdb3ef4c17247",
-  "requested_by": "continue-release-clockin-20261025034535139",
-  "purpose": "Exact selected funded PnL #911 after consumed Product #1040 oversized numeric fail-close, encrypted source-only admission and existing brokerless regression; no NAV promotion, broker or live mutation",
+  "source_sha": "74f28d6278faf8f5c235cfe3b9378bfa17b6cead",
+  "requested_by": "continue-release-clockin-20261025041340018",
+  "purpose": "Selected P0/UI composite #975 exact-head encrypted source admission after no-loss Product #1028 explicit cache-as-of fail-close; source-only, no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 114,
-  "reason": "release_selected_pnl_911_bf9d_exact_source_vault",
+  "attempt": 115,
+  "reason": "release_selected_p0_ui_975_74f28d_exact_source_vault",
   "runtime_authority_changed": false
 }
