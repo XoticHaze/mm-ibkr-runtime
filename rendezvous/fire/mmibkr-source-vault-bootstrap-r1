@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "a55b4b8fbc8ba30f65f0ea93287dbf0292683e24",
+  "source_sha": "d5c5822d14ebdea0e2ca337eb301a74fecfa7647",
   "requested_by": "continue-release-clockin-20261025034535139",
-  "purpose": "Exact selected P0/UI composite #975 after no-loss Product #1041 literal RHS admission, source-only encrypted bootstrap and unchanged brokerless tests; no owner dispatch, order, live flag or broker mutation",
+  "purpose": "Exact selected model issuer #839 encrypted source-only admission for brokerless limited forward sanity and signature-verifier acceptance; no production issuer key, model promotion, live or broker mutation",
   "live_execution_allowed": false,
-  "attempt": 112,
-  "reason": "release_selected_p0_ui_975_a55b_exact_source_vault",
+  "attempt": 113,
+  "reason": "release_selected_model_issuer_839_d5c_exact_source_vault",
   "runtime_authority_changed": false
 }
