@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4cc56d3c3119662f9f0f2fe4a9a9ef45f5c0b4dc",
-  "requested_by": "continue-release-clockin-20261025074618652",
-  "purpose": "Exact selected financial PnL #911 strict-decimal and funded open-MTM source-only admission; no P0 #975/public #1991 repin or broker/live/StrategySpec mutation",
+  "source_sha": "fbd1685e8e5a0728101872c00d43b9fe94517377",
+  "requested_by": "continue-release-clockin-20261025084324950",
+  "purpose": "Exact selected UI Builder/Pilot/account-margin six-path no-loss composite source-only admission; preserve P0 975/public 1991 pins; no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 125,
-  "reason": "release_selected_financial_911_4cc56d3c_source_vault",
+  "attempt": 126,
+  "reason": "release_selected_ui_888_fbd1685e_source_vault",
   "runtime_authority_changed": false
 }
