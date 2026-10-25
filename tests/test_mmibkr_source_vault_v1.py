@@ -172,6 +172,16 @@ class SourceVaultTests(unittest.TestCase):
         self.assertIs(manifest["private_repository_token_used"], False)
         self.assertIs(manifest["live_execution_authority"], False)
 
+    def test_changed_p0_journal_reuses_existing_encrypted_bootstrap_consumer(self):
+        workflow = (Path(__file__).resolve().parents[1] /
+                    '.github/workflows/mmibkr-source-vault-bootstrap-r1.yml').read_text()
+        self.assertIn('source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"', workflow)
+        self.assertIn('if [ -f selected_runtime_live_order_intent_journal_v1.py ] &&', workflow)
+        self.assertIn('[ -f tests/test_selected_runtime_live_order_intent_journal_v1.py ]; then', workflow)
+        self.assertIn('python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1', workflow)
+        self.assertIn('MMIBKR_P0_JOURNAL_EXACT_SOURCE_TESTS=PASS', workflow)
+        self.assertIn('MMIBKR_SOURCE_VAULT_PRIVATE_MATERIAL_DESTROYED=1', workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

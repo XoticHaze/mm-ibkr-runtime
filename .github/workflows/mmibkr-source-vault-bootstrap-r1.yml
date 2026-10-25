@@ -212,6 +212,15 @@ jobs:
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
+            # Changed-source P0 journal test runs inside the EXISTING private
+            # Source Vault bootstrap after source SHA/manifest attestation.
+            # No broker credentials, external test launcher, or public source.
+            if [ -f selected_runtime_live_order_intent_journal_v1.py ] &&
+               [ -f tests/test_selected_runtime_live_order_intent_journal_v1.py ]; then
+              python -m py_compile selected_runtime_live_order_intent_journal_v1.py
+              python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1
+              echo 'MMIBKR_P0_JOURNAL_EXACT_SOURCE_TESTS=PASS'
+            fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
               python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
               python -m unittest -v tests.test_persistent_live_owner_prepare_v1
