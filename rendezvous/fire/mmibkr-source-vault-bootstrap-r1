@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "de4abaa3cdcc6d3897932d64c686607d700800fb",
+  "source_sha": "c12500c2529be590962ac98428372143521b96a3",
   "requested_by": "continue-release-clockin-20261025014902188",
-  "purpose": "Exact selected funded PnL #911 with consumed Product #1032 invalid cost schedule fail-close; source-only encrypted admission, no financial allocation or broker/live mutation",
+  "purpose": "Exact selected DataManager #1028 invalid explicit as-of timestamp fail-closed, current-main two-path source-only encrypted admission after private Actions zero-job-step nonstart; no broker, UI deploy or live mutation",
   "live_execution_allowed": false,
-  "attempt": 108,
-  "reason": "release_selected_pnl_911_de4_exact_source_vault",
+  "attempt": 109,
+  "reason": "release_selected_datamanager_1028_c125_exact_source_vault",
   "runtime_authority_changed": false
 }
