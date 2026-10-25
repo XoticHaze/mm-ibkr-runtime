@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f5ca4148ecc1b281a8dc5a5c1803e48a2f55cd61",
+  "source_sha": "755919197187c02937b9ad896c7a4e057c1ead72",
   "requested_by": "continue-release-clockin-20261025141819326",
-  "purpose": "Exact selected financial PnL #911 current source admission for changed strict numeric and single-lifecycle accounting, encrypted OIDC Source Vault only; no deploy/broker/live",
+  "purpose": "Exact selected model issuer #839 source after Product #1087 strict fixed20 native-int and nonfinite gross-exposure guard; encrypted OIDC source admission only, no model promotion/broker/live",
   "live_execution_allowed": false,
-  "attempt": 147,
-  "reason": "release_selected_financial_911_f5ca4148_exact_source_vault",
+  "attempt": 148,
+  "reason": "release_selected_model_839_75591919_exact_source_vault",
   "runtime_authority_changed": false
 }
