@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "a0384a7c2fe20738c30d3f88da9c0517be1884a3",
+  "source_sha": "f530ee4b4f571422398f70a7b6bef19208107ecc",
   "requested_by": "continue-release-clockin-20261025161217003",
-  "purpose": "Publish exact current selected private operator UI #888 for existing encrypted Source Vault, release review only, no broker or live authority",
+  "purpose": "Publish current selected UI #888 including cross-event broker execId fail-close through existing encrypted Source Vault; source review only",
   "live_execution_allowed": false,
-  "attempt": 150,
-  "reason": "release_selected_ui_888_a038_exact_source_admission",
+  "attempt": 151,
+  "reason": "release_selected_ui_888_f530_exact_source_admission",
   "runtime_authority_changed": false
 }
