@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "492a76b157d0abbf4548e8fd902f5fc843505348",
-  "requested_by": "continue-release-selected-ui-builder-1064-20261025",
-  "purpose": "Publish selected #888 exact source after no-loss consumption of Product #1064 Builder parameter-shape fail-close; source-only, no broker, no live runtime or protected-main mutation",
+  "source_sha": "d453d410eafac12703b1697497f02f89358fa851",
+  "requested_by": "continue-release-selected-financial-decimal-1065-20261025",
+  "purpose": "Publish selected #911 exact source after no-loss consumption of Product #1065 native Decimal underflow cost guard; source-only, no broker, no live, no protected-main mutation",
   "live_execution_allowed": false,
-  "attempt": 131,
-  "reason": "release_selected_ui_888_492a_source_vault",
+  "attempt": 132,
+  "reason": "release_selected_financial_911_d453_source_vault",
   "runtime_authority_changed": false
 }
