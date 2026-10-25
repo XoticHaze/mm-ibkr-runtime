@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "40ab8d87a4cfb282d3144ebbdd0fb6627a875ec2",
-  "requested_by": "continue-release-clockin-20261025051633167",
-  "purpose": "Existing encrypted Source Vault publisher for exact selected P0/UI composite #975 after native selected conId B1 cache guard #1048 no-loss consumption; source-only, no broker/live/StrategySpec mutation",
+  "source_sha": "aaa7a0ff8668c1f26bb177937cf943297394260e",
+  "requested_by": "continue-release-clockin-20261025061750918",
+  "purpose": "Exact selected UI #888 after Product #1049 funded UTC and #1050 admitted futures row-identity no-loss consumption; independent source-only selected acceptance, preserving P0 composite #975 and public owner #1991 pin; no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 121,
-  "reason": "release_selected_p0_ui_975_40ab8d_exact_source_vault",
+  "attempt": 122,
+  "reason": "release_selected_ui_888_aaa7a0_exact_source_vault",
   "runtime_authority_changed": false
 }
