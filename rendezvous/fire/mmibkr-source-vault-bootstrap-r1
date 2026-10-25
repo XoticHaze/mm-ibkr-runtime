@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2988749b96f66d947d9a7e6586284b80fb3f9afb",
-  "requested_by": "continue-release-p0-selected-1061-20261025",
-  "purpose": "Selected #975 nonforced exact P0 missing-account broker-execution fail-close source/test consumption from Product #1061; encrypted source publication only, no live broker/order, no P0 public pin advance until verified",
+  "source_sha": "492a76b157d0abbf4548e8fd902f5fc843505348",
+  "requested_by": "continue-release-selected-ui-builder-1064-20261025",
+  "purpose": "Publish selected #888 exact source after no-loss consumption of Product #1064 Builder parameter-shape fail-close; source-only, no broker, no live runtime or protected-main mutation",
   "live_execution_allowed": false,
-  "attempt": 130,
-  "reason": "release_selected_p0_975_2988749b_source_vault",
+  "attempt": 131,
+  "reason": "release_selected_ui_888_492a_source_vault",
   "runtime_authority_changed": false
 }
