@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7b48e660900e78ef8cbeb1a862c905a6d788bd74",
+  "source_sha": "d468d02a42cce84bb019525c4ea5a630f9a906a1",
   "requested_by": "continue-release-clockin-20261024235214595",
-  "purpose": "Exact selected P0 #883 source-vault encrypted admission for changed successor contract-scope guard and brokerless selected-head acceptance; no broker, no live",
+  "purpose": "Exact selected funded PnL #911 current-head encrypted source admission for later networkless changed-module acceptance; no funded result, broker, live or financial policy mutation",
   "live_execution_allowed": false,
-  "attempt": 102,
-  "reason": "release_selected_p0_883_7b48_exact_source_vault",
+  "attempt": 103,
+  "reason": "release_selected_pnl_911_d468_exact_source_vault",
   "runtime_authority_changed": false
 }
