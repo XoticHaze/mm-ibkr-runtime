@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "25cf5b61b45aa136fe7f0e1f036bce163633ab5d",
-  "requested_by": "continue-release-clockin-20261025214534112",
-  "purpose": "Post-CP24 release first-consumer: admit exact selected Product/UI #888 current source after 61 commits/28 paths since frozen f530 through existing OIDC encrypted Source Vault; no broker/live or confidential P01 raw",
+  "source_sha": "890f3604c546117d668f9b19b6c13f21e22fa59c",
+  "requested_by": "continue-release-clockin-20261025231602587",
+  "purpose": "Exact selected MM #975 P0/UI composite encrypted private-source admission through existing Fleet OIDC Source Vault, current P0 #883 source/test postimages already consumed; no broker, order, live flag or protected MM main mutation",
   "live_execution_allowed": false,
-  "attempt": 159,
-  "reason": "release_post_cp24_selected_ui_888_exact_source_admission",
+  "attempt": 160,
+  "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
