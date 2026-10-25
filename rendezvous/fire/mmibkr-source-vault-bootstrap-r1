@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0caf9fec9fde9dc6b4e505a43e190c330707ee8c",
+  "source_sha": "8cb145bd8cfdf4a69cf029209f48533da5b83ca9",
   "requested_by": "continue-release-clockin-20261025014902188",
-  "purpose": "Exact selected paper MNQ B1 futures signal-history warmup conId source admission after Product staged two-path integration; brokerless source/tests only, no paper roll or live mutation",
+  "purpose": "Exact selected P0 #883 8cb source-only encrypted admission for changed brokerless journal, historical execId and owner reconciliation; no live owner dispatch, no account mutation",
   "live_execution_allowed": false,
-  "attempt": 104,
-  "reason": "release_selected_paper_mnq_924_0caf_exact_source_vault",
+  "attempt": 105,
+  "reason": "release_selected_p0_883_8cb_exact_source_vault",
   "runtime_authority_changed": false
 }
