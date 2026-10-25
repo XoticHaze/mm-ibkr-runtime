@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d453d410eafac12703b1697497f02f89358fa851",
-  "requested_by": "continue-release-selected-financial-decimal-1065-20261025",
-  "purpose": "Publish selected #911 exact source after no-loss consumption of Product #1065 native Decimal underflow cost guard; source-only, no broker, no live, no protected-main mutation",
+  "source_sha": "2988749b96f66d947d9a7e6586284b80fb3f9afb",
+  "requested_by": "continue-release-p0-selected-source-acceptance-20261025",
+  "purpose": "Exact selected #975 changed-source pre-merge networkless successor account/execution reconciliation unittest on existing encrypted Source Vault runner; no IBKR auth/order/live, no public source pin or protected-main change",
   "live_execution_allowed": false,
-  "attempt": 132,
-  "reason": "release_selected_financial_911_d453_source_vault",
+  "attempt": 133,
+  "reason": "release_selected_p0_975_2988_successor_ledger_source_test",
   "runtime_authority_changed": false
 }
