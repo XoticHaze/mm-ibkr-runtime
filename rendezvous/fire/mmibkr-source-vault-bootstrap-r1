@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9f060b4db30fe3826e2b68c6deef3c39b952c60c",
-  "requested_by": "continue-release-clockin-20261025061750918",
-  "purpose": "Exact post-CP24 selected UI #888 after Product #1051 strict decimal Builder literal no-loss merge, two exact Node tests accepted; preserve P0 #975 and public owner #1991 pin, no broker/live/StrategySpec mutation",
+  "source_sha": "d3fe83de77c9a6fddf2edc10235d7d5dfbd80a95",
+  "requested_by": "continue-release-clockin-20261025064759808",
+  "purpose": "Exact selected UI #888 funded chart timestamp fail-close correction, 16/16 local selected-source tests; P0 #975 and public live-owner #1991 pin unchanged, no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 123,
-  "reason": "release_postcp24_selected_ui_888_9f060b_exact_source_vault",
+  "attempt": 124,
+  "reason": "release_selected_ui_888_d3fe_funded_chart_clock_source_vault",
   "runtime_authority_changed": false
 }
