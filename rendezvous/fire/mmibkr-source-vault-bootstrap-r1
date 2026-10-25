@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "bbf24812b363855ae41f9c9680ac15a1381d2ce8",
-  "requested_by": "continue-release-clockin-20261024194920096",
-  "purpose": "Exact selected financial PnL #911 malformed canonical fill ledger fail-close encrypted source admission; no funded result or broker",
+  "source_sha": "7b48e660900e78ef8cbeb1a862c905a6d788bd74",
+  "requested_by": "continue-release-clockin-20261024235214595",
+  "purpose": "Exact selected P0 #883 source-vault encrypted admission for changed successor contract-scope guard and brokerless selected-head acceptance; no broker, no live",
   "live_execution_allowed": false,
-  "attempt": 101,
-  "reason": "release_selected_pnl_911_bbf_exact_source_vault",
+  "attempt": 102,
+  "reason": "release_selected_p0_883_7b48_exact_source_vault",
   "runtime_authority_changed": false
 }
