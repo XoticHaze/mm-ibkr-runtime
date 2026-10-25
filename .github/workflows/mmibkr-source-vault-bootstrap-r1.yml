@@ -212,6 +212,14 @@ jobs:
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
+            # Selected #975 account-scoped successor read-only reconciliation
+            # is a changed-source pre-merge acceptance, never a broker probe.
+            # Legacy/other selected source snapshots do not carry this module.
+            if [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then
+              python -m py_compile scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
+              python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
+              echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
+            fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
               python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
               python -m unittest -v tests.test_persistent_live_owner_prepare_v1
