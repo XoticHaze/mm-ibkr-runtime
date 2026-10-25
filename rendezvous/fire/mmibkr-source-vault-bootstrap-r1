@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4229bb9b80159a7fc7ca17935e47d00b218d81d1",
+  "source_sha": "45b06a6ed2f50cd724996e40901ecac53378fd4c",
   "requested_by": "continue-release-clockin-20261025194809436",
-  "purpose": "Publish exact selected #975 no-loss composite containing #883 broker-position failed-read guards through existing authenticated encrypted Source Vault; source-only owner review",
+  "purpose": "Publish independently reviewable six-path P0-only canonical broker failed-read and Decimal residue safety cut from #883 without broad UI/Builder merge; no live authority",
   "live_execution_allowed": false,
-  "attempt": 153,
-  "reason": "release_selected_p0_975_4229_exact_source_admission",
+  "attempt": 154,
+  "reason": "release_narrow_p0_883_45b_exact_source_admission",
   "runtime_authority_changed": false
 }
