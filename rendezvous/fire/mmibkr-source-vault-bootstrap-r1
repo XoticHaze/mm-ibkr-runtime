@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "516a0f3503cdcf60522c3c2790d1e29f3512b8aa",
-  "requested_by": "continue-release-clockin-20261025181757329",
-  "purpose": "Publish exact no-loss selected P0 #975 composite after consuming #883 broker snapshot fail-close, using existing authenticated encrypted Source Vault; source review only",
+  "source_sha": "4229bb9b80159a7fc7ca17935e47d00b218d81d1",
+  "requested_by": "continue-release-clockin-20261025194809436",
+  "purpose": "Publish exact selected #975 no-loss composite containing #883 broker-position failed-read guards through existing authenticated encrypted Source Vault; source-only owner review",
   "live_execution_allowed": false,
-  "attempt": 152,
-  "reason": "release_selected_p0_975_516a_exact_source_admission",
+  "attempt": 153,
+  "reason": "release_selected_p0_975_4229_exact_source_admission",
   "runtime_authority_changed": false
 }
