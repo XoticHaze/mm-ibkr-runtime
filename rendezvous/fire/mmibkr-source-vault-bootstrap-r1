@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "20c975988a73e442248c966d8ca53fa6efd6daa6",
+  "source_sha": "3bb5e5691390796a0241b0413be8e3f2b70ab4ba",
   "requested_by": "continue-release-clockin-20261025141819326",
-  "purpose": "Selected UI #888 exact Product #1085 DCA forward evidence tri-state source admission through existing OIDC encrypted Source Vault only; no deploy/broker/live",
+  "purpose": "Exact selected UI #888 no-loss Product #1085 DCA and #1086 reviewed Pilot handoff, existing OIDC encrypted source admission only; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 145,
-  "reason": "release_selected_ui_888_20c97598_exact_source_vault",
+  "attempt": 146,
+  "reason": "release_selected_ui_888_3bb5e569_exact_source_vault",
   "runtime_authority_changed": false
 }
