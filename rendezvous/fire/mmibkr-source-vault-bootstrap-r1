@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d3fe83de77c9a6fddf2edc10235d7d5dfbd80a95",
-  "requested_by": "continue-release-clockin-20261025064759808",
-  "purpose": "Exact selected UI #888 funded chart timestamp fail-close correction, 16/16 local selected-source tests; P0 #975 and public live-owner #1991 pin unchanged, no broker/live/StrategySpec mutation",
+  "source_sha": "45b06a6ed2f50cd724996e40901ecac53378fd4c",
+  "requested_by": "continue-release-clockin-20261025194809436",
+  "purpose": "Publish independently reviewable six-path P0-only canonical broker failed-read and Decimal residue safety cut from #883 without broad UI/Builder merge; no live authority",
   "live_execution_allowed": false,
-  "attempt": 124,
-  "reason": "release_selected_ui_888_d3fe_funded_chart_clock_source_vault",
+  "attempt": 154,
+  "reason": "release_narrow_p0_883_45b_exact_source_admission",
   "runtime_authority_changed": false
 }

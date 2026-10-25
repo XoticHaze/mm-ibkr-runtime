@@ -211,23 +211,21 @@ jobs:
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
-            # Changed-source P0 journal test runs inside the EXISTING private
-            # Source Vault bootstrap after source SHA/manifest attestation.
-            # No broker credentials, external test launcher, or public source.
+            # Changed-source P0 journal acceptance uses this same attested
+            # private Source Vault runner, never a second launcher or broker.
             if [ -f selected_runtime_live_order_intent_journal_v1.py ] &&
                [ -f tests/test_selected_runtime_live_order_intent_journal_v1.py ]; then
               python -m py_compile selected_runtime_live_order_intent_journal_v1.py
               python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1
               echo 'MMIBKR_P0_JOURNAL_EXACT_SOURCE_TESTS=PASS'
             fi
-            # The same attested private-source runner must exercise newly
-            # selected read-only successor/execId reconciliation regressions.
-            # No broker API, new transport, workflow or order authority.
-            if [ -f scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py ] &&
-               [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then
+            # Selected #975 account-scoped successor read-only reconciliation
+            # is a changed-source pre-merge acceptance, never a broker probe.
+            # Legacy/other selected source snapshots do not carry this module.
+            if [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then
               python -m py_compile scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
               python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
-              echo 'MMIBKR_P0_SUCCESSOR_LEDGER_EXACT_SOURCE_TESTS=PASS'
+              echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
               python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
