@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5abdb1b6ad192aa7219a6b624e6e131340198d42",
-  "requested_by": "continue-release-clockin-20261025201606260",
-  "purpose": "Publish exact selected financial PnL #911 source for independent encrypted no-broker acceptance and conflict-aware owner review; no runtime/broker/live authority",
+  "source_sha": "a54587f40f39bd48ee4191e5d219a56df24d1816",
+  "requested_by": "continue-release-clockin-20261025201606260-postcp24",
+  "purpose": "Publish exact selected futures signal-history and paper execution-roll #924 source via existing encrypted Source Vault for no-loss owner review; no live broker/roll/submit authority",
   "live_execution_allowed": false,
-  "attempt": 155,
-  "reason": "release_selected_financial_pnl_911_5abdb_exact_source_admission",
+  "attempt": 156,
+  "reason": "release_selected_futures_924_a545_exact_source_admission",
   "runtime_authority_changed": false
 }
