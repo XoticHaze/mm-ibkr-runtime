@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fbfc19cdbe501c3b64f836168ce68e7adbd0d225",
+  "source_sha": "4bb70a9ea6d55af21b20638f59c42626ecb339de",
   "requested_by": "continue-release-clockin-20261025044315381",
-  "purpose": "Selected P0/UI composite #975 exact-head encrypted source admission after consuming Product #1044 PnL decimal guard and #1043 Pilot backtest/review guard; source-only, no broker/live/StrategySpec mutation",
+  "purpose": "Selected P0/UI composite #975 exact-head encrypted source admission after Product #1045 lifecycle badge and boolean action truth, preserving prior #1044/#1043; no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 117,
-  "reason": "release_selected_p0_ui_975_fbfc19_exact_source_vault",
+  "attempt": 118,
+  "reason": "release_selected_p0_ui_975_4bb70a_exact_source_vault",
   "runtime_authority_changed": false
 }
