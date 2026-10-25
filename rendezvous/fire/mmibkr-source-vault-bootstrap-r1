@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8ecfc2434c1586e17a2703b152313683b1d0a9c4",
-  "requested_by": "continue-release-clockin-20261025101639819",
-  "purpose": "Exact selected UI #888 source admission after no-loss #1069 stale bar and #1067 margin truth feature-branch consumption; existing encrypted Source Vault no-broker acceptance only, no live/account/order/deploy",
+  "source_sha": "fdabf6092cfb64bdd9916c6caa246ff51499a54c",
+  "requested_by": "continue-release-clockin-20261025115215136",
+  "purpose": "Exact selected P0 #975 after Product #1053 four-path no-loss risk integration; encrypted Source Vault no-broker source admission only; no live/account/order/deploy",
   "live_execution_allowed": false,
-  "attempt": 135,
-  "reason": "release_selected_ui_888_8ec_two_product_children_exact_source_vault",
+  "attempt": 136,
+  "reason": "release_p0_975_fdab_strict_risk_exact_source_vault",
   "runtime_authority_changed": false
 }
