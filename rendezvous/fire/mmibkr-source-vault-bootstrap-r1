@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fbd1685e8e5a0728101872c00d43b9fe94517377",
+  "source_sha": "83c92c1329ecbd8a294a29acb7b43c108f3863c4",
   "requested_by": "continue-release-clockin-20261025084324950",
-  "purpose": "Exact selected UI Builder/Pilot/account-margin six-path no-loss composite source-only admission; preserve P0 975/public 1991 pins; no broker/live/StrategySpec mutation",
+  "purpose": "Exact selected financial PnL #911 strict broker-fill numeric and native Decimal underflow fail-close source-only admission; preserve P0 975/public 1991; no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 126,
-  "reason": "release_selected_ui_888_fbd1685e_source_vault",
+  "attempt": 127,
+  "reason": "release_selected_financial_911_83c92c13_source_vault",
   "runtime_authority_changed": false
 }
