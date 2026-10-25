@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "caa8af44bb623a9e51dce6e5c7e67af7270bcbec",
+  "source_sha": "a231277bf16f56761da8be279c74724215ad9a93",
   "requested_by": "continue-release-clockin-20261025115215136",
-  "purpose": "Selected paper/futures signal-vs-execution roll #924 exact changed-head encrypted source admission for future bounded owner acceptance; no broker, order, roll, runtime, live or protected source mutation",
+  "purpose": "Exact selected financial PnL #911 changed-head encrypted Source Vault for already-allowlisted bounded brokerless native acceptance; no account, order, broker, StrategySpec, live or protected merge",
   "live_execution_allowed": false,
-  "attempt": 138,
-  "reason": "release_futures_924_caa_signal_index_identity_source_vault",
+  "attempt": 139,
+  "reason": "release_financial_911_a231_exact_changed_source_vault",
   "runtime_authority_changed": false
 }
