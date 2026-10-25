@@ -192,6 +192,15 @@ class SourceVaultTests(unittest.TestCase):
         self.assertIn('MMIBKR_P0_SUCCESSOR_LEDGER_EXACT_SOURCE_TESTS=PASS', workflow)
         self.assertIn('MMIBKR_SOURCE_VAULT_PRIVATE_MATERIAL_DESTROYED=1', workflow)
 
+    def test_dispatch_requires_explicit_exact_source_without_stale_default(self):
+        workflow = (Path(__file__).resolve().parents[1] /
+                    '.github/workflows/mmibkr-source-vault-bootstrap-r1.yml').read_text()
+        dispatch = workflow.split('  workflow_dispatch:', 1)[1].split('  push:', 1)[0]
+        self.assertIn('      source_sha:', dispatch)
+        self.assertIn('        required: true', dispatch)
+        self.assertNotIn('        default:', dispatch)
+        self.assertIn('exact 40-hex source_sha required', workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
