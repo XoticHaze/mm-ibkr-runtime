@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d468d02a42cce84bb019525c4ea5a630f9a906a1",
-  "requested_by": "continue-release-clockin-20261024235214595",
-  "purpose": "Exact selected funded PnL #911 current-head encrypted source admission for later networkless changed-module acceptance; no funded result, broker, live or financial policy mutation",
+  "source_sha": "d3fe83de77c9a6fddf2edc10235d7d5dfbd80a95",
+  "requested_by": "continue-release-clockin-20261025064759808",
+  "purpose": "Exact selected UI #888 funded chart timestamp fail-close correction, 16/16 local selected-source tests; P0 #975 and public live-owner #1991 pin unchanged, no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 103,
-  "reason": "release_selected_pnl_911_d468_exact_source_vault",
+  "attempt": 124,
+  "reason": "release_selected_ui_888_d3fe_funded_chart_clock_source_vault",
   "runtime_authority_changed": false
 }
