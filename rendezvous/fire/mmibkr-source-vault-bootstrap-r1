@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5045b9a2b8d5fc3c2afb241c2b18b27e6805c5ea",
-  "requested_by": "continue-release-clockin-20261025044315381",
-  "purpose": "Selected P0/UI composite #975 exact-head encrypted source after Product #1047 reviewed backtest data-missing and stale-success fail-close, preserving #1046/#1045/#1044/#1043; no broker/live/StrategySpec mutation",
+  "source_sha": "40ab8d87a4cfb282d3144ebbdd0fb6627a875ec2",
+  "requested_by": "continue-release-clockin-20261025051633167",
+  "purpose": "Existing encrypted Source Vault publisher for exact selected P0/UI composite #975 after native selected conId B1 cache guard #1048 no-loss consumption; source-only, no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 120,
-  "reason": "release_selected_p0_ui_975_5045b9_exact_source_vault",
+  "attempt": 121,
+  "reason": "release_selected_p0_ui_975_40ab8d_exact_source_vault",
   "runtime_authority_changed": false
 }
