@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fdabf6092cfb64bdd9916c6caa246ff51499a54c",
+  "source_sha": "03c3b94c279063f92acf9637748c54987ee5b1a7",
   "requested_by": "continue-release-clockin-20261025115215136",
-  "purpose": "Exact selected P0 #975 after Product #1053 four-path no-loss risk integration; encrypted Source Vault no-broker source admission only; no live/account/order/deploy",
+  "purpose": "Selected UI #888 exact changed-head encrypted Source Vault for native Node/Vite and bounded Python acceptance; no protected source-policy admission, deployment, broker, order or live authority",
   "live_execution_allowed": false,
-  "attempt": 136,
-  "reason": "release_p0_975_fdab_strict_risk_exact_source_vault",
+  "attempt": 137,
+  "reason": "release_ui_888_03c_changed_head_encrypted_source_acceptance",
   "runtime_authority_changed": false
 }
