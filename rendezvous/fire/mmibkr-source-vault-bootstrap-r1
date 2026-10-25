@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "97d027b26c6586fd46c76718a6d6697e20b85e58",
-  "requested_by": "continue-release-clockin-20261025122019362",
-  "purpose": "Exact selected UI #888 changed-head encrypted source admission after Product #1076 server-side reviewed apply guard; no deploy, broker or live authority",
+  "source_sha": "6c40484e0eeb089b618da9802d5b0c45ea29b376",
+  "requested_by": "continue-release-clockin-20261025125015654",
+  "purpose": "Publish exact selected UI #888 three-child no-loss 6c40484e source via existing Fleet OIDC encrypted Source Vault; source-only, no deploy, broker or live authority",
   "live_execution_allowed": false,
-  "attempt": 141,
-  "reason": "release_selected_ui_888_97d_exact_source_vault",
+  "attempt": 142,
+  "reason": "release_selected_ui_888_6c40484e_exact_source_vault",
   "runtime_authority_changed": false
 }
