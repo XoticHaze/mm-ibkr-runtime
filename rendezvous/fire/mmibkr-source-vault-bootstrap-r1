@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "c12500c2529be590962ac98428372143521b96a3",
-  "requested_by": "continue-release-clockin-20261025014902188",
-  "purpose": "Exact selected DataManager #1028 invalid explicit as-of timestamp fail-closed, current-main two-path source-only encrypted admission after private Actions zero-job-step nonstart; no broker, UI deploy or live mutation",
+  "source_sha": "cce665b9094ff6a5641fdf6e145bfa44e84c13d4",
+  "requested_by": "continue-release-clockin-20261025021628488",
+  "purpose": "Exact selected P0/UI composite #975 current-head encrypted source-only admission after no-loss Product stock warmup integration; no broker, order, live, StrategySpec, promotion or UI deployment",
   "live_execution_allowed": false,
-  "attempt": 109,
-  "reason": "release_selected_datamanager_1028_c125_exact_source_vault",
+  "attempt": 110,
+  "reason": "release_selected_p0_ui_composite_975_cce_exact_source_vault",
   "runtime_authority_changed": false
 }
