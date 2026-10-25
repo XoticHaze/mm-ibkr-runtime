@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "6c40484e0eeb089b618da9802d5b0c45ea29b376",
+  "source_sha": "f0b713ef8a38b8c92295c0adf739a04ccbd3538c",
   "requested_by": "continue-release-clockin-20261025125015654",
-  "purpose": "Publish exact selected UI #888 three-child no-loss 6c40484e source via existing Fleet OIDC encrypted Source Vault; source-only, no deploy, broker or live authority",
+  "purpose": "Exact selected UI #888 full runtime_id attribution and false-zero fail-close source publication via existing OIDC encrypted Source Vault; source-only, no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 142,
-  "reason": "release_selected_ui_888_6c40484e_exact_source_vault",
+  "attempt": 143,
+  "reason": "release_selected_ui_888_f0b713ef_exact_source_vault",
   "runtime_authority_changed": false
 }
