@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3bb5e5691390796a0241b0413be8e3f2b70ab4ba",
+  "source_sha": "f5ca4148ecc1b281a8dc5a5c1803e48a2f55cd61",
   "requested_by": "continue-release-clockin-20261025141819326",
-  "purpose": "Exact selected UI #888 no-loss Product #1085 DCA and #1086 reviewed Pilot handoff, existing OIDC encrypted source admission only; no deploy/broker/live",
+  "purpose": "Exact selected financial PnL #911 current source admission for changed strict numeric and single-lifecycle accounting, encrypted OIDC Source Vault only; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 146,
-  "reason": "release_selected_ui_888_3bb5e569_exact_source_vault",
+  "attempt": 147,
+  "reason": "release_selected_financial_911_f5ca4148_exact_source_vault",
   "runtime_authority_changed": false
 }
