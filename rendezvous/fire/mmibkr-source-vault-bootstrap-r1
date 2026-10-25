@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "597a262f86c805938e31d3d0a4efe482401acbbf",
+  "source_sha": "83b04f075204778547831ac2a16b4528f6bbe192",
   "requested_by": "continue-release-clockin-20261025214534112",
-  "purpose": "Publish exact selected #975 no-loss P0 plus read-only operator UI composite via existing OIDC-authenticated encrypted Source Vault, for source acceptance only; no broker or live authority",
+  "purpose": "Admit exact latest selected narrow P0 #883 read-only successor Decimal nonzero-underflow fix through existing OIDC encrypted Source Vault; no broker or live authority",
   "live_execution_allowed": false,
-  "attempt": 157,
-  "reason": "release_selected_p0_ui_975_exact_source_admission",
+  "attempt": 158,
+  "reason": "release_selected_narrow_p0_883_exact_source_admission",
   "runtime_authority_changed": false
 }
