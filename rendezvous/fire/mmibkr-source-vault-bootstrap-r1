@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "755919197187c02937b9ad896c7a4e057c1ead72",
+  "source_sha": "3058a9c9f50c45589e2a7359cffa568952587581",
   "requested_by": "continue-release-clockin-20261025141819326",
-  "purpose": "Exact selected model issuer #839 source after Product #1087 strict fixed20 native-int and nonfinite gross-exposure guard; encrypted OIDC source admission only, no model promotion/broker/live",
+  "purpose": "Exact selected model #839 after one-file no-loss accepted v0.16.2 controller test digest correction; retry existing encrypted Source Vault only, no broker/live/model promotion",
   "live_execution_allowed": false,
-  "attempt": 148,
-  "reason": "release_selected_model_839_75591919_exact_source_vault",
+  "attempt": 149,
+  "reason": "release_selected_model_839_3058a9c9_controller_test_alignment",
   "runtime_authority_changed": false
 }
