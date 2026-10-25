@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3058a9c9f50c45589e2a7359cffa568952587581",
-  "requested_by": "continue-release-clockin-20261025141819326",
-  "purpose": "Exact selected model #839 after one-file no-loss accepted v0.16.2 controller test digest correction; retry existing encrypted Source Vault only, no broker/live/model promotion",
+  "source_sha": "a0384a7c2fe20738c30d3f88da9c0517be1884a3",
+  "requested_by": "continue-release-clockin-20261025161217003",
+  "purpose": "Publish exact current selected private operator UI #888 for existing encrypted Source Vault, release review only, no broker or live authority",
   "live_execution_allowed": false,
-  "attempt": 149,
-  "reason": "release_selected_model_839_3058a9c9_controller_test_alignment",
+  "attempt": 150,
+  "reason": "release_selected_ui_888_a038_exact_source_admission",
   "runtime_authority_changed": false
 }
