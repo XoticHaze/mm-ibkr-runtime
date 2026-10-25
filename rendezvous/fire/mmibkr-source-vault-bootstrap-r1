@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "a231277bf16f56761da8be279c74724215ad9a93",
-  "requested_by": "continue-release-clockin-20261025115215136",
-  "purpose": "Exact selected financial PnL #911 changed-head encrypted Source Vault for already-allowlisted bounded brokerless native acceptance; no account, order, broker, StrategySpec, live or protected merge",
+  "source_sha": "91b54e63f35b4643da430ca5160fa4a90885eade",
+  "requested_by": "continue-release-clockin-20261025122019362",
+  "purpose": "Publish exact no-loss selected P0/UI #975 head after consuming Product Builder HTTP review guard #1076; encrypted private-source producer only, no account/order/live/deploy authority",
   "live_execution_allowed": false,
-  "attempt": 139,
-  "reason": "release_financial_911_a231_exact_changed_source_vault",
+  "attempt": 140,
+  "reason": "release_selected_p0_ui_91b54e63_source_vault",
   "runtime_authority_changed": false
 }
