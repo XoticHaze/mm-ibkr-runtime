@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d5c5822d14ebdea0e2ca337eb301a74fecfa7647",
+  "source_sha": "bf9d4552641bda22ac29068f1fcbdb3ef4c17247",
   "requested_by": "continue-release-clockin-20261025034535139",
-  "purpose": "Exact selected model issuer #839 encrypted source-only admission for brokerless limited forward sanity and signature-verifier acceptance; no production issuer key, model promotion, live or broker mutation",
+  "purpose": "Exact selected funded PnL #911 after consumed Product #1040 oversized numeric fail-close, encrypted source-only admission and existing brokerless regression; no NAV promotion, broker or live mutation",
   "live_execution_allowed": false,
-  "attempt": 113,
-  "reason": "release_selected_model_issuer_839_d5c_exact_source_vault",
+  "attempt": 114,
+  "reason": "release_selected_pnl_911_bf9d_exact_source_vault",
   "runtime_authority_changed": false
 }
