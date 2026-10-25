@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f530ee4b4f571422398f70a7b6bef19208107ecc",
-  "requested_by": "continue-release-clockin-20261025161217003",
-  "purpose": "Publish current selected UI #888 including cross-event broker execId fail-close through existing encrypted Source Vault; source review only",
+  "source_sha": "516a0f3503cdcf60522c3c2790d1e29f3512b8aa",
+  "requested_by": "continue-release-clockin-20261025181757329",
+  "purpose": "Publish exact no-loss selected P0 #975 composite after consuming #883 broker snapshot fail-close, using existing authenticated encrypted Source Vault; source review only",
   "live_execution_allowed": false,
-  "attempt": 151,
-  "reason": "release_selected_ui_888_f530_exact_source_admission",
+  "attempt": 152,
+  "reason": "release_selected_p0_975_516a_exact_source_admission",
   "runtime_authority_changed": false
 }
