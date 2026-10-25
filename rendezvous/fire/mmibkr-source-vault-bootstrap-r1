@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "af2d616e3412c7a0ec3049e93e02f4118d1b406a",
-  "requested_by": "continue-release-clockin-20261025021628488",
-  "purpose": "Exact selected standalone UI Builder #888 current-head encrypted source-only admission after Product stock range and counted warmup no-loss integration; no broker, order, live, StrategySpec, promotion or UI deployment",
+  "source_sha": "a55b4b8fbc8ba30f65f0ea93287dbf0292683e24",
+  "requested_by": "continue-release-clockin-20261025034535139",
+  "purpose": "Exact selected P0/UI composite #975 after no-loss Product #1041 literal RHS admission, source-only encrypted bootstrap and unchanged brokerless tests; no owner dispatch, order, live flag or broker mutation",
   "live_execution_allowed": false,
-  "attempt": 111,
-  "reason": "release_selected_ui_888_af2d_exact_source_vault",
+  "attempt": 112,
+  "reason": "release_selected_p0_ui_975_a55b_exact_source_vault",
   "runtime_authority_changed": false
 }
