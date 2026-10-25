@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2988749b96f66d947d9a7e6586284b80fb3f9afb",
-  "requested_by": "continue-release-p0-selected-source-acceptance-20261025",
-  "purpose": "Exact selected #975 changed-source pre-merge networkless successor account/execution reconciliation unittest on existing encrypted Source Vault runner; no IBKR auth/order/live, no public source pin or protected-main change",
+  "source_sha": "de510ce662dda71148d283d0f1a5b1770e290f27",
+  "requested_by": "continue-release-p0-exact-source-test-correction-20261025",
+  "purpose": "Reexecute existing encrypted selected P0 successor 42-test read-only synthetic acceptance after correcting flat-manual-position expected blocker; no broker/account/live/StrategySpec/holdout mutation",
   "live_execution_allowed": false,
-  "attempt": 133,
-  "reason": "release_selected_p0_975_2988_successor_ledger_source_test",
+  "attempt": 134,
+  "reason": "release_selected_p0_975_de510_successor_ledger_test_correction",
   "runtime_authority_changed": false
 }
