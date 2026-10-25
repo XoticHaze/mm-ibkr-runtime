@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "74f28d6278faf8f5c235cfe3b9378bfa17b6cead",
+  "source_sha": "345d2aedef2bdd04c87a93642d2db17e65a4e4b2",
   "requested_by": "continue-release-clockin-20261025041340018",
-  "purpose": "Selected P0/UI composite #975 exact-head encrypted source admission after no-loss Product #1028 explicit cache-as-of fail-close; source-only, no broker/live/StrategySpec mutation",
+  "purpose": "Selected P0/UI composite #975 exact-head encrypted source admission after no-loss Product #1042 reviewed Builder apply-packet fail-close; source-only, no broker/live/StrategySpec mutation",
   "live_execution_allowed": false,
-  "attempt": 115,
-  "reason": "release_selected_p0_ui_975_74f28d_exact_source_vault",
+  "attempt": 116,
+  "reason": "release_selected_p0_ui_975_345d2a_exact_source_vault",
   "runtime_authority_changed": false
 }
