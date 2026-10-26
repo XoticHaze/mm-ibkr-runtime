@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "589f80597bb8662324eeb824d094055276e6c247",
-  "requested_by": "manual-worker-current-ui-frozen-20261026220756737",
-  "purpose": "Native UI acceptance candidate #975@589f Forward Testing DCA per-runtime identity display correction, encrypted exact source only, no deploy/broker/live/source-pin/paid Cloudflare",
+  "source_sha": "f77d0ab03d67fb83e985f771e1a71f4ceb551bb1",
+  "requested_by": "manual-worker-selected-test-fixtures-20261026220756737",
+  "purpose": "Exact #975 f77d two test-only fixture corrections after native failures on 589f (B1 OHLC valid duplicate, DCA keyword-only helper), encrypted Source Vault for brokerless focused regression, no deploy/live",
   "live_execution_allowed": false,
-  "attempt": 184,
-  "reason": "manual_worker_exact_ui_frozen_589f_native_candidate",
+  "attempt": 185,
+  "reason": "manual_worker_f77d_backfill_autotuner_test_recheck",
   "runtime_authority_changed": false
 }
