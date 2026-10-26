@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5b02616ac22780ae1972d08efeab642206d4fd64",
-  "requested_by": "continue-release-clockin-20261026014754876",
-  "purpose": "Exact selected MM #975 after protected-main no-loss funded-NAV UTC union; existing OIDC encrypted Source Vault, no broker/live/P01/holdout/plaintext",
+  "source_sha": "bc485b8deb32492b2be2d55de4f4f38af300cfd1",
+  "requested_by": "continue-release-clockin-20261026041733292",
+  "purpose": "Exact selected canonical MM P0 #883 account-wide open-order numeric/clientId fail-close; existing OIDC encrypted Source Vault; no broker/live/P01/holdout/plaintext",
   "live_execution_allowed": false,
-  "attempt": 166,
-  "reason": "release_selected_p0_ui_composite_exact_source_admission",
+  "attempt": 167,
+  "reason": "release_selected_p0_883_exact_changed_source_admission",
   "runtime_authority_changed": false
 }
