@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "25cf5b61b45aa136fe7f0e1f036bce163633ab5d",
-  "requested_by": "continue-release-clockin-20261025214534112",
-  "purpose": "Post-CP24 release first-consumer: admit exact selected Product/UI #888 current source after 61 commits/28 paths since frozen f530 through existing OIDC encrypted Source Vault; no broker/live or confidential P01 raw",
+  "source_sha": "abc40b0846cd5aa7a6b7587118603e9d4adde15e",
+  "requested_by": "continue-release-20261026-rotated-ui-broad-source",
+  "purpose": "Exact selected MM #975 broad P0/operator UI/Builder/Arena source encrypted Source Vault admission for source-only downstream native acceptance. No public plaintext, broker, live execution, protected main merge or Cloudflare deployment.",
   "live_execution_allowed": false,
-  "attempt": 159,
-  "reason": "release_post_cp24_selected_ui_888_exact_source_admission",
+  "attempt": 175,
+  "reason": "release_selected_mm975_exact_source_vault",
   "runtime_authority_changed": false
 }
