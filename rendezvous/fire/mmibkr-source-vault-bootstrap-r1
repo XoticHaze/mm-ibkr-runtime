@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7034f7c79bcd883e2d0bdaf6a5447aca2bd014d6",
+  "source_sha": "44a67f2c95b23ff793f15142d4b0266ff7ea41aa",
   "requested_by": "continue-release-clockin-20261026004138294",
-  "purpose": "Existing Fleet OIDC encrypted Source Vault exact selected MM #975 current-head source-only admission after 26/26 P0 safety blob match; no broker/live/P01/holdout/private plaintext publication",
+  "purpose": "Exact current selected MM #975 after two-path Arena verified Model Lab producer-envelope no-loss fix; reuse existing OIDC encrypted Source Vault, source-only no broker/live/P01/holdout/plaintext",
   "live_execution_allowed": false,
-  "attempt": 163,
+  "attempt": 164,
   "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
