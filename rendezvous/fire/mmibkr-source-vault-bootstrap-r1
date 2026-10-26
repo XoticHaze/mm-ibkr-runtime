@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "abc40b0846cd5aa7a6b7587118603e9d4adde15e",
-  "requested_by": "continue-release-20261026-rotated-ui-broad-source",
-  "purpose": "Exact selected MM #975 broad P0/operator UI/Builder/Arena source encrypted Source Vault admission for source-only downstream native acceptance. No public plaintext, broker, live execution, protected main merge or Cloudflare deployment.",
+  "source_sha": "20f80182984cfd5b7b3868a37731c3c89f56ea77",
+  "requested_by": "continue-release-20261026-current-broad-selected",
+  "purpose": "Exact changed selected MM #975 source for existing encrypted Source Vault admission and downstream UI selected-source acceptance; source-only, no public plaintext, broker, live, order, P01, StrategySpec, deployment, promotion, or paid service mutation.",
   "live_execution_allowed": false,
-  "attempt": 175,
-  "reason": "release_selected_mm975_exact_source_vault",
+  "attempt": 179,
+  "reason": "release_selected_broad_exact_changed_source_admission",
   "runtime_authority_changed": false
 }
