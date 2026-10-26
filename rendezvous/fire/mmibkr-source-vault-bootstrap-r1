@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "44a67f2c95b23ff793f15142d4b0266ff7ea41aa",
-  "requested_by": "continue-release-clockin-20261026004138294",
-  "purpose": "Exact current selected MM #975 after two-path Arena verified Model Lab producer-envelope no-loss fix; reuse existing OIDC encrypted Source Vault, source-only no broker/live/P01/holdout/plaintext",
+  "source_sha": "8205bb2fab350129c6ba2a31f1c64c27a80dd0d0",
+  "requested_by": "continue-release-clockin-20261026014754876",
+  "purpose": "Exact selected MM #975 after no-loss backtest coverage classifier carry; reuse existing OIDC encrypted Source Vault, source-only, no broker/live/P01/holdout/plaintext",
   "live_execution_allowed": false,
-  "attempt": 164,
+  "attempt": 165,
   "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
