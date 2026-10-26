@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "c79642c67378d031540823cd2446d011f3114c8f",
-  "requested_by": "continue-release-clockin-20261025234406902",
-  "purpose": "Admit exact current selected MM #975 no-loss P0/UI/financial/model/DCA/stock-source composite through existing Fleet OIDC encrypted Source Vault; source-only, no broker/live/holdout/private plaintext release",
+  "source_sha": "7034f7c79bcd883e2d0bdaf6a5447aca2bd014d6",
+  "requested_by": "continue-release-clockin-20261026004138294",
+  "purpose": "Existing Fleet OIDC encrypted Source Vault exact selected MM #975 current-head source-only admission after 26/26 P0 safety blob match; no broker/live/P01/holdout/private plaintext publication",
   "live_execution_allowed": false,
-  "attempt": 162,
+  "attempt": 163,
   "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
