@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5b023004442c54c32216e2f199b95c7a92feeea9",
-  "requested_by": "continue-release-20261026-p0-exact-main-union",
-  "purpose": "Exact selected P0 #883 source-only two-parent no-loss union with protected main funded-NAV timestamp fix; publish via existing encrypted Fleet OIDC Source Vault, no public plaintext, broker, live, order, P01 data, Cloudflare deployment or protected main merge.",
+  "source_sha": "0b87eb5362de109b0468852c560088272e6ff947",
+  "requested_by": "continue-release-20261026-current-ui-four-file-delta",
+  "purpose": "Exact current selected broad #975 and #888 663/663 UI Git blobs after four changed account-margin and Builder coverage paths; existing OIDC encrypted Source Vault only, no public plaintext, broker, live, P01 original, deployment, promotion or StrategySpec mutation.",
   "live_execution_allowed": false,
-  "attempt": 177,
-  "reason": "release_selected_p0_883_main_union_exact_encrypted_source",
+  "attempt": 178,
+  "reason": "release_current_selected_ui_663_exact_changed_source_vault",
   "runtime_authority_changed": false
 }
