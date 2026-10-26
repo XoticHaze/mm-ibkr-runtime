@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8205bb2fab350129c6ba2a31f1c64c27a80dd0d0",
+  "source_sha": "5b02616ac22780ae1972d08efeab642206d4fd64",
   "requested_by": "continue-release-clockin-20261026014754876",
-  "purpose": "Exact selected MM #975 after no-loss backtest coverage classifier carry; reuse existing OIDC encrypted Source Vault, source-only, no broker/live/P01/holdout/plaintext",
+  "purpose": "Exact selected MM #975 after protected-main no-loss funded-NAV UTC union; existing OIDC encrypted Source Vault, no broker/live/P01/holdout/plaintext",
   "live_execution_allowed": false,
-  "attempt": 165,
+  "attempt": 166,
   "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
