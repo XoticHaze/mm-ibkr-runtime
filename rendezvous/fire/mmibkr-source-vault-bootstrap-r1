@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d8b02b00a14b7c23ec04b6379d6b64ba6bb376e8",
-  "requested_by": "continue-release-clockin-20261026072214453",
-  "purpose": "Current selected UI #888 d8b02b exact encrypted Source Vault bootstrap for 661-file #975 parity and Access-locked operator-console source review; no deploy/broker/live/P01/holdout/plaintext",
+  "source_sha": "eb160f90404ffd4e7a8aa97f07b19dad376af7eb",
+  "requested_by": "continue-release-manual-clockin-20261026102514374",
+  "purpose": "Frozen selected UI #888 eb160 precise trusted encrypted Source Vault admission after BotConsole snapshot market age acceptance correction 51f; use existing public native Vite probe, no deploy/broker/live/plaintext/billing",
   "live_execution_allowed": false,
-  "attempt": 171,
-  "reason": "release_ui888_d8b_selected_source_admission",
+  "attempt": 172,
+  "reason": "release_ui888_eb160_corrected_native_acceptance",
   "runtime_authority_changed": false
 }
