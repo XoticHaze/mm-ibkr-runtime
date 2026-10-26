@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "af3a83415057006011a529f58883f1d0da0b5127",
-  "requested_by": "continue-release-20261026102514374-native-failure-leaf",
-  "purpose": "Exact #888 af3a existing BotConsole test-only correction of stronger source-only coverage disclaimer; verified prior eb160 native failing 40307829691, no prod source change/deploy/broker/live",
+  "source_sha": "74e9d77d2b54b98e90316d0546db6429041aea60",
+  "requested_by": "continue-release-manual-20261026102514374-vite-jsx-fix",
+  "purpose": "Exact selected #888 74e9 one-char PilotRunDetailPage JSX conditional Vite build error fixed after diagnostic 40309537922 source_path_sha256_16 2a254282b107349f line630; native acceptance and Vite only, no deploy/broker/live/plaintext",
   "live_execution_allowed": false,
-  "attempt": 173,
-  "reason": "release_ui888_af3a_corrected_disclaimer_native",
+  "attempt": 174,
+  "reason": "release_ui888_74e9_vite_jsx_fix",
   "runtime_authority_changed": false
 }
