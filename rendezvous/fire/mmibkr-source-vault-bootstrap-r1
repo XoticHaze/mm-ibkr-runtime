@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9793e238c5f864c8d0883a5e92dee7420c167480",
-  "requested_by": "continue-release-20261026-current-selected-operator-truth-release",
-  "purpose": "Exact current selected broad MM #975 after separately consumed #1227 and #1229 operator-truth corrections. Reuse existing encrypted Source Vault producer for changed-source admission and canonical no-broker regressions only; no broker, order, flatten, live unlock, StrategySpec, protected main, paid Cloudflare or original P01/holdout mutation.",
+  "source_sha": "589f80597bb8662324eeb824d094055276e6c247",
+  "requested_by": "manual-worker-current-ui-frozen-20261026220756737",
+  "purpose": "Native UI acceptance candidate #975@589f Forward Testing DCA per-runtime identity display correction, encrypted exact source only, no deploy/broker/live/source-pin/paid Cloudflare",
   "live_execution_allowed": false,
-  "attempt": 183,
-  "reason": "release_selected_broad_exact_changed_source_admission",
+  "attempt": 184,
+  "reason": "manual_worker_exact_ui_frozen_589f_native_candidate",
   "runtime_authority_changed": false
 }
