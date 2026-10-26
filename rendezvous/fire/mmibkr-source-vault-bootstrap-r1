@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0b87eb5362de109b0468852c560088272e6ff947",
-  "requested_by": "continue-release-20261026-current-ui-four-file-delta",
-  "purpose": "Exact current selected broad #975 and #888 663/663 UI Git blobs after four changed account-margin and Builder coverage paths; existing OIDC encrypted Source Vault only, no public plaintext, broker, live, P01 original, deployment, promotion or StrategySpec mutation.",
+  "source_sha": "20f80182984cfd5b7b3868a37731c3c89f56ea77",
+  "requested_by": "continue-release-20261026-current-broad-selected",
+  "purpose": "Exact changed selected MM #975 source for existing encrypted Source Vault admission and downstream UI selected-source acceptance; source-only, no public plaintext, broker, live, order, P01, StrategySpec, deployment, promotion, or paid service mutation.",
   "live_execution_allowed": false,
-  "attempt": 178,
-  "reason": "release_current_selected_ui_663_exact_changed_source_vault",
+  "attempt": 179,
+  "reason": "release_selected_broad_exact_changed_source_admission",
   "runtime_authority_changed": false
 }
