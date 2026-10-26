@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b1a1f9641b5b61607b34f280e0c64f71fda67a75",
-  "requested_by": "continue-release-clockin-20261026061426809",
-  "purpose": "Frozen selected MM operator UI #888 b1a1 exact source, 660-file parity with #975, native 8/8 Builder guard; existing Access-locked Worker release review only, no broker/live/Cloudflare deploy/P01/holdout/plaintext",
+  "source_sha": "d8b02b00a14b7c23ec04b6379d6b64ba6bb376e8",
+  "requested_by": "continue-release-clockin-20261026072214453",
+  "purpose": "Current selected UI #888 d8b02b exact encrypted Source Vault bootstrap for 661-file #975 parity and Access-locked operator-console source review; no deploy/broker/live/P01/holdout/plaintext",
   "live_execution_allowed": false,
-  "attempt": 170,
-  "reason": "release_ui888_b1a_selected_source_admission",
+  "attempt": 171,
+  "reason": "release_ui888_d8b_selected_source_admission",
   "runtime_authority_changed": false
 }
