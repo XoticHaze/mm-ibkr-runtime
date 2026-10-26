@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3030c4fa5d51561bdac16528adaf033f0c5923f1",
-  "requested_by": "continue-release-20261026-operator-health-selected-merge",
-  "purpose": "Exact selected broad MM #975 after child #1227 merged. Reuse existing encrypted Source Vault producer for changed-source private admission and its canonical no-broker regressions. Source-only, no account, Gateway, order, flatten, live unlock, StrategySpec, paid Cloudflare, protected main or original P01/holdout mutation.",
+  "source_sha": "9793e238c5f864c8d0883a5e92dee7420c167480",
+  "requested_by": "continue-release-20261026-current-selected-operator-truth-release",
+  "purpose": "Exact current selected broad MM #975 after separately consumed #1227 and #1229 operator-truth corrections. Reuse existing encrypted Source Vault producer for changed-source admission and canonical no-broker regressions only; no broker, order, flatten, live unlock, StrategySpec, protected main, paid Cloudflare or original P01/holdout mutation.",
   "live_execution_allowed": false,
-  "attempt": 182,
+  "attempt": 183,
   "reason": "release_selected_broad_exact_changed_source_admission",
   "runtime_authority_changed": false
 }
