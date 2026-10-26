@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b434df5a17f9264ddbce073cd5226d4ddc5c04e0",
-  "requested_by": "continue-release-clockin-20261025231602587",
-  "purpose": "Admit exact current narrow MM #883 canonical live successor source for existing public P0 owner review pin; no broker/live/holdout/private plaintext release",
+  "source_sha": "c79642c67378d031540823cd2446d011f3114c8f",
+  "requested_by": "continue-release-clockin-20261025234406902",
+  "purpose": "Admit exact current selected MM #975 no-loss P0/UI/financial/model/DCA/stock-source composite through existing Fleet OIDC encrypted Source Vault; source-only, no broker/live/holdout/private plaintext release",
   "live_execution_allowed": false,
-  "attempt": 161,
-  "reason": "release_p0_narrow_successor_exact_source_admission",
+  "attempt": 162,
+  "reason": "release_selected_p0_ui_composite_exact_source_admission",
   "runtime_authority_changed": false
 }
