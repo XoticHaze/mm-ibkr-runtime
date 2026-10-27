@@ -353,6 +353,23 @@ jobs:
             echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
           fi
 
+      - name: Accept selected read-only operator UI pure Node contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          test -f "$source_root/ui-react/src/pages/BotConsolePage.acceptance.test.mjs"
+          (
+            cd "$source_root"
+            node --version
+            node ui-react/src/pages/BotConsolePage.acceptance.test.mjs
+            node ui-react/src/lib/botConsoleRecentActivity.test.mjs
+            node ui-react/src/lib/forwardEvidenceExactIdentity.test.mjs
+            node ui-react/src/operator-market-ui.acceptance.test.mjs
+            node ui-react/src/components/OperatorSubmitRouteTruth.test.mjs
+          )
+          echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS'
+
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
         shell: bash

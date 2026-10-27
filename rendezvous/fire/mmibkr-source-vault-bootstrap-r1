@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
   "source_sha": "debec21d14af01b9f327fa3a8c3594c5ee0e7e06",
-  "requested_by": "continue-release-selected975-debec21-native-test-correction-20261027",
-  "purpose": "Exact selected #975 private source after native encrypted runner identified one test-only funded MTM schema assertion mismatch at 2dcd3c3 (31 PASS, 1 FAIL). Release corrected only three successful-chart assertions to inspect existing equity_curve[-1] fields; production backtest unchanged. Re-run same exact four-module selected native Python acceptance via existing encrypted Source Vault; no broker/Gateway/live/order/flatten, P01 original/holdout, protected main, Cloudflare or scheduler mutation.",
+  "requested_by": "continue-release-selected975-debec21-pure-node-operator-ui-native-20261027",
+  "purpose": "Reuse exact encrypted selected #975 debec21 source and accepted funded/PnL Python proof; new falsifiable surface is private native pure Node Bot Console, recent activity, forward identity and operator submit-route UI contracts. No npm install, no Vite build, no broker/Gateway/order/flatten/live/StrategySpec, P01 original/holdout, protected main, Cloudflare or scheduler mutation. UI deployment and owner issuer separately gated.",
   "live_execution_allowed": false,
-  "attempt": 227,
-  "reason": "selected_975_debec21_exact_native_test_only_correction_acceptance",
+  "attempt": 228,
+  "reason": "selected_975_debec21_private_pure_node_ui_native_contract_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
