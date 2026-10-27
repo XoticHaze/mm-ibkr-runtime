@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fe30bf977d21beea58e0beb1f23263e405ec5891",
-  "requested_by": "continue-release-selected975-fe30-changed-ui-20261027",
-  "purpose": "Existing encrypted Source Vault for selected #975 exact fe30 after two changed BotConsole recent-activity UI source/test paths; no P01 input, no Gateway, no live owner, no broker mutation; private native acceptance remains separately issuer/owner gated",
+  "source_sha": "e3ac07b3c116453264e064745b782106ca2839ee",
+  "requested_by": "continue-release-selected975-e3ac-product1349-consumed-20261027",
+  "purpose": "Existing authenticated encrypted Source Vault admission for selected #975 exact e3ac after Product #1349 two-file paper activity producer-binding guard was merged. Source-only, brokerless, no P01/holdout, Gateway, live owner, order or account mutation. Private native tests and owner release remain separately gated.",
   "live_execution_allowed": false,
-  "attempt": 221,
-  "reason": "selected_975_fe30_changed_source_admission",
+  "attempt": 222,
+  "reason": "selected_975_e3ac_product1349_consumed_exact_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
