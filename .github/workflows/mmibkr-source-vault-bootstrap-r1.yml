@@ -329,6 +329,30 @@ jobs:
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
 
+      - name: Validate selected funded replay and PnL issuer hold from exact encrypted source
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          test -d "$source_root"
+          if [ -f "$source_root/tests/test_backtest_partial_exit_declared_remaining_r1.py" ]; then
+            python -m pip install --disable-pip-version-check 'pytest==8.4.2'
+            (
+              cd "$source_root"
+              PYTHONDONTWRITEBYTECODE=1 python -m pytest -q \
+                tests/test_backtest_partial_exit_declared_remaining_r1.py \
+                tests/test_capital_timestamp_binding_product_20261026.py \
+                tests/test_selected_runtime_forward_completed_trade_admission_v1.py \
+                tests/test_selected_runtime_forward_exact_extrema_canonical_v1.py
+            )
+            echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=PASS'
+          elif [ "$REQUEST_SOURCE_SHA" = "2dcd3c3f14b506f26dbf2e510029b13fd42f945e" ]; then
+            echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=MISSING' >&2
+            exit 1
+          else
+            echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
+          fi
+
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
         shell: bash
