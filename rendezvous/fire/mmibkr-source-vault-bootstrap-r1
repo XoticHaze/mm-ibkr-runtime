@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "934005c8907c86fc2b0f998afb4ac625803c3279",
+  "source_sha": "eca188fe048a0482fb9934ec50535c7532df5d87",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected MM #975 Product #1280 UI evidence-truth and paper-boundary source-only encrypted Source Vault admission; selected artifact brokerless regression, no deployment, broker or live authority",
+  "purpose": "Exact selected MM #975 Product #1281 canonical Builder Preview server+UI write-gate fail-close encrypted source admission and changed-source brokerless regression; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 195,
-  "reason": "selected_current_source_changed_five_ui_paths",
+  "attempt": 196,
+  "reason": "selected_current_source_changed_four_builder_preview_guard_paths",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
