@@ -227,6 +227,27 @@ jobs:
               python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
+            # Changed selected Product #1257 four-path no-loss merge: exercise
+            # exact model preview authority guards on the admitted private
+            # source in this existing encrypted, brokerless CI job.
+            if [ -f tests/test_foundry_model_preview_flag_isolation_product_20261027.py ] &&
+               [ -f tests/test_foundry_model_signal_date_product_20261027.py ]; then
+              python -m py_compile foundry_model_order_intent_adapter.py foundry_model_runtime_binding.py
+              python -m unittest -v tests.test_foundry_model_preview_flag_isolation_product_20261027 tests.test_foundry_model_signal_date_product_20261027
+              echo 'MMIBKR_SELECTED_MODEL_PREVIEW_AUTHORITY_GUARDS=PASS'
+            fi
+            # Exact selected #975 Product #1286/#1288 changed-source acceptance only.
+            # Source is authenticated encrypted-vault material; no broker/session,
+            # P01 original, holdout, StrategySpec or live execution mutation.
+            if [ "$REQUEST_SOURCE_SHA" = "9573aa32a4cd78773c0e06b0ad566128b8ec6666" ]; then
+              python -m py_compile \
+                scripts/operator/selected_runtime_forward_execution_lifecycle_v1.py \
+                feature_contract.py
+              python -m unittest -v \
+                tests.test_selected_runtime_forward_execution_lifecycle_v1 \
+                tests.test_feature_contract_same_tf_availability_product_20261027
+              echo 'MMIBKR_SELECTED_PRODUCT_CAUSAL_GUARDS_EXACT_SOURCE=PASS'
+            fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
               python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
               python -m unittest -v tests.test_persistent_live_owner_prepare_v1
