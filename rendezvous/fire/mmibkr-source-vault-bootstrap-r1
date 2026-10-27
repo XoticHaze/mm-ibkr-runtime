@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "23397af79c470d571c3df9357ba53ab9236a7d9d",
-  "requested_by": "continue-release-product1298-1299-no-loss-selected-20261027",
-  "purpose": "Exact selected #975 no-loss Product #1298 fail-closed runtime identity and #1299 prospective partial-envelope source/tests, encrypted Source Vault plus changed-source brokerless native acceptance only",
+  "source_sha": "cae30a77243a62f61ea756af5c8610dce61e0d11",
+  "requested_by": "continue-release-selected-product1300-1301-no-loss-20261027",
+  "purpose": "Exact selected #975 Product #1300 conId/tick-second integrity and #1301 unknown-vs-zero forward UI source/tests, encrypted Source Vault and existing brokerless acceptance only",
   "live_execution_allowed": false,
-  "attempt": 210,
-  "reason": "selected_product1298_1299_runtime_identity_partial_observation",
+  "attempt": 211,
+  "reason": "selected_product1300_1301_forward_integrity_unknown_count",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
