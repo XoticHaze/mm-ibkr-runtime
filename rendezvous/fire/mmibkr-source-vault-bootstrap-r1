@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0a83ccee25407a672dd92463a28a338d7bc9c243",
-  "requested_by": "continue-release-product1292-selected-20261027",
-  "purpose": "Exact selected #975 after Product #1292 immutable Pilot review identity collision guard; encrypted Source Vault and existing brokerless source regression only; no deploy/broker/live",
+  "source_sha": "13340dbfec3618bdc7e76621745e111d9e8c8520",
+  "requested_by": "continue-release-pilot-native-fixture-causal-fix-20261027",
+  "purpose": "Exact selected #975 test-only three-field legacy Pilot receipt fixture correction after native 5-failure causal reproduction; encrypted Source Vault and existing brokerless regression only, no broker/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 204,
-  "reason": "selected_pilot_immutable_receipt_collision_guard",
+  "attempt": 205,
+  "reason": "selected_pilot_native_fixture_capital_and_blockers_alignment",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
