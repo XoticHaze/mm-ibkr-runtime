@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b28f9ef7d86ff0789d6f4c520653ff6237ce8e2c",
-  "requested_by": "continue-release-selected-ui-source-admission-20261027",
-  "purpose": "Exact selected MM #975 changed 10 ui-react source/test paths since encrypted-admitted cdfcf; source-only encrypted Source Vault admission and existing brokerless acceptance, no broker/live/deploy/promotion",
+  "source_sha": "8b17a2b7b1be7c46ec784066f7916c9bbd108587",
+  "requested_by": "continue-release-p0-product-order-identity-20261027",
+  "purpose": "Selected P0 #883 consumes exact already-selected Product main.py numeric/openOrders failed-read/identity guards from broad #975, source-only encrypted Vault admission and existing no-broker regression, no live or owner deployment",
   "live_execution_allowed": false,
-  "attempt": 187,
-  "reason": "continue_release_selected_ui_changed_source_exact_admission",
+  "attempt": 188,
+  "reason": "continue_release_selected_p0_changed_source_exact_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
