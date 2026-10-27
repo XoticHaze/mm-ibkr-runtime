@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "5e62bb81dba52d8278cc08e9d2646f90cbf150df",
-  "requested_by": "continue-release-selected-product1308-no-loss-20261027",
-  "purpose": "Exact selected MM #975 Product #1308 bounded paper boundary-history consumer atop accepted #1306/#1307; encrypted source and existing brokerless regression only",
+  "source_sha": "63c6dc3bd5c0bfa72269822660a036da7d63d403",
+  "requested_by": "continue-release-selected-product1309-ui-no-loss-20261027",
+  "purpose": "Exact selected MM #975 Product #1309 paper-history UI calendar/freshness guard atop Product #1306/#1307/#1308; encrypted source and existing brokerless acceptance only",
   "live_execution_allowed": false,
-  "attempt": 215,
-  "reason": "selected_product1308_changed_source_no_loss",
+  "attempt": 216,
+  "reason": "selected_product1309_ui_changed_source_no_loss",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
