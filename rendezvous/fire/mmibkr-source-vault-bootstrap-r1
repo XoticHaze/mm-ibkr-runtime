@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "e927b48fba8c48dfad45d4d538b8805799750d8f",
-  "requested_by": "continue-release-product-1257-exact-selected-native-20261027",
-  "purpose": "Existing encrypted source Vault exact selected #975 e927 no-loss four-path Product #1257 model-preview authority guard native tests; no broker/order/live/deploy",
+  "source_sha": "99d74edfb4ae682c5745542e3b98afc524dee6fe",
+  "requested_by": "user-authorized-manual-first-mmibkr-ui-release-20261027",
+  "purpose": "Freeze current selected public operator-console exact private source 99d; encrypted vault to enable native Node/Vite and Free-only Access release. No broker/live/Cloudflare deployment in this step.",
   "live_execution_allowed": false,
-  "attempt": 190,
-  "reason": "continue_release_product_1257_four_path_exact_selected_native_acceptance",
+  "attempt": 191,
+  "reason": "manual_free_only_operator_console_exact_release_cut_99d",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
