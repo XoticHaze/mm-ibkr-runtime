@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "7fd2de0ac391b55d72ac56dc6fe002e7ed896b08",
-  "requested_by": "continue-release-pi983-product1317-exact-safe-source-20261027",
-  "purpose": "Exact selected P0 Pi #983 source after no-loss Product #1317 typed preflight guard and manual non-takeover Compose; existing encrypted Source Vault plus brokerless regression only, no Gateway/install/live authority",
+  "source_sha": "8ba3e8782a6d14457170c04cb0fb727cf235a01b",
+  "requested_by": "continue-release-selected975-8ba3-changed-native-20261027",
+  "purpose": "Existing encrypted Source Vault for current broad selected #975 branch head after six Product source changes; prepare exact brokerless Python/Pilot/Builder/UI native admission through existing public probes; no P01 input, no Gateway, no live owner, no broker mutation",
   "live_execution_allowed": false,
-  "attempt": 219,
-  "reason": "selected_pi983_product1317_changed_source_no_loss",
+  "attempt": 220,
+  "reason": "selected_975_8ba3_changed_source_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
