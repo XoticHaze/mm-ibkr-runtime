@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "cdfcf9a2195a4223762bb4a9e4ef5868b9ad1d37",
-  "requested_by": "continue-release-selected-pnl-ui-20261026-221924",
-  "purpose": "Exact selected MM #975 cdfcf PnL cross-producer identity fail-close and Promotion Review invalid-clock UI; encrypted Source Vault source-only acceptance, no broker, live, deploy or promotion",
+  "source_sha": "b28f9ef7d86ff0789d6f4c520653ff6237ce8e2c",
+  "requested_by": "continue-release-selected-ui-source-admission-20261027",
+  "purpose": "Exact selected MM #975 changed 10 ui-react source/test paths since encrypted-admitted cdfcf; source-only encrypted Source Vault admission and existing brokerless acceptance, no broker/live/deploy/promotion",
   "live_execution_allowed": false,
-  "attempt": 186,
-  "reason": "continue_release_selected_pnl_ui_exact_source_admission",
+  "attempt": 187,
+  "reason": "continue_release_selected_ui_changed_source_exact_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
