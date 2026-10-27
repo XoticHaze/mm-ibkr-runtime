@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3e684341ca10d9cc878ec0d788508345e950cb96",
+  "source_sha": "b77a78acf196dc8c7a748cdb07ba26239dc8992d",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected MM #975 Product #1282 Bot Console runtime-row selection source, encrypted Source Vault and existing brokerless regression; no deploy/broker/live",
+  "purpose": "Exact selected MM #975 after merged Product #1283 Bot Console verify:bot-console runtime-row test inclusion; encrypted Source Vault and existing brokerless regression, no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 198,
-  "reason": "selected_current_source_changed_three_ui_runtime_row_selection_paths",
+  "attempt": 199,
+  "reason": "selected_current_source_changed_one_verify_script_path",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
