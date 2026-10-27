@@ -358,16 +358,28 @@ jobs:
         run: |
           set -euo pipefail
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
-          test -f "$source_root/ui-react/src/pages/BotConsolePage.acceptance.test.mjs"
-          (
-            cd "$source_root"
-            node --version
-            node ui-react/src/pages/BotConsolePage.acceptance.test.mjs
-            node ui-react/src/lib/botConsoleRecentActivity.test.mjs
-            node ui-react/src/lib/forwardEvidenceExactIdentity.test.mjs
-            node ui-react/src/operator-market-ui.acceptance.test.mjs
-            node ui-react/src/components/OperatorSubmitRouteTruth.test.mjs
+          # Node assertion failures may print private source excerpts. This is
+          # a PUBLIC workflow: never emit raw private test stdout/stderr.
+          # Keep diagnostics in the private owner, not public Actions logs.
+          tests=(
+            ui-react/src/pages/BotConsolePage.acceptance.test.mjs
+            ui-react/src/lib/botConsoleRecentActivity.test.mjs
+            ui-react/src/lib/forwardEvidenceExactIdentity.test.mjs
+            ui-react/src/operator-market-ui.acceptance.test.mjs
+            ui-react/src/components/OperatorSubmitRouteTruth.test.mjs
           )
+          case_no=0
+          for test_path in "${tests[@]}"; do
+            case_no=$((case_no + 1))
+            # No file/path/error/source excerpt is emitted even on failure.
+            if (cd "$source_root" && node "$test_path") >/dev/null 2>&1; then
+              echo "MMIBKR_SELECTED_UI_NATIVE_CASE_${case_no}=PASS"
+            else
+              echo "MMIBKR_SELECTED_UI_NATIVE_CASE_${case_no}=FAIL"
+              echo "MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=FAIL_CLOSED"
+              exit 1
+            fi
+          done
           echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS'
 
       - name: Encrypt exact private source for parity refresh
