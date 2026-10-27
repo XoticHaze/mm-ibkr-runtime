@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "60db20b78beaacb8fb645282f84b2de7007e98b7",
-  "requested_by": "continue-release-selected975-60db20-product1356-20261027",
-  "purpose": "Existing encrypted Source Vault for selected #975 exact 60db20 after Product #1356 historical-tick read-only request plan binding merged. Source-only; 2/2 exact postimage blobs, 23 native tests on exact changed files with inert ib_insync.Contract stub. No broker historical call, order, P01/holdout, Gateway, live, protected main, Cloudflare or scheduler mutation. Native composite/issuer and owner release separately gated.",
+  "source_sha": "d30cbcbf55fd45185a72f5ce4158ebbaa8e58378",
+  "requested_by": "continue-release-selected975-d30cbcb-product1357-20261027",
+  "purpose": "Reuse existing authenticated encrypted Source Vault for exact selected #975 d30cbcb after independently reviewed Product #1357 PnL producer-attestation fail-close merged with four matching Git blobs. Source-only brokerless source admission, no self-attested completed-trade eligibility, no broker order Gateway login live strategy promotion P01 holdout protected main Cloudflare or scheduler mutation. Selected native composite and trusted placement/owner release remain separately gated.",
   "live_execution_allowed": false,
-  "attempt": 224,
-  "reason": "selected_975_60db20_product1356_exact_source_admission",
+  "attempt": 225,
+  "reason": "selected_975_d30cbcb_product1357_exact_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
