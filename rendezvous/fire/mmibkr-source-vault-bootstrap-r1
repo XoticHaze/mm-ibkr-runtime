@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "eca188fe048a0482fb9934ec50535c7532df5d87",
+  "source_sha": "3c9726da543ad8873e7743702862bd9c35828e3b",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected MM #975 Product #1281 canonical Builder Preview server+UI write-gate fail-close encrypted source admission and changed-source brokerless regression; no deploy/broker/live",
+  "purpose": "Exact selected MM #975 Product #1281 malformed JS-empty-coercion Builder Preview error fail-close final source, encrypted Source Vault and brokerless regression, no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 196,
-  "reason": "selected_current_source_changed_four_builder_preview_guard_paths",
+  "attempt": 197,
+  "reason": "selected_current_source_changed_two_ui_error_type_guard_paths",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
