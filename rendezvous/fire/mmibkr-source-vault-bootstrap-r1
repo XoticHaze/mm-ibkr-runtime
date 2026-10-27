@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "cae30a77243a62f61ea756af5c8610dce61e0d11",
-  "requested_by": "continue-release-selected-product1300-1301-no-loss-20261027",
-  "purpose": "Exact selected #975 Product #1300 conId/tick-second integrity and #1301 unknown-vs-zero forward UI source/tests, encrypted Source Vault and existing brokerless acceptance only",
+  "source_sha": "6f913a2c6370159dd5f5469d1d62baed2b59426d",
+  "requested_by": "continue-release-selected-product1302-pilot-capital-no-loss-20261027",
+  "purpose": "Exact selected #975 Product #1302 Pilot funded-NAV finite/positive capital-context UI and backend guards, encrypted source and existing brokerless changed-source native acceptance only",
   "live_execution_allowed": false,
-  "attempt": 211,
-  "reason": "selected_product1300_1301_forward_integrity_unknown_count",
+  "attempt": 212,
+  "reason": "selected_product1302_pilot_funded_capital_receipt_integrity",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
