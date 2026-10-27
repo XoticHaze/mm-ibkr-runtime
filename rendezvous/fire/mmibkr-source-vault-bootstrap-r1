@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8164e13dc77b9e394e9539aef9e11ff7a08dd18a",
-  "requested_by": "continue-release-selected-product1306-1307-no-loss-20261027",
-  "purpose": "Exact selected MM #975 no-loss Product #1306 bound paper read-return operator health and #1307 bounded forward lifecycle ledger; encrypted source and existing brokerless source acceptance only",
+  "source_sha": "5e62bb81dba52d8278cc08e9d2646f90cbf150df",
+  "requested_by": "continue-release-selected-product1308-no-loss-20261027",
+  "purpose": "Exact selected MM #975 Product #1308 bounded paper boundary-history consumer atop accepted #1306/#1307; encrypted source and existing brokerless regression only",
   "live_execution_allowed": false,
-  "attempt": 214,
-  "reason": "selected_product1306_1307_changed_source_no_loss",
+  "attempt": 215,
+  "reason": "selected_product1308_changed_source_no_loss",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
