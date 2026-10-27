@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "99d74edfb4ae682c5745542e3b98afc524dee6fe",
-  "requested_by": "user-authorized-manual-first-mmibkr-ui-release-20261027",
-  "purpose": "Freeze current selected public operator-console exact private source 99d; encrypted vault to enable native Node/Vite and Free-only Access release. No broker/live/Cloudflare deployment in this step.",
+  "source_sha": "a02996a5888995aac3a31afbe9500498e76c0d1b",
+  "requested_by": "manual-free-ui-native-dual-ownership-test-20261027",
+  "purpose": "Exact selected broad #975 a029: BotConsole native acceptance fixture now honors dual ownership and explicit runtime position; unchanged UI source and Free-only console release staging; no deployment/broker/live.",
   "live_execution_allowed": false,
-  "attempt": 191,
-  "reason": "manual_free_only_operator_console_exact_release_cut_99d",
+  "attempt": 192,
+  "reason": "free_ui_native_acceptance_dual_runtime_ownership_test",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
