@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f3260ace4cb824325ee342b0da5369acade219e5",
-  "requested_by": "continue-release-selected-broad-exact-head-20261027",
-  "purpose": "Exact selected MM #975 no-loss P0 owner plus Product/UI composite f326 source-only encrypted Vault admission for selected-artifact acceptance; no broker identity, live, orders, protected merge or deploy",
+  "source_sha": "e927b48fba8c48dfad45d4d538b8805799750d8f",
+  "requested_by": "continue-release-product-1257-exact-selected-native-20261027",
+  "purpose": "Existing encrypted source Vault exact selected #975 e927 no-loss four-path Product #1257 model-preview authority guard native tests; no broker/order/live/deploy",
   "live_execution_allowed": false,
-  "attempt": 189,
-  "reason": "continue_release_selected_broad_f326_changed_source_exact_admission",
+  "attempt": 190,
+  "reason": "continue_release_product_1257_four_path_exact_selected_native_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
