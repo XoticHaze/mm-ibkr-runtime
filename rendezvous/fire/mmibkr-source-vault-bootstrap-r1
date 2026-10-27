@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9573aa32a4cd78773c0e06b0ad566128b8ec6666",
+  "source_sha": "237d726d286b306023b0dc631da5d82761bcba1a",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected #975 Product #1283/#1286/#1288 no-loss source; encrypted Source Vault and two changed causal-provenance module tests, no broker/live/deploy",
+  "purpose": "Exact selected broad #975 after Product #1283/#1286/#1288 and UI #1284/#1285 seven-path no-loss consumption; encrypted Source Vault and existing no-broker regression, no deployment/broker/live",
   "live_execution_allowed": false,
-  "attempt": 200,
-  "reason": "selected_current_source_changed_forward_duplicate_and_feature_availability_guards",
+  "attempt": 201,
+  "reason": "selected_current_source_changed_only_seven_ui_postimages_after_exact_product_causal_tests",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
