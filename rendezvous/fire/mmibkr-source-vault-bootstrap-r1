@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2c6a8d388f54970af8a932d07fe8307b0b26f964",
-  "requested_by": "continue-release-selected-product1310-1311-1312-no-loss-20261027",
-  "purpose": "Exact selected MM #975 source after no-loss Product #1310/#1311/#1312 union; existing encrypted source vault and brokerless source regression only",
+  "source_sha": "9591ad28114dace750da21a3d4a0d979464cf19e",
+  "requested_by": "continue-release-selected-product1313-1314-1315-no-loss-20261027",
+  "purpose": "Exact selected MM #975 after no-loss Product #1313/#1314/#1315; existing encrypted Source Vault and brokerless regressions only, no deployment or broker authority",
   "live_execution_allowed": false,
-  "attempt": 217,
-  "reason": "selected_product1310_1311_1312_changed_source_no_loss",
+  "attempt": 218,
+  "reason": "selected_product1313_1314_1315_changed_source_no_loss",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
