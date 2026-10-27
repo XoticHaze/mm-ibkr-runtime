@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9e37f7fd58826579281e5d321b20a688d4114d01",
-  "requested_by": "user-authorized-mmibkr-operator-console-release-20261027",
-  "purpose": "Frozen source 99d plus one BotConsole exact runtime ownership acceptance regression update; encrypted source for actual Node/Vite and Access-locked release, no broker/live",
+  "source_sha": "fe30bf977d21beea58e0beb1f23263e405ec5891",
+  "requested_by": "continue-release-selected975-fe30-changed-ui-20261027",
+  "purpose": "Existing encrypted Source Vault for selected #975 exact fe30 after two changed BotConsole recent-activity UI source/test paths; no P01 input, no Gateway, no live owner, no broker mutation; private native acceptance remains separately issuer/owner gated",
   "live_execution_allowed": false,
-  "attempt": 193,
-  "reason": "manual_operator_console_frozen_exact_test_fix_native",
+  "attempt": 221,
+  "reason": "selected_975_fe30_changed_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
