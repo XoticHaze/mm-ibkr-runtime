@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "e619d75c2c27a8e94516f6c2a827ae3da64e2e1f",
+  "source_sha": "934005c8907c86fc2b0f998afb4ac625803c3279",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected MM #975 e619 source-only encrypted Source Vault admission and changed futures-roll selected-head brokerless acceptance; no deployment, broker or live authority",
+  "purpose": "Exact selected MM #975 Product #1280 UI evidence-truth and paper-boundary source-only encrypted Source Vault admission; selected artifact brokerless regression, no deployment, broker or live authority",
   "live_execution_allowed": false,
-  "attempt": 194,
-  "reason": "selected_current_source_changed_two_futures_roll_paths",
+  "attempt": 195,
+  "reason": "selected_current_source_changed_five_ui_paths",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
