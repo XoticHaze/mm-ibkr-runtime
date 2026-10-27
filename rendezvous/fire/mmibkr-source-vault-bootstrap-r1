@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "e3ac07b3c116453264e064745b782106ca2839ee",
-  "requested_by": "continue-release-selected975-e3ac-product1349-consumed-20261027",
-  "purpose": "Existing authenticated encrypted Source Vault admission for selected #975 exact e3ac after Product #1349 two-file paper activity producer-binding guard was merged. Source-only, brokerless, no P01/holdout, Gateway, live owner, order or account mutation. Private native tests and owner release remain separately gated.",
+  "source_sha": "1a2108f352688f53a9978a251511711f99f57c0e",
+  "requested_by": "continue-release-selected975-1a2108-five-product-children-20261027",
+  "purpose": "Existing encrypted Source Vault for exact selected #975 after five collision-free Product children #1352 #1353 #1355 #1351 #1350 merged with 13/13 Git postimages. Source-only brokerless P0/forward/Pilot/Builder acceptance; no P01, Gateway, broker, order, live, protected main or Cloudflare deployment. Native selected acceptance and trusted placement remain separately gated.",
   "live_execution_allowed": false,
-  "attempt": 222,
-  "reason": "selected_975_e3ac_product1349_consumed_exact_source_admission",
+  "attempt": 223,
+  "reason": "selected_975_1a2108_five_product_children_exact_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
