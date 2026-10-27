@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4f381928a740ffef0d92c4170de9faad59d4a9fa",
-  "requested_by": "continue-release-product1294-1295-exact-source-20261027",
-  "purpose": "Exact selected #975 Product #1294 operator snapshot private-field allowlist and #1295 approved caps/MNQ roll guard, encrypted Source Vault plus existing brokerless native tests only; no live order/submit/flatten/deploy",
+  "source_sha": "8110c69410de32b0ba5a378b420c21163fa02b03",
+  "requested_by": "continue-release-product1296-scalar-receipt-privacy-20261027",
+  "purpose": "Exact selected #975 Product #1296 strict scalar-only operator receipt privacy follow-on after #1294/#1295; encrypted Source Vault and changed-source native brokerless tests only, no broker, order, live flag or deployment",
   "live_execution_allowed": false,
-  "attempt": 207,
-  "reason": "selected_exact_operator_privacy_and_live_preflight_risk_roll",
+  "attempt": 208,
+  "reason": "selected_exact_operator_receipt_scalar_privacy_followon",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
