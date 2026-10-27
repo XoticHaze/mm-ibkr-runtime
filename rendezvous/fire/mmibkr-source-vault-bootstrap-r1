@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "cdfcf9a2195a4223762bb4a9e4ef5868b9ad1d37",
-  "requested_by": "continue-release-selected-pnl-ui-20261026-221924",
-  "purpose": "Exact selected MM #975 cdfcf PnL cross-producer identity fail-close and Promotion Review invalid-clock UI; encrypted Source Vault source-only acceptance, no broker, live, deploy or promotion",
+  "source_sha": "9e37f7fd58826579281e5d321b20a688d4114d01",
+  "requested_by": "user-authorized-mmibkr-operator-console-release-20261027",
+  "purpose": "Frozen source 99d plus one BotConsole exact runtime ownership acceptance regression update; encrypted source for actual Node/Vite and Access-locked release, no broker/live",
   "live_execution_allowed": false,
-  "attempt": 186,
-  "reason": "continue_release_selected_pnl_ui_exact_source_admission",
+  "attempt": 193,
+  "reason": "manual_operator_console_frozen_exact_test_fix_native",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
