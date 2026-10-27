@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "6f913a2c6370159dd5f5469d1d62baed2b59426d",
-  "requested_by": "continue-release-selected-product1302-pilot-capital-no-loss-20261027",
-  "purpose": "Exact selected #975 Product #1302 Pilot funded-NAV finite/positive capital-context UI and backend guards, encrypted source and existing brokerless changed-source native acceptance only",
+  "source_sha": "2efae35a2f1a48ad0e819d271558b4336e639594",
+  "requested_by": "continue-release-selected-product1304-atomic-private-snapshot-20261027",
+  "purpose": "Exact selected #975 no-loss Product #1304 private operator snapshot atomic 0600 symlink-safe write and existing #1302 Pilot source, encrypted Source Vault plus existing brokerless changed-source acceptance only",
   "live_execution_allowed": false,
-  "attempt": 212,
-  "reason": "selected_product1302_pilot_funded_capital_receipt_integrity",
+  "attempt": 213,
+  "reason": "selected_product1304_private_operator_snapshot_atomic_no_loss",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
