@@ -226,9 +226,7 @@ jobs:
             if [ -f tests/test_foundry_model_preview_flag_isolation_product_20261027.py ] &&
                [ -f tests/test_foundry_model_signal_date_product_20261027.py ]; then
               python -m py_compile foundry_model_order_intent_adapter.py foundry_model_runtime_binding.py
-              python -m unittest -v \\
-                tests.test_foundry_model_preview_flag_isolation_product_20261027 \\
-                tests.test_foundry_model_signal_date_product_20261027
+              python -m unittest -v tests.test_foundry_model_preview_flag_isolation_product_20261027 tests.test_foundry_model_signal_date_product_20261027
               echo 'MMIBKR_SELECTED_MODEL_PREVIEW_AUTHORITY_GUARDS=PASS'
             fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
