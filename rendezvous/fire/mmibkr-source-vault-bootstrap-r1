@@ -1,10 +1,13 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0887390ca1989e152aae8819c74ab60d3ed00bf0",
-  "requested_by": "continue-release-20261026-exact-broad-ui-p0",
-  "purpose": "Existing encrypted Source Vault exact selected MM #975 source after no-loss Product #1210/#1213/#1208/#1211 consumption. Source-only private materialization for selected-head acceptance, no public plaintext, broker, order, live, StrategySpec activation, deployment, promotion or paid service mutation.",
+  "source_sha": "cdfcf9a2195a4223762bb4a9e4ef5868b9ad1d37",
+  "requested_by": "continue-release-selected-pnl-ui-20261026-221924",
+  "purpose": "Exact selected MM #975 cdfcf PnL cross-producer identity fail-close and Promotion Review invalid-clock UI; encrypted Source Vault source-only acceptance, no broker, live, deploy or promotion",
   "live_execution_allowed": false,
-  "attempt": 180,
-  "reason": "release_selected_broad_exact_changed_source_admission",
-  "runtime_authority_changed": false
+  "attempt": 186,
+  "reason": "continue_release_selected_pnl_ui_exact_source_admission",
+  "runtime_authority_changed": false,
+  "compute_requirements": {
+    "trust_mode": "public_encrypted"
+  }
 }
