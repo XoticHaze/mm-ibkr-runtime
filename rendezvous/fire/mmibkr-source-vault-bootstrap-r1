@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3c9726da543ad8873e7743702862bd9c35828e3b",
+  "source_sha": "3e684341ca10d9cc878ec0d788508345e950cb96",
   "requested_by": "continue-release-selected-source-vault-20261027",
-  "purpose": "Exact selected MM #975 Product #1281 malformed JS-empty-coercion Builder Preview error fail-close final source, encrypted Source Vault and brokerless regression, no deploy/broker/live",
+  "purpose": "Exact selected MM #975 Product #1282 Bot Console runtime-row selection source, encrypted Source Vault and existing brokerless regression; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 197,
-  "reason": "selected_current_source_changed_two_ui_error_type_guard_paths",
+  "attempt": 198,
+  "reason": "selected_current_source_changed_three_ui_runtime_row_selection_paths",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
