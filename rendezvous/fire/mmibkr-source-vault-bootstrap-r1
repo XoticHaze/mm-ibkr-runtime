@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2dcd3c3f14b506f26dbf2e510029b13fd42f945e",
-  "requested_by": "continue-release-selected975-2dcd3c3-pnl-funding-product1361-20261027",
-  "purpose": "Existing encrypted Source Vault exact selected #975 after PnL independent producer-issuer fail-close #1357, funded capital partial-exit inventory guard #1359 and Product canonical-only Bot Console #1361. Native selected-source four-module Python acceptance, no broker/Gateway/order/flatten/live/StrategySpec, P01 original/holdout, protected main, paid Cloudflare or scheduler mutation. Owner/native UI/deployment separately gated.",
+  "source_sha": "debec21d14af01b9f327fa3a8c3594c5ee0e7e06",
+  "requested_by": "continue-release-selected975-debec21-native-test-correction-20261027",
+  "purpose": "Exact selected #975 private source after native encrypted runner identified one test-only funded MTM schema assertion mismatch at 2dcd3c3 (31 PASS, 1 FAIL). Release corrected only three successful-chart assertions to inspect existing equity_curve[-1] fields; production backtest unchanged. Re-run same exact four-module selected native Python acceptance via existing encrypted Source Vault; no broker/Gateway/live/order/flatten, P01 original/holdout, protected main, Cloudflare or scheduler mutation.",
   "live_execution_allowed": false,
-  "attempt": 226,
-  "reason": "selected_975_2dcd3c3_exact_source_pnl_funding_native_acceptance",
+  "attempt": 227,
+  "reason": "selected_975_debec21_exact_native_test_only_correction_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
