@@ -220,6 +220,17 @@ jobs:
               python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
+            # Changed selected Product #1257 four-path no-loss merge: exercise
+            # exact model preview authority guards on the admitted private
+            # source in this existing encrypted, brokerless CI job.
+            if [ -f tests/test_foundry_model_preview_flag_isolation_product_20261027.py ] &&
+               [ -f tests/test_foundry_model_signal_date_product_20261027.py ]; then
+              python -m py_compile foundry_model_order_intent_adapter.py foundry_model_runtime_binding.py
+              python -m unittest -v \\
+                tests.test_foundry_model_preview_flag_isolation_product_20261027 \\
+                tests.test_foundry_model_signal_date_product_20261027
+              echo 'MMIBKR_SELECTED_MODEL_PREVIEW_AUTHORITY_GUARDS=PASS'
+            fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
               python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
               python -m unittest -v tests.test_persistent_live_owner_prepare_v1
