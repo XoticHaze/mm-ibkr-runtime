@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1e7127b8670178c4dd107d85b89fbc1612ba47d7",
-  "requested_by": "continue-release-product1290-1291-selected-20261027",
-  "purpose": "Exact selected #975 after no-loss Product #1290/#1291 source changes; encrypted Source Vault and brokerless changed-source acceptance only; no deployment/broker/live",
+  "source_sha": "0a83ccee25407a672dd92463a28a338d7bc9c243",
+  "requested_by": "continue-release-product1292-selected-20261027",
+  "purpose": "Exact selected #975 after Product #1292 immutable Pilot review identity collision guard; encrypted Source Vault and existing brokerless source regression only; no deploy/broker/live",
   "live_execution_allowed": false,
-  "attempt": 203,
-  "reason": "new_selected_source_snapshot_single_publish_and_unknown_trade_count",
+  "attempt": 204,
+  "reason": "selected_pilot_immutable_receipt_collision_guard",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
