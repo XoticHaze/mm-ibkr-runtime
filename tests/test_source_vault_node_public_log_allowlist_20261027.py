@@ -13,8 +13,8 @@ WORKFLOW = ROOT / ".github/workflows/mmibkr-source-vault-bootstrap-r1.yml"
 class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
     def test_selected_ui_step_has_fixed_field_only_egress(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        start = "      - name: Accept selected read-only operator UI pure Node contracts\\n"
-        end = "      - name: Encrypt exact private source for parity refresh\\n"
+        start = "      - name: Accept selected read-only operator UI pure Node contracts\n"
+        end = "      - name: Encrypt exact private source for parity refresh\n"
         self.assertEqual(source.count(start), 1)
         step = source.split(start, 1)[1].split(end, 1)[0]
         self.assertIn('for test_path in "${tests[@]}"; do', step)
