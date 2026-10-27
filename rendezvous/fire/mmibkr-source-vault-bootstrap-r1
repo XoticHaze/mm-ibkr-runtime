@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8ba3e8782a6d14457170c04cb0fb727cf235a01b",
-  "requested_by": "continue-release-selected975-8ba3-changed-native-20261027",
-  "purpose": "Existing encrypted Source Vault for current broad selected #975 branch head after six Product source changes; prepare exact brokerless Python/Pilot/Builder/UI native admission through existing public probes; no P01 input, no Gateway, no live owner, no broker mutation",
+  "source_sha": "fe30bf977d21beea58e0beb1f23263e405ec5891",
+  "requested_by": "continue-release-selected975-fe30-changed-ui-20261027",
+  "purpose": "Existing encrypted Source Vault for selected #975 exact fe30 after two changed BotConsole recent-activity UI source/test paths; no P01 input, no Gateway, no live owner, no broker mutation; private native acceptance remains separately issuer/owner gated",
   "live_execution_allowed": false,
-  "attempt": 220,
-  "reason": "selected_975_8ba3_changed_source_native_admission",
+  "attempt": 221,
+  "reason": "selected_975_fe30_changed_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
