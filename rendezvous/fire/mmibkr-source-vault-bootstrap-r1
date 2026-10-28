@@ -1,13 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9b69d8e45faa3f9b86d82b8d3fc7c895caabaf9a",
-  "requested_by": "continue-release-selected883-9b69-current-20261028",
-  "purpose": "Exact selected P0 #883 source-only encrypted Source Vault producer admission for already merged Product conId/ownership and B1 futures roll/warmup guards. No live Gateway, order, cancel, flatten, protected private main, runtime deployment or discretionary proof.",
+  "source_sha": "bc926cbe1901d4bf965915171f21a5bc79ca1aa5",
+  "requested_by": "continue-release-selected883-bc926-20261028",
+  "purpose": "After independent owner/security review and protected merge of #28, publish exact current selected P0 #883@bc926 encrypted source and execute p0_owner native journal/successor scope. Product #1400/#1402 nofollow inventory regressions remain exact public #2027 private test-probe acceptance, not skipped by a UI profile. No live Gateway/order/cancel/flatten/host mutation.",
   "live_execution_allowed": false,
-  "attempt": 235,
-  "reason": "selected_883_9b69_exact_encrypted_source_admission",
+  "attempt": 237,
+  "reason": "selected_883_bc926_current_p0_source_vault_native_profile_after_owner_merge",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
-  }
+  },
+  "validation_profile": "p0_owner"
 }

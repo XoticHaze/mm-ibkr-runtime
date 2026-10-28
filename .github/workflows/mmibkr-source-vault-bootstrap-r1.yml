@@ -6,8 +6,14 @@ on:
       source_sha:
         description: Exact code-approved private MM-IBKR source SHA
         required: true
-        default: d81df85788ebb6be6d4d69b9b9a537be96f16507
         type: string
+      validation_profile:
+        description: Stage-scoped native acceptance (strict_ui by default; p0_owner excludes UI-only tests)
+        required: false
+        type: choice
+        options:
+          - strict_ui
+          - p0_owner
   push:
     branches:
       - main
@@ -80,20 +86,25 @@ jobs:
 
           recipient = ''
           recipient_key_id = ''
+          validation_profile = 'strict_ui'
           if os.environ['GITHUB_EVENT_NAME'] == 'push':
               fire = Path('rendezvous/fire/mmibkr-source-vault-bootstrap-r1')
               if not fire.is_file():
                   raise SystemExit('source-vault bootstrap fire request missing')
               node = json.loads(fire.read_text(encoding='utf-8'))
               source_sha = str(node.get('source_sha') or '').strip().lower()
+              validation_profile = str(node.get('validation_profile') or 'strict_ui').strip().lower()
               recipient = str(node.get('parity_export_recipient_public_b64') or '').strip()
               recipient_key_id = str(node.get('parity_export_recipient_key_id') or '').strip()
           else:
               event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text(encoding='utf-8'))
               source_sha = str((event.get('inputs') or {}).get('source_sha') or '').strip().lower()
+              validation_profile = str((event.get('inputs') or {}).get('validation_profile') or 'strict_ui').strip().lower()
 
           if len(source_sha) != 40 or any(ch not in '0123456789abcdef' for ch in source_sha):
               raise SystemExit('exact 40-hex source_sha required')
+          if validation_profile not in {'strict_ui', 'p0_owner'}:
+              raise SystemExit('source validation profile rejected')
 
           requested = bool(recipient or recipient_key_id)
           if requested:
@@ -107,6 +118,7 @@ jobs:
 
           with Path(os.environ['GITHUB_ENV']).open('a', encoding='utf-8') as fh:
               fh.write('REQUEST_SOURCE_SHA=' + source_sha + '\n')
+              fh.write('REQUEST_VALIDATION_PROFILE=' + validation_profile + '\n')
               fh.write('PARITY_EXPORT_RECIPIENT_PUBLIC_B64=' + recipient + '\n')
               fh.write('PARITY_EXPORT_RECIPIENT_KEY_ID=' + recipient_key_id + '\n')
           with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as fh:
@@ -159,11 +171,17 @@ jobs:
         run: |
           set -euo pipefail
           umask 077
+          # All decrypted-private-source subprocess output stays off public logs.
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED'
+            return 1
+          }
           # Reuse the already-admitted Fleet private-source materialization
           # on this Source Vault runner. No account credentials or orders.
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
           if [ ! -d "$source_root" ]; then
-            python scripts/mmibkr_fleet_private_source_consumer_v1.py \
+            private_cmd python scripts/mmibkr_fleet_private_source_consumer_v1.py \
               --source-sha "$REQUEST_SOURCE_SHA" \
               --run-id "$GITHUB_RUN_ID" \
               --destination "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted" \
@@ -175,18 +193,18 @@ jobs:
           test -f "$source_root/scripts/operator/selected_runtime_legacy_compat_config_v1.py"
           test -f "$source_root/scripts/operator/runtime_market_data_cache_checkpoint_v1.py"
           test -f "$source_root/scripts/operator/selected_runtime_live_incumbent_preflight_v1.py"
-          python -m pip install --disable-pip-version-check \
+          private_cmd python -m pip install --disable-pip-version-check \
             ib_insync==0.9.86 pandas==2.2.3
           (
             cd "$source_root"
-            python -m py_compile \
+            private_cmd python -m py_compile \
               main.py \
               scripts/operator/selected_runtime_legacy_compat_config_v1.py \
               scripts/operator/runtime_market_data_cache_checkpoint_v1.py \
               scripts/operator/selected_runtime_live_incumbent_preflight_v1.py
             # These are existing canonical MM tests, not another route,
             # order injector, broker probe or synthetic trade.
-            python -m unittest -v \
+            private_cmd python -m unittest -v \
               tests.test_selected_runtime_legacy_compat_config_v1 \
               tests.test_runtime_market_data_cache_checkpoint_v1 \
               tests.test_selected_runtime_live_incumbent_preflight_v1 \
@@ -197,27 +215,56 @@ jobs:
               tests.test_selected_runtime_futures_roll_maintenance_v1
             if [ -f selected_runtime_futures_execution_roll_guard_v1.py ] &&
                [ -f tests/test_selected_runtime_futures_execution_roll_guard_v1.py ]; then
-              python -m py_compile selected_runtime_futures_execution_roll_guard_v1.py
-              python -m unittest -v tests.test_selected_runtime_futures_execution_roll_guard_v1
+              private_cmd python -m py_compile selected_runtime_futures_execution_roll_guard_v1.py
+              private_cmd python -m unittest -v tests.test_selected_runtime_futures_execution_roll_guard_v1
               echo 'MMIBKR_FUTURES_ROLL_GUARD_EXACT_SOURCE_TESTS=PASS'
+            fi
+            # Product #1390 selected P0 conId/reduce-only safety is a changed
+            # private-source leaf. Reuse this exact encrypted no-broker runner;
+            # never publish private Python assertion output to public logs.
+            if [ -f tests/test_selected_futures_roll_identity_product_20261028.py ]; then
+              private_cmd python -m py_compile \
+                selected_runtime_futures_execution_roll_guard_v1.py \
+                tests/test_selected_futures_roll_identity_product_20261028.py
+              private_cmd python -m unittest -v \
+                tests.test_selected_futures_roll_identity_product_20261028
+              echo 'MMIBKR_P0_FUTURES_CONID_REDUCE_ONLY_EXACT_SOURCE_TESTS=PASS'
+            fi
+            # Product #1392 exact B1 roll-maintenance conId and warmup source
+            # identity: same encrypted private source, no broker or extra job.
+            if [ -f tests/test_futures_roll_conid_identity_product_20261028.py ]; then
+              private_cmd python -m py_compile \
+                scripts/operator/selected_runtime_futures_roll_maintenance_v1.py \
+                tests/test_futures_roll_conid_identity_product_20261028.py
+              private_cmd python -m unittest -v \
+                tests.test_futures_roll_conid_identity_product_20261028
+              echo 'MMIBKR_P0_FUTURES_ROLL_PRODUCER_EXACT_SOURCE_TESTS=PASS'
             fi
             # If this exact private source carries the proposed canonical
             # live-inventory guard, exercise it IN THE SAME encrypted run.
             # Older approved snapshots do not carry that test, so preserve
             # their established acceptance result.
             if [ -f tests/test_selected_runtime_live_inventory_authority_v1.py ]; then
-              python -m py_compile selected_runtime_live_inventory_authority_v1.py
-              python -m unittest -v \
+              private_cmd python -m py_compile selected_runtime_live_inventory_authority_v1.py
+              private_cmd python -m unittest -v \
                 tests.test_selected_runtime_live_inventory_authority_v1 \
                 tests.test_selected_runtime_position_ownership_integration_v1
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
+            fi
+            # Changed-source P0 journal acceptance uses this same attested
+            # private Source Vault runner, never a second launcher or broker.
+            if [ -f selected_runtime_live_order_intent_journal_v1.py ] &&
+               [ -f tests/test_selected_runtime_live_order_intent_journal_v1.py ]; then
+              private_cmd python -m py_compile selected_runtime_live_order_intent_journal_v1.py
+              private_cmd python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1
+              echo 'MMIBKR_P0_JOURNAL_EXACT_SOURCE_TESTS=PASS'
             fi
             # Selected #975 account-scoped successor read-only reconciliation
             # is a changed-source pre-merge acceptance, never a broker probe.
             # Legacy/other selected source snapshots do not carry this module.
             if [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then
-              python -m py_compile scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
-              python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
+              private_cmd python -m py_compile scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
+              private_cmd python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
@@ -225,45 +272,52 @@ jobs:
             # source in this existing encrypted, brokerless CI job.
             if [ -f tests/test_foundry_model_preview_flag_isolation_product_20261027.py ] &&
                [ -f tests/test_foundry_model_signal_date_product_20261027.py ]; then
-              python -m py_compile foundry_model_order_intent_adapter.py foundry_model_runtime_binding.py
-              python -m unittest -v tests.test_foundry_model_preview_flag_isolation_product_20261027 tests.test_foundry_model_signal_date_product_20261027
+              private_cmd python -m py_compile foundry_model_order_intent_adapter.py foundry_model_runtime_binding.py
+              private_cmd python -m unittest -v tests.test_foundry_model_preview_flag_isolation_product_20261027 tests.test_foundry_model_signal_date_product_20261027
               echo 'MMIBKR_SELECTED_MODEL_PREVIEW_AUTHORITY_GUARDS=PASS'
             fi
             # Exact selected #975 Product #1286/#1288 changed-source acceptance only.
             # Source is authenticated encrypted-vault material; no broker/session,
             # P01 original, holdout, StrategySpec or live execution mutation.
             if [ "$REQUEST_SOURCE_SHA" = "9573aa32a4cd78773c0e06b0ad566128b8ec6666" ]; then
-              python -m py_compile \
+              private_cmd python -m py_compile \
                 scripts/operator/selected_runtime_forward_execution_lifecycle_v1.py \
                 feature_contract.py
-              python -m unittest -v \
+              private_cmd python -m unittest -v \
                 tests.test_selected_runtime_forward_execution_lifecycle_v1 \
                 tests.test_feature_contract_same_tf_availability_product_20261027
               echo 'MMIBKR_SELECTED_PRODUCT_CAUSAL_GUARDS_EXACT_SOURCE=PASS'
             fi
             if [ -f tests/test_persistent_live_owner_prepare_v1.py ]; then
-              python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
-              python -m unittest -v tests.test_persistent_live_owner_prepare_v1
+              private_cmd python -m py_compile scripts/operator/persistent_live_owner_prepare_v1.py
+              private_cmd python -m unittest -v tests.test_persistent_live_owner_prepare_v1
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
             if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
-              node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs
-              (
+              # This public runner holds decrypted private source in scratch.
+              # Node failures, npm and Wrangler stderr can print source excerpts.
+              if ! node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED'
+                exit 1
+              fi
+              if ! (
                 cd cloudflare/mmibkr-live-cloud-owner
-                npm install --no-audit --no-fund --package-lock=false
-                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null
-              )
+                npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1
+                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
+              ) >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
+                exit 1
+              fi
               echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
               echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=PASS'
-              # Validate real Cloudflare Worker bundling and durable
-              # Container scheduling configuration without deploy credentials,
-              # broker network or publishing source. Output remains ephemeral.
+              # Keep Wrangler failure detail private in ephemeral runner scratch;
+              # never tail the private-source build log into public Actions output.
               if ! npx --yes wrangler@4.135.0 deploy \
                     --dry-run \
                     --config cloudflare/mmibkr-live-cloud-owner/wrangler.jsonc \
                     --outdir "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun" \
                     >"$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log" 2>&1; then
-                tail -n 25 "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log"
+                echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=FAIL_CLOSED'
                 exit 1
               fi
               echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=PASS'
@@ -273,7 +327,7 @@ jobs:
           # an imported Python function. This is no broker/no secrets/no trade.
           (
             cd "$source_root"
-            python - <<'PY'
+            private_cmd python - <<'PY'
           import json
           import stat
           import subprocess
@@ -326,6 +380,7 @@ jobs:
           print("MMIBKR_LIVE_EXISTING_CONFIG_MODULE_CLI_SMOKE=PASS")
           PY
           )
+          echo 'MMIBKR_LIVE_EXISTING_CONFIG_MODULE_CLI_SMOKE=PASS'
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
 
@@ -333,13 +388,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # All decrypted-private-source subprocess output stays off public logs.
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED'
+            return 1
+          }
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
           test -d "$source_root"
           if [ -f "$source_root/tests/test_backtest_partial_exit_declared_remaining_r1.py" ]; then
-            python -m pip install --disable-pip-version-check 'pytest==8.4.2'
+            private_cmd python -m pip install --disable-pip-version-check 'pytest==8.4.2'
             (
               cd "$source_root"
-              PYTHONDONTWRITEBYTECODE=1 python -m pytest -q \
+              private_cmd env PYTHONDONTWRITEBYTECODE=1 python -m pytest -q \
                 tests/test_backtest_partial_exit_declared_remaining_r1.py \
                 tests/test_capital_timestamp_binding_product_20261026.py \
                 tests/test_selected_runtime_forward_completed_trade_admission_v1.py \
@@ -358,16 +419,52 @@ jobs:
         run: |
           set -euo pipefail
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
-          test -f "$source_root/ui-react/src/pages/BotConsolePage.acceptance.test.mjs"
-          (
-            cd "$source_root"
-            node --version
-            node ui-react/src/pages/BotConsolePage.acceptance.test.mjs
-            node ui-react/src/lib/botConsoleRecentActivity.test.mjs
-            node ui-react/src/lib/forwardEvidenceExactIdentity.test.mjs
-            node ui-react/src/operator-market-ui.acceptance.test.mjs
-            node ui-react/src/components/OperatorSubmitRouteTruth.test.mjs
+          # P0 owner source has runtime tests but need not contain the full
+          # selected operator UI test tree. Never misreport this as UI PASS.
+          if [ "$REQUEST_VALIDATION_PROFILE" = 'p0_owner' ]; then
+            # Caller-selected P0 profile is not authority to skip all native
+            # acceptance. Require exact owner journal and successor source/tests;
+            # their existing native suites ran in the prior fail-closed step.
+            for required in \
+              selected_runtime_live_order_intent_journal_v1.py \
+              tests/test_selected_runtime_live_order_intent_journal_v1.py \
+              scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+              tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+              if [ ! -f "$source_root/$required" ]; then
+                echo 'MMIBKR_P0_PROFILE_SOURCE_SCOPE=FAIL_CLOSED'
+                exit 1
+              fi
+            done
+            echo 'MMIBKR_P0_PROFILE_SOURCE_SCOPE=PASS'
+            echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE_P0_OWNER'
+            exit 0
+          fi
+          if [ "$REQUEST_VALIDATION_PROFILE" != 'strict_ui' ]; then
+            echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=FAIL_CLOSED'
+            exit 1
+          fi
+          # Node assertion failures may print private source excerpts. This is
+          # a PUBLIC workflow: never emit raw private test stdout/stderr.
+          # Keep diagnostics in the private owner, not public Actions logs.
+          tests=(
+            ui-react/src/pages/BotConsolePage.acceptance.test.mjs
+            ui-react/src/lib/botConsoleRecentActivity.test.mjs
+            ui-react/src/lib/forwardEvidenceExactIdentity.test.mjs
+            ui-react/src/operator-market-ui.acceptance.test.mjs
+            ui-react/src/components/OperatorSubmitRouteTruth.test.mjs
           )
+          case_no=0
+          for test_path in "${tests[@]}"; do
+            case_no=$((case_no + 1))
+            # No file/path/error/source excerpt is emitted even on failure.
+            if (cd "$source_root" && node "$test_path") >/dev/null 2>&1; then
+              echo "MMIBKR_SELECTED_UI_NATIVE_CASE_${case_no}=PASS"
+            else
+              echo "MMIBKR_SELECTED_UI_NATIVE_CASE_${case_no}=FAIL"
+              echo "MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=FAIL_CLOSED"
+              exit 1
+            fi
+          done
           echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS'
 
       - name: Encrypt exact private source for parity refresh
