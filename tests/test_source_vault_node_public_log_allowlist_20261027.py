@@ -35,6 +35,31 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
         ):
             self.assertIn(path, step)
 
+    def test_cloudflare_private_source_failure_logs_are_fixed_field_only(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn(
+            "node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1",
+            source,
+        )
+        self.assertIn(
+            "npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1",
+            source,
+        )
+        self.assertIn(
+            "npx wrangler deploy --dry-run --outdir \"$RUNNER_TEMP/mmibkr-cloudflare-bundle\" >/dev/null 2>&1",
+            source,
+        )
+        self.assertIn(
+            "MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED", source
+        )
+        self.assertIn(
+            "MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED", source
+        )
+        self.assertIn(
+            "MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=FAIL_CLOSED", source
+        )
+        self.assertNotIn('tail -n 25 "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log"', source)
+
     def test_synthetic_failing_process_cannot_emit_private_sentinel(self):
         # The same shell redirection shape, with a harmless synthetic child.
         script = (
