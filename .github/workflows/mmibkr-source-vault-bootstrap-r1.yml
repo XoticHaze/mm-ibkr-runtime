@@ -199,7 +199,7 @@ jobs:
           test -f "$source_root/scripts/operator/selected_runtime_live_incumbent_preflight_v1.py"
           echo 'MMIBKR_NATIVE_PRIVATE_STAGE=DEPENDENCIES'
           private_cmd python -m pip install --disable-pip-version-check \
-            ib_insync==0.9.86 pandas==2.2.3
+            ib_insync==0.9.86 pandas==2.2.3 fastapi uvicorn requests
           (
             cd "$source_root"
             echo 'MMIBKR_NATIVE_PRIVATE_STAGE=COMPILE'
