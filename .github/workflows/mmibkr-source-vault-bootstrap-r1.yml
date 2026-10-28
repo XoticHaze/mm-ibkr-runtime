@@ -72,6 +72,10 @@ jobs:
         with:
           python-version: '3.11.16'
 
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+
       - name: Install fixed crypto dependency
         run: python -m pip install --disable-pip-version-check cryptography==46.0.1
 
@@ -325,7 +329,9 @@ jobs:
             fi
             # Exact selected #883@92ff94 changed-source native acceptance.
             # Do not silently skip missing source/test or print private output.
-            if [ "$REQUEST_SOURCE_SHA" = "a58dcf3cee3c0ce37e3f954441a76118909b7777" ]; then
+            if [ "$REQUEST_SOURCE_SHA" = "eb15b7bb798a6833d1afa831f7380ca56ebb7018" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "a58dcf3cee3c0ce37e3f954441a76118909b7777" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ]; then
               if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
                  [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
                 echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
@@ -337,6 +343,14 @@ jobs:
               private_cmd python -m unittest -v \
                 tests.test_selected_runtime_boundary_snapshot_hydrator_v1
               echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=PASS'
+            fi
+            # Exact selected P0 #883@9fae operator-health/snapshot source delta.
+            # One focused brokerless native acceptance invocation.
+            if [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ]; then
+              private_cmd python -m unittest -v \
+                tests.test_cloud_operator_health_v1 \
+                tests.test_cloud_operator_snapshot_v1
+              echo 'MMIBKR_P0_OPERATOR_HEALTH_EXACT_SOURCE=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
@@ -537,6 +551,20 @@ jobs:
             fi
           done
           echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS'
+          # Source Vault admission must exercise the same complete native
+          # Bot Console verification and production Vite build as deploy.
+          # Private stdout/stderr can contain excerpts; keep both suppressed
+          # in the public encrypted-source workflow and fail closed.
+          if ! (
+            cd "$source_root/ui-react"
+            npm ci --ignore-scripts --no-audit --no-fund >/dev/null 2>&1 &&
+            npm run verify:bot-console >/dev/null 2>&1 &&
+            npm run build >/dev/null 2>&1
+          ); then
+            echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=PASS'
 
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}

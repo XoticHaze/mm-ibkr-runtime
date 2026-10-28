@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "a58dcf3cee3c0ce37e3f954441a76118909b7777",
+  "source_sha": "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497",
   "requested_by": "ContinueRelease",
-  "purpose": "Exact selected P0 #883 a58dcf3c after native ordinal16 parent-seal fixture repair; reuse existing public_encrypted Source Vault p0_owner native route after UI strict_ui afae attempt244 succeeded. No broker/Gateway/live.",
+  "purpose": "Exact selected canonical P0 #883 9fae7bbc after a58 ordinal16 fixture correction and operator-health/snapshot source deltas. Existing p0_owner encrypted native acceptance; no broker, live, Gateway or protected main.",
   "live_execution_allowed": false,
-  "attempt": 245,
-  "reason": "p0_883_a58dcf3c_native_ordinal16_after_ui_strict_success",
+  "attempt": 246,
+  "reason": "p0_883_9fae7bbc_current_selected_native_admission_after_main_ui_union",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
