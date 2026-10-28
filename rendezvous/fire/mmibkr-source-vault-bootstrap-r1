@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "83ec29bba2b51cb0d839a5704ba29903459dd9cb",
-  "requested_by": "continue-release-own-clock-20261028152029372",
-  "purpose": "Exact selected MM #883 P0 source after observed child encrypted-return classification and tri-state broker-action fixes. Reuse existing encrypted Source Vault/native p0_owner admission; no live execution, broker order, Pi mutation or public plaintext.",
+  "source_sha": "7d3c0211a638bb0240e11ad1771727bff237fd52",
+  "requested_by": "continue-release-r19-clock-20261028164613590",
+  "purpose": "Freeze exact current selected P0 source for encrypted native p0_owner admission after 25 safety/continuity commits since 83ec; source-only, no broker/login/order/flatten/live/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 249,
-  "reason": "p0_selected_883_83ec_changed_source_native_admission",
+  "attempt": 250,
+  "reason": "p0_selected_883_7d3c_changed_source_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
