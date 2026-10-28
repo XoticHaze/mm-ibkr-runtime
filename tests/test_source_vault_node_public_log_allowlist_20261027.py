@@ -75,5 +75,44 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
         self.assertNotIn("PRIVATE_NODE_SOURCE_SENTINEL", result.stdout + result.stderr)
 
 
+    def test_private_python_and_funded_pytest_use_fixed_field_only_egress(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        first_start = "      - name: Run existing MM no-broker config, checkpoint and futures regression tests\n"
+        funded_start = "      - name: Validate selected funded replay and PnL issuer hold from exact encrypted source\n"
+        ui_start = "      - name: Accept selected read-only operator UI pure Node contracts\n"
+        self.assertEqual(source.count(first_start), 1)
+        self.assertEqual(source.count(funded_start), 1)
+        first = source.split(first_start, 1)[1].split(funded_start, 1)[0]
+        funded = source.split(funded_start, 1)[1].split(ui_start, 1)[0]
+        for step in (first, funded):
+            self.assertIn("private_cmd() {", step)
+            self.assertIn('if "$@" >/dev/null 2>&1; then return 0; fi', step)
+            self.assertIn("MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED", step)
+            self.assertNotRegex(step, r"(?m)^\s+python -m ")
+            self.assertNotRegex(step, r"(?m)^\s+python - <<'PY'")
+        self.assertIn("private_cmd python scripts/mmibkr_fleet_private_source_consumer_v1.py", first)
+        self.assertIn("private_cmd python -m unittest -v", first)
+        self.assertIn("private_cmd python - <<'PY'", first)
+        self.assertIn("private_cmd python -m pip install", first)
+        self.assertIn("private_cmd python -m pip install", funded)
+        self.assertIn("private_cmd env PYTHONDONTWRITEBYTECODE=1 python -m pytest -q", funded)
+        self.assertIn("MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=PASS", funded)
+
+    def test_synthetic_private_python_failure_is_fixed_field_only(self):
+        # Synthetic nested failure, no private code, source or service access.
+        script = (
+            "set -euo pipefail; "
+            "private_cmd() { if \"$@\" >/dev/null 2>&1; then return 0; fi; "
+            "echo MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED; return 1; }; "
+            "private_cmd bash -c 'printf PRIVATE_PYTHON_SENTINEL\\\\n >&2; exit 17'"
+        )
+        result = subprocess.run(
+            ["bash", "-c", script], capture_output=True, text=True, check=False
+        )
+        self.assertEqual(result.returncode, 1)
+        self.assertEqual(result.stdout.strip(), "MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED")
+        self.assertNotIn("PRIVATE_PYTHON_SENTINEL", result.stdout + result.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()
