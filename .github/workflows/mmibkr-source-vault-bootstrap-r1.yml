@@ -267,9 +267,9 @@ jobs:
               private_cmd python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
-            # Exact selected #883@283d changed-source native acceptance.
+            # Exact selected #883@ade895 changed-source native acceptance.
             # Do not silently skip missing source/test or print private output.
-            if [ "$REQUEST_SOURCE_SHA" = "283d40f2a3c1233b81374d14b5eda43d75fe2a26" ]; then
+            if [ "$REQUEST_SOURCE_SHA" = "ade8954b6395c0c172e5bd4c03da7fc344343deb" ]; then
               if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
                  [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
                 echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
