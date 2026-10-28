@@ -213,6 +213,12 @@ class SourceVaultTests(unittest.TestCase):
         self.assertIn('MMIBKR_P0_SELECTED_CHANGED_SOURCE_SHA=$REQUEST_SOURCE_SHA', gate)
         self.assertIn('MMIBKR_P0_FFF4_PAPER_EVIDENCE_PNL_NATIVE=PASS', gate)
         self.assertIn('MMIBKR_P0_BE26_INTEGRITY_NATIVE=PASS', gate)
+        # The two Product integrity leaves use pytest tmp_path/raises, not unittest,
+        # and silently collect zero tests under python -m unittest.
+        self.assertIn('pytest==8.3.5', workflow)
+        self.assertIn('private_cmd python -m pytest -q -p no:cacheprovider', gate)
+        self.assertIn('tests/test_selected_runtime_forward_ledger_directory_fsync_product_20261028.py', gate)
+        self.assertIn('tests/test_selected_runtime_strategy_inventory_cross_runtime_execid_product_20261023.py', gate)
         self.assertIn('tests.test_read_only_live_incumbent_scope_v1', gate)
         self.assertIn('tests.test_selected_runtime_forward_ledger_directory_fsync_product_20261028', gate)
         self.assertIn('tests.test_selected_runtime_strategy_inventory_cross_runtime_execid_product_20261023', gate)
