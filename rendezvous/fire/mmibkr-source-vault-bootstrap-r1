@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "92ff94ad2bcaee642c6fc3c7d4a3c78ad25fbb0e",
-  "requested_by": "ContinueRelease",
-  "purpose": "Exact selected P0 #883 canonical owner source admission including boundary hydrator, live incumbent preflight and forward lifecycle delta. Existing encrypted p0_owner native acceptance only; no Gateway, broker, order, live activation or protected main mutation.",
+  "source_sha": "eb15b7bb798a6833d1afa831f7380ca56ebb7018",
+  "requested_by": "manual-worker-MW-20261028092539562",
+  "purpose": "Exact selected #883 eb15 after native ordinal-15 two-seal test fixture correction; revalidate private p0_owner under encrypted Source Vault; no broker, live auth or order mutation.",
   "live_execution_allowed": false,
-  "attempt": 242,
-  "reason": "selected_p0_883_92ff94_forward_lifecycle_boundary_native_admission",
+  "attempt": 243,
+  "reason": "current_selected_P0_eb15_native_two_seal_fixture_repaired",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
