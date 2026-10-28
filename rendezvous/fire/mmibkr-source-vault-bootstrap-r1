@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "eb15b7bb798a6833d1afa831f7380ca56ebb7018",
-  "requested_by": "manual-worker-MW-20261028092539562",
-  "purpose": "Exact selected #883 eb15 after native ordinal-15 two-seal test fixture correction; revalidate private p0_owner under encrypted Source Vault; no broker, live auth or order mutation.",
+  "source_sha": "afae1cbab604b737b59b1edf5c58b32e35425b09",
+  "requested_by": "manual-console-retry-after-approved-variable-20261028",
+  "purpose": "Exact selected #975 source with test-only fix to Bot Console account-scope multiline assertion after actual approved deployment attempt 2. Run strict_ui encrypted native Node/Vite/Python via existing private Source Vault. No broker, Pi or live, public plaintext disabled.",
   "live_execution_allowed": false,
-  "attempt": 243,
-  "reason": "current_selected_P0_eb15_native_two_seal_fixture_repaired",
+  "attempt": 244,
+  "reason": "ui975_account_scope_native_source_fix_after_deployment_retry",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "p0_owner"
+  "validation_profile": "strict_ui"
 }
