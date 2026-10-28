@@ -267,7 +267,18 @@ jobs:
               private_cmd python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
-            # Selected #883 boundary snapshot source integrity is a changed-source\n            # native acceptance. Only completed OHLCV source, no broker or order.\n            if [ -f selected_runtime_boundary_snapshot_hydrator_v1.py ] &&\n               [ -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then\n              private_cmd python -m py_compile \\\n                selected_runtime_boundary_snapshot_hydrator_v1.py \\\n                tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py\n              private_cmd python -m unittest -v \\\n                tests.test_selected_runtime_boundary_snapshot_hydrator_v1\n              echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=PASS'\n            fi\n            # Changed selected Product #1257 four-path no-loss merge: exercise
+            # Selected #883 boundary snapshot source integrity is changed-source
+            # native acceptance. Only completed OHLCV, no broker or order.
+            if [ -f selected_runtime_boundary_snapshot_hydrator_v1.py ] &&
+               [ -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
+              private_cmd python -m py_compile \
+                selected_runtime_boundary_snapshot_hydrator_v1.py \
+                tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py
+              private_cmd python -m unittest -v \
+                tests.test_selected_runtime_boundary_snapshot_hydrator_v1
+              echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=PASS'
+            fi
+            # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
             # source in this existing encrypted, brokerless CI job.
             if [ -f tests/test_foundry_model_preview_flag_isolation_product_20261027.py ] &&
