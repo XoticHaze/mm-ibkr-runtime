@@ -329,7 +329,10 @@ jobs:
             fi
             # Exact selected #883@92ff94 changed-source native acceptance.
             # Do not silently skip missing source/test or print private output.
-            if [ "$REQUEST_SOURCE_SHA" = "eb15b7bb798a6833d1afa831f7380ca56ebb7018" ]; then
+            if [ "$REQUEST_SOURCE_SHA" = "eb15b7bb798a6833d1afa831f7380ca56ebb7018" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "a58dcf3cee3c0ce37e3f954441a76118909b7777" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "ea1eafd2f660f5c631d71d8d448c2f97f6589e71" ]; then
               if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
                  [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
                 echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
@@ -341,6 +344,79 @@ jobs:
               private_cmd python -m unittest -v \
                 tests.test_selected_runtime_boundary_snapshot_hydrator_v1
               echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=PASS'
+            fi
+            # Exact selected P0 #883@9fae operator-health/snapshot source delta.
+            # One focused brokerless native acceptance invocation.
+            if [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ]; then
+              private_cmd python -m unittest -v \
+                tests.test_cloud_operator_health_v1 \
+                tests.test_cloud_operator_snapshot_v1
+              echo 'MMIBKR_P0_OPERATOR_HEALTH_EXACT_SOURCE=PASS'
+            fi
+            # Frozen P0 release cut #883@ea1e: one focused changed-source
+            # brokerless invocation for operator-health plus MNQ weekday-gap
+            # warmup continuity. Earlier selected source tests remain unchanged.
+            if [ "$REQUEST_SOURCE_SHA" = "ea1eafd2f660f5c631d71d8d448c2f97f6589e71" ]; then
+              private_cmd python -m unittest -v \
+                tests.test_cloud_operator_health_v1 \
+                tests.test_cloud_operator_snapshot_v1 \
+                tests.test_selected_runtime_futures_warmup_continuity_product_20261028
+              echo 'MMIBKR_P0_EA1E_CHANGED_SOURCE_NATIVE=PASS'
+            fi
+            # Exact #883@6527 or @83ec post-ea1e changed-source native acceptance.
+            # One fixed brokerless Python invocation, no pytest/network/live.
+            if [ "$REQUEST_SOURCE_SHA" = "6527d751679351e9b4ce913e65082a0acc7a9b20" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "83ec29bba2b51cb0d839a5704ba29903459dd9cb" ]; then
+              for required in \
+                tests/test_selected_runtime_cloud_daemon_v1.py \
+                tests/test_forward_exact_pnl_boolean_numeric_product_20261028.py \
+                tests/test_selected_runtime_initial_backfill_continuity_product_20261028.py \
+                tests/test_futures_weekend_cache_guard_product_20261028.py; do
+                test -f "$required" || { echo 'MMIBKR_P0_6527_OR_83EC_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
+              done
+              private_cmd python - <<'PY'
+          import unittest
+          from tests import test_futures_weekend_cache_guard_product_20261028 as weekend
+          modules = (
+              'tests.test_selected_runtime_cloud_daemon_v1',
+              'tests.test_forward_exact_pnl_boolean_numeric_product_20261028',
+              'tests.test_selected_runtime_initial_backfill_continuity_product_20261028',
+          )
+          suite = unittest.TestSuite(
+              unittest.defaultTestLoader.loadTestsFromName(name) for name in modules
+          )
+          result = unittest.TestResult()
+          suite.run(result)
+          if not result.wasSuccessful() or result.testsRun == 0:
+              raise SystemExit(1)
+          weekend.test_friday_close_to_monday_afternoon_is_not_a_weekend_only_cache()
+          weekend.test_friday_morning_to_sunday_reopen_is_not_weekend_only()
+          PY
+              echo 'MMIBKR_P0_6527_OR_83EC_CHANGED_SOURCE_NATIVE=PASS'
+            fi
+            # Frozen 1dc1 P0 release cut: source-changed daemon broker-action
+            # tri-state plus live execId UTC idempotency and successor identity.
+            # One brokerless native invocation on the existing encrypted runner;
+            # private source/test output never reaches public logs.
+            if [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ]; then
+              for required in \
+                scripts/operator/selected_runtime_cloud_daemon_v1.py \
+                selected_runtime_live_execution_ledger_v1.py \
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+                tests/test_selected_runtime_cloud_daemon_v1.py \
+                tests/test_selected_runtime_live_execution_ledger_v1.py \
+                tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+                test -f "$required" || { echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
+              done
+              private_cmd python -m py_compile \
+                scripts/operator/selected_runtime_cloud_daemon_v1.py \
+                selected_runtime_live_execution_ledger_v1.py \
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
+              private_cmd python -m unittest -v \
+                tests.test_selected_runtime_cloud_daemon_v1 \
+                tests.test_selected_runtime_live_execution_ledger_v1 \
+                tests.test_ibkr_live_successor_ledger_reconcile_v1
+              echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
