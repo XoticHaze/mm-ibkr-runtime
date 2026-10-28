@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "afae1cbab604b737b59b1edf5c58b32e35425b09",
-  "requested_by": "manual-console-retry-after-approved-variable-20261028",
-  "purpose": "Exact selected #975 source with test-only fix to Bot Console account-scope multiline assertion after actual approved deployment attempt 2. Run strict_ui encrypted native Node/Vite/Python via existing private Source Vault. No broker, Pi or live, public plaintext disabled.",
+  "source_sha": "e09ca4f701af35649a81b20f0d4d00ee561f7a4e",
+  "requested_by": "manual-ui-source-forward-guard-fix-20261028",
+  "purpose": "Exact selected #975 after one-line test-only paper-mode guard acceptance fix observed in actual failed Cloudflare deploy #40670403666. Re-admit strict encrypted source, run native checks; no broker, live, Pi or public plaintext.",
   "live_execution_allowed": false,
-  "attempt": 244,
-  "reason": "ui975_account_scope_native_source_fix_after_deployment_retry",
+  "attempt": 245,
+  "reason": "ui975_forward_paper_mode_strict_guard_native_assertion_fix",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
