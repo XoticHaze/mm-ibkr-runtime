@@ -422,6 +422,20 @@ jobs:
           # P0 owner source has runtime tests but need not contain the full
           # selected operator UI test tree. Never misreport this as UI PASS.
           if [ "$REQUEST_VALIDATION_PROFILE" = 'p0_owner' ]; then
+            # Caller-selected P0 profile is not authority to skip all native
+            # acceptance. Require exact owner journal and successor source/tests;
+            # their existing native suites ran in the prior fail-closed step.
+            for required in \
+              selected_runtime_live_order_intent_journal_v1.py \
+              tests/test_selected_runtime_live_order_intent_journal_v1.py \
+              scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+              tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+              if [ ! -f "$source_root/$required" ]; then
+                echo 'MMIBKR_P0_PROFILE_SOURCE_SCOPE=FAIL_CLOSED'
+                exit 1
+              fi
+            done
+            echo 'MMIBKR_P0_PROFILE_SOURCE_SCOPE=PASS'
             echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE_P0_OWNER'
             exit 0
           fi
