@@ -325,7 +325,7 @@ jobs:
             fi
             # Exact selected #883@92ff94 changed-source native acceptance.
             # Do not silently skip missing source/test or print private output.
-            if [ "$REQUEST_SOURCE_SHA" = "92ff94ad2bcaee642c6fc3c7d4a3c78ad25fbb0e" ]; then
+            if [ "$REQUEST_SOURCE_SHA" = "eb15b7bb798a6833d1afa831f7380ca56ebb7018" ]; then
               if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
                  [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
                 echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
