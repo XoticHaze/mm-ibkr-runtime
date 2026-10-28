@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f6f6dcdcbad3df8c5d50cab5ac2652b4781a648d",
+  "source_sha": "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae",
   "requested_by": "continue-release-r19-clock-20261028181452713",
-  "purpose": "Exact selected #975 UI row-key native acceptance after test-only PR1482; previous 42813 P0/funded native passed but UI CASE1 stale static assertion failed; no broker/login/order/flatten/live/Pi mutation.",
+  "purpose": "One exact frozen 1dc1 p0_owner daemon+live execId ledger+successor native selected-artifact acceptance on newly integrated Source Vault #40 workflow; source previously encrypted admitted, this exact daemon leaf was not run. No broker/login/order/flatten/live/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 255,
-  "reason": "release_strict_ui_f6f6_bot_console_collision_key_native_acceptance",
+  "attempt": 256,
+  "reason": "release_p0_1dc1_daemon_execid_successor_native_acceptance_after_40",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
