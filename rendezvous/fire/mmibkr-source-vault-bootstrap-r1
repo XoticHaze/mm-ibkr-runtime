@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "e09ca4f701af35649a81b20f0d4d00ee561f7a4e",
-  "requested_by": "manual-ui-source-forward-guard-fix-20261028",
-  "purpose": "Exact selected #975 after one-line test-only paper-mode guard acceptance fix observed in actual failed Cloudflare deploy #40670403666. Re-admit strict encrypted source, run native checks; no broker, live, Pi or public plaintext.",
+  "source_sha": "6527d751679351e9b4ce913e65082a0acc7a9b20",
+  "requested_by": "continue-release-own-clock-20261028145240638",
+  "purpose": "Exact selected MM #883 P0 source after bounded child-failure status, futures weekend cache, forward numeric, daemon and MNQ continuity changes. Existing encrypted Source Vault/native P0 acceptance only; no live execution, broker order, Pi mutation or public plaintext.",
   "live_execution_allowed": false,
-  "attempt": 245,
-  "reason": "ui975_forward_paper_mode_strict_guard_native_assertion_fix",
+  "attempt": 248,
+  "reason": "p0_selected_883_6527_changed_source_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
