@@ -1,13 +1,15 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
   "source_sha": "d18e5e384163d31d399dcd65c723744517842741",
-  "requested_by": "continue-release-selected975-d18e-operator-quantity-assertion-fix-20261028",
-  "purpose": "Changed-source exact selected #975 d18e: rerun existing encrypted Source Vault private-native operator UI contract after correcting obsolete test-only dash marker to assert shared fail-closed positionQtyFromRow and unknown->unverified. Previous 40602861638 19/20 passed, sole failure OperatorSubmitRouteTruth.test.mjs line 169. Reuse accepted PnL/brokerless proofs, no broker, Gateway, live, order, P01, protected main or Cloudflare deploy.",
+  "requested_by": "continue-release-selected975-d18e-local-exact-vite-build-20261028",
+  "purpose": "Use existing OIDC public encrypted Source Vault parity-export recipient to produce a one-run X25519+ChaCha20Poly1305 encrypted exact selected d18e source archive for bounded agent-local native Vite build and selected UI acceptance; never publish private plaintext or make Library CURRENT selected instead of canonical main. Previously accepted Node/PnL proofs reused; no broker/Gateway/order/flatten/live, P01 original/holdout, protected main, Cloudflare deploy or scheduler mutation.",
   "live_execution_allowed": false,
-  "attempt": 229,
-  "reason": "selected_975_d18e_test_only_native_operator_ui_regression_fix",
+  "attempt": 230,
+  "reason": "selected_975_d18e_private_encrypted_local_parity_export_for_exact_vite_build",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
-  }
+  },
+  "parity_export_recipient_public_b64": "BviKXcAR5/sPjCEX8CiXOirJHpTLJI/nIxWwOAOWZz4=",
+  "parity_export_recipient_key_id": "sha256:a03a486577bc6772e823eb27eef4e45c68ca5d93a592426ea69008979ef189ee"
 }
