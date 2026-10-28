@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "bc926cbe1901d4bf965915171f21a5bc79ca1aa5",
-  "requested_by": "continue-release-selected883-bc926-20261028",
-  "purpose": "After independent owner/security review and protected merge of #28, publish exact current selected P0 #883@bc926 encrypted source and execute p0_owner native journal/successor scope. Product #1400/#1402 nofollow inventory regressions remain exact public #2027 private test-probe acceptance, not skipped by a UI profile. No live Gateway/order/cancel/flatten/host mutation.",
+  "source_sha": "8e293daa6fe3448ea3fc8d7740c3b5811a9e307e",
+  "requested_by": "manual-worker-MW-20261028084230744",
+  "purpose": "Source-only UI: encrypt exact selected #975 source with strict_ui profile, run private native Node/Vite/Python in existing redacted Source Vault pipeline, then independently review before current public #2028 deployment pin. NO live/paper broker submission, no credentials exposure and no Pi/live owner handoff.",
   "live_execution_allowed": false,
-  "attempt": 237,
-  "reason": "selected_883_bc926_current_p0_source_vault_native_profile_after_owner_merge",
+  "attempt": 238,
+  "reason": "selected_ui_975_8e293_exact_strict_ui_native_admission_no_broker",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "p0_owner"
+  "validation_profile": "strict_ui"
 }
