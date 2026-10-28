@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497",
+  "source_sha": "ea1eafd2f660f5c631d71d8d448c2f97f6589e71",
   "requested_by": "ContinueRelease",
-  "purpose": "Exact selected canonical P0 #883 9fae7bbc after a58 ordinal16 fixture correction and operator-health/snapshot source deltas. Existing p0_owner encrypted native acceptance; no broker, live, Gateway or protected main.",
+  "purpose": "Freeze exact P0 #883 ea1e release cut after Product MNQ missing-weekday warmup continuity. Existing encrypted p0_owner native, one focused new-source invocation; no broker, Gateway, live or protected main.",
   "live_execution_allowed": false,
-  "attempt": 246,
-  "reason": "p0_883_9fae7bbc_current_selected_native_admission_after_main_ui_union",
+  "attempt": 247,
+  "reason": "p0_883_ea1e_frozen_release_cut_native_after_mnq_warmup_fix",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"

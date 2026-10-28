@@ -331,7 +331,8 @@ jobs:
             # Do not silently skip missing source/test or print private output.
             if [ "$REQUEST_SOURCE_SHA" = "eb15b7bb798a6833d1afa831f7380ca56ebb7018" ] ||
                [ "$REQUEST_SOURCE_SHA" = "a58dcf3cee3c0ce37e3f954441a76118909b7777" ] ||
-               [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ]; then
+               [ "$REQUEST_SOURCE_SHA" = "9fae7bbc5f3ed1a973ea1389bdb788e1d2771497" ] ||
+               [ "$REQUEST_SOURCE_SHA" = "ea1eafd2f660f5c631d71d8d448c2f97f6589e71" ]; then
               if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
                  [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
                 echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
@@ -351,6 +352,16 @@ jobs:
                 tests.test_cloud_operator_health_v1 \
                 tests.test_cloud_operator_snapshot_v1
               echo 'MMIBKR_P0_OPERATOR_HEALTH_EXACT_SOURCE=PASS'
+            fi
+            # Frozen P0 release cut #883@ea1e: one focused changed-source
+            # brokerless invocation for operator-health plus MNQ weekday-gap
+            # warmup continuity. Earlier selected source tests remain unchanged.
+            if [ "$REQUEST_SOURCE_SHA" = "ea1eafd2f660f5c631d71d8d448c2f97f6589e71" ]; then
+              private_cmd python -m unittest -v \
+                tests.test_cloud_operator_health_v1 \
+                tests.test_cloud_operator_snapshot_v1 \
+                tests.test_selected_runtime_futures_warmup_continuity_product_20261028
+              echo 'MMIBKR_P0_EA1E_CHANGED_SOURCE_NATIVE=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
