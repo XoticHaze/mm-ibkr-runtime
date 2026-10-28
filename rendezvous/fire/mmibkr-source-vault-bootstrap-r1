@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3d15d36e28dec27295446f1e121ae7bfca542640",
-  "requested_by": "manual-worker-MW-20261028084230744-paper-native-fixtures-r2",
-  "purpose": "Re-admit exact selected #975 source with two test-only broker-paper fixture corrections after real runtime #40660351938 failure; strict_ui and no live trading. Then rerun one bounded broker-paper cloud cycle using existing encrypted producer.",
+  "source_sha": "296d88ef78ee97b46f7f9b6731e8a6a7009300d2",
+  "requested_by": "manual-worker-MW-20261028084230744-paper-native-last",
+  "purpose": "Actual strict encrypted native admission after source-only test correction to observed unknown market aggregate, no production logic changes; one broker-paper bounded owner retry if accepted.",
   "live_execution_allowed": false,
-  "attempt": 239,
-  "reason": "selected_975_paper_native_fixture_reconcile_repeat_real_canary",
+  "attempt": 240,
+  "reason": "second_paper_native_source_fixture_unknown_corrected",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
