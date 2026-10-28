@@ -122,7 +122,11 @@ def _post_attestation(
         },
     )
     try:
-        with urlopen(req, timeout=30) as response:
+        # Fleet private archive attestation may take longer than the original
+        # 30-second read timeout during heavy source-vault publication.
+        # A single longer bounded attempt avoids replaying an ambiguous POST:
+        # never repeat an attestation request after a socket timeout.
+        with urlopen(req, timeout=90) as response:
             return json.load(response)
     except HTTPError as exc:
         detail = exc.read().decode("utf-8", "replace")
