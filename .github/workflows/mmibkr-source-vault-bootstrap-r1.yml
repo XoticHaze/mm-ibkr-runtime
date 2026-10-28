@@ -247,23 +247,30 @@ jobs:
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
             if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
-              node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs
-              (
+              # This public runner holds decrypted private source in scratch.
+              # Node failures, npm and Wrangler stderr can print source excerpts.
+              if ! node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED'
+                exit 1
+              fi
+              if ! (
                 cd cloudflare/mmibkr-live-cloud-owner
-                npm install --no-audit --no-fund --package-lock=false
-                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null
-              )
+                npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1
+                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
+              ) >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
+                exit 1
+              fi
               echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
               echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=PASS'
-              # Validate real Cloudflare Worker bundling and durable
-              # Container scheduling configuration without deploy credentials,
-              # broker network or publishing source. Output remains ephemeral.
+              # Keep Wrangler failure detail private in ephemeral runner scratch;
+              # never tail the private-source build log into public Actions output.
               if ! npx --yes wrangler@4.135.0 deploy \
                     --dry-run \
                     --config cloudflare/mmibkr-live-cloud-owner/wrangler.jsonc \
                     --outdir "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun" \
                     >"$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log" 2>&1; then
-                tail -n 25 "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log"
+                echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=FAIL_CLOSED'
                 exit 1
               fi
               echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=PASS'
