@@ -136,12 +136,30 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
         script = "\n".join(line[10:] if line.startswith("          ") else line
                            for line in script.splitlines())
         with tempfile.TemporaryDirectory() as td:
+            source_root = Path(td) / "mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+            required = (
+                "selected_runtime_live_order_intent_journal_v1.py",
+                "tests/test_selected_runtime_live_order_intent_journal_v1.py",
+                "scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py",
+                "tests/test_ibkr_live_successor_ledger_reconcile_v1.py",
+            )
+            for relative in required:
+                target = source_root / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("synthetic-only\\n", encoding="utf-8")
             env = dict(os.environ, RUNNER_TEMP=td, REQUEST_VALIDATION_PROFILE="p0_owner")
             p0 = subprocess.run(["bash", "-c", script], env=env,
                                 capture_output=True, text=True, check=False)
             self.assertEqual(p0.returncode, 0, p0.stderr)
+            self.assertIn("MMIBKR_P0_PROFILE_SOURCE_SCOPE=PASS", p0.stdout)
             self.assertIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE_P0_OWNER", p0.stdout)
             self.assertNotIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS", p0.stdout)
+            (source_root / required[-1]).unlink()
+            blocked = subprocess.run(["bash", "-c", script], env=env,
+                                     capture_output=True, text=True, check=False)
+            self.assertEqual(blocked.returncode, 1)
+            self.assertIn("MMIBKR_P0_PROFILE_SOURCE_SCOPE=FAIL_CLOSED", blocked.stdout)
+            self.assertNotIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE", blocked.stdout)
             env["REQUEST_VALIDATION_PROFILE"] = "strict_ui"
             strict = subprocess.run(["bash", "-c", script], env=env,
                                     capture_output=True, text=True, check=False)
