@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fff4d5b1a1b3521f34d5b530a008e17e19a054cb",
-  "requested_by": "continue-release-r19-clock-20261028191611174",
-  "purpose": "Exact frozen selected #883 combined native after prior-fill UTC fixture and three consumed Product P0 paper evidence/PnL children; no broker, login, order, flatten, live flag, Pi or protected MM main mutation.",
+  "source_sha": "4263702cf35ca6d93285ce7ecc037381ac495d38",
+  "requested_by": "ManualWorker-MW-20261028212037004",
+  "purpose": "One exact frozen successor 4263 p0_owner encrypted native source admission for atomic owner/ledger durability, cross-runtime execId conflict, read-only AMAT/APH/MNQ incumbent account scope; no broker login/order/flatten/live flag/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 258,
-  "reason": "release_p0_fff4_selected_native_paper_evidence_execid_pnl_acceptance",
+  "attempt": 259,
+  "reason": "release_p1_4263_integrity_incumbent_scope_changed_source_native",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
