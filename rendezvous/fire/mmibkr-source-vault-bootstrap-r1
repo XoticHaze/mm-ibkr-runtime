@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "059acdda5bbd9e6c15b71f2ca4a7f171de0cc8f6",
-  "requested_by": "continue-release-selected975-059ac-product1366-20261028",
-  "purpose": "Existing selected Release #975 consumed Product #1366 exact cloud paper boundary cross-ledger run-id integrity (source ad08ec01, test f0220346). Reuse existing OIDC encrypted Source Vault source/native admission. Public #2027 already exact-allowlists tests.test_cloud_paper_boundary_history_v1. No broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment.",
+  "source_sha": "42811ea3e855f09a5caef3b8f58402b40f491f1a",
+  "requested_by": "continue-release-selected975-42811-product1367-20261028",
+  "purpose": "Existing selected Release #975 consumed Product #1367 exact selected DCA execution-policy operator truth: helper aee0019e, Node test 1e779882 (Product exact-source 5/5), JSX 48fd0960. Existing OIDC encrypted Source Vault source/native admission only. Public #2027 changed-head exact Node allowlist staged. No broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment.",
   "live_execution_allowed": false,
-  "attempt": 233,
-  "reason": "selected_975_059ac_product1366_exact_encrypted_source_admission",
+  "attempt": 234,
+  "reason": "selected_975_42811_product1367_exact_encrypted_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
