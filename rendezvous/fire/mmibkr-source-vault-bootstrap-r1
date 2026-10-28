@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4263702cf35ca6d93285ce7ecc037381ac495d38",
+  "source_sha": "be26b149de4b706427de65dc835a71c7428c0b65",
   "requested_by": "ManualWorker-MW-20261028212037004",
-  "purpose": "One exact frozen successor 4263 p0_owner encrypted native source admission for atomic owner/ledger durability, cross-runtime execId conflict, read-only AMAT/APH/MNQ incumbent account scope; no broker login/order/flatten/live flag/Pi mutation.",
+  "purpose": "One exact frozen be26 p0_owner encrypted native acceptance of fff4 successor ledger/fsync/execId and all three incumbent scope plus strict production-account flatten preview matching; no broker login/order/flatten/live flag/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 259,
-  "reason": "release_p1_4263_integrity_incumbent_scope_changed_source_native",
+  "attempt": 260,
+  "reason": "release_p1_be26_integrity_account_exact_scope_changed_source_native",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
