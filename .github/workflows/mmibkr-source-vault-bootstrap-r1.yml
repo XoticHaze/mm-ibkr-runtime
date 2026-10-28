@@ -217,6 +217,16 @@ jobs:
                 tests.test_selected_futures_roll_identity_product_20261028
               echo 'MMIBKR_P0_FUTURES_CONID_REDUCE_ONLY_EXACT_SOURCE_TESTS=PASS'
             fi
+            # Product #1392 exact B1 roll-maintenance conId and warmup source
+            # identity: same encrypted private source, no broker or extra job.
+            if [ -f tests/test_futures_roll_conid_identity_product_20261028.py ]; then
+              private_cmd python -m py_compile \
+                scripts/operator/selected_runtime_futures_roll_maintenance_v1.py \
+                tests/test_futures_roll_conid_identity_product_20261028.py
+              private_cmd python -m unittest -v \
+                tests.test_futures_roll_conid_identity_product_20261028
+              echo 'MMIBKR_P0_FUTURES_ROLL_PRODUCER_EXACT_SOURCE_TESTS=PASS'
+            fi
             # If this exact private source carries the proposed canonical
             # live-inventory guard, exercise it IN THE SAME encrypted run.
             # Older approved snapshots do not carry that test, so preserve
