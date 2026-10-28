@@ -129,11 +129,11 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
 
     def test_p0_owner_ui_stage_is_not_applicable_but_strict_ui_missing_test_fails(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        start = "      - name: Accept selected read-only operator UI pure Node contracts\\n"
-        end = "      - name: Encrypt exact private source for parity refresh\\n"
+        start = "      - name: Accept selected read-only operator UI pure Node contracts\n"
+        end = "      - name: Encrypt exact private source for parity refresh\n"
         step = source.split(start, 1)[1].split(end, 1)[0]
-        script = step.split("        run: |\\n", 1)[1]
-        script = "\\n".join(line[10:] if line.startswith("          ") else line
+        script = step.split("        run: |\n", 1)[1]
+        script = "\n".join(line[10:] if line.startswith("          ") else line
                            for line in script.splitlines())
         with tempfile.TemporaryDirectory() as td:
             env = dict(os.environ, RUNNER_TEMP=td, REQUEST_VALIDATION_PROFILE="p0_owner")
