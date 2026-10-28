@@ -194,7 +194,7 @@ class SourceVaultTests(unittest.TestCase):
     def test_frozen_1dc1_changed_source_runs_brokerless_native_ledger_and_daemon(self):
         workflow = (Path(__file__).resolve().parents[1] /
                     '.github/workflows/mmibkr-source-vault-bootstrap-r1.yml').read_text()
-        gate = workflow.split('if [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ]; then', 1)[1].split('\n            fi', 1)[0]
+        gate = workflow.split('if { [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ] || [ "$REQUEST_SOURCE_SHA" = "b3a94f6c1a5a4866386e2486f6244a89fc66170c" ]; }; then', 1)[1].split('\n            fi', 1)[0]
         self.assertIn('tests/test_selected_runtime_cloud_daemon_v1.py', gate)
         self.assertIn('tests/test_selected_runtime_live_execution_ledger_v1.py', gate)
         self.assertIn('tests/test_ibkr_live_successor_ledger_reconcile_v1.py', gate)
@@ -210,6 +210,7 @@ class SourceVaultTests(unittest.TestCase):
         self.assertIn('tests.test_selected_runtime_cloud_daemon_v1', gate)
         self.assertIn('tests.test_selected_runtime_live_execution_ledger_v1', gate)
         self.assertIn('MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=PASS', gate)
+        self.assertIn('MMIBKR_P0_SELECTED_CHANGED_SOURCE_SHA=$REQUEST_SOURCE_SHA', gate)
         self.assertIn('MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED', gate)
         self.assertNotIn('ib.connect(', gate)
         self.assertNotIn('placeOrder(', gate)
