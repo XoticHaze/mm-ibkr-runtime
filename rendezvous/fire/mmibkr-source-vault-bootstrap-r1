@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae",
-  "requested_by": "continue-release-r19-clock-20261028164613590",
-  "purpose": "FINAL frozen P0 release candidate this firing: Product #1471 exact execId execution-time idempotency, following accepted 3eb65. One distinct changed-source encrypted p0_owner native admission, no further moving-head chase; no broker/login/order/flatten/live/Pi mutation.",
+  "source_sha": "4dbbab1847b5cdffa85c8988b04bedf97235968a",
+  "requested_by": "continue-release-r19-clock-20261028181452713",
+  "purpose": "Frozen selected MM #975 console and P0/UI source, 117 commits changed since last 8e293 strict UI admission; one distinct full native strict_ui acceptance, encrypted source-only; no broker/login/order/flatten/live/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 252,
-  "reason": "p0_release_frozen_1dc1_execid_time_identity_native_admission",
+  "attempt": 253,
+  "reason": "release_current_selected_ui_4dbbab_exact_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "p0_owner"
+  "validation_profile": "strict_ui"
 }
