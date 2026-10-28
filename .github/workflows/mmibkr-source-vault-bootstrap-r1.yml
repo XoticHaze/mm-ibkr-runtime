@@ -221,8 +221,8 @@ jobs:
             # private Source Vault runner, never a second launcher or broker.
             if [ -f selected_runtime_live_order_intent_journal_v1.py ] &&
                [ -f tests/test_selected_runtime_live_order_intent_journal_v1.py ]; then
-              python -m py_compile selected_runtime_live_order_intent_journal_v1.py
-              python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1
+              private_cmd python -m py_compile selected_runtime_live_order_intent_journal_v1.py
+              private_cmd python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1
               echo 'MMIBKR_P0_JOURNAL_EXACT_SOURCE_TESTS=PASS'
             fi
             # Selected #975 account-scoped successor read-only reconciliation
