@@ -92,6 +92,8 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
             self.assertNotRegex(step, r"(?m)^\s+python - <<'PY'")
         self.assertIn("private_cmd python scripts/mmibkr_fleet_private_source_consumer_v1.py", first)
         self.assertIn("private_cmd python -m unittest -v", first)
+        self.assertIn("private_cmd python -m py_compile selected_runtime_live_order_intent_journal_v1.py", first)
+        self.assertIn("private_cmd python -m unittest -v tests.test_selected_runtime_live_order_intent_journal_v1", first)
         self.assertIn("private_cmd python - <<'PY'", first)
         self.assertIn("private_cmd python -m pip install", first)
         self.assertIn("private_cmd python -m pip install", funded)
