@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae",
-  "requested_by": "continue-release-r19-clock-20261028181452713",
-  "purpose": "One exact frozen 1dc1 p0_owner daemon+live execId ledger+successor native selected-artifact acceptance on newly integrated Source Vault #40 workflow; source previously encrypted admitted, this exact daemon leaf was not run. No broker/login/order/flatten/live/Pi mutation.",
+  "source_sha": "fff4d5b1a1b3521f34d5b530a008e17e19a054cb",
+  "requested_by": "continue-release-r19-clock-20261028191611174",
+  "purpose": "Exact frozen selected #883 combined native after prior-fill UTC fixture and three consumed Product P0 paper evidence/PnL children; no broker, login, order, flatten, live flag, Pi or protected MM main mutation.",
   "live_execution_allowed": false,
-  "attempt": 256,
-  "reason": "release_p0_1dc1_daemon_execid_successor_native_acceptance_after_40",
+  "attempt": 258,
+  "reason": "release_p0_fff4_selected_native_paper_evidence_execid_pnl_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
