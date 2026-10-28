@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "42811ea3e855f09a5caef3b8f58402b40f491f1a",
-  "requested_by": "continue-release-selected975-42811-product1367-20261028",
-  "purpose": "Existing selected Release #975 consumed Product #1367 exact selected DCA execution-policy operator truth: helper aee0019e, Node test 1e779882 (Product exact-source 5/5), JSX 48fd0960. Existing OIDC encrypted Source Vault source/native admission only. Public #2027 changed-head exact Node allowlist staged. No broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment.",
+  "source_sha": "9b69d8e45faa3f9b86d82b8d3fc7c895caabaf9a",
+  "requested_by": "continue-release-selected883-9b69-current-20261028",
+  "purpose": "Exact selected P0 #883 source-only encrypted Source Vault producer admission for already merged Product conId/ownership and B1 futures roll/warmup guards. No live Gateway, order, cancel, flatten, protected private main, runtime deployment or discretionary proof.",
   "live_execution_allowed": false,
-  "attempt": 234,
-  "reason": "selected_975_42811_product1367_exact_encrypted_source_admission",
+  "attempt": 235,
+  "reason": "selected_883_9b69_exact_encrypted_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
