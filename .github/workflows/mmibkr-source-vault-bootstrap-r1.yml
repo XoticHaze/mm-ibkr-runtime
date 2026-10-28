@@ -408,14 +408,30 @@ jobs:
                 tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
                 test -f "$required" || { echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
               done
-              private_cmd python -m py_compile \
+              if private_cmd python -m py_compile \
                 scripts/operator/selected_runtime_cloud_daemon_v1.py \
                 selected_runtime_live_execution_ledger_v1.py \
-                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
-              private_cmd python -m unittest -v \
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py; then
+                echo 'MMIBKR_P0_1DC1_COMPILE=PASS'
+              else
+                echo 'MMIBKR_P0_1DC1_COMPILE=FAIL_CLOSED'
+                exit 1
+              fi
+              # Privacy-safe fixed module ordinal: never print private assertion
+              # output, source excerpts, filenames, account or broker data.
+              module_ordinal=0
+              for module in \
                 tests.test_selected_runtime_cloud_daemon_v1 \
                 tests.test_selected_runtime_live_execution_ledger_v1 \
-                tests.test_ibkr_live_successor_ledger_reconcile_v1
+                tests.test_ibkr_live_successor_ledger_reconcile_v1; do
+                module_ordinal=$((module_ordinal + 1))
+                if private_cmd python -m unittest -v "$module"; then
+                  echo "MMIBKR_P0_1DC1_MODULE_${module_ordinal}=PASS"
+                else
+                  echo "MMIBKR_P0_1DC1_MODULE_${module_ordinal}=FAIL_CLOSED"
+                  exit 1
+                fi
+              done
               echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
