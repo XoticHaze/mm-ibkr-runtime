@@ -193,18 +193,20 @@ jobs:
           test -f "$source_root/scripts/operator/selected_runtime_legacy_compat_config_v1.py"
           test -f "$source_root/scripts/operator/runtime_market_data_cache_checkpoint_v1.py"
           test -f "$source_root/scripts/operator/selected_runtime_live_incumbent_preflight_v1.py"
+          echo 'MMIBKR_NATIVE_PRIVATE_STAGE=DEPENDENCIES'
           private_cmd python -m pip install --disable-pip-version-check \
             ib_insync==0.9.86 pandas==2.2.3
           (
             cd "$source_root"
+            echo 'MMIBKR_NATIVE_PRIVATE_STAGE=COMPILE'
             private_cmd python -m py_compile \
               main.py \
               scripts/operator/selected_runtime_legacy_compat_config_v1.py \
               scripts/operator/runtime_market_data_cache_checkpoint_v1.py \
               scripts/operator/selected_runtime_live_incumbent_preflight_v1.py
-            # These are existing canonical MM tests, not another route,
-            # order injector, broker probe or synthetic trade.
-            private_cmd python -m unittest -v \
+            # Same eight existing no-broker suites; isolate only the failed
+            # module by a fixed literal identifier, never echo private output.
+            for suite in \
               tests.test_selected_runtime_legacy_compat_config_v1 \
               tests.test_runtime_market_data_cache_checkpoint_v1 \
               tests.test_selected_runtime_live_incumbent_preflight_v1 \
@@ -212,7 +214,10 @@ jobs:
               tests.test_selected_runtime_margin_whatif_hook_14th31lg \
               tests.test_futures_contract_registry \
               tests.test_futures_position_safety \
-              tests.test_selected_runtime_futures_roll_maintenance_v1
+              tests.test_selected_runtime_futures_roll_maintenance_v1; do
+              echo "MMIBKR_NATIVE_PRIVATE_STAGE=$suite"
+              private_cmd python -m unittest -v "$suite"
+            done
             if [ -f selected_runtime_futures_execution_roll_guard_v1.py ] &&
                [ -f tests/test_selected_runtime_futures_execution_roll_guard_v1.py ]; then
               private_cmd python -m py_compile selected_runtime_futures_execution_roll_guard_v1.py
