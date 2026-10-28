@@ -363,6 +363,36 @@ jobs:
                 tests.test_selected_runtime_futures_warmup_continuity_product_20261028
               echo 'MMIBKR_P0_EA1E_CHANGED_SOURCE_NATIVE=PASS'
             fi
+            # Exact #883@6527 post-ea1e changed-source native acceptance.
+            # One fixed brokerless Python invocation, no pytest/network/live.
+            if [ "$REQUEST_SOURCE_SHA" = "6527d751679351e9b4ce913e65082a0acc7a9b20" ]; then
+              for required in \
+                tests/test_selected_runtime_cloud_daemon_v1.py \
+                tests/test_forward_exact_pnl_boolean_numeric_product_20261028.py \
+                tests/test_selected_runtime_initial_backfill_continuity_product_20261028.py \
+                tests/test_futures_weekend_cache_guard_product_20261028.py; do
+                test -f "$required" || { echo 'MMIBKR_P0_6527_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
+              done
+              private_cmd python - <<'PY'
+          import unittest
+          from tests import test_futures_weekend_cache_guard_product_20261028 as weekend
+          modules = (
+              'tests.test_selected_runtime_cloud_daemon_v1',
+              'tests.test_forward_exact_pnl_boolean_numeric_product_20261028',
+              'tests.test_selected_runtime_initial_backfill_continuity_product_20261028',
+          )
+          suite = unittest.TestSuite(
+              unittest.defaultTestLoader.loadTestsFromName(name) for name in modules
+          )
+          result = unittest.TestResult()
+          suite.run(result)
+          if not result.wasSuccessful() or result.testsRun == 0:
+              raise SystemExit(1)
+          weekend.test_friday_close_to_monday_afternoon_is_not_a_weekend_only_cache()
+          weekend.test_friday_morning_to_sunday_reopen_is_not_weekend_only()
+          PY
+              echo 'MMIBKR_P0_6527_CHANGED_SOURCE_NATIVE=PASS'
+            fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
             # source in this existing encrypted, brokerless CI job.
