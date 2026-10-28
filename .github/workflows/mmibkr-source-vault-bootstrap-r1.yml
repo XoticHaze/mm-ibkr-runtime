@@ -394,6 +394,30 @@ jobs:
           PY
               echo 'MMIBKR_P0_6527_OR_83EC_CHANGED_SOURCE_NATIVE=PASS'
             fi
+            # Frozen 1dc1 P0 release cut: source-changed daemon broker-action
+            # tri-state plus live execId UTC idempotency and successor identity.
+            # One brokerless native invocation on the existing encrypted runner;
+            # private source/test output never reaches public logs.
+            if [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ]; then
+              for required in \
+                scripts/operator/selected_runtime_cloud_daemon_v1.py \
+                selected_runtime_live_execution_ledger_v1.py \
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+                tests/test_selected_runtime_cloud_daemon_v1.py \
+                tests/test_selected_runtime_live_execution_ledger_v1.py \
+                tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+                test -f "$required" || { echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
+              done
+              private_cmd python -m py_compile \
+                scripts/operator/selected_runtime_cloud_daemon_v1.py \
+                selected_runtime_live_execution_ledger_v1.py \
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
+              private_cmd python -m unittest -v \
+                tests.test_selected_runtime_cloud_daemon_v1 \
+                tests.test_selected_runtime_live_execution_ledger_v1 \
+                tests.test_ibkr_live_successor_ledger_reconcile_v1
+              echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=PASS'
+            fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
             # source in this existing encrypted, brokerless CI job.
