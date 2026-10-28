@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "fe30bf977d21beea58e0beb1f23263e405ec5891",
-  "requested_by": "continue-release-selected975-fe30-changed-ui-20261027",
-  "purpose": "Existing encrypted Source Vault for selected #975 exact fe30 after two changed BotConsole recent-activity UI source/test paths; no P01 input, no Gateway, no live owner, no broker mutation; private native acceptance remains separately issuer/owner gated",
+  "source_sha": "42811ea3e855f09a5caef3b8f58402b40f491f1a",
+  "requested_by": "continue-release-selected975-42811-product1367-20261028",
+  "purpose": "Existing selected Release #975 consumed Product #1367 exact selected DCA execution-policy operator truth: helper aee0019e, Node test 1e779882 (Product exact-source 5/5), JSX 48fd0960. Existing OIDC encrypted Source Vault source/native admission only. Public #2027 changed-head exact Node allowlist staged. No broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment.",
   "live_execution_allowed": false,
-  "attempt": 221,
-  "reason": "selected_975_fe30_changed_source_admission",
+  "attempt": 234,
+  "reason": "selected_975_42811_product1367_exact_encrypted_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
