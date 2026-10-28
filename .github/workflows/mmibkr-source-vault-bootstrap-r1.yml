@@ -408,14 +408,88 @@ jobs:
                 tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
                 test -f "$required" || { echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'; exit 1; }
               done
-              private_cmd python -m py_compile \
+              if private_cmd python -m py_compile \
                 scripts/operator/selected_runtime_cloud_daemon_v1.py \
                 selected_runtime_live_execution_ledger_v1.py \
-                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
-              private_cmd python -m unittest -v \
-                tests.test_selected_runtime_cloud_daemon_v1 \
-                tests.test_selected_runtime_live_execution_ledger_v1 \
-                tests.test_ibkr_live_successor_ledger_reconcile_v1
+                scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py; then
+                echo 'MMIBKR_P0_1DC1_COMPILE=PASS'
+              else
+                echo 'MMIBKR_P0_1DC1_COMPILE=FAIL_CLOSED'
+                exit 1
+              fi
+              # One standard unittest suite; only fixed numeric ordinal escapes
+              # the private runner on failure, never test names or assertions.
+              ordinal_file="$RUNNER_TEMP/mmibkr-p0-1dc1-native-ordinal.txt"
+              rm -f "$ordinal_file"
+              if private_cmd python - <<'PY'
+          import os
+          import unittest
+          from pathlib import Path
+
+          modules = (
+              "tests.test_selected_runtime_cloud_daemon_v1",
+              "tests.test_selected_runtime_live_execution_ledger_v1",
+              "tests.test_ibkr_live_successor_ledger_reconcile_v1",
+          )
+          suite = unittest.TestSuite(
+              unittest.defaultTestLoader.loadTestsFromName(name)
+              for name in modules
+          )
+          ordinal_path = Path(os.environ["RUNNER_TEMP"]) / "mmibkr-p0-1dc1-native-ordinal.txt"
+
+          class PrivateOrdinalResult(unittest.TestResult):
+              ordinal = 0
+
+              def startTest(self, test):
+                  self.ordinal += 1
+                  super().startTest(test)
+
+              def _record_failure(self, test):
+                  test_id = test.id()
+                  module_number = next(
+                      (idx for idx, name in enumerate(modules, 1)
+                       if test_id.startswith(name + ".")), 0
+                  )
+                  ordinal_path.write_text(
+                      f"{module_number}:{self.ordinal}", encoding="ascii"
+                  )
+                  self.stop()
+
+              def addFailure(self, test, err):
+                  super().addFailure(test, err)
+                  self._record_failure(test)
+
+              def addError(self, test, err):
+                  super().addError(test, err)
+                  self._record_failure(test)
+
+              def addUnexpectedSuccess(self, test):
+                  super().addUnexpectedSuccess(test)
+                  self._record_failure(test)
+
+              def addSubTest(self, test, subtest, err):
+                  super().addSubTest(test, subtest, err)
+                  if err is not None:
+                      self._record_failure(test)
+
+          result = PrivateOrdinalResult()
+          suite.run(result)
+          if result.testsRun == 0 or not result.wasSuccessful():
+              raise SystemExit(1)
+          PY
+              then
+                echo 'MMIBKR_P0_1DC1_MODULES=PASS'
+              else
+                if [ -s "$ordinal_file" ]; then
+                  ordinal="$(cat "$ordinal_file")"
+                  if [[ "$ordinal" =~ ^([1-3]):([1-9][0-9]?)$ ]]; then
+                    echo "MMIBKR_P0_1DC1_FAILED_MODULE_ORDINAL=${BASH_REMATCH[1]}"
+                    echo "MMIBKR_P0_1DC1_FAILED_CASE_ORDINAL=${BASH_REMATCH[2]}"
+                  fi
+                fi
+                echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=FAIL_CLOSED'
+                exit 1
+              fi
               echo 'MMIBKR_P0_1DC1_CHANGED_SOURCE_NATIVE=PASS'
             fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
