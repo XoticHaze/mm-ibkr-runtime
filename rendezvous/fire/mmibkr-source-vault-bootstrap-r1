@@ -1,15 +1,13 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d18e5e384163d31d399dcd65c723744517842741",
-  "requested_by": "continue-release-selected975-d18e-local-exact-vite-build-20261028",
-  "purpose": "Use existing OIDC public encrypted Source Vault parity-export recipient to produce a one-run X25519+ChaCha20Poly1305 encrypted exact selected d18e source archive for bounded agent-local native Vite build and selected UI acceptance; never publish private plaintext or make Library CURRENT selected instead of canonical main. Previously accepted Node/PnL proofs reused; no broker/Gateway/order/flatten/live, P01 original/holdout, protected main, Cloudflare deploy or scheduler mutation.",
+  "source_sha": "b5da906da76d717a9b1a141e06bd7db93a119f2d",
+  "requested_by": "continue-release-selected975-b5da-local-151-green-20261028",
+  "purpose": "Publish exact selected #975 b5da after bounded two-path UI correction: Pilot finite overlay -0 normalized to canonical zero and operator cache literal optional-chain test fixed. Agent-local selected d18 encrypted export plus exact remote two-file Git blob delta: 151/151 Node subtests PASS. Existing OIDC public encrypted Source Vault source/native admission only, no broker/Gateway/order/flatten/live, P01 original/holdout, protected main, Cloudflare deploy or scheduler mutation.",
   "live_execution_allowed": false,
-  "attempt": 230,
-  "reason": "selected_975_d18e_private_encrypted_local_parity_export_for_exact_vite_build",
+  "attempt": 231,
+  "reason": "selected_975_b5da_pilot_overlay_and_operator_cache_native_151_green",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
-  },
-  "parity_export_recipient_public_b64": "BviKXcAR5/sPjCEX8CiXOirJHpTLJI/nIxWwOAOWZz4=",
-  "parity_export_recipient_key_id": "sha256:a03a486577bc6772e823eb27eef4e45c68ca5d93a592426ea69008979ef189ee"
+  }
 }
