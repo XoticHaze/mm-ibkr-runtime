@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "4dbbab1847b5cdffa85c8988b04bedf97235968a",
+  "source_sha": "42813cad10161c19bc57e0bc1d5d09ddf2fdd2d6",
   "requested_by": "continue-release-r19-clock-20261028181452713",
-  "purpose": "Frozen selected MM #975 console and P0/UI source, 117 commits changed since last 8e293 strict UI admission; one distinct full native strict_ui acceptance, encrypted source-only; no broker/login/order/flatten/live/Pi mutation.",
+  "purpose": "Single changed-source strict_ui native acceptance after exact #975 test fixture conId correction PR1480; prior 4db encrypted run failed preflight ordinal12, private material destroyed; no broker/login/order/flatten/live/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 253,
-  "reason": "release_current_selected_ui_4dbbab_exact_native_admission",
+  "attempt": 254,
+  "reason": "release_strict_ui_42813_preflight_ordinal12_fixture_correction",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
