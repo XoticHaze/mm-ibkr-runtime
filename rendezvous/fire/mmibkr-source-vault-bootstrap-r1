@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "3eb65d2c85c4c84d3c78cd9bf6f07993cb5ba414",
+  "source_sha": "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae",
   "requested_by": "continue-release-r19-clock-20261028164613590",
-  "purpose": "Exact frozen successor-aware P0 cut adds Product #1470 read-only broker UTC execId identity to previously accepted 7d3c; one changed-source encrypted p0_owner native acceptance, no broker/login/order/flatten/live/Pi mutation.",
+  "purpose": "FINAL frozen P0 release candidate this firing: Product #1471 exact execId execution-time idempotency, following accepted 3eb65. One distinct changed-source encrypted p0_owner native admission, no further moving-head chase; no broker/login/order/flatten/live/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 251,
-  "reason": "p0_selected_883_3eb65_successor_utc_identity_native_admission",
+  "attempt": 252,
+  "reason": "p0_release_frozen_1dc1_execid_time_identity_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
