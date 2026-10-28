@@ -1,0 +1,14 @@
+{
+  "schema": "mmibkr.source_vault_bootstrap_request.v1",
+  "source_sha": "ea1eafd2f660f5c631d71d8d448c2f97f6589e71",
+  "requested_by": "ContinueRelease",
+  "purpose": "Freeze exact P0 #883 ea1e release cut after Product MNQ missing-weekday warmup continuity. Existing encrypted p0_owner native, one focused new-source invocation; no broker, Gateway, live or protected main.",
+  "live_execution_allowed": false,
+  "attempt": 247,
+  "reason": "p0_883_ea1e_frozen_release_cut_native_after_mnq_warmup_fix",
+  "runtime_authority_changed": false,
+  "compute_requirements": {
+    "trust_mode": "public_encrypted"
+  },
+  "validation_profile": "p0_owner"
+}
