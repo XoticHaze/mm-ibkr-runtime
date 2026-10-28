@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0e1c31e93849b7fac26827746e4d5ed8ba61bc73",
-  "requested_by": "continue-release-selected975-0e1c-two-product-consumption-20261028",
-  "purpose": "Exact selected #975 0e1c31e after verified nonforced Product #1365 canonical cloud-paper unpaired/coverage/source-ref fail-close and Product #1364 strict decimal Pilot candle admission. Existing authenticated OIDC encrypted Source Vault producer, source-only no broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment. Changed-source native acceptance and owner/security release remain separate.",
+  "source_sha": "059acdda5bbd9e6c15b71f2ca4a7f171de0cc8f6",
+  "requested_by": "continue-release-selected975-059ac-product1366-20261028",
+  "purpose": "Existing selected Release #975 consumed Product #1366 exact cloud paper boundary cross-ledger run-id integrity (source ad08ec01, test f0220346). Reuse existing OIDC encrypted Source Vault source/native admission. Public #2027 already exact-allowlists tests.test_cloud_paper_boundary_history_v1. No broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment.",
   "live_execution_allowed": false,
-  "attempt": 232,
-  "reason": "selected_975_0e1c_product_1365_1364_encrypted_source_admission",
+  "attempt": 233,
+  "reason": "selected_975_059ac_product1366_exact_encrypted_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
