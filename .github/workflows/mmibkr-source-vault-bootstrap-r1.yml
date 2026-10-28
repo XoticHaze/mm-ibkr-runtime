@@ -72,6 +72,10 @@ jobs:
         with:
           python-version: '3.11.16'
 
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+
       - name: Install fixed crypto dependency
         run: python -m pip install --disable-pip-version-check cryptography==46.0.1
 
@@ -537,6 +541,20 @@ jobs:
             fi
           done
           echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS'
+          # Source Vault admission must exercise the same complete native
+          # Bot Console verification and production Vite build as deploy.
+          # Private stdout/stderr can contain excerpts; keep both suppressed
+          # in the public encrypted-source workflow and fail closed.
+          if ! (
+            cd "$source_root/ui-react"
+            npm ci --ignore-scripts --no-audit --no-fund >/dev/null 2>&1 &&
+            npm run verify:bot-console >/dev/null 2>&1 &&
+            npm run build >/dev/null 2>&1
+          ); then
+            echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=PASS'
 
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
