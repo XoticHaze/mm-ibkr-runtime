@@ -216,7 +216,41 @@ jobs:
               tests.test_futures_position_safety \
               tests.test_selected_runtime_futures_roll_maintenance_v1; do
               echo "MMIBKR_NATIVE_PRIVATE_STAGE=$suite"
-              private_cmd python -m unittest -v "$suite"
+              if [ "$suite" = "tests.test_selected_runtime_live_incumbent_preflight_v1" ]; then
+                # The private native source remains silent. Only the ordinal of
+                # a failed existing test may leave the redacted CI boundary.
+                python - <<'PY'
+          import contextlib, sys, unittest
+          def flatten(group):
+              for item in group:
+                  if isinstance(item, unittest.TestSuite):
+                      yield from flatten(item)
+                  else:
+                      yield item
+          try:
+              suite = unittest.defaultTestLoader.loadTestsFromName(
+                  "tests.test_selected_runtime_live_incumbent_preflight_v1")
+              cases = list(flatten(suite))
+              if not cases:
+                  raise RuntimeError("no_cases")
+              with open("/dev/null", "w") as sink:
+                  for ordinal, case in enumerate(cases, 1):
+                      with contextlib.redirect_stdout(sink), contextlib.redirect_stderr(sink):
+                          result = unittest.TestResult()
+                          case.run(result)
+                      if not result.wasSuccessful():
+                          print("MMIBKR_P0_PREFLIGHT_CASE_FAILED_ORDINAL=" + str(ordinal))
+                          raise SystemExit(1)
+              print("MMIBKR_P0_PREFLIGHT_CASES_COMPLETE=" + str(len(cases)))
+          except SystemExit:
+              raise
+          except BaseException:
+              print("MMIBKR_P0_PREFLIGHT_CASE_DISCOVERY_FAILED")
+              raise SystemExit(1)
+          PY
+              else
+                private_cmd python -m unittest -v "$suite"
+              fi
             done
             if [ -f selected_runtime_futures_execution_roll_guard_v1.py ] &&
                [ -f tests/test_selected_runtime_futures_execution_roll_guard_v1.py ]; then
