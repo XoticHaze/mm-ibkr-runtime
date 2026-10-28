@@ -267,6 +267,21 @@ jobs:
               private_cmd python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
+            # Exact selected #883@92ff94 changed-source native acceptance.
+            # Do not silently skip missing source/test or print private output.
+            if [ "$REQUEST_SOURCE_SHA" = "92ff94ad2bcaee642c6fc3c7d4a3c78ad25fbb0e" ]; then
+              if [ ! -f selected_runtime_boundary_snapshot_hydrator_v1.py ] ||
+                 [ ! -f tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py ]; then
+                echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=FAIL_CLOSED'
+                exit 1
+              fi
+              private_cmd python -m py_compile \
+                selected_runtime_boundary_snapshot_hydrator_v1.py \
+                tests/test_selected_runtime_boundary_snapshot_hydrator_v1.py
+              private_cmd python -m unittest -v \
+                tests.test_selected_runtime_boundary_snapshot_hydrator_v1
+              echo 'MMIBKR_P0_BOUNDARY_SNAPSHOT_HYDRATOR_EXACT_SOURCE=PASS'
+            fi
             # Changed selected Product #1257 four-path no-loss merge: exercise
             # exact model preview authority guards on the admitted private
             # source in this existing encrypted, brokerless CI job.

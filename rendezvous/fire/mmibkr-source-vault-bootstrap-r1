@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "296d88ef78ee97b46f7f9b6731e8a6a7009300d2",
-  "requested_by": "manual-worker-MW-20261028084230744-paper-native-last",
-  "purpose": "Actual strict encrypted native admission after source-only test correction to observed unknown market aggregate, no production logic changes; one broker-paper bounded owner retry if accepted.",
+  "source_sha": "92ff94ad2bcaee642c6fc3c7d4a3c78ad25fbb0e",
+  "requested_by": "ContinueRelease",
+  "purpose": "Exact selected P0 #883 canonical owner source admission including boundary hydrator, live incumbent preflight and forward lifecycle delta. Existing encrypted p0_owner native acceptance only; no Gateway, broker, order, live activation or protected main mutation.",
   "live_execution_allowed": false,
-  "attempt": 240,
-  "reason": "second_paper_native_source_fixture_unknown_corrected",
+  "attempt": 242,
+  "reason": "selected_p0_883_92ff94_forward_lifecycle_boundary_native_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
