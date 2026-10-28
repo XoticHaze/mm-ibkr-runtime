@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "b5da906da76d717a9b1a141e06bd7db93a119f2d",
-  "requested_by": "continue-release-selected975-b5da-local-151-green-20261028",
-  "purpose": "Publish exact selected #975 b5da after bounded two-path UI correction: Pilot finite overlay -0 normalized to canonical zero and operator cache literal optional-chain test fixed. Agent-local selected d18 encrypted export plus exact remote two-file Git blob delta: 151/151 Node subtests PASS. Existing OIDC public encrypted Source Vault source/native admission only, no broker/Gateway/order/flatten/live, P01 original/holdout, protected main, Cloudflare deploy or scheduler mutation.",
+  "source_sha": "0e1c31e93849b7fac26827746e4d5ed8ba61bc73",
+  "requested_by": "continue-release-selected975-0e1c-two-product-consumption-20261028",
+  "purpose": "Exact selected #975 0e1c31e after verified nonforced Product #1365 canonical cloud-paper unpaired/coverage/source-ref fail-close and Product #1364 strict decimal Pilot candle admission. Existing authenticated OIDC encrypted Source Vault producer, source-only no broker/Gateway/order/flatten/live, protected private main, P01 original/holdout or Cloudflare deployment. Changed-source native acceptance and owner/security release remain separate.",
   "live_execution_allowed": false,
-  "attempt": 231,
-  "reason": "selected_975_b5da_pilot_overlay_and_operator_cache_native_151_green",
+  "attempt": 232,
+  "reason": "selected_975_0e1c_product_1365_1364_encrypted_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
