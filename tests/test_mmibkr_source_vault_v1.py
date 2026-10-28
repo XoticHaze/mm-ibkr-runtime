@@ -194,7 +194,7 @@ class SourceVaultTests(unittest.TestCase):
     def test_frozen_1dc1_changed_source_runs_brokerless_native_ledger_and_daemon(self):
         workflow = (Path(__file__).resolve().parents[1] /
                     '.github/workflows/mmibkr-source-vault-bootstrap-r1.yml').read_text()
-        gate = workflow.split('if [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ]; then', 1)[1].split('\\n            fi', 1)[0]
+        gate = workflow.split('if [ "$REQUEST_SOURCE_SHA" = "1dc1fe84132d95ff4b25ad601d6f4493c2ff85ae" ]; then', 1)[1].split('\n            fi', 1)[0]
         self.assertIn('tests/test_selected_runtime_cloud_daemon_v1.py', gate)
         self.assertIn('tests/test_selected_runtime_live_execution_ledger_v1.py', gate)
         self.assertIn('tests/test_ibkr_live_successor_ledger_reconcile_v1.py', gate)
