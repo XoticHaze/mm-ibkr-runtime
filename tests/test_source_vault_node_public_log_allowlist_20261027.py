@@ -3,7 +3,9 @@
 No private source is loaded and no workflow is dispatched.
 """
 from pathlib import Path
+import os
 import subprocess
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,6 +117,38 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
         self.assertEqual(result.stdout.strip(), "MMIBKR_PRIVATE_SOURCE_COMMAND=FAIL_CLOSED")
         self.assertNotIn("PRIVATE_PYTHON_SENTINEL", result.stdout + result.stderr)
 
+
+    def test_source_validation_profile_is_explicit_and_fail_closed(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("validation_profile = 'strict_ui'", source)
+        self.assertIn("validation_profile not in {'strict_ui', 'p0_owner'}", source)
+        self.assertIn("source validation profile rejected", source)
+        self.assertIn("REQUEST_VALIDATION_PROFILE=' + validation_profile", source)
+        self.assertIn("validation_profile = str(node.get('validation_profile') or 'strict_ui')", source)
+        self.assertIn("validation_profile = str((event.get('inputs') or {}).get('validation_profile') or 'strict_ui')", source)
+
+    def test_p0_owner_ui_stage_is_not_applicable_but_strict_ui_missing_test_fails(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        start = "      - name: Accept selected read-only operator UI pure Node contracts\\n"
+        end = "      - name: Encrypt exact private source for parity refresh\\n"
+        step = source.split(start, 1)[1].split(end, 1)[0]
+        script = step.split("        run: |\\n", 1)[1]
+        script = "\\n".join(line[10:] if line.startswith("          ") else line
+                           for line in script.splitlines())
+        with tempfile.TemporaryDirectory() as td:
+            env = dict(os.environ, RUNNER_TEMP=td, REQUEST_VALIDATION_PROFILE="p0_owner")
+            p0 = subprocess.run(["bash", "-c", script], env=env,
+                                capture_output=True, text=True, check=False)
+            self.assertEqual(p0.returncode, 0, p0.stderr)
+            self.assertIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE_P0_OWNER", p0.stdout)
+            self.assertNotIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=PASS", p0.stdout)
+            env["REQUEST_VALIDATION_PROFILE"] = "strict_ui"
+            strict = subprocess.run(["bash", "-c", script], env=env,
+                                    capture_output=True, text=True, check=False)
+            self.assertEqual(strict.returncode, 1)
+            self.assertIn("MMIBKR_SELECTED_UI_NATIVE_CASE_1=FAIL", strict.stdout)
+            self.assertIn("MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=FAIL_CLOSED", strict.stdout)
+            self.assertNotIn("botConsoleRecentActivity.test.mjs", strict.stdout + strict.stderr)
 
 if __name__ == "__main__":
     unittest.main()
