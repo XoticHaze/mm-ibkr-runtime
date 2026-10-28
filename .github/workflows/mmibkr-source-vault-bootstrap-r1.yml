@@ -7,6 +7,13 @@ on:
         description: Exact code-approved private MM-IBKR source SHA
         required: true
         type: string
+      validation_profile:
+        description: Stage-scoped native acceptance (strict_ui by default; p0_owner excludes UI-only tests)
+        required: false
+        type: choice
+        options:
+          - strict_ui
+          - p0_owner
   push:
     branches:
       - main
@@ -79,20 +86,25 @@ jobs:
 
           recipient = ''
           recipient_key_id = ''
+          validation_profile = 'strict_ui'
           if os.environ['GITHUB_EVENT_NAME'] == 'push':
               fire = Path('rendezvous/fire/mmibkr-source-vault-bootstrap-r1')
               if not fire.is_file():
                   raise SystemExit('source-vault bootstrap fire request missing')
               node = json.loads(fire.read_text(encoding='utf-8'))
               source_sha = str(node.get('source_sha') or '').strip().lower()
+              validation_profile = str(node.get('validation_profile') or 'strict_ui').strip().lower()
               recipient = str(node.get('parity_export_recipient_public_b64') or '').strip()
               recipient_key_id = str(node.get('parity_export_recipient_key_id') or '').strip()
           else:
               event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text(encoding='utf-8'))
               source_sha = str((event.get('inputs') or {}).get('source_sha') or '').strip().lower()
+              validation_profile = str((event.get('inputs') or {}).get('validation_profile') or 'strict_ui').strip().lower()
 
           if len(source_sha) != 40 or any(ch not in '0123456789abcdef' for ch in source_sha):
               raise SystemExit('exact 40-hex source_sha required')
+          if validation_profile not in {'strict_ui', 'p0_owner'}:
+              raise SystemExit('source validation profile rejected')
 
           requested = bool(recipient or recipient_key_id)
           if requested:
@@ -106,6 +118,7 @@ jobs:
 
           with Path(os.environ['GITHUB_ENV']).open('a', encoding='utf-8') as fh:
               fh.write('REQUEST_SOURCE_SHA=' + source_sha + '\n')
+              fh.write('REQUEST_VALIDATION_PROFILE=' + validation_profile + '\n')
               fh.write('PARITY_EXPORT_RECIPIENT_PUBLIC_B64=' + recipient + '\n')
               fh.write('PARITY_EXPORT_RECIPIENT_KEY_ID=' + recipient_key_id + '\n')
           with Path(os.environ['GITHUB_OUTPUT']).open('a', encoding='utf-8') as fh:
@@ -406,6 +419,16 @@ jobs:
         run: |
           set -euo pipefail
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          # P0 owner source has runtime tests but need not contain the full
+          # selected operator UI test tree. Never misreport this as UI PASS.
+          if [ "$REQUEST_VALIDATION_PROFILE" = 'p0_owner' ]; then
+            echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=NOT_APPLICABLE_P0_OWNER'
+            exit 0
+          fi
+          if [ "$REQUEST_VALIDATION_PROFILE" != 'strict_ui' ]; then
+            echo 'MMIBKR_SELECTED_UI_NATIVE_NODE_CONTRACTS=FAIL_CLOSED'
+            exit 1
+          fi
           # Node assertion failures may print private source excerpts. This is
           # a PUBLIC workflow: never emit raw private test stdout/stderr.
           # Keep diagnostics in the private owner, not public Actions logs.
