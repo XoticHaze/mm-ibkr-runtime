@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8e293daa6fe3448ea3fc8d7740c3b5811a9e307e",
-  "requested_by": "manual-worker-MW-20261028084230744",
-  "purpose": "Source-only UI: encrypt exact selected #975 source with strict_ui profile, run private native Node/Vite/Python in existing redacted Source Vault pipeline, then independently review before current public #2028 deployment pin. NO live/paper broker submission, no credentials exposure and no Pi/live owner handoff.",
+  "source_sha": "283d40f2a3c1233b81374d14b5eda43d75fe2a26",
+  "requested_by": "ContinueRelease",
+  "purpose": "Source-only exact current P0 #883 boundary completed-bar timestamp/OHLCV/duplicate integrity delta. Reuse existing encrypted Source Vault p0_owner profile with changed-source native hydrator acceptance; no live bot, broker, credentials or protected main mutation.",
   "live_execution_allowed": false,
-  "attempt": 238,
-  "reason": "selected_ui_975_8e293_exact_strict_ui_native_admission_no_broker",
+  "attempt": 239,
+  "reason": "selected_p0_883_283d_boundary_snapshot_integrity_exact_source_admission",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
