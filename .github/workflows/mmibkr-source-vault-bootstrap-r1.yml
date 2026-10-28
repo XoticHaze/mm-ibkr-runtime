@@ -210,10 +210,10 @@ jobs:
             # private-source leaf. Reuse this exact encrypted no-broker runner;
             # never publish private Python assertion output to public logs.
             if [ -f tests/test_selected_futures_roll_identity_product_20261028.py ]; then
-              private_cmd python -m py_compile \\
-                selected_runtime_futures_execution_roll_guard_v1.py \\
+              private_cmd python -m py_compile \
+                selected_runtime_futures_execution_roll_guard_v1.py \
                 tests/test_selected_futures_roll_identity_product_20261028.py
-              private_cmd python -m unittest -v \\
+              private_cmd python -m unittest -v \
                 tests.test_selected_futures_roll_identity_product_20261028
               echo 'MMIBKR_P0_FUTURES_CONID_REDUCE_ONLY_EXACT_SOURCE_TESTS=PASS'
             fi
