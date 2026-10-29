@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "9b7832fd85069070ca885be178e6eedb9db44c43",
-  "requested_by": "ContinueRelease-R19-20261029034854187",
-  "purpose": "One exact selected canonical P0 owner #883@9b7832 encrypted native p0_owner acceptance of existing MNQ12/AMAT15/APH15 selected runtime, successor account/position/order/execId ledger, lifecycle and PnL changes since accepted be26; no broker login/order/flatten/live flag/Pi mutation. Preserve prior UI 2641 attempt262 independently.",
+  "source_sha": "695ad34cf983435fc1c6e57f137c981c7bd3d3e1",
+  "requested_by": "ContinueRelease-R19-20261029054306771",
+  "purpose": "One frozen exact selected P0 #883@695ad descriptor-bound Pi root-account seal, all-three read-only cache completeness, successor ledger, lifecycle and forward PnL native p0_owner acceptance after UI 2641; no broker login/order/flatten/identity/live flag/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 263,
-  "reason": "release_selected_p0_9b7832_native_after_ui2641_owner_review",
+  "attempt": 264,
+  "reason": "release_selected_p0_695ad_descriptor_safe_account_and_readback_native_after_ui2641",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
