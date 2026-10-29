@@ -771,6 +771,7 @@ jobs:
             runtime_selected_universe_14tu.py \
             tests/test_ibkr_pi_canonical_bootstrap_v1.py \
             tests/test_ibkr_pi_external_inventory_v1.py \
+            tests/test_pi_bot_fixed_client_identity_20261029.py \
             tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
             if [ ! -f "$source_root/$required" ]; then
               echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
@@ -784,12 +785,15 @@ jobs:
               scripts/operator/ibkr_pi_external_inventory_v1.py \
               scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
               runtime_selected_universe_14tu.py \
+              main.py \
               tests/test_ibkr_pi_canonical_bootstrap_v1.py \
-              tests/test_ibkr_pi_external_inventory_v1.py
+              tests/test_ibkr_pi_external_inventory_v1.py \
+              tests/test_pi_bot_fixed_client_identity_20261029.py
             # One fixed brokerless source-specific acceptance invocation.
             private_cmd python -m unittest -q \
               tests.test_ibkr_pi_canonical_bootstrap_v1 \
-              tests.test_ibkr_pi_external_inventory_v1
+              tests.test_ibkr_pi_external_inventory_v1 \
+              tests.test_pi_bot_fixed_client_identity_20261029
             # The successor suite ran in the preexisting p0_owner native
             # step. Do not rerun it or infer historical execId completeness.
             # Placeholder digest/IDs here are inert Compose syntax fixtures,
