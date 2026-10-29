@@ -739,12 +739,12 @@ jobs:
             echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
           fi
 
-      - name: Accept exact frozen 9b7832 P0 changed-source readback and PnL
+      - name: Accept exact frozen 695ad P0 changed-source readback and PnL
         shell: bash
         run: |
           set -euo pipefail
-          if [ "$REQUEST_SOURCE_SHA" != "9b7832fd85069070ca885be178e6eedb9db44c43" ] || [ "$REQUEST_VALIDATION_PROFILE" != "p0_owner" ]; then
-            echo 'MMIBKR_SELECTED_P0_9B783_NATIVE=NOT_APPLICABLE'
+          if [ "$REQUEST_SOURCE_SHA" != "695ad34cf983435fc1c6e57f137c981c7bd3d3e1" ] || [ "$REQUEST_VALIDATION_PROFILE" != "p0_owner" ]; then
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=NOT_APPLICABLE'
             exit 0
           fi
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
@@ -756,7 +756,7 @@ jobs:
             tests/test_cloud_forward_performance_v1.py \
             tests/test_selected_runtime_forward_execution_lifecycle_v1.py; do
             if [ ! -f "$source_root/$required" ]; then
-              echo 'MMIBKR_SELECTED_P0_9B783_NATIVE=FAIL_CLOSED'
+              echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=FAIL_CLOSED'
               exit 1
             fi
           done
@@ -767,9 +767,9 @@ jobs:
             tests.test_read_only_live_incumbent_scope_v1 \
             tests.test_cloud_forward_performance_v1 \
             tests.test_selected_runtime_forward_execution_lifecycle_v1) >/dev/null 2>&1; then
-            echo 'MMIBKR_SELECTED_P0_9B783_NATIVE=PASS'
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=PASS'
           else
-            echo 'MMIBKR_SELECTED_P0_9B783_NATIVE=FAIL_CLOSED'
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=FAIL_CLOSED'
             exit 1
           fi
 
