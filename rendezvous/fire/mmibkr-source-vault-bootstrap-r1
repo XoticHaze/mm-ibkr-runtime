@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2641a85c812af869df7ddb2a9c0a8feb0944d45a",
-  "requested_by": "ContinueRelease-R19-20261029031933622",
-  "purpose": "One exact selected UI #975@2641 strict_ui encrypted native acceptance of Foundry issuer adapter identity, futures warmup cache row-count, Pilot real HTTP status, Builder explicit success and condition rows, preserving accepted ae0c lifecycle and existing full UI verify/build; no broker login/order/flatten/live flag/Pi mutation.",
+  "source_sha": "9b7832fd85069070ca885be178e6eedb9db44c43",
+  "requested_by": "ContinueRelease-R19-20261029034854187",
+  "purpose": "One exact selected canonical P0 owner #883@9b7832 encrypted native p0_owner acceptance of existing MNQ12/AMAT15/APH15 selected runtime, successor account/position/order/execId ledger, lifecycle and PnL changes since accepted be26; no broker login/order/flatten/live flag/Pi mutation. Preserve prior UI 2641 attempt262 independently.",
   "live_execution_allowed": false,
-  "attempt": 262,
-  "reason": "release_selected_ui_2641_product_four_children_native_and_full_ui_build",
+  "attempt": 263,
+  "reason": "release_selected_p0_9b7832_native_after_ui2641_owner_review",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
