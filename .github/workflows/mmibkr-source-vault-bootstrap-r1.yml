@@ -739,6 +739,73 @@ jobs:
             echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
           fi
 
+      - name: Accept Pi bot-only brokerless owner source and Compose on encrypted runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          # This is exact-source Python/Compose acceptance ONLY, not a Pi ARM64
+          # image build, root deployment, broker login or submit authorization.
+          if [ "$REQUEST_VALIDATION_PROFILE" != "p0_owner" ]; then
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=NOT_APPLICABLE_UI_PROFILE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -d "$source_root/deploy/pi-bot" ]; then
+            # Historic frozen 695ad has no Pi-only bot; never report a PASS
+            # for that source cut or assume it admitted the later #1578.
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=NOT_APPLICABLE_OLD_SOURCE'
+            exit 0
+          fi
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
+            return 1
+          }
+          for required in \
+            deploy/pi-bot/compose.yaml \
+            deploy/pi-bot/Dockerfile \
+            deploy/pi-bot/Dockerfile.dockerignore \
+            scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
+            scripts/operator/ibkr_pi_external_inventory_v1.py \
+            scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+            runtime_selected_universe_14tu.py \
+            tests/test_ibkr_pi_canonical_bootstrap_v1.py \
+            tests/test_ibkr_pi_external_inventory_v1.py \
+            tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+            if [ ! -f "$source_root/$required" ]; then
+              echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
+              exit 1
+            fi
+          done
+          (
+            cd "$source_root"
+            private_cmd python -m py_compile \
+              scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
+              scripts/operator/ibkr_pi_external_inventory_v1.py \
+              scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+              runtime_selected_universe_14tu.py \
+              tests/test_ibkr_pi_canonical_bootstrap_v1.py \
+              tests/test_ibkr_pi_external_inventory_v1.py
+            # One fixed brokerless source-specific acceptance invocation.
+            private_cmd python -m unittest -q \
+              tests.test_ibkr_pi_canonical_bootstrap_v1 \
+              tests.test_ibkr_pi_external_inventory_v1
+            # The successor suite ran in the preexisting p0_owner native
+            # step. Do not rerun it or infer historical execId completeness.
+            # Placeholder digest/IDs here are inert Compose syntax fixtures,
+            # never image pull/build, identity allocation or deploy artifacts.
+            private_cmd env \
+              MMIBKR_SELECTED_SOURCE_SHA="$REQUEST_SOURCE_SHA" \
+              MMIBKR_PI_BOT_IMAGE="example.invalid/mmibkr-pi-canonical@sha256:0000000000000000000000000000000000000000000000000000000000000000" \
+              MMIBKR_PI_BOT_CLIENT_ID=7901 \
+              MMIBKR_PI_INSPECT_CLIENT_ID=7801 \
+              docker compose -f deploy/pi-bot/compose.yaml \
+                --profile inspect --profile operator-activation config -q
+          )
+          echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=PASS'
+          echo "MMIBKR_PI_BOT_ACCEPTED_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+          echo 'MMIBKR_PI_BOT_ARM64_IMAGE=NOT_ATTESTED'
+
       - name: Accept exact frozen 695ad P0 changed-source readback and PnL
         shell: bash
         run: |
