@@ -770,6 +770,11 @@ jobs:
             echo 'MMIBKR_SELECTED_UI_2641_NATIVE=NOT_APPLICABLE'
             exit 0
           fi
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_SELECTED_UI_2641_PRIVATE_COMMAND=FAIL_CLOSED'
+            return 1
+          }
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
           for required in \
             tests/test_foundry_model_promotion_admission_v1.py \
@@ -786,20 +791,20 @@ jobs:
           # This exact selected source changes pytest-function issuer guards,
           # unittest warmup/lifecycle and pure Node UI truth. One bounded
           # acceptance step, no private test output on the public runner.
-          if ! python -m pip install --disable-pip-version-check pytest==8.3.5 >/dev/null 2>&1; then
+          if ! private_cmd python -m pip install --disable-pip-version-check pytest==8.3.5; then
             echo 'MMIBKR_SELECTED_UI_2641_NATIVE=FAIL_CLOSED'
             exit 1
           fi
           if ! (
             cd "$source_root"
-            python -m pytest -q tests/test_foundry_model_promotion_admission_v1.py >/dev/null 2>&1 &&
-            python -m unittest -q \
+            private_cmd python -m pytest -q tests/test_foundry_model_promotion_admission_v1.py &&
+            private_cmd python -m unittest -q \
               tests.test_selected_runtime_cloud_bar_clock_v1 \
-              tests.test_selected_runtime_forward_execution_lifecycle_v1.SelectedRuntimeForwardExecutionLifecycleV1Tests.test_exact_completed_fill_count_and_execid_set_fail_closed >/dev/null 2>&1 &&
-            node --test \
+              tests.test_selected_runtime_forward_execution_lifecycle_v1.SelectedRuntimeForwardExecutionLifecycleV1Tests.test_exact_completed_fill_count_and_execid_set_fail_closed &&
+            private_cmd node --test \
               ui-react/src/lib/builderPreviewConditionRows.test.mjs \
               ui-react/src/lib/modularBuilderProofContext.test.mjs \
-              ui-react/src/lib/pilotHandoffPresentationTruth.test.mjs >/dev/null 2>&1
+              ui-react/src/lib/pilotHandoffPresentationTruth.test.mjs
           ); then
             echo 'MMIBKR_SELECTED_UI_2641_NATIVE=FAIL_CLOSED'
             exit 1
