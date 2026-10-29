@@ -801,7 +801,17 @@ jobs:
               MMIBKR_PI_INSPECT_CLIENT_ID=7801 \
               docker compose -f deploy/pi-bot/compose.yaml \
                 --profile inspect --profile operator-activation config -q
+            # Resolve ALL production Python package wheels against actual
+            # aarch64 CPython 3.11 tags, not the x86 Actions runner's ABI.
+            # This fetches only public wheels into ephemeral runner storage,
+            # performs no Docker build/pull and never publishes private code.
+            private_cmd python -m pip download --disable-pip-version-check \
+              --quiet --only-binary=:all: --platform manylinux_2_17_aarch64 \
+              --implementation cp --python-version 3.11 --abi cp311 \
+              --dest "$RUNNER_TEMP/mmibkr-pi-arm64-wheel-resolution" \
+              -r requirements.txt tzdata
           )
+          echo 'MMIBKR_PI_BOT_ARM64_WHEEL_RESOLUTION=PASS'
           echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=PASS'
           echo "MMIBKR_PI_BOT_ACCEPTED_SOURCE_SHA=$REQUEST_SOURCE_SHA"
           echo 'MMIBKR_PI_BOT_ARM64_IMAGE=NOT_ATTESTED'
