@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "be26b149de4b706427de65dc835a71c7428c0b65",
-  "requested_by": "ManualWorker-MW-20261028212037004",
-  "purpose": "One exact frozen be26 p0_owner encrypted native acceptance of fff4 successor ledger/fsync/execId and all three incumbent scope plus strict production-account flatten preview matching; no broker login/order/flatten/live flag/Pi mutation.",
+  "source_sha": "ae0c3c3989f29b24b1ce3e42014c7a95db5bb124",
+  "requested_by": "ContinueRelease-R19-20261029004704053",
+  "purpose": "One exact selected UI #975 ae0c3c strict_ui encrypted full native acceptance after merged 23-path owner integrity and MNQ weekday continuity; no broker login/order/flatten/live flag/Pi mutation.",
   "live_execution_allowed": false,
-  "attempt": 260,
-  "reason": "release_p1_be26_integrity_account_exact_scope_changed_source_native",
+  "attempt": 261,
+  "reason": "release_selected_ui_ae0c3c_p0_owner_integrity_and_mnq_continuity_native",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "p0_owner"
+  "validation_profile": "strict_ui"
 }
