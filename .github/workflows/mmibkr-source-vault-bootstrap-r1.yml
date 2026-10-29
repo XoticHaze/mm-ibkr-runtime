@@ -739,6 +739,29 @@ jobs:
             echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
           fi
 
+      - name: Accept exact ae0c3c lifecycle reconciliation changed-source case
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$REQUEST_SOURCE_SHA" != "ae0c3c3989f29b24b1ce3e42014c7a95db5bb124" ] || [ "$REQUEST_VALIDATION_PROFILE" != "strict_ui" ]; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -f "$source_root/tests/test_selected_runtime_forward_execution_lifecycle_v1.py" ]; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          # One exact changed-source method, six bounded subcases. Private
+          # assertions/source stay off public logs; no broker connection.
+          if (cd "$source_root" && python -m unittest -q \
+            tests.test_selected_runtime_forward_execution_lifecycle_v1.SelectedRuntimeForwardExecutionLifecycleV1Tests.test_exact_completed_fill_count_and_execid_set_fail_closed) >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=PASS'
+          else
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+
       - name: Accept selected read-only operator UI pure Node contracts
         shell: bash
         run: |
