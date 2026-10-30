@@ -63,8 +63,9 @@ jobs:
   bootstrap:
     if: ${{ github.event_name != 'pull_request' }}
     needs: contract
-    runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    # Native ARM64 host, not x86 QEMU or a source-only emulated build.
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
 
@@ -169,6 +170,76 @@ jobs:
           print('MMIBKR_SOURCE_VAULT_MANIFEST_SHA256=' + node['manifest_sha256'])
           print('MMIBKR_SOURCE_VAULT_STATUS=' + node['status'])
           PY
+
+      - name: Build selected canonical Pi image on native ARM64 (ephemeral, private)
+        id: native_pi_arm64_image
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          if [ "$REQUEST_VALIDATION_PROFILE" != 'p0_owner' ]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=NOT_APPLICABLE_UI_PROFILE'
+            exit 0
+          fi
+          # This builds the SAME exact-SHA decrypted source already materialized
+          # and tested inside the admitted encrypted-source consumer. Neither
+          # Docker build logs nor private source are emitted on public Actions.
+          # No registry push, public artifact, Pi install, or broker connection.
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          test -f "$source_root/deploy/pi-bot/Dockerfile" || {
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=SOURCE_MISSING'
+            exit 1
+          }
+          test -f "$source_root/deploy/pi-bot/Dockerfile.dockerignore" || {
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=CONTEXT_GUARD_MISSING'
+            exit 1
+          }
+          case "$(uname -m)" in
+            aarch64|arm64) ;;
+            *) echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=NOT_NATIVE_ARM64'; exit 1 ;;
+          esac
+          image_tag="mmibkr-pi-native-review:${REQUEST_SOURCE_SHA:0:12}"
+          if ! (cd "$source_root" && docker build \
+              --platform linux/arm64 \
+              --pull \
+              --no-cache \
+              --build-arg "MMIBKR_SELECTED_SOURCE_SHA=$REQUEST_SOURCE_SHA" \
+              --file deploy/pi-bot/Dockerfile \
+              --tag "$image_tag" .) >/dev/null 2>&1; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=FAILED'
+            exit 1
+          fi
+          image_arch="$(docker image inspect --format '{{.Architecture}}' "$image_tag")"
+          image_os="$(docker image inspect --format '{{.Os}}' "$image_tag")"
+          image_rev="$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$image_tag")"
+          image_id="$(docker image inspect --format '{{.Id}}' "$image_tag")"
+          if [ "$image_arch" != arm64 ] || [ "$image_os" != linux ] || \
+             [ "$image_rev" != "$REQUEST_SOURCE_SHA" ] || \
+             [[ ! "$image_id" =~ ^sha256:[0-9a-f]{64}$ ]]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=IDENTITY_REJECTED'
+            exit 1
+          fi
+          # A disconnected, read-only import check is not a broker inspection
+          # and does not create a Pi trading process or order.
+          if ! docker run --rm --pull never --platform linux/arm64 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,nosuid,size=64m \
+            --memory 1200m --cpus 1.25 \
+            --env MMIBKR_PI_BOT_OWNER_MODE=1 \
+            --entrypoint python "$image_tag" \
+            -c 'import indicators' >/dev/null 2>&1; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=READONLY_IMPORT_FAILED'
+            exit 1
+          fi
+          # Image ID identifies ephemeral runner layers, not a deliverable
+          # registry RepoDigest. Never publish private layers in a public repo.
+          echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=PASS'
+          echo "MMIBKR_PI_NATIVE_ARM64_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+          echo "MMIBKR_PI_NATIVE_ARM64_IMAGE_ID=$image_id"
+          echo 'MMIBKR_PI_IMAGE_REGISTRY_DIGEST=NOT_PUBLISHED'
+          echo 'MMIBKR_PI_BOT_INSTALLED=0'
+          echo 'MMIBKR_PI_BOT_LIVE_SUBMIT=0'
 
       - name: Run existing MM no-broker config, checkpoint and futures regression tests
         shell: bash
@@ -321,9 +392,21 @@ jobs:
             # their established acceptance result.
             if [ -f tests/test_selected_runtime_live_inventory_authority_v1.py ]; then
               private_cmd python -m py_compile selected_runtime_live_inventory_authority_v1.py
-              private_cmd python -m unittest -v \
-                tests.test_selected_runtime_live_inventory_authority_v1 \
-                tests.test_selected_runtime_position_ownership_integration_v1
+              # Keep private source and assertions off the public runner log.
+              # If the selected source fails, identify the exact failing test
+              # module without emitting a traceback, account, or source text.
+              if ! private_cmd python -m unittest -v \
+                tests.test_selected_runtime_live_inventory_authority_v1; then
+                echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_FAILED_MODULE=1'
+                exit 1
+              fi
+              echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_MODULE_1=PASS'
+              if ! private_cmd python -m unittest -v \
+                tests.test_selected_runtime_position_ownership_integration_v1; then
+                echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_FAILED_MODULE=2'
+                exit 1
+              fi
+              echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_MODULE_2=PASS'
               echo 'MMIBKR_LIVE_PERSISTED_INVENTORY_TESTS=PASS'
             fi
             # Changed-source P0 journal acceptance uses this same attested
@@ -739,6 +822,201 @@ jobs:
             echo 'MMIBKR_SELECTED_FUNDED_PNL_NATIVE_EXACT_SOURCE=NOT_APPLICABLE'
           fi
 
+      - name: Accept Pi bot-only brokerless owner source and Compose on encrypted runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          # This is exact-source Python/Compose acceptance ONLY, not a Pi ARM64
+          # image build, root deployment, broker login or submit authorization.
+          if [ "$REQUEST_VALIDATION_PROFILE" != "p0_owner" ]; then
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=NOT_APPLICABLE_UI_PROFILE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -d "$source_root/deploy/pi-bot" ]; then
+            # Historic frozen 695ad has no Pi-only bot; never report a PASS
+            # for that source cut or assume it admitted the later #1578.
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=NOT_APPLICABLE_OLD_SOURCE'
+            exit 0
+          fi
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
+            return 1
+          }
+          for required in \
+            deploy/pi-bot/compose.yaml \
+            deploy/pi-bot/Dockerfile \
+            deploy/pi-bot/Dockerfile.dockerignore \
+            scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
+            scripts/operator/ibkr_pi_external_inventory_v1.py \
+            scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+            runtime_selected_universe_14tu.py \
+            indicators.py \
+            tests/test_ibkr_pi_canonical_bootstrap_v1.py \
+            tests/test_ibkr_pi_external_inventory_v1.py \
+            tests/test_pi_bot_1565_hardening_contract_20261029.py \
+            tests/test_pi_bot_fixed_client_identity_20261029.py \
+            tests/test_pi_selected_runtime_activation_logging_20261029.py \
+            tests/test_ibkr_live_successor_ledger_reconcile_v1.py; do
+            if [ ! -f "$source_root/$required" ]; then
+              echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
+              exit 1
+            fi
+          done
+          (
+            cd "$source_root"
+            private_cmd python -m py_compile \
+              scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
+              scripts/operator/ibkr_pi_external_inventory_v1.py \
+              scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+              runtime_selected_universe_14tu.py \
+              main.py \
+              indicators.py \
+              tests/test_ibkr_pi_canonical_bootstrap_v1.py \
+              tests/test_ibkr_pi_external_inventory_v1.py \
+              tests/test_pi_bot_1565_hardening_contract_20261029.py \
+              tests/test_pi_bot_fixed_client_identity_20261029.py \
+              tests/test_pi_selected_runtime_activation_logging_20261029.py
+            # One fixed brokerless source-specific acceptance invocation.
+            private_cmd python -m unittest -q \
+              tests.test_ibkr_pi_canonical_bootstrap_v1 \
+              tests.test_ibkr_pi_external_inventory_v1 \
+              tests.test_pi_bot_1565_hardening_contract_20261029 \
+              tests.test_pi_bot_fixed_client_identity_20261029 \
+              tests.test_pi_selected_runtime_activation_logging_20261029
+            # The successor suite ran in the preexisting p0_owner native
+            # step. Do not rerun it or infer historical execId completeness.
+            # Placeholder digest/IDs here are inert Compose syntax fixtures,
+            # never image pull/build, identity allocation or deploy artifacts.
+            private_cmd env \
+              MMIBKR_SELECTED_SOURCE_SHA="$REQUEST_SOURCE_SHA" \
+              MMIBKR_PI_BOT_IMAGE="example.invalid/mmibkr-pi-canonical@sha256:0000000000000000000000000000000000000000000000000000000000000000" \
+              MMIBKR_PI_BOT_CLIENT_ID=7901 \
+              MMIBKR_PI_INSPECT_CLIENT_ID=7801 \
+              docker compose -f deploy/pi-bot/compose.yaml \
+                --profile inspect --profile operator-activation config -q
+            # Resolve ALL production Python package wheels against actual
+            # aarch64 CPython 3.11 tags, not the x86 Actions runner's ABI.
+            # This fetches only public wheels into ephemeral runner storage,
+            # performs no Docker build/pull and never publishes private code.
+            private_cmd python -m pip download --disable-pip-version-check \
+              --quiet --only-binary=:all: --platform manylinux_2_17_aarch64 \
+              --implementation cp --python-version 3.11 --abi cp311 \
+              --dest "$RUNNER_TEMP/mmibkr-pi-arm64-wheel-resolution" \
+              -r requirements.txt tzdata
+          )
+          echo 'MMIBKR_PI_BOT_ARM64_WHEEL_RESOLUTION=PASS'
+          echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=PASS'
+          echo "MMIBKR_PI_BOT_ACCEPTED_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+          echo 'MMIBKR_PI_BOT_ARM64_IMAGE=NOT_ATTESTED'
+
+      - name: Accept exact frozen 695ad P0 changed-source readback and PnL
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$REQUEST_SOURCE_SHA" != "695ad34cf983435fc1c6e57f137c981c7bd3d3e1" ] || [ "$REQUEST_VALIDATION_PROFILE" != "p0_owner" ]; then
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          for required in \
+            scripts/operator/read_only_live_incumbent_scope_v1.py \
+            scripts/operator/cloud_forward_performance_v1.py \
+            scripts/operator/selected_runtime_forward_execution_lifecycle_v1.py \
+            tests/test_read_only_live_incumbent_scope_v1.py \
+            tests/test_cloud_forward_performance_v1.py \
+            tests/test_selected_runtime_forward_execution_lifecycle_v1.py; do
+            if [ ! -f "$source_root/$required" ]; then
+              echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=FAIL_CLOSED'
+              exit 1
+            fi
+          done
+          # Existing brokerless source suites; one invocation, no duplicate
+          # successor suite (already exercised by the base P0 native step).
+          # Never print private test assertions, account data, or source.
+          if (cd "$source_root" && python -m unittest -q \
+            tests.test_read_only_live_incumbent_scope_v1 \
+            tests.test_cloud_forward_performance_v1 \
+            tests.test_selected_runtime_forward_execution_lifecycle_v1) >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=PASS'
+          else
+            echo 'MMIBKR_SELECTED_P0_695AD_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+
+      - name: Accept exact ae0c3c lifecycle reconciliation changed-source case
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$REQUEST_SOURCE_SHA" != "ae0c3c3989f29b24b1ce3e42014c7a95db5bb124" ] || [ "$REQUEST_VALIDATION_PROFILE" != "strict_ui" ]; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -f "$source_root/tests/test_selected_runtime_forward_execution_lifecycle_v1.py" ]; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          # One exact changed-source method, six bounded subcases. Private
+          # assertions/source stay off public logs; no broker connection.
+          if (cd "$source_root" && python -m unittest -q \
+            tests.test_selected_runtime_forward_execution_lifecycle_v1.SelectedRuntimeForwardExecutionLifecycleV1Tests.test_exact_completed_fill_count_and_execid_set_fail_closed) >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=PASS'
+          else
+            echo 'MMIBKR_SELECTED_LIFECYCLE_AE0_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+
+      - name: Accept exact 2641 selected UI source delta in one focused native gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$REQUEST_SOURCE_SHA" != "2641a85c812af869df7ddb2a9c0a8feb0944d45a" ] || [ "$REQUEST_VALIDATION_PROFILE" != "strict_ui" ]; then
+            echo 'MMIBKR_SELECTED_UI_2641_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_SELECTED_UI_2641_PRIVATE_COMMAND=FAIL_CLOSED'
+            return 1
+          }
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          for required in \
+            tests/test_foundry_model_promotion_admission_v1.py \
+            tests/test_selected_runtime_cloud_bar_clock_v1.py \
+            tests/test_selected_runtime_forward_execution_lifecycle_v1.py \
+            ui-react/src/lib/builderPreviewConditionRows.test.mjs \
+            ui-react/src/lib/modularBuilderProofContext.test.mjs \
+            ui-react/src/lib/pilotHandoffPresentationTruth.test.mjs; do
+            if [ ! -f "$source_root/$required" ]; then
+              echo 'MMIBKR_SELECTED_UI_2641_NATIVE=FAIL_CLOSED'
+              exit 1
+            fi
+          done
+          # This exact selected source changes pytest-function issuer guards,
+          # unittest warmup/lifecycle and pure Node UI truth. One bounded
+          # acceptance step, no private test output on the public runner.
+          if ! private_cmd python -m pip install --disable-pip-version-check pytest==8.3.5; then
+            echo 'MMIBKR_SELECTED_UI_2641_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          if ! (
+            cd "$source_root"
+            private_cmd python -m pytest -q tests/test_foundry_model_promotion_admission_v1.py &&
+            private_cmd python -m unittest -q \
+              tests.test_selected_runtime_cloud_bar_clock_v1 \
+              tests.test_selected_runtime_forward_execution_lifecycle_v1.SelectedRuntimeForwardExecutionLifecycleV1Tests.test_exact_completed_fill_count_and_execid_set_fail_closed &&
+            private_cmd node --test \
+              ui-react/src/lib/builderPreviewConditionRows.test.mjs \
+              ui-react/src/lib/modularBuilderProofContext.test.mjs \
+              ui-react/src/lib/pilotHandoffPresentationTruth.test.mjs
+          ); then
+            echo 'MMIBKR_SELECTED_UI_2641_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          echo 'MMIBKR_SELECTED_UI_2641_NATIVE=PASS'
+
       - name: Accept selected read-only operator UI pure Node contracts
         shell: bash
         run: |
@@ -902,6 +1180,17 @@ jobs:
           echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_ARTIFACT_ID=${{ steps.parity_artifact.outputs.artifact-id }}"
           echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_ARTIFACT_DIGEST=${{ steps.parity_artifact.outputs.artifact-digest }}"
           echo "MMIBKR_PARITY_BOOTSTRAP_EXPORT_PRIVATE_PLAINTEXT_PUBLISHED=0"
+
+      - name: Require native ARM64 image build result for P0 owner
+        if: always() && env.REQUEST_VALIDATION_PROFILE == 'p0_owner'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.native_pi_arm64_image.outcome }}" != success ]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD_REQUIRED=NOT_ACCEPTED'
+            exit 1
+          fi
+          echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD_REQUIRED=PASS'
 
       - name: Destroy one-run private source material
         if: always()
