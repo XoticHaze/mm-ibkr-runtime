@@ -1,0 +1,16 @@
+{
+  "schema": "mmibkr.source_vault_bootstrap_request.v1",
+  "source_sha": "2641a85c812af869df7ddb2a9c0a8feb0944d45a",
+  "requested_by": "ContinueRelease-R19-20261029031933622",
+  "purpose": "One exact selected UI #975@2641 strict_ui encrypted native acceptance of Foundry issuer adapter identity, futures warmup cache row-count, Pilot real HTTP status, Builder explicit success and condition rows, preserving accepted ae0c lifecycle and existing full UI verify/build; no broker login/order/flatten/live flag/Pi mutation.",
+  "live_execution_allowed": false,
+  "attempt": 262,
+  "reason": "release_selected_ui_2641_product_four_children_native_and_full_ui_build",
+  "runtime_authority_changed": false,
+  "compute_requirements": {
+    "trust_mode": "public_encrypted"
+  },
+  "validation_profile": "strict_ui",
+  "archive_rationale": "Historical exact 2641 strict_ui review-only fire preserved before prospective selected #975 6449 source refresh; no native dispatch or acceptance.",
+  "superseded_by_source_sha": "6449413089eb4d01ce26bd1220d0130f363a64e1"
+}

@@ -811,6 +811,46 @@ jobs:
           fi
           echo 'MMIBKR_SELECTED_UI_2641_NATIVE=PASS'
 
+      - name: Accept exact 6449 selected UI owner/source delta in one focused native gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$REQUEST_SOURCE_SHA" != "6449413089eb4d01ce26bd1220d0130f363a64e1" ] || [ "$REQUEST_VALIDATION_PROFILE" != "strict_ui" ]; then
+            echo 'MMIBKR_SELECTED_UI_6449_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          for required in \
+            main.py \
+            scripts/operator/cloud_forward_performance_v1.py \
+            scripts/operator/read_only_live_incumbent_scope_v1.py \
+            tests/test_cloud_forward_performance_v1.py \
+            tests/test_read_only_live_incumbent_scope_v1.py \
+            tests/test_selected_mnq_feature_alignment_callback_product_20261029.py \
+            tests/test_selected_stock_loop_start_truth_product_20261029.py \
+            ui-react/src/lib/modularBuilderProofContext.test.mjs; do
+            if [ ! -f "$source_root/$required" ]; then
+              echo 'MMIBKR_SELECTED_UI_6449_NATIVE=FAIL_CLOSED'
+              exit 1
+            fi
+          done
+          # One changed-source Python invocation. Existing full UI Node verify
+          # and build below cover the selected Builder JSX and Node changes.
+          # Never emit private test output or source paths into public logs.
+          if ! (
+            cd "$source_root"
+            python -m unittest -q \
+              tests.test_cloud_forward_performance_v1 \
+              tests.test_read_only_live_incumbent_scope_v1 \
+              tests.test_selected_mnq_feature_alignment_callback_product_20261029 \
+              tests.test_selected_stock_loop_start_truth_product_20261029 \
+              >/dev/null 2>&1
+          ); then
+            echo 'MMIBKR_SELECTED_UI_6449_NATIVE=FAIL_CLOSED'
+            exit 1
+          fi
+          echo 'MMIBKR_SELECTED_UI_6449_NATIVE=PASS'
+
       - name: Accept selected read-only operator UI pure Node contracts
         shell: bash
         run: |
