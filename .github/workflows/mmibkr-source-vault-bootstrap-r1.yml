@@ -1179,7 +1179,7 @@ jobs:
             echo 'MMIBKR_PRIVATE_GHCR_PUSH=FAILED'
             exit 1
           fi
-          digest="$(sed -nE 's/.*digest: (sha256:[0-9a-f]{64}).*/\\1/p' \
+          digest="$(sed -nE 's/.*digest: (sha256:[0-9a-f]{64}).*/\1/p' \
              "$RUNNER_TEMP/mmibkr-ghcr-push.log" | tail -n 1)"
           if ! [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]; then
             echo 'MMIBKR_PRIVATE_GHCR_DIGEST=UNVERIFIED'
