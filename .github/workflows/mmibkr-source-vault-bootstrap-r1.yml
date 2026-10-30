@@ -63,8 +63,9 @@ jobs:
   bootstrap:
     if: ${{ github.event_name != 'pull_request' }}
     needs: contract
-    runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    # Native ARM64 host, not x86 QEMU or a source-only emulated build.
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
 
@@ -1000,6 +1001,74 @@ jobs:
             exit 1
           fi
           echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=PASS'
+
+      - name: Build selected canonical Pi image on native ARM64 (ephemeral, private)
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          if [ "$REQUEST_VALIDATION_PROFILE" != 'p0_owner' ]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=NOT_APPLICABLE_UI_PROFILE'
+            exit 0
+          fi
+          # This builds the SAME exact-SHA decrypted source already materialized
+          # and tested inside the admitted encrypted-source consumer. Neither
+          # Docker build logs nor private source are emitted on public Actions.
+          # No registry push, public artifact, Pi install, or broker connection.
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          test -f "$source_root/deploy/pi-bot/Dockerfile" || {
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=SOURCE_MISSING'
+            exit 1
+          }
+          test -f "$source_root/deploy/pi-bot/Dockerfile.dockerignore" || {
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=CONTEXT_GUARD_MISSING'
+            exit 1
+          }
+          case "$(uname -m)" in
+            aarch64|arm64) ;;
+            *) echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=NOT_NATIVE_ARM64'; exit 1 ;;
+          esac
+          image_tag="mmibkr-pi-native-review:${REQUEST_SOURCE_SHA:0:12}"
+          if ! (cd "$source_root" && docker build \
+              --platform linux/arm64 \
+              --pull \
+              --no-cache \
+              --build-arg "MMIBKR_SELECTED_SOURCE_SHA=$REQUEST_SOURCE_SHA" \
+              --file deploy/pi-bot/Dockerfile \
+              --tag "$image_tag" .) >/dev/null 2>&1; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=FAILED'
+            exit 1
+          fi
+          image_arch="$(docker image inspect --format '{{.Architecture}}' "$image_tag")"
+          image_os="$(docker image inspect --format '{{.Os}}' "$image_tag")"
+          image_rev="$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$image_tag")"
+          image_id="$(docker image inspect --format '{{.Id}}' "$image_tag")"
+          if [ "$image_arch" != arm64 ] || [ "$image_os" != linux ] || \
+             [ "$image_rev" != "$REQUEST_SOURCE_SHA" ] || \
+             [[ ! "$image_id" =~ ^sha256:[0-9a-f]{64}$ ]]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=IDENTITY_REJECTED'
+            exit 1
+          fi
+          # A disconnected, read-only import check is not a broker inspection
+          # and does not create a Pi trading process or order.
+          if ! docker run --rm --pull never --platform linux/arm64 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,nosuid,size=64m \
+            --memory 1200m --cpus 1.25 \
+            --env MMIBKR_PI_BOT_OWNER_MODE=1 \
+            --entrypoint python "$image_tag" \
+            -c 'import indicators' >/dev/null 2>&1; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=READONLY_IMPORT_FAILED'
+            exit 1
+          fi
+          # Image ID identifies ephemeral runner layers, not a deliverable
+          # registry RepoDigest. Never publish private layers in a public repo.
+          echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=PASS'
+          echo "MMIBKR_PI_NATIVE_ARM64_SOURCE_SHA=$REQUEST_SOURCE_SHA"
+          echo "MMIBKR_PI_NATIVE_ARM64_IMAGE_ID=$image_id"
+          echo 'MMIBKR_PI_IMAGE_REGISTRY_DIGEST=NOT_PUBLISHED'
+          echo 'MMIBKR_PI_BOT_INSTALLED=0'
+          echo 'MMIBKR_PI_BOT_LIVE_SUBMIT=0'
 
       - name: Encrypt exact private source for parity refresh
         if: ${{ steps.resolve.outputs.parity_export_requested == 'true' }}
