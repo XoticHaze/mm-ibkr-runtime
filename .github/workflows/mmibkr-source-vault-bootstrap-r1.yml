@@ -187,6 +187,23 @@ jobs:
           # Docker build logs nor private source are emitted on public Actions.
           # No registry push, public artifact, Pi install, or broker connection.
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          # The encrypted archive may already exist in Source Vault, in
+          # which case bootstrap does not fetch/extract it again. Materialize
+          # the exact authenticated source before building, just as the
+          # existing brokerless regression step already does. Suppress all
+          # private source output; do not weaken any native acceptance gate.
+          if [ ! -d "$source_root" ]; then
+            if ! python scripts/mmibkr_fleet_private_source_consumer_v1.py \
+                --source-sha "$REQUEST_SOURCE_SHA" \
+                --run-id "$GITHUB_RUN_ID" \
+                --destination "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted" \
+                --archive-output "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/private-source.tar.gz" \
+                --output "$RUNNER_TEMP/mmibkr-source-vault-bootstrap/native-build-source-receipt.json" \
+                --authority-base "$FLEET_AUTHORITY_BASE" >/dev/null 2>&1; then
+              echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=PRIVATE_SOURCE_FETCH_FAILED'
+              exit 1
+            fi
+          fi
           test -f "$source_root/deploy/pi-bot/Dockerfile" || {
             echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=SOURCE_MISSING'
             exit 1
