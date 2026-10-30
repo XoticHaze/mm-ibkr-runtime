@@ -232,6 +232,21 @@ jobs:
             echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=READONLY_IMPORT_FAILED'
             exit 1
           fi
+          # Measure the REAL image disk footprint and compressed Docker
+          # transport footprint. Only sanitized integers reach public logs:
+          # no private image layers, source or credentials are uploaded.
+          image_bytes="$(docker image inspect --format '{{.Size}}' "$image_tag")"
+          if ! [[ "$image_bytes" =~ ^[1-9][0-9]*$ ]]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_SIZE=REJECTED'
+            exit 1
+          fi
+          archive_bytes="$(docker save "$image_tag" | gzip -1 | wc -c | tr -d '[:space:]')"
+          if ! [[ "$archive_bytes" =~ ^[1-9][0-9]*$ ]]; then
+            echo 'MMIBKR_PI_NATIVE_ARM64_ARCHIVE_SIZE=REJECTED'
+            exit 1
+          fi
+          echo "MMIBKR_PI_NATIVE_ARM64_IMAGE_BYTES=$image_bytes"
+          echo "MMIBKR_PI_NATIVE_ARM64_COMPRESSED_BYTES=$archive_bytes"
           # Image ID identifies ephemeral runner layers, not a deliverable
           # registry RepoDigest. Never publish private layers in a public repo.
           echo 'MMIBKR_PI_NATIVE_ARM64_IMAGE_BUILD=PASS'
