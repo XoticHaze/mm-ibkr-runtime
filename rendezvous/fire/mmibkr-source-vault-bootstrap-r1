@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "92fd9524b50d3b58243953635e19f4b1f01b86db",
-  "requested_by": "DirectOperator-20261030-ARM64-review",
-  "purpose": "Single selected-head private-encrypted Source Vault source acceptance and actual native GitHub ARM64 no-network, no-submit bot-only image build. No image export before approved private delivery; no Pi install/Gateway change/order/flatten/live flag.",
+  "source_sha": "f7a3e8714a7eec9cbe94b9299b649685056f053c",
+  "requested_by": "DirectOperator-20261030-PrivateImagePlacement",
+  "purpose": "Existing admitted public-encrypted GitHub native ARM64 image build and complete brokerless P0 suite for current selected MM head, including repaired live-inventory regression. No broker login, live order, Pi mutation or public image export.",
   "live_execution_allowed": false,
-  "attempt": 266,
-  "reason": "direct_selected_head_arm64_image_and_inventory_case_isolation_20261030",
+  "attempt": 267,
+  "reason": "current_selected_live_inventory_check_and_native_arm64_release_cut_20261030",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
