@@ -187,7 +187,12 @@ class SourceVaultTests(unittest.TestCase):
                     '.github/workflows/mmibkr-source-vault-bootstrap-r1.yml').read_text()
         self.assertIn('source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"', workflow)
         self.assertIn('if [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then', workflow)
-        self.assertIn('python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1', workflow)
+        # The unchanged full successor suite now runs under TestResult to
+        # report a fixed ordinal without leaking private assertions on CI.
+        self.assertIn('"tests.test_ibkr_live_successor_ledger_reconcile_v1"', workflow)
+        self.assertIn('tests.run(result)', workflow)
+        self.assertIn('MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_FAILED_ORDINAL=', workflow)
+        self.assertIn('MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=FAIL_CLOSED', workflow)
         self.assertIn('MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS', workflow)
         self.assertIn('MMIBKR_SOURCE_VAULT_PRIVATE_MATERIAL_DESTROYED=1', workflow)
 
