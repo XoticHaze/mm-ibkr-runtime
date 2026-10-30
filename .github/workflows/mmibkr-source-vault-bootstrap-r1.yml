@@ -1009,6 +1009,7 @@ jobs:
           done
           (
             cd "$source_root"
+            echo 'MMIBKR_PI_NATIVE_OWNER_PHASE=PY_COMPILE'
             private_cmd python -m py_compile \
               scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
               scripts/operator/ibkr_pi_external_inventory_v1.py \
@@ -1022,6 +1023,7 @@ jobs:
               tests/test_pi_bot_fixed_client_identity_20261029.py \
               tests/test_pi_selected_runtime_activation_logging_20261029.py
             # One fixed brokerless source-specific acceptance invocation.
+            echo 'MMIBKR_PI_NATIVE_OWNER_PHASE=UNITTEST'
             private_cmd python -m unittest -q \
               tests.test_ibkr_pi_canonical_bootstrap_v1 \
               tests.test_ibkr_pi_external_inventory_v1 \
@@ -1032,6 +1034,7 @@ jobs:
             # step. Do not rerun it or infer historical execId completeness.
             # Placeholder digest/IDs here are inert Compose syntax fixtures,
             # never image pull/build, identity allocation or deploy artifacts.
+            echo 'MMIBKR_PI_NATIVE_OWNER_PHASE=COMPOSE'
             private_cmd env \
               MMIBKR_SELECTED_SOURCE_SHA="$REQUEST_SOURCE_SHA" \
               MMIBKR_PI_BOT_IMAGE="example.invalid/mmibkr-pi-canonical@sha256:0000000000000000000000000000000000000000000000000000000000000000" \
@@ -1043,6 +1046,7 @@ jobs:
             # aarch64 CPython 3.11 tags, not the x86 Actions runner's ABI.
             # This fetches only public wheels into ephemeral runner storage,
             # performs no Docker build/pull and never publishes private code.
+            echo 'MMIBKR_PI_NATIVE_OWNER_PHASE=WHEEL_RESOLUTION'
             private_cmd python -m pip download --disable-pip-version-check \
               --quiet --only-binary=:all: --platform manylinux_2_17_aarch64 \
               --implementation cp --python-version 3.11 --abi cp311 \
