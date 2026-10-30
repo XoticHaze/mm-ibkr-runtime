@@ -819,6 +819,11 @@ jobs:
             echo 'MMIBKR_SELECTED_UI_6449_NATIVE=NOT_APPLICABLE'
             exit 0
           fi
+          private_cmd() {
+            if "$@" >/dev/null 2>&1; then return 0; fi
+            echo 'MMIBKR_SELECTED_UI_6449_PRIVATE_COMMAND=FAIL_CLOSED'
+            return 1
+          }
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
           for required in \
             main.py \
@@ -839,7 +844,7 @@ jobs:
           # Never emit private test output or source paths into public logs.
           if ! (
             cd "$source_root"
-            python -m unittest -q \
+            private_cmd python -m unittest -q \
               tests.test_cloud_forward_performance_v1 \
               tests.test_read_only_live_incumbent_scope_v1 \
               tests.test_selected_mnq_feature_alignment_callback_product_20261029 \
