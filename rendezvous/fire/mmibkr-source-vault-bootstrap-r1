@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "f7a3e8714a7eec9cbe94b9299b649685056f053c",
-  "requested_by": "OperatorDirect-20261030-GHCR-Secret-Configured",
-  "purpose": "Use pre-existing exact-SHA encrypted-source ARM64 build to stage selected private MM image in verified-private GHCR using newly configured repository Actions secret. No IBKR login/orders/Gateway/Pi install; separate native regression and owner gates remain fail-closed.",
+  "source_sha": "06d9862516a3a4e465b9898d12b45133da6cc95a",
+  "requested_by": "OperatorDirect-20261030-current-Pi-image",
+  "purpose": "One exact selected-head native ARM64 private image stage and full brokerless successor suite with redacted failure ordinal. Image availability only, no Pi install, Gateway reset or broker order, all native P0 gates fail closed.",
   "live_execution_allowed": false,
-  "attempt": 268,
-  "reason": "operator_configured_private_ghcr_secret_arm64_image_publication_20261030",
+  "attempt": 269,
+  "reason": "selected_06d986_arm64_private_image_plus_successor_ordinal",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
