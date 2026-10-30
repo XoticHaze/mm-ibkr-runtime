@@ -1114,13 +1114,31 @@ jobs:
                 exit 1
               fi
               echo 'MMIBKR_CLOUDFLARE_NPM_INSTALL=PASS'
+              # Keep exact mandatory Wrangler command and fail-closed status.
+              # Wrangler stderr may include confidential source or names.
+              # Capture it ONLY in the ephemeral runner, and print ONLY one
+              # fixed allowlisted error-class token to public Actions.
+              wrangler_diag="$RUNNER_TEMP/mmibkr-wrangler-private-diagnostic.log"
               if ! (
                 cd cloudflare/mmibkr-live-cloud-owner
-                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
+                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >"$wrangler_diag" 2>&1
               ) >/dev/null 2>&1; then
+                if grep -Eiq 'docker|container build|buildkit|no matching manifest|platform|architecture|image build|registry' "$wrangler_diag"; then
+                  echo 'MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=CONTAINER_OR_PLATFORM'
+                elif grep -Eiq 'account.id|account id|authentication|unauthorized|api token|not logged in|login required' "$wrangler_diag"; then
+                  echo 'MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=AUTH_OR_ACCOUNT'
+                elif grep -Eiq 'config|validation|invalid field|schema|unsupported option|unsupported configuration' "$wrangler_diag"; then
+                  echo 'MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=CONFIG_VALIDATION'
+                elif grep -Eiq 'module|could not resolve|cannot resolve|bundle|esbuild|syntax error|import' "$wrangler_diag"; then
+                  echo 'MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=BUNDLE_OR_IMPORT'
+                else
+                  echo 'MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=UNKNOWN'
+                fi
+                rm -f -- "$wrangler_diag"
                 echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
                 exit 1
               fi
+              rm -f -- "$wrangler_diag"
               echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
               echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=PASS'
               # Keep Wrangler failure detail private in ephemeral runner scratch;
