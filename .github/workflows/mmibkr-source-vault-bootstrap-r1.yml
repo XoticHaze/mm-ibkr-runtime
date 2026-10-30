@@ -1103,9 +1103,19 @@ jobs:
                 echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED'
                 exit 1
               fi
+              # Preserve both mandatory operations and all private output suppression.
+              # Only fixed, public-safe phase labels distinguish the observed failure.
               if ! (
                 cd cloudflare/mmibkr-live-cloud-owner
                 npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1
+              ) >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_NPM_INSTALL=FAIL_CLOSED'
+                echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
+                exit 1
+              fi
+              echo 'MMIBKR_CLOUDFLARE_NPM_INSTALL=PASS'
+              if ! (
+                cd cloudflare/mmibkr-live-cloud-owner
                 npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
               ) >/dev/null 2>&1; then
                 echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
