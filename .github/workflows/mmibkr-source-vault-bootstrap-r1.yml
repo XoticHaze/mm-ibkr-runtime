@@ -273,6 +273,105 @@ jobs:
           echo 'MMIBKR_PI_BOT_INSTALLED=0'
           echo 'MMIBKR_PI_BOT_LIVE_SUBMIT=0'
 
+      - name: Stage exact ARM64 bot image in private GHCR (admission remains separate)
+        if: ${{ github.event_name == 'push' }}
+        env:
+          PRIVATE_IMAGE_PUSH_PAT: ${{ secrets.MMIBKR_GHCR_PRIVATE_PUSH_PAT }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          # Only the pinned selected-source image can be privately staged.
+          # This is artifact availability, NOT native source acceptance or
+          # root deployment approval. Later P0 tests may still fail closed. GHCR credentials are never provided to PR jobs.
+          if [ "$REQUEST_VALIDATION_PROFILE" != p0_owner ] ||
+             [ "$REQUEST_SOURCE_SHA" != f7a3e8714a7eec9cbe94b9299b649685056f053c ]; then
+            echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=NOT_APPLICABLE'
+            exit 0
+          fi
+          if [ -z "${PRIVATE_IMAGE_PUSH_PAT:-}" ]; then
+            echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=OPERATOR_SECRET_REQUIRED'
+            exit 0
+          fi
+          image="mmibkr-pi-native-review:${REQUEST_SOURCE_SHA:0:12}"
+          repo="ghcr.io/xotichaze/mmibkr-pi-canonical-private-20261030"
+          tag="$repo:$REQUEST_SOURCE_SHA"
+          if [ "$(docker image inspect --format '{{.Architecture}}' "$image")" != arm64 ] ||
+             [ "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$image")" != "$REQUEST_SOURCE_SHA" ]; then
+            echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=SOURCE_IDENTITY_REJECTED'
+            exit 1
+          fi
+          # This is a narrowly scoped classic PAT, NOT public GITHUB_TOKEN.
+          # A new PAT-published unlinked GHCR package defaults PRIVATE.
+          # Refuse an existing package when it is not demonstrably private.
+          endpoint="https://api.github.com/users/XoticHaze/packages/container/mmibkr-pi-canonical-private-20261030"
+          response="$RUNNER_TEMP/mmibkr-ghcr-private-package.json"
+          status="$(curl --silent --show-error --output "$response" --write-out '%{http_code}' \
+            --header "Authorization: Bearer $PRIVATE_IMAGE_PUSH_PAT" \
+            --header "Accept: application/vnd.github+json" "$endpoint" || true)"
+          if [ "$status" = 200 ]; then
+            if ! python - "$response" <<'PY'
+          import json,sys
+          try:
+              p=json.load(open(sys.argv[1], encoding="utf-8"))
+              assert p.get("visibility")=="private"
+          except (OSError, ValueError, AssertionError):
+              raise SystemExit(1)
+          PY
+            then
+              echo 'MMIBKR_PRIVATE_GHCR_VISIBILITY=REJECTED'
+              exit 1
+            fi
+          elif [ "$status" != 404 ]; then
+            echo 'MMIBKR_PRIVATE_GHCR_VISIBILITY=UNVERIFIED'
+            exit 1
+          fi
+          trap 'docker logout ghcr.io >/dev/null 2>&1 || true; rm -f "$RUNNER_TEMP/mmibkr-ghcr-push.log" "$RUNNER_TEMP/mmibkr-ghcr-private-package.json"' EXIT
+          if ! printf '%s' "$PRIVATE_IMAGE_PUSH_PAT" | \
+               docker login ghcr.io --username XoticHaze --password-stdin >/dev/null 2>&1; then
+            echo 'MMIBKR_PRIVATE_GHCR_AUTH=FAILED'
+            exit 1
+          fi
+          docker tag "$image" "$tag"
+          if ! docker push "$tag" >"$RUNNER_TEMP/mmibkr-ghcr-push.log" 2>&1; then
+            echo 'MMIBKR_PRIVATE_GHCR_PUSH=FAILED'
+            exit 1
+          fi
+          digest="$(sed -nE 's/.*digest: (sha256:[0-9a-f]{64}).*/\1/p' \
+             "$RUNNER_TEMP/mmibkr-ghcr-push.log" | tail -n 1)"
+          if ! [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]; then
+            echo 'MMIBKR_PRIVATE_GHCR_DIGEST=UNVERIFIED'
+            exit 1
+          fi
+          immutable="$repo@$digest"
+          if ! docker pull "$immutable" >/dev/null 2>&1; then
+            echo 'MMIBKR_PRIVATE_GHCR_DIGEST_PULL=FAILED'
+            exit 1
+          fi
+          if [ "$(docker image inspect --format '{{.Architecture}}' "$immutable")" != arm64 ] ||
+             [ "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' "$immutable")" != "$REQUEST_SOURCE_SHA" ]; then
+            echo 'MMIBKR_PRIVATE_GHCR_DIGEST_IDENTITY=REJECTED'
+            exit 1
+          fi
+          status="$(curl --silent --show-error --output "$response" --write-out '%{http_code}' \
+            --header "Authorization: Bearer $PRIVATE_IMAGE_PUSH_PAT" \
+            --header "Accept: application/vnd.github+json" "$endpoint" || true)"
+          if [ "$status" != 200 ] || ! python - "$response" <<'PY'
+          import json,sys
+          try:
+              assert json.load(open(sys.argv[1], encoding="utf-8")).get("visibility")=="private"
+          except (OSError, ValueError, AssertionError):
+              raise SystemExit(1)
+          PY
+          then
+            echo 'MMIBKR_PRIVATE_GHCR_POSTPUSH_VISIBILITY=REJECTED'
+            exit 1
+          fi
+          echo "MMIBKR_PRIVATE_GHCR_REF=$immutable"
+          echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=PASS'
+          echo 'MMIBKR_PI_INSTALLED=0'
+          echo 'MMIBKR_LIVE_ORDER_SUBMISSION=0'
+
       - name: Run existing MM no-broker config, checkpoint and futures regression tests
         shell: bash
         run: |
