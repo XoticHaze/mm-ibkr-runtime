@@ -1010,6 +1010,29 @@ jobs:
           (
             cd "$source_root"
             echo 'MMIBKR_PI_NATIVE_OWNER_PHASE=PY_COMPILE'
+            # Preserve the original combined compile below. Isolate exactly
+            # which preexisting Pi source/test file fails without emitting
+            # Python traceback, source excerpts, broker/account data or paths.
+            native_file_ordinal=0
+            for native_file in \
+              scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
+              scripts/operator/ibkr_pi_external_inventory_v1.py \
+              scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py \
+              runtime_selected_universe_14tu.py \
+              main.py \
+              indicators.py \
+              tests/test_ibkr_pi_canonical_bootstrap_v1.py \
+              tests/test_ibkr_pi_external_inventory_v1.py \
+              tests/test_pi_bot_1565_hardening_contract_20261029.py \
+              tests/test_pi_bot_fixed_client_identity_20261029.py \
+              tests/test_pi_selected_runtime_activation_logging_20261029.py; do
+              native_file_ordinal=$((native_file_ordinal + 1))
+              if ! python -m py_compile "$native_file" >/dev/null 2>&1; then
+                echo "MMIBKR_PI_NATIVE_COMPILE_FAILED_ORDINAL=$native_file_ordinal"
+                echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=FAIL_CLOSED'
+                exit 1
+              fi
+            done
             private_cmd python -m py_compile \
               scripts/operator/ibkr_pi_canonical_bootstrap_v1.py \
               scripts/operator/ibkr_pi_external_inventory_v1.py \
