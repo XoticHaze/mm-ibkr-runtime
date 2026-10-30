@@ -285,7 +285,7 @@ jobs:
           # This is artifact availability, NOT native source acceptance or
           # root deployment approval. Later P0 tests may still fail closed. GHCR credentials are never provided to PR jobs.
           if [ "$REQUEST_VALIDATION_PROFILE" != p0_owner ] ||
-             [ "$REQUEST_SOURCE_SHA" != f7a3e8714a7eec9cbe94b9299b649685056f053c ]; then
+             [ "$REQUEST_SOURCE_SHA" != 06d9862516a3a4e465b9898d12b45133da6cc95a ]; then
             echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=NOT_APPLICABLE'
             exit 0
           fi
@@ -553,7 +553,48 @@ jobs:
             # Legacy/other selected source snapshots do not carry this module.
             if [ -f tests/test_ibkr_live_successor_ledger_reconcile_v1.py ]; then
               private_cmd python -m py_compile scripts/operator/ibkr_live_successor_ledger_reconcile_v1.py
-              private_cmd python -m unittest -v tests.test_ibkr_live_successor_ledger_reconcile_v1
+              # One existing full suite, unchanged assertions. The public
+              # encrypted runner reports only an ordinal for its first failing
+              # case; private traceback/account/source output is suppressed.
+              if ! private_cmd python - <<'PY'
+          import contextlib, os, unittest
+          from pathlib import Path
+          def flatten(group):
+              for item in group:
+                  if isinstance(item, unittest.TestSuite):
+                      yield from flatten(item)
+                  else:
+                      yield item
+          tests=unittest.defaultTestLoader.loadTestsFromName(
+              "tests.test_ibkr_live_successor_ledger_reconcile_v1")
+          cases=list(flatten(tests))
+          if not cases:
+              raise SystemExit(1)
+          result=unittest.TestResult()
+          with open(os.devnull, "w") as sink:
+              with contextlib.redirect_stdout(sink), contextlib.redirect_stderr(sink):
+                  tests.run(result)
+          if not result.wasSuccessful():
+              failed={test.id() for test, _ in (result.failures + result.errors)}
+              ordinal=next((n for n,test in enumerate(cases,1)
+                            if test.id() in failed), 0)
+              if ordinal:
+                  Path(os.environ["RUNNER_TEMP"], "mmibkr-successor-failed-ordinal.txt").write_text(str(ordinal))
+              raise SystemExit(1)
+          PY
+              then
+                ord_path="$RUNNER_TEMP/mmibkr-successor-failed-ordinal.txt"
+                if [ -s "$ord_path" ]; then
+                  ordinal="$(cat "$ord_path")"
+                  case "$ordinal" in
+                    [1-9]|[1-9][0-9])
+                      echo "MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_FAILED_ORDINAL=$ordinal"
+                      ;;
+                  esac
+                fi
+                echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=FAIL_CLOSED'
+                exit 1
+              fi
               echo 'MMIBKR_SELECTED_P0_SUCCESSOR_LEDGER_SOURCE_TESTS=PASS'
             fi
             # Exact selected #883@92ff94 changed-source native acceptance.
