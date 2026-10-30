@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "06d9862516a3a4e465b9898d12b45133da6cc95a",
-  "requested_by": "OperatorDirect-20261030-current-Pi-image",
-  "purpose": "One exact selected-head native ARM64 private image stage and full brokerless successor suite with redacted failure ordinal. Image availability only, no Pi install, Gateway reset or broker order, all native P0 gates fail closed.",
+  "source_sha": "2b5513c161b6ca3f1a08c2f803490b2c1fdee187",
+  "requested_by": "DirectOperator-20261030-selected-ledger-final",
+  "purpose": "Exact selected-head encrypted native ARM64 image build, private GHCR immutable digest staging and existing full P0 ledger test acceptance. Brokerless, no Pi install, no live submit. Only redacted failure ordinal may appear in public logs.",
   "live_execution_allowed": false,
-  "attempt": 269,
-  "reason": "selected_06d986_arm64_private_image_plus_successor_ordinal",
+  "attempt": 270,
+  "reason": "selected_2b5513_p0_image_and_successor_stale_fixture_repaired",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
