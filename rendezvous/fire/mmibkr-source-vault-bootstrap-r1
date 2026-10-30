@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "2b5513c161b6ca3f1a08c2f803490b2c1fdee187",
-  "requested_by": "DirectOperator-20261030-selected-ledger-final",
-  "purpose": "Exact selected-head encrypted native ARM64 image build, private GHCR immutable digest staging and existing full P0 ledger test acceptance. Brokerless, no Pi install, no live submit. Only redacted failure ordinal may appear in public logs.",
+  "source_sha": "45339615b1a8b27a5e34233f9cb849c0ae6ecab8",
+  "requested_by": "DirectOperator-20261030-PiSyntaxCorrected",
+  "purpose": "Exact current selected Pi MM source after correcting Pi logging test Python continuation syntax. Run existing brokerless native ARM64 source/Compose acceptance, publish private GHCR immutable image, record complete Pi/native/Cloudflare gate outcomes, no bot install or broker actions.",
   "live_execution_allowed": false,
-  "attempt": 270,
-  "reason": "selected_2b5513_p0_image_and_successor_stale_fixture_repaired",
+  "attempt": 271,
+  "reason": "selected_pi_logging_syntax_corrected_exact_native_source_453396",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
