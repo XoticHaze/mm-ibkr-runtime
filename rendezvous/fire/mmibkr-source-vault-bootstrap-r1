@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
   "source_sha": "f7a3e8714a7eec9cbe94b9299b649685056f053c",
-  "requested_by": "DirectOperator-20261030-PrivateImagePlacement",
-  "purpose": "Existing admitted public-encrypted GitHub native ARM64 image build and complete brokerless P0 suite for current selected MM head, including repaired live-inventory regression. No broker login, live order, Pi mutation or public image export.",
+  "requested_by": "OperatorDirect-20261030-GHCR-Secret-Configured",
+  "purpose": "Use pre-existing exact-SHA encrypted-source ARM64 build to stage selected private MM image in verified-private GHCR using newly configured repository Actions secret. No IBKR login/orders/Gateway/Pi install; separate native regression and owner gates remain fail-closed.",
   "live_execution_allowed": false,
-  "attempt": 267,
-  "reason": "current_selected_live_inventory_check_and_native_arm64_release_cut_20261030",
+  "attempt": 268,
+  "reason": "operator_configured_private_ghcr_secret_arm64_image_publication_20261030",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
