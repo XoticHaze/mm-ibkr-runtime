@@ -48,9 +48,17 @@ class SourceVaultNodeLogAllowlistTests(unittest.TestCase):
             source,
         )
         self.assertIn(
-            "npx wrangler deploy --dry-run --outdir \"$RUNNER_TEMP/mmibkr-cloudflare-bundle\" >/dev/null 2>&1",
+            'npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >"$wrangler_diag" 2>&1',
             source,
         )
+        self.assertIn(
+            'wrangler_diag="$RUNNER_TEMP/mmibkr-wrangler-private-diagnostic.log"',
+            source,
+        )
+        self.assertIn('rm -f -- "$wrangler_diag"', source)
+        self.assertIn('MMIBKR_CLOUDFLARE_WRANGLER_FAILURE_CLASS=UNKNOWN', source)
+        self.assertNotIn('cat "$wrangler_diag"', source)
+        self.assertNotIn('tail -n 25 "$wrangler_diag"', source)
         self.assertIn(
             "MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED", source
         )
