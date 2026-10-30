@@ -873,7 +873,7 @@ jobs:
               private_cmd python -m unittest -v tests.test_persistent_live_owner_prepare_v1
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
-            if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
+            # Pi p0_owner is a bot-only native acceptance profile. Cloudflare\n            # canary/Wrangler gates belong to strict_ui, not the Pi image gate.\n            if [ "$REQUEST_VALIDATION_PROFILE" = "strict_ui" ] && [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
               # This public runner holds decrypted private source in scratch.
               # Node failures, npm and Wrangler stderr can print source excerpts.
               if ! node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1; then
