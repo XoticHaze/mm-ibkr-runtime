@@ -1,0 +1,17 @@
+{
+  "schema": "mmibkr.source_vault_bootstrap_request.v1",
+  "source_sha": "ae0c3c3989f29b24b1ce3e42014c7a95db5bb124",
+  "requested_by": "ContinueRelease-R19-20261029004704053",
+  "purpose": "One exact selected UI #975 ae0c3c strict_ui encrypted full native acceptance after merged 23-path owner integrity and MNQ weekday continuity; no broker login/order/flatten/live flag/Pi mutation.",
+  "live_execution_allowed": false,
+  "attempt": 261,
+  "reason": "release_selected_ui_ae0c3c_p0_owner_integrity_and_mnq_continuity_native",
+  "runtime_authority_changed": false,
+  "compute_requirements": {
+    "trust_mode": "public_encrypted"
+  },
+  "validation_profile": "strict_ui",
+  "archive_reason": "superseded_by_selected_ui_2641_strict_native_attempt262",
+  "archived_from_branch": "release/strict-ui-ae0c3c-selected-20261029-r1",
+  "original_fire_blob_sha": "dc10c731d31f5ee9cc08eeaf55ed3034f67099e5"
+}
