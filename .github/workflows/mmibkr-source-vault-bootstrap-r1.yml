@@ -873,35 +873,6 @@ jobs:
               private_cmd python -m unittest -v tests.test_persistent_live_owner_prepare_v1
               echo 'MMIBKR_PERSISTENT_HOST_LIVE_GATEWAY_TESTS=PASS'
             fi
-            if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
-              # This public runner holds decrypted private source in scratch.
-              # Node failures, npm and Wrangler stderr can print source excerpts.
-              if ! node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1; then
-                echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED'
-                exit 1
-              fi
-              if ! (
-                cd cloudflare/mmibkr-live-cloud-owner
-                npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1
-                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
-              ) >/dev/null 2>&1; then
-                echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
-                exit 1
-              fi
-              echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
-              echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=PASS'
-              # Keep Wrangler failure detail private in ephemeral runner scratch;
-              # never tail the private-source build log into public Actions output.
-              if ! npx --yes wrangler@4.135.0 deploy \
-                    --dry-run \
-                    --config cloudflare/mmibkr-live-cloud-owner/wrangler.jsonc \
-                    --outdir "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun" \
-                    >"$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log" 2>&1; then
-                echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=FAIL_CLOSED'
-                exit 1
-              fi
-              echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=PASS'
-            fi
           )
           # Exercise the real module CLI on an isolated fixture, not only
           # an imported Python function. This is no broker/no secrets/no trade.
@@ -1082,6 +1053,52 @@ jobs:
           echo 'MMIBKR_PI_BOT_NATIVE_SOURCE=PASS'
           echo "MMIBKR_PI_BOT_ACCEPTED_SOURCE_SHA=$REQUEST_SOURCE_SHA"
           echo 'MMIBKR_PI_BOT_ARM64_IMAGE=NOT_ATTESTED'
+
+      - name: Verify existing Cloudflare canary independently of Pi bot source acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          # This unrelated Cloudflare deployment check remains mandatory for
+          # the full Source Vault workflow, but cannot mask the independent
+          # bot-only source/Compose result. A Wrangler failure still fails
+          # this job and never grants Pi root or broker authority.
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          if [ ! -d "$source_root" ]; then
+            echo 'MMIBKR_CLOUDFLARE_SOURCE=UNAVAILABLE'
+            exit 1
+          fi
+          (
+            cd "$source_root"
+            if [ -f cloudflare/mmibkr-live-cloud-owner/test/policy.test.mjs ]; then
+              # This public runner holds decrypted private source in scratch.
+              # Node failures, npm and Wrangler stderr can print source excerpts.
+              if ! node --test cloudflare/mmibkr-live-cloud-owner/test/*.test.mjs >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=FAIL_CLOSED'
+                exit 1
+              fi
+              if ! (
+                cd cloudflare/mmibkr-live-cloud-owner
+                npm install --no-audit --no-fund --package-lock=false >/dev/null 2>&1
+                npx wrangler deploy --dry-run --outdir "$RUNNER_TEMP/mmibkr-cloudflare-bundle" >/dev/null 2>&1
+              ) >/dev/null 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=FAIL_CLOSED'
+                exit 1
+              fi
+              echo 'MMIBKR_CLOUDFLARE_LIVE_OWNER_CANARY_TESTS=PASS'
+              echo 'MMIBKR_CLOUDFLARE_WRANGLER_DRY_RUN=PASS'
+              # Keep Wrangler failure detail private in ephemeral runner scratch;
+              # never tail the private-source build log into public Actions output.
+              if ! npx --yes wrangler@4.135.0 deploy \
+                    --dry-run \
+                    --config cloudflare/mmibkr-live-cloud-owner/wrangler.jsonc \
+                    --outdir "$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun" \
+                    >"$RUNNER_TEMP/mmibkr-cloudflare-canary-dryrun.log" 2>&1; then
+                echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=FAIL_CLOSED'
+                exit 1
+              fi
+              echo 'MMIBKR_CLOUDFLARE_CANARY_WRANGLER_DRY_RUN=PASS'
+            fi
+          )
 
       - name: Accept exact frozen 695ad P0 changed-source readback and PnL
         shell: bash
