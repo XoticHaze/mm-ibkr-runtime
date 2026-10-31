@@ -285,7 +285,8 @@ jobs:
           # This is artifact availability, NOT native source acceptance or
           # root deployment approval. Later P0 tests may still fail closed. GHCR credentials are never provided to PR jobs.
           if [ "$REQUEST_VALIDATION_PROFILE" != p0_owner ] ||
-             [ "$REQUEST_SOURCE_SHA" != 45339615b1a8b27a5e34233f9cb849c0ae6ecab8 ]; then
+             { [ "$REQUEST_SOURCE_SHA" != 45339615b1a8b27a5e34233f9cb849c0ae6ecab8 ] &&
+               [ "$REQUEST_SOURCE_SHA" != 096ad54d9c97fc5ada583fe11000f5bcdb83c3a8 ]; }; then
             echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=NOT_APPLICABLE'
             exit 0
           fi
