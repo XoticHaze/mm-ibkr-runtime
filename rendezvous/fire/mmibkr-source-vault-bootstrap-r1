@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "45339615b1a8b27a5e34233f9cb849c0ae6ecab8",
-  "requested_by": "DirectOperator-20261030-PiSyntaxCorrected",
-  "purpose": "Exact current selected Pi MM source after correcting Pi logging test Python continuation syntax. Run existing brokerless native ARM64 source/Compose acceptance, publish private GHCR immutable image, record complete Pi/native/Cloudflare gate outcomes, no bot install or broker actions.",
+  "source_sha": "096ad54d9c97fc5ada583fe11000f5bcdb83c3a8",
+  "requested_by": "ManualWorker-MW-20261031102420256",
+  "purpose": "Publish reviewed corrected canonical Pi MM ARM64 image from exact selected private source using existing public native ARM64 Source Vault workflow; no Pi install, Gateway action or live order.",
   "live_execution_allowed": false,
-  "attempt": 271,
-  "reason": "selected_pi_logging_syntax_corrected_exact_native_source_453396",
+  "attempt": 272,
+  "reason": "pi_live_observation_selected_corrected_source_096ad54d",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
