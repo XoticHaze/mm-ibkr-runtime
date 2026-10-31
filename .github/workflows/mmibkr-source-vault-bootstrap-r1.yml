@@ -274,7 +274,7 @@ jobs:
           echo 'MMIBKR_PI_BOT_LIVE_SUBMIT=0'
 
       - name: Stage exact ARM64 bot image in private GHCR (admission remains separate)
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         env:
           PRIVATE_IMAGE_PUSH_PAT: ${{ secrets.MMIBKR_GHCR_PRIVATE_PUSH_PAT }}
         shell: bash
