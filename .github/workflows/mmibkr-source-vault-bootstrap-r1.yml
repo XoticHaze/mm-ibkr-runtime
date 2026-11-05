@@ -1332,13 +1332,23 @@ jobs:
           # Bot Console verification and production Vite build as deploy.
           # Private stdout/stderr can contain excerpts; keep both suppressed
           # in the public encrypted-source workflow and fail closed.
-          if ! (
-            cd "$source_root/ui-react"
-            npm ci --ignore-scripts --no-audit --no-fund >/dev/null 2>&1 &&
-            npm run verify:bot-console >/dev/null 2>&1 &&
-            npm run build >/dev/null 2>&1
-          ); then
-            echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=FAIL_CLOSED'
+          cd "$source_root/ui-react"
+          if npm ci --ignore-scripts --no-audit --no-fund >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_UI_NPM_CI=PASS'
+          else
+            echo 'MMIBKR_SELECTED_UI_NPM_CI=FAIL_CLOSED'
+            exit 1
+          fi
+          if npm run verify:bot-console >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_UI_VERIFY_BOT_CONSOLE=PASS'
+          else
+            echo 'MMIBKR_SELECTED_UI_VERIFY_BOT_CONSOLE=FAIL_CLOSED'
+            exit 1
+          fi
+          if npm run build >/dev/null 2>&1; then
+            echo 'MMIBKR_SELECTED_UI_VITE_BUILD=PASS'
+          else
+            echo 'MMIBKR_SELECTED_UI_VITE_BUILD=FAIL_CLOSED'
             exit 1
           fi
           echo 'MMIBKR_SELECTED_UI_FULL_DEPLOY_NATIVE=PASS'
