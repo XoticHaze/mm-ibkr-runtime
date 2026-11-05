@@ -286,7 +286,8 @@ jobs:
           # root deployment approval. Later P0 tests may still fail closed. GHCR credentials are never provided to PR jobs.
           if [ "$REQUEST_VALIDATION_PROFILE" != p0_owner ] ||
              { [ "$REQUEST_SOURCE_SHA" != 45339615b1a8b27a5e34233f9cb849c0ae6ecab8 ] &&
-               [ "$REQUEST_SOURCE_SHA" != 096ad54d9c97fc5ada583fe11000f5bcdb83c3a8 ]; }; then
+               [ "$REQUEST_SOURCE_SHA" != 096ad54d9c97fc5ada583fe11000f5bcdb83c3a8 ] &&
+               [ "$REQUEST_SOURCE_SHA" != e8f929386d0c10d660d77e9e3b68361faf7efe60 ]; }; then
             echo 'MMIBKR_PRIVATE_GHCR_PUBLICATION=NOT_APPLICABLE'
             exit 0
           fi
@@ -1026,7 +1027,9 @@ jobs:
               tests/test_ibkr_pi_external_inventory_v1.py \
               tests/test_pi_bot_1565_hardening_contract_20261029.py \
               tests/test_pi_bot_fixed_client_identity_20261029.py \
-              tests/test_pi_selected_runtime_activation_logging_20261029.py; do
+              tests/test_pi_selected_runtime_activation_logging_20261029.py \
+              tests/test_selected_runtime_natural_truth_20261105.py \
+              tests/test_selected_crw_natural_no_trigger_20261105.py; do
               native_file_ordinal=$((native_file_ordinal + 1))
               if ! python -m py_compile "$native_file" >/dev/null 2>&1; then
                 echo "MMIBKR_PI_NATIVE_COMPILE_FAILED_ORDINAL=$native_file_ordinal"
@@ -1053,7 +1056,9 @@ jobs:
               tests.test_ibkr_pi_external_inventory_v1 \
               tests.test_pi_bot_1565_hardening_contract_20261029 \
               tests.test_pi_bot_fixed_client_identity_20261029 \
-              tests.test_pi_selected_runtime_activation_logging_20261029
+              tests.test_pi_selected_runtime_activation_logging_20261029 \
+              tests.test_selected_runtime_natural_truth_20261105 \
+              tests.test_selected_crw_natural_no_trigger_20261105
             # The successor suite ran in the preexisting p0_owner native
             # step. Do not rerun it or infer historical execId completeness.
             # Placeholder digest/IDs here are inert Compose syntax fixtures,

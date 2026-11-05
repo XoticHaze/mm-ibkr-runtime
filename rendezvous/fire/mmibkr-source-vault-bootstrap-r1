@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8c25c9832c40dfcf6880f4d5970b9534e094405d",
-  "requested_by": "ManualWorker-MW-20261101114504608",
-  "purpose": "Native strict-UI acceptance after fixing the exact persisted-warmup test fixture identity and strict futures safety guard",
+  "source_sha": "e8f929386d0c10d660d77e9e3b68361faf7efe60",
+  "requested_by": "ManualWorker-MW-20261105113116861",
+  "purpose": "Native ARM64 owner acceptance for merged fail-closed natural signal truth producer",
   "live_execution_allowed": false,
-  "attempt": 275,
-  "reason": "mmibkr_source_vault_futures_roll_conid_prior_fixture_repair",
+  "attempt": 276,
+  "reason": "mmibkr_pi_natural_signal_truth_native_arm64_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
