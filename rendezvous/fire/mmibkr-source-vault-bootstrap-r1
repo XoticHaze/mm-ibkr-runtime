@@ -1,10 +1,10 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "0215d31ef71689efead51f2ed6ee5ae48a58fc62",
+  "source_sha": "d5133439c6b8dcf932bc8425a6af01fa33d28193",
   "requested_by": "ManualWorker-MW-20261105113116861",
-  "purpose": "Exact selected V4 strict UI acceptance after stale clock assertion repair",
+  "purpose": "Exact selected V4 strict UI acceptance after paper empty-result fixture repair",
   "live_execution_allowed": false,
-  "attempt": 278,
+  "attempt": 279,
   "reason": "mmibkr_v4_natural_readback_strict_ui_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
