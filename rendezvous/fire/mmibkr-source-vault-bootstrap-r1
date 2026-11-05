@@ -1,11 +1,11 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d91d631b7906b8a9bcc8d7c08eeba9d49abe46be",
+  "source_sha": "0215d31ef71689efead51f2ed6ee5ae48a58fc62",
   "requested_by": "ManualWorker-MW-20261105113116861",
-  "purpose": "Exact selected V4 native strict-UI acceptance after natural readback consumer integration",
+  "purpose": "Exact selected V4 strict UI acceptance after stale clock assertion repair",
   "live_execution_allowed": false,
-  "attempt": 277,
-  "reason": "mmibkr_v4_natural_readback_native_strict_ui_acceptance",
+  "attempt": 278,
+  "reason": "mmibkr_v4_natural_readback_strict_ui_acceptance",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
