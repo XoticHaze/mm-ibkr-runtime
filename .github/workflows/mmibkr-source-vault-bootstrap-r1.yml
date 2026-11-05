@@ -1339,7 +1339,28 @@ jobs:
             echo 'MMIBKR_SELECTED_UI_NPM_CI=FAIL_CLOSED'
             exit 1
           fi
-          if npm run verify:bot-console >/dev/null 2>&1; then
+          if python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          root = Path.cwd()
+          package = json.loads((root / 'package.json').read_text(encoding='utf-8'))
+          command = ((package.get('scripts') or {}).get('verify:bot-console') or '').strip()
+          parts = [part.strip() for part in command.split(' && ') if part.strip()]
+          if not parts or len(parts) > 32:
+              print('MMIBKR_SELECTED_UI_VERIFY_PLAN=FAIL_CLOSED')
+              raise SystemExit(1)
+          for ordinal, part in enumerate(parts, 1):
+              result = subprocess.run(
+                  part, cwd=root, shell=True,
+                  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                  timeout=90,
+              )
+              if result.returncode:
+                  print(f'MMIBKR_SELECTED_UI_VERIFY_CASE_{ordinal}=FAIL')
+                  raise SystemExit(1)
+              print(f'MMIBKR_SELECTED_UI_VERIFY_CASE_{ordinal}=PASS')
+          PY
+          then
             echo 'MMIBKR_SELECTED_UI_VERIFY_BOT_CONSOLE=PASS'
           else
             echo 'MMIBKR_SELECTED_UI_VERIFY_BOT_CONSOLE=FAIL_CLOSED'
