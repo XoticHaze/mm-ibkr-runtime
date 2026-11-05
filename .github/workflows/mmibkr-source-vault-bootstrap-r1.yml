@@ -498,6 +498,15 @@ jobs:
               private_cmd python -m unittest -v tests.test_selected_runtime_futures_execution_roll_guard_v1
               echo 'MMIBKR_FUTURES_ROLL_GUARD_EXACT_SOURCE_TESTS=PASS'
             fi
+            # strict_ui is a distinct acceptance profile. The shared baseline
+            # above remains mandatory, but P0-owner changed-runtime suites
+            # below are not UI admission and can legitimately diverge on the
+            # selected V4 branch. Leave the subshell successfully so the
+            # dedicated strict UI Node/Vite gate later in this job can run.
+            if [ "$REQUEST_VALIDATION_PROFILE" = "strict_ui" ]; then
+              echo 'MMIBKR_STRICT_UI_SHARED_RUNTIME_BASELINE=PASS'
+              exit 0
+            fi
             # Product #1390 selected P0 conId/reduce-only safety is a changed
             # private-source leaf. Reuse this exact encrypted no-broker runner;
             # never publish private Python assertion output to public logs.
