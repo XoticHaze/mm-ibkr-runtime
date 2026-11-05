@@ -1097,13 +1097,13 @@ jobs:
           echo 'MMIBKR_PI_BOT_ARM64_IMAGE=NOT_ATTESTED'
 
       - name: Verify existing Cloudflare canary independently of Pi bot source acceptance
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          # This unrelated Cloudflare deployment check remains mandatory for
-          # the full Source Vault workflow, but cannot mask the independent
-          # bot-only source/Compose result. A Wrangler failure still fails
-          # this job and never grants Pi root or broker authority.
+          # This unrelated Cloudflare deployment check is reported independently.
+          # Its failure must not suppress later profile-owned native acceptance
+          # (strict_ui or p0_owner). It never grants Pi root or broker authority.
           source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
           if [ ! -d "$source_root" ]; then
             echo 'MMIBKR_CLOUDFLARE_SOURCE=UNAVAILABLE'
