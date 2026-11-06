@@ -946,7 +946,7 @@ jobs:
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
 
-      - name: Accept exact Pi #1648 new-owner ledger, fill and cushion brokerless gate
+      - name: 'Accept exact Pi 1648 new-owner ledger, fill and cushion brokerless gate'
         shell: bash
         run: |
           set -euo pipefail
@@ -999,13 +999,24 @@ jobs:
               echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=PY_COMPILE_FAILED'
               exit 1
             fi
-            if ! python -m unittest -q \
+            # Run every exact suite, retaining only fixed ordinal failures.
+            # No private traceback, source, account or assertion leaves runner.
+            failed_ordinals=''
+            suite_ordinal=0
+            for suite in \
               tests.test_pi_root_external_baseline_owner_epoch_20261106 \
               tests.test_pi_canonical_live_fill_commit_bridge_20261106 \
               tests.test_pi_canonical_pending_live_fill_recovery_20261106 \
               tests.test_pi_canonical_account_margin_cap_bridge_20261106 \
               tests.test_pi_canonical_margin_call_binding_20261106 \
-              tests.test_selected_runtime_live_execution_ledger_v1 >/dev/null 2>&1; then
+              tests.test_selected_runtime_live_execution_ledger_v1; do
+              suite_ordinal=$((suite_ordinal + 1))
+              if ! python -m unittest -q "$suite" >/dev/null 2>&1; then
+                failed_ordinals="${failed_ordinals:+$failed_ordinals,}$suite_ordinal"
+              fi
+            done
+            if [ -n "$failed_ordinals" ]; then
+              echo "MMIBKR_PI_1648_FAILED_SUITE_ORDINALS=$failed_ordinals"
               echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=REGRESSION_FAILED'
               exit 1
             fi
