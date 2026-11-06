@@ -946,6 +946,75 @@ jobs:
           echo 'MMIBKR_EXISTING_NO_BROKER_RUNTIME_REGRESSION=PASS'
           echo "MMIBKR_REGRESSION_EXACT_SOURCE_SHA=$REQUEST_SOURCE_SHA"
 
+      - name: Accept exact Pi #1648 new-owner ledger, fill and cushion brokerless gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          # This is a source-scoped, brokerless native gate. It never starts
+          # Gateway, uses account credentials, approves root bootstrap, or
+          # installs the bot. Preserve all private assertion output in runner.
+          if [ "$REQUEST_VALIDATION_PROFILE" != p0_owner ] ||
+             [ "$REQUEST_SOURCE_SHA" != 8f4c7f2612188f425a6e07dc4f5f4a411848e31a ]; then
+            echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=NOT_APPLICABLE'
+            exit 0
+          fi
+          source_root="$RUNNER_TEMP/mmibkr-source-vault-bootstrap/fleet-extracted/mm-ibkr"
+          test -d "$source_root" || {
+            echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=SOURCE_UNAVAILABLE'
+            exit 1
+          }
+          for required in \
+            selected_runtime_live_external_baseline_v1.py \
+            selected_runtime_live_inventory_authority_v1.py \
+            selected_runtime_live_execution_ledger_v1.py \
+            selected_runtime_live_order_intent_journal_v1.py \
+            selected_runtime_live_pending_fill_reconcile_v1.py \
+            selected_runtime_margin_guard_14th31lg.py \
+            tests/test_pi_root_external_baseline_owner_epoch_20261106.py \
+            tests/test_pi_canonical_live_fill_commit_bridge_20261106.py \
+            tests/test_pi_canonical_pending_live_fill_recovery_20261106.py \
+            tests/test_pi_canonical_account_margin_cap_bridge_20261106.py \
+            tests/test_pi_canonical_margin_call_binding_20261106.py \
+            tests/test_selected_runtime_live_execution_ledger_v1.py; do
+            test -f "$source_root/$required" || {
+              echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=REQUIRED_FILE_MISSING'
+              exit 1
+            }
+          done
+          (
+            cd "$source_root"
+            if ! python -m py_compile \
+              selected_runtime_live_external_baseline_v1.py \
+              selected_runtime_live_inventory_authority_v1.py \
+              selected_runtime_live_execution_ledger_v1.py \
+              selected_runtime_live_order_intent_journal_v1.py \
+              selected_runtime_live_pending_fill_reconcile_v1.py \
+              selected_runtime_margin_guard_14th31lg.py \
+              tests/test_pi_root_external_baseline_owner_epoch_20261106.py \
+              tests/test_pi_canonical_live_fill_commit_bridge_20261106.py \
+              tests/test_pi_canonical_pending_live_fill_recovery_20261106.py \
+              tests/test_pi_canonical_account_margin_cap_bridge_20261106.py \
+              tests/test_pi_canonical_margin_call_binding_20261106.py \
+              tests/test_selected_runtime_live_execution_ledger_v1.py >/dev/null 2>&1; then
+              echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=PY_COMPILE_FAILED'
+              exit 1
+            fi
+            if ! python -m unittest -q \
+              tests.test_pi_root_external_baseline_owner_epoch_20261106 \
+              tests.test_pi_canonical_live_fill_commit_bridge_20261106 \
+              tests.test_pi_canonical_pending_live_fill_recovery_20261106 \
+              tests.test_pi_canonical_account_margin_cap_bridge_20261106 \
+              tests.test_pi_canonical_margin_call_binding_20261106 \
+              tests.test_selected_runtime_live_execution_ledger_v1 >/dev/null 2>&1; then
+              echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=REGRESSION_FAILED'
+              exit 1
+            fi
+          )
+          echo 'MMIBKR_PI_1648_BROKERLESS_NATIVE=PASS'
+          echo 'MMIBKR_PI_1648_SUITES_EXECUTED=6'
+          echo 'MMIBKR_PI_1648_PRODUCTION_INSTALLED=0'
+          echo 'MMIBKR_PI_1648_BROKER_MUTATION=0'
+
       - name: Validate selected funded replay and PnL issuer hold from exact encrypted source
         shell: bash
         run: |
