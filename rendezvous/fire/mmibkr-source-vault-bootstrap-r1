@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "d5133439c6b8dcf932bc8425a6af01fa33d28193",
-  "requested_by": "ManualWorker-MW-20261105113116861",
-  "purpose": "Exact selected V4 strict UI acceptance after paper empty-result fixture repair",
+  "source_sha": "8f4c7f2612188f425a6e07dc4f5f4a411848e31a",
+  "requested_by": "ManualWorker-MW-20261106100813440",
+  "purpose": "Exact MM #1648 Pi P0 owner native ARM64 and brokerless acceptance, no release or broker authority",
   "live_execution_allowed": false,
-  "attempt": 279,
-  "reason": "mmibkr_v4_natural_readback_strict_ui_acceptance",
+  "attempt": 280,
+  "reason": "cc_release_pi_1648_native_p0_owner_candidate",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "strict_ui"
+  "validation_profile": "p0_owner"
 }
