@@ -4,6 +4,6 @@
   "source_selector": "private_owned_current_candidate",
   "candidate_sha_included": false,
   "broker_or_pi_runtime_mutation_authorized": false,
-  "retry_sequence": 4,
-  "retry_reason": "same_approved_private_candidate_with_existing_fleet_UA_and_sanitized_content_type"
+  "retry_sequence": 5,
+  "retry_reason": "fixed_synthetic_http_headers_before_authenticated_candidate"
 }
