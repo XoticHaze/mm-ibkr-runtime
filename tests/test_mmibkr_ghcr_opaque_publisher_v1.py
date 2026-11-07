@@ -3,6 +3,7 @@
 Only synthetic source IDs; no private source, token or registry mutation.
 """
 import io
+import re
 import json
 import os
 from pathlib import Path
@@ -95,6 +96,10 @@ class OpaquePublisherSourceTests(unittest.TestCase):
         self.assertIn("PI_GHCR_PUBLIC_PRIVATE_SHA_OR_DIGEST=NONE", source)
         self.assertIn("private_source_id_emitted", workflow)
         self.assertIn("private_image_digest_emitted", workflow)
+        self.assertIsNone(re.search(
+            r"(?<![a-f0-9])[a-f0-9]{40}(?![a-f0-9])",
+            source + Path(__file__).read_text(encoding="utf-8"),
+        ))
 
 
 if __name__ == "__main__":
