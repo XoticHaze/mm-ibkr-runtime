@@ -35,6 +35,8 @@ jobs:
             scripts/mmibkr_fleet_private_source_consumer_v1.py \
             scripts/mmibkr_fleet_source_vault_bootstrap_v1.py \
             scripts/mmibkr_source_vault_rsa_interop_probe_v1.py \
+            scripts/mmibkr_ghcr_opaque_publish_v1.py \
+            tests/test_mmibkr_ghcr_opaque_publisher_v1.py \
             tests/test_mmibkr_cloud_source_exchange_consumer_v1.py \
             tests/test_mmibkr_source_vault_v1.py \
             tests/test_mmibkr_source_vault_fetch_retry_v1.py \
@@ -55,4 +57,5 @@ jobs:
             tests.test_mmibkr_fleet_private_source_consumer_v1 \
             tests.test_mmibkr_fleet_source_vault_bootstrap_v1 \
             tests.test_mmibkr_source_vault_rsa_interop_probe_v1 \
+            tests.test_mmibkr_ghcr_opaque_publisher_v1 \
             tests.test_source_vault_node_public_log_allowlist_20261027
