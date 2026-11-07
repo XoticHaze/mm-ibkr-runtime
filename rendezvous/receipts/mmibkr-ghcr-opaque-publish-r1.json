@@ -1,0 +1,10 @@
+{
+  "broker_mutation": false,
+  "pi_bot_replaced": false,
+  "private_image_digest_emitted": false,
+  "private_source_id_emitted": false,
+  "result": "not_published",
+  "schema": "mmibkr.ghcr_existing_opaque_publisher_receipt.v1",
+  "workflow": "mmibkr-ghcr-opaque-publish-r1.yml",
+  "workflow_run_id": "42343086368"
+}
