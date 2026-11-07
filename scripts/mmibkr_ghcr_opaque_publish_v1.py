@@ -19,6 +19,9 @@ import sys
 import tempfile
 from urllib.request import Request, urlopen
 
+# Script invocation sets sys.path[0] to /repo/scripts, not /repo.
+# Restore the reviewed public runtime package root before importing scripts.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.mmibkr_fleet_private_source_consumer_v1 import (
     _oidc_token, materialize,
 )
