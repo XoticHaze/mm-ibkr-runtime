@@ -110,7 +110,8 @@ def private_candidate(run_id: str):
         # Return only status + bounded category; never HTTP body, host, token,
         # identity, private SHA or arbitrary upstream error text.
         status = str(exc.code) if exc.code in {401, 403, 404, 429, 500, 502, 503} else "OTHER"
-        kind = str(exc.headers.get("Content-Type") or "").lower().split(";", 1)[0]
+        headers = exc.headers or {}
+        kind = str(headers.get("Content-Type") or "").lower().split(";", 1)[0]
         if kind == "text/html":
             classification = "EDGE_HTML"
         elif kind == "application/json":
