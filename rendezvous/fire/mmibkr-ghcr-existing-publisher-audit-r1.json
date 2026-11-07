@@ -3,5 +3,6 @@
   "action": "read_only_existing_credential_metadata_audit",
   "credential_alias": "MMIBKR_GHCR_PRIVATE_PUSH_PAT",
   "private_source_sha_included": false,
-  "ghcr_mutation_authorized": false
+  "ghcr_mutation_authorized": false,
+  "sanitized_receipt_requested": true
 }
