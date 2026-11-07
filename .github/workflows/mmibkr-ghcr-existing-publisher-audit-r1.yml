@@ -13,6 +13,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: mmibkr-ghcr-existing-publisher-audit-r1
+  cancel-in-progress: false
+
 jobs:
   audit-existing-credential:
     runs-on: ubuntu-24.04
@@ -92,3 +96,50 @@ jobs:
           echo 'GHCR_EXISTING_PUBLISHER_PUSH_PERMISSION=NOT_TESTED'
           echo 'GHCR_IMAGE_PUBLISHED=NO'
           echo 'PRIVATE_SOURCE_INPUTS_OR_ARTIFACTS=NONE'
+
+  # This isolated job receives no GHCR credential. It publishes only the
+  # prior job's success/failure, so ChatGPT and the operator can read durable
+  # status without obtaining an Actions-run token, sensitive headers or logs.
+  publish_sanitized_receipt:
+    if: always()
+    needs: [audit-existing-credential]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Commit fixed-schema no-secret status to existing public repository
+        env:
+          AUDIT_JOB_STATUS: ${{ needs['audit-existing-credential'].result }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = os.environ.get('AUDIT_JOB_STATUS', '')
+          if result not in {'success', 'failure', 'cancelled', 'skipped'}:
+              raise SystemExit('auditor status unavailable')
+          record = {
+              'schema': 'mmibkr.ghcr_existing_publisher_audit_receipt.v1',
+              'source': 'XoticHaze/mm-ibkr-runtime/.github/workflows/mmibkr-ghcr-existing-publisher-audit-r1.yml',
+              'audit_result': 'passed' if result == 'success' else 'not_passed',
+              'audit_scope': 'existing_ghcr_pat_and_private_package_read_only',
+              'workflow_run_id': str(os.environ.get('GITHUB_RUN_ID') or ''),
+              'private_source_requested': False,
+              'package_write_tested': False,
+              'image_published': False,
+              'token_value_included': False,
+          }
+          out = Path('rendezvous/receipts/mmibkr-ghcr-existing-publisher-audit-r1.json')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(record, sort_keys=True, indent=2) + '\\n')
+          PY
+          git add -- rendezvous/receipts/mmibkr-ghcr-existing-publisher-audit-r1.json
+          git -c user.name="MM GHCR Audit" \
+              -c user.email="mm-ghcr-audit@users.noreply.github.com" \
+              commit -m "audit: sanitized GHCR publisher credential result [skip ci]"
+          git push origin HEAD:refs/heads/main
