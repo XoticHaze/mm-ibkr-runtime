@@ -6,5 +6,5 @@
   "result": "not_published",
   "schema": "mmibkr.ghcr_existing_opaque_publisher_receipt.v1",
   "workflow": "mmibkr-ghcr-opaque-publish-r1.yml",
-  "workflow_run_id": "42343086368"
+  "workflow_run_id": "42343268828"
 }
