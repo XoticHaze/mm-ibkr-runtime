@@ -1,0 +1,107 @@
+name: MM-IBKR Existing GHCR Publisher - Opaque Pi Image R1
+
+# Reuses existing mm-ibkr-runtime GHCR publisher + PAT. Fixed opaque fire
+# contains NO private source SHA, image digest, source URL, or credentials.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rendezvous/fire/mmibkr-ghcr-opaque-publish-r1.json'
+  pull_request:
+    paths:
+      - '.github/workflows/mmibkr-ghcr-opaque-publish-r1.yml'
+      - 'scripts/mmibkr_ghcr_opaque_publish_v1.py'
+      - 'tests/test_mmibkr_ghcr_opaque_publisher_v1.py'
+
+concurrency:
+  group: mmibkr-ghcr-opaque-publish-r1
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  source-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11.16'
+      - name: Verify opaque publisher contract and no private source identifiers
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/mmibkr_ghcr_opaque_publish_v1.py
+          python -m unittest -v tests.test_mmibkr_ghcr_opaque_publisher_v1
+
+  image-only-publish:
+    if: ${{ github.event_name == 'push' }}
+    needs: [source-contract]
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      MMIBKR_GHCR_PRIVATE_PUSH_PAT: ${{ secrets.MMIBKR_GHCR_PRIVATE_PUSH_PAT }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11.16'
+      - name: Install fixed Fleet source-transfer dependency
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check cryptography==46.0.1
+      - name: Use existing credential to publish reviewed private ARM64 image
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          test -n "${MMIBKR_GHCR_PRIVATE_PUSH_PAT:-}"
+          python scripts/mmibkr_ghcr_opaque_publish_v1.py
+
+  sanitized-receipt:
+    if: ${{ always() && github.event_name == 'push' }}
+    needs: [image-only-publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - name: Commit no-source no-digest publisher status to existing public repository
+        env:
+          PUBLISH_JOB_RESULT: ${{ needs['image-only-publish'].result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = os.environ.get('PUBLISH_JOB_RESULT', '')
+          if result not in {'success', 'failure', 'cancelled', 'skipped'}:
+              raise SystemExit('publisher job status unavailable')
+          node = {
+              'schema': 'mmibkr.ghcr_existing_opaque_publisher_receipt.v1',
+              'workflow': 'mmibkr-ghcr-opaque-publish-r1.yml',
+              'workflow_run_id': str(os.environ['GITHUB_RUN_ID']),
+              'result': 'published_private_image' if result == 'success' else 'not_published',
+              'private_source_id_emitted': False,
+              'private_image_digest_emitted': False,
+              'broker_mutation': False,
+              'pi_bot_replaced': False,
+          }
+          path = Path('rendezvous/receipts/mmibkr-ghcr-opaque-publish-r1.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(node, sort_keys=True, indent=2))
+          PY
+          git add -- rendezvous/receipts/mmibkr-ghcr-opaque-publish-r1.json
+          git -c user.name='MM-IBKR GHCR Publisher' \
+              -c user.email='mmibkr-ghcr-publisher@users.noreply.github.com' \
+              commit -m 'publisher: sanitized opaque private-image result [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:refs/heads/main
