@@ -1,0 +1,7 @@
+{
+  "schema": "mmibkr.ghcr_opaque_publisher_fire.v1",
+  "action": "publish_current_private_owner_approved_pi_image_only",
+  "source_selector": "private_owned_current_candidate",
+  "candidate_sha_included": false,
+  "broker_or_pi_runtime_mutation_authorized": false
+}
