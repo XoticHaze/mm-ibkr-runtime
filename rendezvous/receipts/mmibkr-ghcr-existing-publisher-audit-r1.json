@@ -1,0 +1,11 @@
+{
+  "audit_result": "passed",
+  "audit_scope": "existing_ghcr_pat_and_private_package_read_only",
+  "image_published": false,
+  "package_write_tested": false,
+  "private_source_requested": false,
+  "schema": "mmibkr.ghcr_existing_publisher_audit_receipt.v1",
+  "source": "XoticHaze/mm-ibkr-runtime/.github/workflows/mmibkr-ghcr-existing-publisher-audit-r1.yml",
+  "token_value_included": false,
+  "workflow_run_id": "42340748114"
+}\n
