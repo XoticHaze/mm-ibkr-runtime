@@ -136,7 +136,7 @@ jobs:
           }
           out = Path('rendezvous/receipts/mmibkr-ghcr-existing-publisher-audit-r1.json')
           out.parent.mkdir(parents=True, exist_ok=True)
-          out.write_text(json.dumps(record, sort_keys=True, indent=2) + '\\n')
+          out.write_text(json.dumps(record, sort_keys=True, indent=2))
           PY
           git add -- rendezvous/receipts/mmibkr-ghcr-existing-publisher-audit-r1.json
           git -c user.name="MM GHCR Audit" \
