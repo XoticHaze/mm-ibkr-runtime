@@ -32,6 +32,21 @@ class OpaquePublisherSourceTests(unittest.TestCase):
         self.assertIn("count<1:sys.exit(81)", app.NATIVE_RUNNER)
         self.assertIn("result.testsRun!=count", app.NATIVE_RUNNER)
 
+    def test_exact_workflow_script_entrypoint_imports_cleanly(self):
+        # Real launch form used on ubuntu ARM64. It must reject the event,
+        # rather than fail importing scripts before reaching the safety guard.
+        import subprocess
+        import sys
+        root = Path(__file__).resolve().parents[1]
+        env = dict(os.environ, GITHUB_EVENT_NAME="workflow_dispatch")
+        proc = subprocess.run(
+            [sys.executable, "scripts/mmibkr_ghcr_opaque_publish_v1.py"],
+            cwd=root, env=env, text=True, capture_output=True, timeout=15,
+        )
+        self.assertNotEqual(proc.returncode, 0)
+        self.assertIn("PI_GHCR_HELD_STAGE=TRIGGER_NOT_PUSH", proc.stdout)
+        self.assertNotIn("ModuleNotFoundError", proc.stderr)
+
     def test_wrong_github_event_does_not_touch_secrets_or_docker(self):
         with patch.dict(os.environ, {"GITHUB_EVENT_NAME": "workflow_dispatch"}, clear=True):
             with self.assertRaises(app.Held) as cm:
