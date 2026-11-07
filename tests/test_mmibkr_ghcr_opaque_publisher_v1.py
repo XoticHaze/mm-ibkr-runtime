@@ -71,6 +71,16 @@ class OpaquePublisherSourceTests(unittest.TestCase):
         self.assertNotIn("a" * 40, request.full_url)
         self.assertIn("Bearer synthetic", dict(request.header_items()).values())
 
+    def test_candidate_http_failure_exposes_only_fixed_status(self):
+        from urllib.error import HTTPError
+        with patch.object(app, "_oidc_token", return_value="synthetic"):
+            with patch.object(app, "urlopen",
+                              side_effect=HTTPError("https://internal.invalid", 404,
+                                                    "not found", None, None)):
+                with self.assertRaises(app.Held) as cm:
+                    app.private_candidate("12345678")
+        self.assertEqual(cm.exception.stage, "PRIVATE_CANDIDATE_HTTP_404")
+
     def test_bad_candidate_denied(self):
         invalid = {
             "schema": "mmibkr.pi_ghcr_opaque_candidate.v1",
