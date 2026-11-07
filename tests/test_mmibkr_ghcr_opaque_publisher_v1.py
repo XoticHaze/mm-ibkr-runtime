@@ -79,7 +79,7 @@ class OpaquePublisherSourceTests(unittest.TestCase):
                                                     "not found", None, None)):
                 with self.assertRaises(app.Held) as cm:
                     app.private_candidate("12345678")
-        self.assertEqual(cm.exception.stage, "PRIVATE_CANDIDATE_HTTP_404")
+        self.assertEqual(cm.exception.stage, "PRIVATE_CANDIDATE_HTTP_404_OTHER_CONTENT_TYPE")
 
     def test_bad_candidate_denied(self):
         invalid = {
