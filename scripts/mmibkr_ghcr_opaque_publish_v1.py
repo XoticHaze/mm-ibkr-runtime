@@ -18,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 
 # Script invocation sets sys.path[0] to /repo/scripts, not /repo.
 # Restore the reviewed public runtime package root before importing scripts.
@@ -103,8 +104,13 @@ def private_candidate(run_id: str):
     try:
         with urlopen(req, timeout=45) as response:
             obj = json.load(response)
+    except HTTPError as exc:
+        # Only the HTTP status code is logged, never response bodies/URLs/SHA.
+        if exc.code in {401, 403, 404, 429, 500, 502, 503}:
+            raise Held("PRIVATE_CANDIDATE_HTTP_" + str(exc.code))
+        raise Held("PRIVATE_CANDIDATE_HTTP_OTHER")
     except Exception:
-        raise Held("PRIVATE_CANDIDATE")
+        raise Held("PRIVATE_CANDIDATE_TRANSPORT")
     if (type(obj) is not dict
             or obj.get("schema") != "mmibkr.pi_ghcr_opaque_candidate.v1"
             or obj.get("broker_authorized") is not False
