@@ -3,5 +3,7 @@
   "action": "publish_current_private_owner_approved_pi_image_only",
   "source_selector": "private_owned_current_candidate",
   "candidate_sha_included": false,
-  "broker_or_pi_runtime_mutation_authorized": false
+  "broker_or_pi_runtime_mutation_authorized": false,
+  "retry_sequence": 2,
+  "retry_reason": "fixed_public_publisher_launch_import_only"
 }
