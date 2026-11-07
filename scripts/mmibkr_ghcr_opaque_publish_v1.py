@@ -100,15 +100,24 @@ def private_candidate(run_id: str):
                       "x-mmibkr-caller-run-id": run_id,
                       "content-type": "application/json",
                       "cache-control": "no-store",
+                      "User-Agent": "mmibkr-fleet-private-source-consumer-v1",
+                      "Accept": "application/json",
                   })
     try:
         with urlopen(req, timeout=45) as response:
             obj = json.load(response)
     except HTTPError as exc:
-        # Only the HTTP status code is logged, never response bodies/URLs/SHA.
-        if exc.code in {401, 403, 404, 429, 500, 502, 503}:
-            raise Held("PRIVATE_CANDIDATE_HTTP_" + str(exc.code))
-        raise Held("PRIVATE_CANDIDATE_HTTP_OTHER")
+        # Return only status + bounded category; never HTTP body, host, token,
+        # identity, private SHA or arbitrary upstream error text.
+        status = str(exc.code) if exc.code in {401, 403, 404, 429, 500, 502, 503} else "OTHER"
+        kind = str(exc.headers.get("Content-Type") or "").lower().split(";", 1)[0]
+        if kind == "text/html":
+            classification = "EDGE_HTML"
+        elif kind == "application/json":
+            classification = "JSON"
+        else:
+            classification = "OTHER_CONTENT_TYPE"
+        raise Held("PRIVATE_CANDIDATE_HTTP_" + status + "_" + classification)
     except Exception:
         raise Held("PRIVATE_CANDIDATE_TRANSPORT")
     if (type(obj) is not dict
