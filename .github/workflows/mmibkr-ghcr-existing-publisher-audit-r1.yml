@@ -1,0 +1,94 @@
+name: MM-IBKR Existing GHCR Publisher Credential Audit R1
+
+# Nonsecret metadata check of the already-established publisher. No
+# private source SHA, artifact, Docker image, registry write or release grant.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'rendezvous/fire/mmibkr-ghcr-existing-publisher-audit-r1.json'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-existing-credential:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Verify existing publisher PAT metadata without registry mutation
+        env:
+          EXISTING_GHCR_PUBLISHER_PAT: ${{ secrets.MMIBKR_GHCR_PRIVATE_PUSH_PAT }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          umask 077
+          if [[ -z "${EXISTING_GHCR_PUBLISHER_PAT:-}" ]]; then
+            echo 'GHCR_EXISTING_PUBLISHER_SECRET=NOT_CONFIGURED'
+            exit 71
+          fi
+          echo 'GHCR_EXISTING_PUBLISHER_SECRET=PRESENT'
+          scratch="$(mktemp -d)"
+          trap 'rm -rf "$scratch"' EXIT
+          user_status="$(curl --silent --show-error --max-time 20 \
+            --dump-header "$scratch/user-headers" --output "$scratch/user.json" \
+            --write-out '%{http_code}' \
+            --header "Authorization: Bearer $EXISTING_GHCR_PUBLISHER_PAT" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            https://api.github.com/user)" || {
+            echo 'GHCR_EXISTING_PUBLISHER_AUTH=NETWORK_FAILED'
+            exit 72
+          }
+          if [[ "$user_status" != 200 ]]; then
+            echo 'GHCR_EXISTING_PUBLISHER_AUTH=DENIED'
+            exit 73
+          fi
+          echo 'GHCR_EXISTING_PUBLISHER_AUTH=PASS'
+          python3 - "$scratch/user-headers" <<'PY'
+          from pathlib import Path
+          import sys
+          raw = Path(sys.argv[1]).read_text(encoding='utf-8', errors='replace')
+          scopes = []
+          for line in raw.splitlines():
+              if line.lower().startswith('x-oauth-scopes:'):
+                  scopes = [s.strip().lower() for s in line.split(':', 1)[1].split(',')]
+          if 'write:packages' not in scopes:
+              print('GHCR_EXISTING_PUBLISHER_WRITE_PACKAGES_SCOPE=UNVERIFIED')
+              raise SystemExit(74)
+          print('GHCR_EXISTING_PUBLISHER_WRITE_PACKAGES_SCOPE=PASS')
+          PY
+          package_status="$(curl --silent --show-error --max-time 20 \
+            --output "$scratch/package.json" --write-out '%{http_code}' \
+            --header "Authorization: Bearer $EXISTING_GHCR_PUBLISHER_PAT" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            'https://api.github.com/users/XoticHaze/packages/container/mmibkr-pi-canonical-private-20261030')" || {
+            echo 'GHCR_EXISTING_PUBLISHER_PACKAGE_READ=NETWORK_FAILED'
+            exit 75
+          }
+          if [[ "$package_status" != 200 ]]; then
+            echo 'GHCR_EXISTING_PUBLISHER_PACKAGE_READ=DENIED_OR_MISSING'
+            exit 76
+          fi
+          python3 - "$scratch/package.json" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          try:
+              obj = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
+              if obj.get('visibility') != 'private':
+                  raise ValueError('not private')
+              if obj.get('name') != 'mmibkr-pi-canonical-private-20261030':
+                  raise ValueError('wrong package')
+          except (ValueError, OSError, TypeError):
+              print('GHCR_EXISTING_PUBLISHER_PRIVATE_PACKAGE=REJECTED')
+              raise SystemExit(77)
+          print('GHCR_EXISTING_PUBLISHER_PRIVATE_PACKAGE=PASS')
+          PY
+          echo 'GHCR_EXISTING_PUBLISHER_CREDENTIAL_PREFLIGHT=PASS'
+          echo 'GHCR_EXISTING_PUBLISHER_PUSH_PERMISSION=NOT_TESTED'
+          echo 'GHCR_IMAGE_PUBLISHED=NO'
+          echo 'PRIVATE_SOURCE_INPUTS_OR_ARTIFACTS=NONE'
