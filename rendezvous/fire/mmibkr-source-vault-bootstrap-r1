@@ -1,14 +1,14 @@
 {
   "schema": "mmibkr.source_vault_bootstrap_request.v1",
-  "source_sha": "8f4c7f2612188f425a6e07dc4f5f4a411848e31a",
-  "requested_by": "ManualWorker-MW-20261106100813440",
-  "purpose": "Exact MM #1648 Pi P0 owner native ARM64 and brokerless acceptance, no release or broker authority",
+  "source_sha": "9986d3ceaf441aeac58cfacf2a476a9978b5f88c",
+  "requested_by": "ManualWorker-MW-20261114024222319",
+  "purpose": "Publish selected V4 live-account financial integration as exact encrypted private source through admitted Fleet; no broker/live authority",
   "live_execution_allowed": false,
-  "attempt": 280,
-  "reason": "cc_release_pi_1648_native_p0_owner_candidate",
+  "attempt": 281,
+  "reason": "operator_console_financial_v4_selected_source_vault_approved_rollout",
   "runtime_authority_changed": false,
   "compute_requirements": {
     "trust_mode": "public_encrypted"
   },
-  "validation_profile": "p0_owner"
+  "validation_profile": "strict_ui"
 }
